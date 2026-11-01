@@ -144,7 +144,11 @@ test.describe("project workspace", () => {
     await expect(page.getByText("Saved to memory")).toBeVisible();
 
     await page.getByRole("tab", { name: "Notes" }).click();
-    await expect(page.getByText(/openai\/gpt-4o-mini|You/)).toBeVisible();
+    await expect
+      .poll(() =>
+        readFileSync(path.join(folder, ".research", "memory.md"), "utf8"),
+      )
+      .toMatch(/source: openai\/gpt-4o-mini/);
   });
 
   test("switch Scratch and back scopes chats; reload restores project", async ({

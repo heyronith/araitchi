@@ -304,21 +304,39 @@ describe("scratch migration", () => {
 });
 
 describe("lock behaviour", () => {
-  it("opens read-only when another live PID holds the lock", () => {
+  it("opens read-only when another live PID holds the lock", async () => {
+    const { spawn } = await import("node:child_process");
     const root = path.join(getAppDataDir(), "lock-proj");
     mkdirSync(root, { recursive: true });
     const research = researchDir(root);
     ensureResearchStructure(root);
-    // Fake another live process: use current pid then change file to a
-    // different alive-looking pid — on most systems PID 1 is alive.
-    writeFileSync(
-      path.join(research, ".lock"),
-      JSON.stringify({ pid: 1, timestamp: Date.now() }),
+
+    // Hold a real live PID (portable across Windows/macOS/Linux).
+    const holder = spawn(
+      process.execPath,
+      ["-e", "setInterval(() => {}, 1000)"],
+      {
+        stdio: "ignore",
+        detached: true,
+      },
     );
-    const result = acquireProjectLock(research);
-    expect(result.readOnly).toBe(true);
-    expect(result.warning).toMatch(/read-only/i);
-    releaseProjectLock(research);
+    holder.unref();
+    try {
+      writeFileSync(
+        path.join(research, ".lock"),
+        JSON.stringify({ pid: holder.pid, timestamp: Date.now() }),
+      );
+      const result = acquireProjectLock(research);
+      expect(result.readOnly).toBe(true);
+      expect(result.warning).toMatch(/read-only/i);
+      releaseProjectLock(research);
+    } finally {
+      try {
+        holder.kill();
+      } catch {
+        // already gone
+      }
+    }
   });
 });
 

@@ -195,11 +195,10 @@ export function ChatPanel({
   function openSaveToMemory(message: UIMessage, selected?: string) {
     const text = selected?.trim() || extractText(message);
     const meta = (message.metadata ?? {}) as MessageMeta;
+    const stored = allStored.find((m) => m.id === message.id);
     const source =
       message.role === "assistant"
-        ? meta.modelId ||
-          allStored.find((m) => m.id === message.id)?.modelId ||
-          "assistant"
+        ? stored?.modelId || meta.modelId || modelId || "assistant"
         : "user";
     setSaveBody(text);
     setSaveSource(source);
