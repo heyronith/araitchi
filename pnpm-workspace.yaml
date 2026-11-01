@@ -1,0 +1,5 @@
+# Single-package workspace (pnpm 12+ settings live here).
+allowBuilds:
+  better-sqlite3: true
+  esbuild: true
+  sharp: true
