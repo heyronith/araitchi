@@ -23,7 +23,11 @@ export const metadata: Metadata = {
     "Local-first, self-hosted AI research workspace. Bring your own OpenRouter key.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html
       lang="en"
