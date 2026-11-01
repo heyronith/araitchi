@@ -17,7 +17,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | Task | Status | Notes |
 | --- | --- | --- |
 | T1 Scaffold | ✅ | `cc3026e` |
-| T2 OpenRouter + solo chat | 🔄 | finishing — mark ✅ with SHA after push |
+| T2 OpenRouter + solo chat | ✅ | `bbcd690` |
 | T3 Project workspace & memory | ⏳ | |
 | T4 Council engine | ⏳ | |
 | T5 Tool broker & research tools | ⏳ | |
