@@ -18,11 +18,20 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 type SecretStatus = { name: string; set: boolean };
 
+type KeyInfo = {
+  ok: boolean;
+  label?: string | null;
+  usage?: number | null;
+  limit?: number | null;
+  limitRemaining?: number | null;
+  error?: string;
+};
+
 const KEY_FIELDS = [
   {
     name: "openrouter_api_key" as const,
     label: "OpenRouter API key",
-    hint: "Required for chat (Task 2+)",
+    hint: "Manual fallback if you prefer pasting a key",
     required: true,
   },
   {
@@ -50,6 +59,7 @@ type SettingsDialogProps = {
   onOpenChange: (open: boolean) => void;
   statuses: SecretStatus[];
   onStatusesChange: (statuses: SecretStatus[]) => void;
+  initialTab?: "keys" | "models";
 };
 
 async function fetchSecretStatuses(): Promise<SecretStatus[]> {
@@ -65,12 +75,49 @@ export function SettingsDialog({
   onOpenChange,
   statuses,
   onStatusesChange,
+  initialTab = "keys",
 }: SettingsDialogProps) {
   const [values, setValues] = React.useState<Record<string, string>>({});
   const [busy, setBusy] = React.useState<string | null>(null);
+  const [keyInfo, setKeyInfo] = React.useState<KeyInfo | null>(null);
+  const [defaultModelId, setDefaultModelId] = React.useState<string | null>(
+    null,
+  );
+  const [modelOptions, setModelOptions] = React.useState<
+    Array<{ id: string; name: string }>
+  >([]);
+  const [tab, setTab] = React.useState<"keys" | "models">(initialTab);
 
   const isSet = (name: string) =>
     statuses.find((s) => s.name === name)?.set ?? false;
+
+  const openrouterSet = isSet("openrouter_api_key");
+
+  const handleOpenChange = (next: boolean) => {
+    onOpenChange(next);
+    if (!next) return;
+    setTab(initialTab);
+    if (openrouterSet) {
+      void fetch("/api/openrouter/test", { method: "POST" })
+        .then(async (res) => {
+          setKeyInfo((await res.json()) as KeyInfo);
+        })
+        .catch(() => setKeyInfo({ ok: false, error: "test_failed" }));
+    } else {
+      setKeyInfo(null);
+    }
+    void fetch("/api/models")
+      .then(async (res) => {
+        if (!res.ok) return;
+        const data = (await res.json()) as {
+          models: Array<{ id: string; name: string }>;
+          defaultModelId: string | null;
+        };
+        setModelOptions(data.models.slice(0, 200));
+        setDefaultModelId(data.defaultModelId);
+      })
+      .catch(() => undefined);
+  };
 
   async function handleSave(name: string) {
     const value = values[name]?.trim() ?? "";
@@ -86,12 +133,15 @@ export function SettingsDialog({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, value }),
       });
-      if (!res.ok) {
-        throw new Error("save failed");
-      }
+      if (!res.ok) throw new Error("save failed");
       setValues((prev) => ({ ...prev, [name]: "" }));
       onStatusesChange(await fetchSecretStatuses());
       toast.success("Key saved");
+      if (name === "openrouter_api_key") {
+        void fetch("/api/openrouter/test", { method: "POST" })
+          .then(async (r) => setKeyInfo((await r.json()) as KeyInfo))
+          .catch(() => setKeyInfo({ ok: false, error: "test_failed" }));
+      }
     } catch {
       toast.error("Failed to save key");
     } finally {
@@ -105,11 +155,10 @@ export function SettingsDialog({
       const res = await fetch(`/api/secrets?name=${encodeURIComponent(name)}`, {
         method: "DELETE",
       });
-      if (!res.ok) {
-        throw new Error("remove failed");
-      }
+      if (!res.ok) throw new Error("remove failed");
       setValues((prev) => ({ ...prev, [name]: "" }));
       onStatusesChange(await fetchSecretStatuses());
+      if (name === "openrouter_api_key") setKeyInfo(null);
       toast.success("Key removed");
     } catch {
       toast.error("Failed to remove key");
@@ -118,21 +167,78 @@ export function SettingsDialog({
     }
   }
 
+  async function saveDefaultModel(id: string) {
+    setDefaultModelId(id);
+    await fetch("/api/models", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ defaultModelId: id }),
+    });
+    toast.success("Default model saved");
+  }
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-lg">
         <DialogHeader>
           <DialogTitle>Settings</DialogTitle>
           <DialogDescription>
-            Keys are encrypted at rest and never shown after saving.
+            Keys are encrypted at rest and never shown after saving. Usage is
+            billed to your OpenRouter account.
           </DialogDescription>
         </DialogHeader>
 
-        <Tabs defaultValue="keys">
+        <Tabs value={tab} onValueChange={(v) => setTab(v as "keys" | "models")}>
           <TabsList>
             <TabsTrigger value="keys">Keys</TabsTrigger>
+            <TabsTrigger value="models">Models</TabsTrigger>
           </TabsList>
+
           <TabsContent value="keys" className="mt-4 space-y-5">
+            <div className="space-y-3 rounded-xl border p-4">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <p className="text-sm font-medium">OpenRouter</p>
+                  <p className="text-muted-foreground text-xs">
+                    Preferred: connect with OAuth (PKCE).
+                  </p>
+                </div>
+                {openrouterSet ? (
+                  <Badge variant="default">Saved</Badge>
+                ) : (
+                  <Badge variant="secondary">Not set</Badge>
+                )}
+              </div>
+
+              {keyInfo?.ok ? (
+                <p className="text-sm">
+                  Connected
+                  {typeof keyInfo.limitRemaining === "number"
+                    ? ` · $${keyInfo.limitRemaining.toFixed(2)} remaining`
+                    : typeof keyInfo.usage === "number"
+                      ? ` · $${keyInfo.usage.toFixed(4)} used`
+                      : ""}
+                  {keyInfo.label ? ` · ${keyInfo.label}` : ""}
+                </p>
+              ) : openrouterSet && keyInfo && !keyInfo.ok ? (
+                <p className="text-destructive text-sm">Invalid key</p>
+              ) : null}
+
+              <div className="flex flex-wrap gap-2">
+                <Button type="button" asChild>
+                  <a href="/api/openrouter/connect">Connect with OpenRouter</a>
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  disabled={!openrouterSet || busy === "openrouter_api_key"}
+                  onClick={() => void handleRemove("openrouter_api_key")}
+                >
+                  Disconnect
+                </Button>
+              </div>
+            </div>
+
             {KEY_FIELDS.map((field) => {
               const saved = isSet(field.name);
               return (
@@ -185,6 +291,31 @@ export function SettingsDialog({
                 </div>
               );
             })}
+          </TabsContent>
+
+          <TabsContent value="models" className="mt-4 space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="default-model">Default model</Label>
+              <select
+                id="default-model"
+                className="border-input bg-background h-9 w-full rounded-lg border px-3 text-sm"
+                value={defaultModelId ?? ""}
+                onChange={(e) => void saveDefaultModel(e.target.value)}
+              >
+                <option value="" disabled>
+                  Select a default…
+                </option>
+                {modelOptions.map((m) => (
+                  <option key={m.id} value={m.id}>
+                    {m.name}
+                  </option>
+                ))}
+              </select>
+              <p className="text-muted-foreground text-xs">
+                Used when opening a new chat. Refresh the model list from the
+                composer picker.
+              </p>
+            </div>
           </TabsContent>
         </Tabs>
       </DialogContent>

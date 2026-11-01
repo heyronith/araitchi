@@ -1,8 +1,11 @@
 import "server-only";
 
+import { getAppPort } from "./port";
+
 /**
  * Reject cross-site writes to the local app.
- * Allows missing Origin (same-origin / non-browser) and localhost/127.0.0.1.
+ * Allows missing Origin; otherwise only http://localhost:<PORT>
+ * or http://127.0.0.1:<PORT> where PORT = process.env.PORT ?? 3000.
  */
 export function assertLocalOrigin(request: Request): Response | null {
   const origin = request.headers.get("origin");
@@ -10,17 +13,14 @@ export function assertLocalOrigin(request: Request): Response | null {
     return null;
   }
 
-  try {
-    const url = new URL(origin);
-    const isLocalHost =
-      url.hostname === "localhost" || url.hostname === "127.0.0.1";
-    const isHttp = url.protocol === "http:";
+  const port = getAppPort();
+  const allowed = new Set([
+    `http://localhost:${port}`,
+    `http://127.0.0.1:${port}`,
+  ]);
 
-    if (isLocalHost && isHttp) {
-      return null;
-    }
-  } catch {
-    // fall through to reject
+  if (allowed.has(origin)) {
+    return null;
   }
 
   return Response.json(

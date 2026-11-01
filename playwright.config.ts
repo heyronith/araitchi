@@ -4,9 +4,12 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 
 const e2eDataDir = mkdtempSync(path.join(tmpdir(), "araitchi-e2e-"));
+const mockPort = 4010;
+const mockBase = `http://127.0.0.1:${mockPort}/api/v1`;
 
 export default defineConfig({
   testDir: "./e2e",
+  testMatch: /.*\.spec\.ts/,
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
@@ -22,15 +25,29 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
   ],
-  webServer: {
-    command: "pnpm exec next dev -H 127.0.0.1 -p 3000",
-    url: "http://127.0.0.1:3000",
-    reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
-    env: {
-      ...process.env,
-      ARAITCHI_DATA_DIR: e2eDataDir,
-      NEXT_TELEMETRY_DISABLED: "1",
+  webServer: [
+    {
+      command: `pnpm exec tsx e2e/mock-openrouter.ts`,
+      url: `http://127.0.0.1:${mockPort}/api/v1/models`,
+      reuseExistingServer: !process.env.CI,
+      timeout: 60_000,
+      env: {
+        ...process.env,
+        MOCK_OPENROUTER_PORT: String(mockPort),
+      },
     },
-  },
+    {
+      command: "pnpm exec next dev -H 127.0.0.1 -p 3000",
+      url: "http://127.0.0.1:3000",
+      reuseExistingServer: !process.env.CI,
+      timeout: 120_000,
+      env: {
+        ...process.env,
+        ARAITCHI_DATA_DIR: e2eDataDir,
+        ARAITCHI_OPENROUTER_BASE_URL: mockBase,
+        NEXT_TELEMETRY_DISABLED: "1",
+        PORT: "3000",
+      },
+    },
+  ],
 });

@@ -14,19 +14,21 @@ function requestWithOrigin(origin: string | null): Request {
 }
 
 describe("security origin guard", () => {
-  it("allows localhost origins", () => {
+  it("allows localhost and 127.0.0.1 on the app port", () => {
     expect(
       assertLocalOrigin(requestWithOrigin("http://localhost:3000")),
     ).toBeNull();
     expect(
-      assertLocalOrigin(requestWithOrigin("http://localhost:5173")),
+      assertLocalOrigin(requestWithOrigin("http://127.0.0.1:3000")),
     ).toBeNull();
   });
 
-  it("allows 127.0.0.1 origins", () => {
-    expect(
-      assertLocalOrigin(requestWithOrigin("http://127.0.0.1:3000")),
-    ).toBeNull();
+  it("rejects localhost on a different port", async () => {
+    const response = assertLocalOrigin(
+      requestWithOrigin("http://localhost:5173"),
+    );
+    expect(response).not.toBeNull();
+    expect(response!.status).toBe(403);
   });
 
   it("allows missing Origin", () => {

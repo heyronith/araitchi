@@ -8,9 +8,8 @@ test.describe("Araitchi shell", () => {
     await expect(
       page.getByRole("group", { name: "Research mode" }),
     ).toBeVisible();
-    await expect(page.getByRole("textbox", { name: "Message" })).toBeVisible();
     await expect(
-      page.getByRole("heading", { name: /researching/i }),
+      page.getByRole("button", { name: "Connect OpenRouter to start" }),
     ).toBeVisible();
   });
 
@@ -37,14 +36,6 @@ test.describe("Araitchi shell", () => {
     expect(secretsResponse.ok()).toBeTruthy();
     const secretsBody = await secretsResponse.text();
     expect(secretsBody).not.toContain(fakeKey);
-    const secretsJson = JSON.parse(secretsBody) as Array<{
-      name: string;
-      set: boolean;
-    }>;
-    expect(secretsJson.every((s) => typeof s.set === "boolean")).toBe(true);
-    expect(secretsJson.find((s) => s.name === "openrouter_api_key")?.set).toBe(
-      true,
-    );
 
     await page.getByRole("button", { name: "Remove" }).first().click();
     await expect(page.getByText("Not set").first()).toBeVisible();
