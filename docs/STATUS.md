@@ -18,7 +18,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | --- | --- | --- |
 | T1 Scaffold | ✅ | `cc3026e` |
 | T2 OpenRouter + solo chat | ✅ | `bbcd690` |
-| T3 Project workspace & memory | ⏳ | in progress |
+| T3 Project workspace & memory | ✅ | `1c4067c` |
 | T4 Council engine | ⏳ | |
 | T5 Tool broker & research tools | ⏳ | |
 | T6 Scribe & context | ⏳ | |
@@ -34,3 +34,4 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 - Cost footer relies on OpenRouter usage accounting (`usage.include`); mock e2e covers `$0.0012`.
 - Next.js `cacheComponents` stays off so DB routes can use `runtime = "nodejs"`.
 - pnpm 12 uses `allowBuilds` in `pnpm-workspace.yaml` (not `package.json` `onlyBuiltDependencies`).
+- Folder browser FS root defaults to home; paste-a-path can open absolute dirs anywhere after confirm.
