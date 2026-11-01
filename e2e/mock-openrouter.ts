@@ -46,6 +46,9 @@ const MODELS = {
   ],
 };
 
+/** Last chat/completions request body (for e2e assertions). */
+let lastChatRequest: unknown = null;
+
 const server = createServer(async (req, res) => {
   const url = new URL(req.url ?? "/", `http://127.0.0.1:${PORT}`);
   const path = url.pathname;
@@ -75,6 +78,11 @@ const server = createServer(async (req, res) => {
 
   if (req.method === "GET" && path === "/api/v1/models") {
     json(res, 200, MODELS);
+    return;
+  }
+
+  if (req.method === "GET" && path === "/api/v1/_test/last-chat") {
+    json(res, 200, { request: lastChatRequest });
     return;
   }
 
@@ -119,6 +127,13 @@ const server = createServer(async (req, res) => {
   }
 
   if (req.method === "POST" && path === "/api/v1/chat/completions") {
+    const raw = await readBody(req);
+    try {
+      lastChatRequest = JSON.parse(raw);
+    } catch {
+      lastChatRequest = { raw };
+    }
+
     const slow = url.searchParams.get("slow") === "1";
     const reply =
       "Here is a short answer with code:\n\n```js\nconsole.log('hello araitchi')\n```\n\nDone.";

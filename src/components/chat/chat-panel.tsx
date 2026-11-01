@@ -5,6 +5,7 @@ import { AssistantChatTransport } from "@assistant-ui/react-ai-sdk";
 import type { UIMessage } from "ai";
 import {
   ArrowDown,
+  BookmarkPlus,
   Check,
   ChevronLeft,
   ChevronRight,
@@ -19,6 +20,7 @@ import { toast } from "sonner";
 
 import { Markdown } from "@/components/chat/markdown";
 import { ModelPicker } from "@/components/chat/model-picker";
+import { SaveToMemoryDialog } from "@/components/chat/save-to-memory-dialog";
 import { Button } from "@/components/ui/button";
 import {
   Collapsible,
@@ -34,6 +36,7 @@ type ChatPanelProps = {
   hasKey: boolean;
   onOpenSettings: () => void;
   onChatUpdated?: () => void;
+  onMemorySaved?: () => void;
 };
 
 type MessageMeta = {
@@ -72,6 +75,7 @@ export function ChatPanel({
   hasKey,
   onOpenSettings,
   onChatUpdated,
+  onMemorySaved,
 }: ChatPanelProps) {
   const [modelId, setModelId] = React.useState<string | null>(null);
   const [input, setInput] = React.useState("");
@@ -80,6 +84,11 @@ export function ChatPanel({
   const [editingId, setEditingId] = React.useState<string | null>(null);
   const [editText, setEditText] = React.useState("");
   const [showScrollBtn, setShowScrollBtn] = React.useState(false);
+  const [pinnedCount, setPinnedCount] = React.useState(0);
+  const [saveOpen, setSaveOpen] = React.useState(false);
+  const [saveBody, setSaveBody] = React.useState("");
+  const [saveSource, setSaveSource] = React.useState("user");
+  const [saveMessageId, setSaveMessageId] = React.useState<string | null>(null);
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const bottomRef = React.useRef<HTMLDivElement>(null);
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
@@ -169,6 +178,34 @@ export function ChatPanel({
   React.useEffect(() => {
     textareaRef.current?.focus();
   }, [chatId, hasKey]);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      const res = await fetch("/api/projects/context");
+      if (!res.ok || cancelled) return;
+      const data = (await res.json()) as { pinnedCount: number };
+      if (!cancelled) setPinnedCount(data.pinnedCount);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [chatId, onMemorySaved]);
+
+  function openSaveToMemory(message: UIMessage, selected?: string) {
+    const text = selected?.trim() || extractText(message);
+    const meta = (message.metadata ?? {}) as MessageMeta;
+    const source =
+      message.role === "assistant"
+        ? meta.modelId ||
+          allStored.find((m) => m.id === message.id)?.modelId ||
+          "assistant"
+        : "user";
+    setSaveBody(text);
+    setSaveSource(source);
+    setSaveMessageId(message.id);
+    setSaveOpen(true);
+  }
 
   function onScroll() {
     const el = scrollRef.current;
@@ -388,6 +425,19 @@ export function ChatPanel({
                       </Button>
                     </>
                   ) : null}
+
+                  <Button
+                    type="button"
+                    size="icon-xs"
+                    variant="ghost"
+                    aria-label="Save to memory"
+                    onClick={() => {
+                      const sel = window.getSelection()?.toString();
+                      openSaveToMemory(message, sel);
+                    }}
+                  >
+                    <BookmarkPlus className="size-3.5" />
+                  </Button>
                 </div>
 
                 {message.role === "assistant" && !isStreaming ? (
@@ -455,6 +505,9 @@ export function ChatPanel({
           </div>
         ) : (
           <div className="mx-auto w-full max-w-3xl space-y-2">
+            <p className="text-muted-foreground text-xs">
+              Using project brief + {pinnedCount} pinned
+            </p>
             <div className="flex items-center gap-2">
               <ModelPicker value={modelId} onChange={setModelId} />
             </div>
@@ -502,6 +555,16 @@ export function ChatPanel({
           </div>
         )}
       </div>
+
+      <SaveToMemoryDialog
+        open={saveOpen}
+        onOpenChange={setSaveOpen}
+        initialBody={saveBody}
+        source={saveSource}
+        sourceChatId={chatId}
+        sourceMessageId={saveMessageId}
+        onSaved={onMemorySaved}
+      />
 
       {/* Keep unused import quiet in some trees */}
       <span className="hidden">

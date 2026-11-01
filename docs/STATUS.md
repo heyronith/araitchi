@@ -18,7 +18,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | --- | --- | --- |
 | T1 Scaffold | ✅ | `cc3026e` |
 | T2 OpenRouter + solo chat | ✅ | `bbcd690` |
-| T3 Project workspace & memory | ⏳ | |
+| T3 Project workspace & memory | ⏳ | in progress |
 | T4 Council engine | ⏳ | |
 | T5 Tool broker & research tools | ⏳ | |
 | T6 Scribe & context | ⏳ | |
@@ -29,7 +29,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 ## Known issues / follow-ups
 
 - Mode switch (Solo / Auto / Council) remains disabled until later tasks.
-- Chats persist in the app DB for now; Task 3 moves them into project folders.
+- Automatic memory scribe is Task 6; Task 3 memory is manual only.
 - Chat UI uses `@ai-sdk/react` + `AssistantChatTransport` rather than a full assistant-ui Thread primitive tree (markdown/branches/actions are custom).
 - Cost footer relies on OpenRouter usage accounting (`usage.include`); mock e2e covers `$0.0012`.
 - Next.js `cacheComponents` stays off so DB routes can use `runtime = "nodejs"`.

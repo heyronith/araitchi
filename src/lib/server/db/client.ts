@@ -8,6 +8,8 @@ import {
 } from "drizzle-orm/better-sqlite3";
 
 import { getAppDataDir } from "../paths";
+import { migrateChatsFromAppDbIfNeeded } from "../project/migrate-from-app";
+import { bootstrapDefaultProject } from "../project/scratch";
 import { runMigrations } from "./migrate";
 import * as schema from "./schema";
 
@@ -16,6 +18,20 @@ type AppDb = BetterSQLite3Database<typeof schema>;
 let dbSingleton: AppDb | null = null;
 let sqliteSingleton: Database.Database | null = null;
 let openedForDir: string | null = null;
+let bootstrapped = false;
+
+function dropLegacyChatTables(sqlite: Database.Database): void {
+  sqlite.exec(`DROP TABLE IF EXISTS messages;`);
+  sqlite.exec(`DROP TABLE IF EXISTS chats;`);
+}
+
+function bootstrapProjects(sqlite: Database.Database): void {
+  if (bootstrapped) return;
+  bootstrapped = true;
+  migrateChatsFromAppDbIfNeeded();
+  dropLegacyChatTables(sqlite);
+  bootstrapDefaultProject();
+}
 
 function openDb(dataDir: string): AppDb {
   const dbPath = path.join(dataDir, "app.db");
@@ -42,9 +58,13 @@ export function getAppDb(): AppDb {
     sqliteSingleton.close();
     sqliteSingleton = null;
     dbSingleton = null;
+    bootstrapped = false;
   }
 
   dbSingleton = openDb(dataDir);
+  if (sqliteSingleton) {
+    bootstrapProjects(sqliteSingleton);
+  }
   return dbSingleton;
 }
 
@@ -56,4 +76,5 @@ export function closeAppDb(): void {
   sqliteSingleton = null;
   dbSingleton = null;
   openedForDir = null;
+  bootstrapped = false;
 }

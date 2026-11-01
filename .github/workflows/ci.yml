@@ -51,6 +51,10 @@ jobs:
         run: pnpm check:secrets
         shell: bash
 
+      - name: Secret leak self-test
+        run: pnpm check:secrets:selftest
+        shell: bash
+
       - name: Install Playwright Chromium
         if: matrix.os == 'ubuntu-latest'
         run: pnpm exec playwright install chromium --with-deps

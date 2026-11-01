@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 
 const e2eDataDir = mkdtempSync(path.join(tmpdir(), "araitchi-e2e-"));
+const e2eFsRoot = mkdtempSync(path.join(tmpdir(), "araitchi-fs-"));
 const mockPort = 4010;
 const mockBase = `http://127.0.0.1:${mockPort}/api/v1`;
 
@@ -44,6 +45,7 @@ export default defineConfig({
       env: {
         ...process.env,
         ARAITCHI_DATA_DIR: e2eDataDir,
+        ARAITCHI_FS_ROOT: e2eFsRoot,
         ARAITCHI_OPENROUTER_BASE_URL: mockBase,
         NEXT_TELEMETRY_DISABLED: "1",
         PORT: "3000",

@@ -6,12 +6,16 @@ import {
   ensureChat,
   insertMessage,
   listMessages,
+  persistSessionTranscript,
   updateMessage,
 } from "@/lib/server/chats";
 import {
   createOpenRouterClient,
   requireOpenRouterApiKey,
 } from "@/lib/server/openrouter";
+import { buildProjectSystemContext } from "@/lib/server/project/context";
+import { tryCurrentProjectPath } from "@/lib/server/project/registry";
+import { ensureScratchProject } from "@/lib/server/project/scratch";
 import { assertLocalOrigin } from "@/lib/server/security";
 
 export const runtime = "nodejs";
@@ -50,6 +54,8 @@ export async function POST(request: Request) {
       { status: 401 },
     );
   }
+
+  const projectPath = tryCurrentProjectPath() ?? ensureScratchProject().path;
 
   const { chatId, modelId, messages: uiMessages } = parsed.data;
   ensureChat(chatId);
@@ -93,6 +99,8 @@ export async function POST(request: Request) {
     modelId,
   });
 
+  const ctx = buildProjectSystemContext(projectPath);
+
   const openrouter = createOpenRouterClient(apiKey);
   const model = openrouter(modelId, {
     usage: { include: true },
@@ -105,6 +113,7 @@ export async function POST(request: Request) {
 
     const result = streamText({
       model,
+      system: ctx.systemText,
       messages: modelMessages,
       abortSignal: request.signal,
     });
@@ -138,6 +147,7 @@ export async function POST(request: Request) {
             cost,
           },
         });
+        persistSessionTranscript(chatId);
       } catch {
         // aborted or failed mid-stream; leave partial message
       }
@@ -161,6 +171,9 @@ export async function POST(request: Request) {
             inputTokens: usage?.inputTokens,
             outputTokens: usage?.outputTokens,
             cost,
+          },
+          projectContext: {
+            pinnedCount: ctx.pinnedCount,
           },
         };
       },

@@ -37,22 +37,9 @@ export const modelsCache = sqliteTable("models_cache", {
   fetchedAt: integer("fetched_at").notNull(),
 });
 
-export const chats = sqliteTable("chats", {
+export const projects = sqliteTable("projects", {
   id: text("id").primaryKey(),
-  title: text("title").notNull(),
-  createdAt: integer("created_at").notNull(),
-  updatedAt: integer("updated_at").notNull(),
-});
-
-export const messages = sqliteTable("messages", {
-  id: text("id").primaryKey(),
-  chatId: text("chat_id")
-    .notNull()
-    .references(() => chats.id, { onDelete: "cascade" }),
-  parentId: text("parent_id"),
-  role: text("role").notNull(),
-  parts: text("parts").notNull(),
-  modelId: text("model_id"),
-  usage: text("usage"),
-  createdAt: integer("created_at").notNull(),
+  name: text("name").notNull(),
+  path: text("path").notNull().unique(),
+  lastOpenedAt: integer("last_opened_at").notNull(),
 });

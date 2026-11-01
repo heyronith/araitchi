@@ -16,6 +16,8 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "check:secrets": "bash scripts/check-secrets.sh",
+    "check:secrets:selftest": "bash scripts/check-secrets-selftest.sh",
+    "db:generate:project": "drizzle-kit generate --config=drizzle.project.config.ts",
     "smoke:openrouter": "node scripts/smoke-openrouter.mjs"
   },
   "dependencies": {

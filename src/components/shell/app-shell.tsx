@@ -6,7 +6,13 @@ import * as React from "react";
 import { toast } from "sonner";
 
 import { ChatPanel } from "@/components/chat/chat-panel";
-import { AppSidebar, type ChatListItem } from "@/components/shell/app-sidebar";
+import {
+  AppSidebar,
+  type ChatListItem,
+  type ProjectListItem,
+} from "@/components/shell/app-sidebar";
+import { MemoryPanel } from "@/components/shell/memory-panel";
+import { OpenFolderDialog } from "@/components/shell/open-folder-dialog";
 import {
   SettingsDialog,
   fetchSecretStatuses,
@@ -20,6 +26,16 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 
+type CurrentProject = {
+  id: string;
+  name: string;
+  path: string;
+  repoPath: string | null;
+  lockWarning: string | null;
+};
+
+const MEMORY_COLLAPSE_KEY = "araitchi.memoryPanel.collapsed";
+
 export function AppShell() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -29,12 +45,25 @@ export function AppShell() {
   );
   const [mobileNavOpen, setMobileNavOpen] = React.useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false);
+  const [memoryCollapsed, setMemoryCollapsed] = React.useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.localStorage.getItem(MEMORY_COLLAPSE_KEY) === "1";
+  });
   const [secretStatuses, setSecretStatuses] = React.useState<SecretStatus[]>(
     [],
   );
   const [chats, setChats] = React.useState<ChatListItem[]>([]);
   const [activeChatId, setActiveChatId] = React.useState(() => nanoid());
+  const [currentProject, setCurrentProject] =
+    React.useState<CurrentProject | null>(null);
+  const [recentProjects, setRecentProjects] = React.useState<ProjectListItem[]>(
+    [],
+  );
+  const [folderOpen, setFolderOpen] = React.useState(false);
+  const [folderMode, setFolderMode] = React.useState<"open" | "new">("open");
+  const [memoryRefresh, setMemoryRefresh] = React.useState(0);
   const handledQuery = React.useRef<string | null>(null);
+  const lockWarned = React.useRef<string | null>(null);
 
   const hasKey =
     secretStatuses.find((s) => s.name === "openrouter_api_key")?.set ?? false;
@@ -55,19 +84,43 @@ export function AppShell() {
     return data.chats;
   }, []);
 
+  const refreshProjects = React.useCallback(async () => {
+    const res = await fetch("/api/projects");
+    if (!res.ok) return;
+    const data = (await res.json()) as {
+      current: CurrentProject | null;
+      recent: ProjectListItem[];
+    };
+    setCurrentProject(data.current);
+    setRecentProjects(data.recent);
+    if (data.current?.lockWarning && lockWarned.current !== data.current.id) {
+      lockWarned.current = data.current.id;
+      toast.warning(data.current.lockWarning);
+    }
+    return data;
+  }, []);
+
   React.useEffect(() => {
-    // Hydrate sidebar + key status once on mount; restore latest chat if any.
     // eslint-disable-next-line react-hooks/set-state-in-effect -- mount fetch
     void refreshSecrets();
-    void refreshChats().then((list) => {
-      if (list && list.length > 0) {
-        setActiveChatId((current) => {
-          if (list.some((c) => c.id === current)) return current;
-          return list[0]!.id;
-        });
-      }
+    void refreshProjects().then(() => {
+      void refreshChats().then((list) => {
+        if (list && list.length > 0) {
+          setActiveChatId((current) => {
+            if (list.some((c) => c.id === current)) return current;
+            return list[0]!.id;
+          });
+        }
+      });
     });
-  }, [refreshSecrets, refreshChats]);
+  }, [refreshSecrets, refreshChats, refreshProjects]);
+
+  React.useEffect(() => {
+    window.localStorage.setItem(
+      MEMORY_COLLAPSE_KEY,
+      memoryCollapsed ? "1" : "0",
+    );
+  }, [memoryCollapsed]);
 
   React.useEffect(() => {
     const connected = searchParams.get("connected");
@@ -106,33 +159,74 @@ export function AppShell() {
     setMobileNavOpen(false);
   };
 
+  const afterProjectChange = async () => {
+    await refreshProjects();
+    const list = await refreshChats();
+    setActiveChatId(list && list.length > 0 ? list[0]!.id : nanoid());
+    setMemoryRefresh((n) => n + 1);
+  };
+
+  const sidebarProps = {
+    chats,
+    activeChatId,
+    onNewChat: handleNewChat,
+    onSelectChat: (id: string) => setActiveChatId(id),
+    onRenameChat: async (id: string, title: string) => {
+      await fetch(`/api/chats/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title }),
+      });
+      await refreshChats();
+    },
+    onDeleteChat: async (id: string) => {
+      await fetch(`/api/chats/${id}`, { method: "DELETE" });
+      if (activeChatId === id) setActiveChatId(nanoid());
+      await refreshChats();
+    },
+    currentProject: currentProject
+      ? {
+          id: currentProject.id,
+          name: currentProject.name,
+          path: currentProject.path,
+        }
+      : null,
+    recentProjects,
+    onOpenFolder: () => {
+      setFolderMode("open");
+      setFolderOpen(true);
+    },
+    onNewProject: () => {
+      setFolderMode("new");
+      setFolderOpen(true);
+    },
+    onSwitchProject: (id: string) => {
+      void fetch("/api/projects/switch", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      }).then(async (res) => {
+        if (!res.ok) {
+          toast.error("Could not switch project");
+          return;
+        }
+        await afterProjectChange();
+      });
+    },
+    onRemoveProject: (id: string) => {
+      void fetch(`/api/projects/${id}`, { method: "DELETE" }).then(() =>
+        refreshProjects(),
+      );
+    },
+  };
+
   return (
     <div className="bg-background flex h-dvh min-h-0 w-full overflow-hidden">
       <div className="hidden md:flex">
         <AppSidebar
           collapsed={sidebarCollapsed}
           onToggleCollapse={() => setSidebarCollapsed((v) => !v)}
-          chats={chats}
-          activeChatId={activeChatId}
-          onNewChat={handleNewChat}
-          onSelectChat={(id) => {
-            setActiveChatId(id);
-          }}
-          onRenameChat={async (id, title) => {
-            await fetch(`/api/chats/${id}`, {
-              method: "PATCH",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ title }),
-            });
-            await refreshChats();
-          }}
-          onDeleteChat={async (id) => {
-            await fetch(`/api/chats/${id}`, { method: "DELETE" });
-            if (activeChatId === id) {
-              setActiveChatId(nanoid());
-            }
-            await refreshChats();
-          }}
+          {...sidebarProps}
         />
       </div>
 
@@ -143,8 +237,7 @@ export function AppShell() {
           </SheetHeader>
           <AppSidebar
             className="w-full border-0"
-            chats={chats}
-            activeChatId={activeChatId}
+            {...sidebarProps}
             onNewChat={() => {
               handleNewChat();
               setMobileNavOpen(false);
@@ -152,19 +245,6 @@ export function AppShell() {
             onSelectChat={(id) => {
               setActiveChatId(id);
               setMobileNavOpen(false);
-            }}
-            onRenameChat={async (id, title) => {
-              await fetch(`/api/chats/${id}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ title }),
-              });
-              await refreshChats();
-            }}
-            onDeleteChat={async (id) => {
-              await fetch(`/api/chats/${id}`, { method: "DELETE" });
-              if (activeChatId === id) setActiveChatId(nanoid());
-              await refreshChats();
             }}
           />
         </SheetContent>
@@ -174,6 +254,8 @@ export function AppShell() {
         <TopBar
           onOpenSettings={() => openSettings("keys")}
           onOpenMobileNav={() => setMobileNavOpen(true)}
+          projectName={currentProject?.name}
+          repoPath={currentProject?.repoPath}
         />
 
         <ChatPanel
@@ -182,8 +264,27 @@ export function AppShell() {
           hasKey={hasKey}
           onOpenSettings={() => openSettings("keys")}
           onChatUpdated={() => void refreshChats()}
+          onMemorySaved={() => setMemoryRefresh((n) => n + 1)}
         />
       </div>
+
+      <div className="hidden lg:flex">
+        <MemoryPanel
+          collapsed={memoryCollapsed}
+          onToggle={() => setMemoryCollapsed((v) => !v)}
+          refreshKey={memoryRefresh}
+        />
+      </div>
+
+      <OpenFolderDialog
+        open={folderOpen}
+        onOpenChange={setFolderOpen}
+        mode={folderMode}
+        onOpened={async () => {
+          await afterProjectChange();
+          toast.success("Project opened");
+        }}
+      />
 
       <SettingsDialog
         open={settingsOpen}

@@ -1,13 +1,17 @@
 "use client";
 
 import {
+  Copy,
   FolderOpen,
+  FolderPlus,
   MessageSquarePlus,
   MoreHorizontal,
   PanelLeft,
   Pencil,
   Trash2,
 } from "lucide-react";
+import * as React from "react";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -29,13 +33,24 @@ import {
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn } from "cn";
-import * as React from "react";
 
 export type ChatListItem = {
   id: string;
   title: string;
   updatedAt: number;
+};
+
+export type ProjectListItem = {
+  id: string;
+  name: string;
+  path: string;
+  lastOpenedAt: number;
 };
 
 type AppSidebarProps = {
@@ -48,6 +63,12 @@ type AppSidebarProps = {
   onSelectChat: (id: string) => void;
   onRenameChat: (id: string, title: string) => Promise<void>;
   onDeleteChat: (id: string) => Promise<void>;
+  currentProject: { id: string; name: string; path: string } | null;
+  recentProjects: ProjectListItem[];
+  onOpenFolder: () => void;
+  onNewProject: () => void;
+  onSwitchProject: (id: string) => void;
+  onRemoveProject: (id: string) => void;
 };
 
 export function AppSidebar({
@@ -60,6 +81,12 @@ export function AppSidebar({
   onSelectChat,
   onRenameChat,
   onDeleteChat,
+  currentProject,
+  recentProjects,
+  onOpenFolder,
+  onNewProject,
+  onSwitchProject,
+  onRemoveProject,
 }: AppSidebarProps) {
   const [renameId, setRenameId] = React.useState<string | null>(null);
   const [renameValue, setRenameValue] = React.useState("");
@@ -124,15 +151,99 @@ export function AppSidebar({
                 Projects
               </h2>
             ) : null}
+
+            {currentProject && !collapsed ? (
+              <div className="bg-sidebar-accent/40 mb-2 rounded-md px-2 py-2">
+                <div className="flex items-start gap-1">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <p className="min-w-0 flex-1 truncate text-sm font-medium">
+                        {currentProject.name}
+                      </p>
+                    </TooltipTrigger>
+                    <TooltipContent side="right" className="max-w-xs break-all">
+                      {currentProject.path}
+                    </TooltipContent>
+                  </Tooltip>
+                  <Button
+                    type="button"
+                    size="icon-xs"
+                    variant="ghost"
+                    aria-label="Copy project path"
+                    onClick={() => {
+                      void navigator.clipboard.writeText(currentProject.path);
+                      toast.success("Path copied");
+                    }}
+                  >
+                    <Copy className="size-3" />
+                  </Button>
+                </div>
+                <p className="text-muted-foreground truncate text-[10px]">
+                  {currentProject.path}
+                </p>
+              </div>
+            ) : null}
+
             <div
-              className={cn(
-                "text-muted-foreground border-sidebar-border flex flex-col items-start gap-2 rounded-lg border border-dashed px-3 py-4 text-xs",
-                collapsed && "items-center px-1 py-3",
-              )}
+              className={cn("flex flex-col gap-1", collapsed && "items-center")}
             >
-              <FolderOpen className="size-4 shrink-0 opacity-70" />
-              {!collapsed ? <p>Open a project folder — coming soon</p> : null}
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className={cn(
+                  "justify-start gap-2",
+                  collapsed && "size-8 justify-center p-0",
+                )}
+                onClick={onOpenFolder}
+              >
+                <FolderOpen className="size-4" />
+                {!collapsed ? "Open folder…" : null}
+              </Button>
+              <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className={cn(
+                  "justify-start gap-2",
+                  collapsed && "size-8 justify-center p-0",
+                )}
+                onClick={onNewProject}
+              >
+                <FolderPlus className="size-4" />
+                {!collapsed ? "New project…" : null}
+              </Button>
             </div>
+
+            {!collapsed && recentProjects.length > 0 ? (
+              <ul className="mt-2 space-y-0.5">
+                {recentProjects
+                  .filter((p) => p.id !== currentProject?.id)
+                  .slice(0, 8)
+                  .map((p) => (
+                    <li key={p.id} className="group flex items-center gap-0.5">
+                      <button
+                        type="button"
+                        className="hover:bg-sidebar-accent min-w-0 flex-1 truncate rounded-md px-2 py-1 text-left text-xs"
+                        title={p.path}
+                        onClick={() => onSwitchProject(p.id)}
+                      >
+                        {p.name}
+                      </button>
+                      <Button
+                        type="button"
+                        size="icon-xs"
+                        variant="ghost"
+                        className="opacity-0 group-hover:opacity-100"
+                        aria-label="Remove from recents"
+                        onClick={() => onRemoveProject(p.id)}
+                      >
+                        <Trash2 className="size-3" />
+                      </Button>
+                    </li>
+                  ))}
+              </ul>
+            ) : null}
           </section>
 
           <section>
