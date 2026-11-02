@@ -323,7 +323,7 @@ const server = createServer(async (req, res) => {
     });
 
     // Word-sized chunks keep Stop tests reliable without making replies glacial
-    const chunks = slow ? reply.match(/.{1,8}/g) ?? [reply] : [reply];
+    const chunks = slow ? (reply.match(/.{1,8}/g) ?? [reply]) : [reply];
     for (const ch of chunks) {
       if (slow) {
         await new Promise((r) => setTimeout(r, 80));
