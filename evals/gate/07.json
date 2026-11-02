@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-factual_lookup-0",
+    "text": "Lookup DOI/definition: protein synthesis overnight",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-factual_lookup-1",
+    "text": "Exact fact: dropout rate 0.5",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-factual_lookup-2",
+    "text": "Lookup DOI/definition: learning rate warm-up",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-factual_lookup-3",
+    "text": "Exact fact: citation graph density",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-factual_lookup-4",
+    "text": "Lookup DOI/definition: OpenAlex coverage",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-factual_lookup-5",
+    "text": "Exact fact: semantic similarity thresholds",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-factual_lookup-6",
+    "text": "Lookup DOI/definition: council synthesizer cost",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-factual_lookup-7",
+    "text": "Exact fact: overfitting on small datasets",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-factual_lookup-8",
+    "text": "Lookup DOI/definition: caffeine half-life",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-factual_lookup-9",
+    "text": "Exact fact: transformer attention",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  }
+]

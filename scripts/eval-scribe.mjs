@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
  * Manual scribe quality eval. Uses the real OpenRouter key.
- * Usage: pnpm eval:scribe
+ * Usage: pnpm eval:scribe [modelA modelB modelC…]
  *
- * Scores precision, recall, duplicate rate, invented-content rate, and cost
- * for the default model and two cheaper candidates.
+ * Scores precision, recall, duplicate rate, invented-content rate, and cost.
+ * Defaults use OpenRouter "latest" aliases (quality-first).
  */
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import path from "node:path";
@@ -14,11 +14,15 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const fixturesDir = path.join(root, "evals/scribe");
 
-const MODELS = [
-  process.env.SCRIBE_EVAL_DEFAULT || "openai/gpt-4o",
-  process.env.SCRIBE_EVAL_CHEAP1 || "openai/gpt-4o-mini",
-  process.env.SCRIBE_EVAL_CHEAP2 || "google/gemini-2.0-flash",
+const DEFAULT_MODELS = [
+  "~openai/gpt-latest",
+  "~openai/gpt-oss-latest",
+  "~google/gemini-flash-latest",
 ];
+const MODELS =
+  process.argv.slice(2).filter((a) => !a.startsWith("-")).length > 0
+    ? process.argv.slice(2).filter((a) => !a.startsWith("-"))
+    : DEFAULT_MODELS;
 
 function loadKey() {
   if (process.env.OPENROUTER_API_KEY) return process.env.OPENROUTER_API_KEY;

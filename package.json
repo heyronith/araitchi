@@ -20,7 +20,9 @@
     "db:generate:project": "drizzle-kit generate --config=drizzle.project.config.ts",
     "smoke:openrouter": "node scripts/smoke-openrouter.mjs",
     "smoke:papers": "node scripts/smoke-papers.mjs",
-    "eval:scribe": "node scripts/eval-scribe.mjs"
+    "eval:scribe": "node scripts/eval-scribe.mjs",
+    "eval:gate": "node scripts/eval-gate.mjs",
+    "eval:probe": "node scripts/eval-probe.mjs"
   },
   "dependencies": {
     "@ai-sdk/react": "^4.0.163",

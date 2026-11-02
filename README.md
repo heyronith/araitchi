@@ -2,7 +2,7 @@
 
 Araitchi is a local-first, self-hosted AI research workspace. It runs as a Next.js app on your machine; you bring your own OpenRouter API key. A team of models from different labs will help with literature review, hypotheses, and experiment design — each research project is a folder on disk.
 
-**Status:** pre-alpha, Task 6 of 9 complete (scribe, semantic memory, context assembly).
+**Status:** pre-alpha, Task 7 of 9 complete (Auto convene gate + task-specific merging).
 
 ## Requirements
 
@@ -45,14 +45,22 @@ You may **commit `.research/` to git** or add it to `.gitignore` — your choice
 
 A default **Scratch** project lives under the app data dir so chatting never requires choosing a folder first.
 
-### Council mode
+### Auto / Solo / Council
 
-Switch **Solo → Council** in the top bar. A council sends your message to **3–10 models in parallel** (they never see each other), then a synthesizer produces a final answer plus a structured disagreement analysis (consensus, contradictions with “needs evidence”, unique insights, blind spots).
+**Auto** is the default. Each message is classified (rules → local embedding kNN → optional LLM) and routed to the cheapest trustworthy action: **Evidence**, **Solo**, **Probe** (two labs; escalate on disagreement), or **Council**. A chip above the reply shows the decision; open **Why?** to see the layer/confidence/reason, correct the task type, or re-run as Solo/Council. Slash overrides: `/solo`, `/council`, `/probe`, `/evidence`.
 
-- Configure members, synthesizer, per-member token limit, timeout, and **budget cap** under **Settings → Council**.
-- Presets **Balanced** / **Budget** are resolved from the live OpenRouter catalog (never hard-coded model ids).
-- The composer shows a live cost estimate (`≈ $low–$high · cap $…`). If the high estimate exceeds the cap, confirm **Run anyway** or edit the council.
-- Expect higher cost and latency than Solo — you pay for every member call plus the synthesizer.
+Configure thresholds and models under **Settings → Routing** (routing log included). Eval locally (needs your OpenRouter key):
+
+```bash
+pnpm eval:gate [models…]
+pnpm eval:probe [modelA modelB]
+```
+
+**Council** (forced or from Auto) still sends your message to **3–10 models in parallel**, then a synthesizer merges with a **task-specific** prompt (literature union, distinct hypotheses, experiment protocols, critique severity, evidence-grounded results).
+
+- Configure members, synthesizer, token limit, timeout, and **budget cap** under **Settings → Council**.
+- Presets **Balanced** / **Budget** come from the live OpenRouter catalog.
+- Composer shows a live cost estimate; confirm **Run anyway** if over cap.
 
 ### Tools (research tools)
 

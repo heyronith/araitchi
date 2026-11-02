@@ -1,0 +1,44 @@
+[
+  {
+    "id": "eval-other-6",
+    "text": "tough call on AHI exclusion criteria",
+    "taskType": "other",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-other-7",
+    "text": "mixed signals about casein before bed",
+    "taskType": "other",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-other-8",
+    "text": "tough call on blue light melatonin",
+    "taskType": "other",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-other-9",
+    "text": "mixed signals about protein synthesis overnight",
+    "taskType": "other",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-other-10",
+    "text": "tough call on dropout rate 0.5",
+    "taskType": "other",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-other-11",
+    "text": "mixed signals about learning rate warm-up",
+    "taskType": "other",
+    "stakes": "low",
+    "needsEvidence": false
+  }
+]

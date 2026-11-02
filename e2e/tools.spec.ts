@@ -16,9 +16,17 @@ async function saveOpenRouterKey(page: import("@playwright/test").Page) {
   await page.keyboard.press("Escape");
 }
 
+async function ensureSolo(page: import("@playwright/test").Page) {
+  await page
+    .getByRole("group", { name: "Research mode" })
+    .getByRole("button", { name: "Solo", exact: true })
+    .click();
+}
+
 test.describe("research tools", () => {
   test("solo search_papers shows tool card and sources", async ({ page }) => {
     await saveOpenRouterKey(page);
+    await ensureSolo(page);
     await page.getByRole("button", { name: "Papers", exact: true }).click();
     // ensure papers on
     const papers = page.getByRole("button", { name: "Papers", exact: true });
@@ -76,6 +84,7 @@ test.describe("research tools", () => {
     await expect(page.getByText("Project opened")).toBeVisible({
       timeout: 15_000,
     });
+    await ensureSolo(page);
 
     const repoBtn = page.getByRole("button", { name: "Repo", exact: true });
     if ((await repoBtn.getAttribute("aria-pressed")) !== "true") {

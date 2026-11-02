@@ -1,6 +1,7 @@
 import { z } from "zod";
 
-export const MODEL_ID_RE = /^[\w.-]+\/[\w.:-]+$/;
+/** OpenRouter ids, including optional `~` "latest" aliases. */
+export const MODEL_ID_RE = /^~?[\w.-]+\/[\w.:-]+$/;
 
 export const chatMessagePartSchema = z
   .object({
@@ -29,10 +30,14 @@ export const chatRequestSchema = z
   .object({
     chatId: z.string().min(1).max(128),
     modelId: z.string().regex(MODEL_ID_RE, "Invalid modelId").nullish(),
-    mode: z.enum(["solo", "council"]).optional().default("solo"),
+    mode: z.enum(["solo", "auto", "council"]).optional().default("auto"),
     allowOverBudget: z.boolean().optional(),
     tools: toolTogglesSchema.optional(),
     toolApprovals: z.record(z.string(), z.boolean()).optional(),
+    /** Force re-run as a specific action (from Why? chip). */
+    forceAction: z
+      .enum(["solo", "council", "probe", "retrieve_evidence"])
+      .optional(),
     messages: z.array(chatUiMessageSchema).min(1).max(200),
     parentId: z.string().nullable().optional(),
     id: z.string().optional(),
@@ -40,7 +45,7 @@ export const chatRequestSchema = z
     messageId: z.string().optional(),
   })
   .superRefine((val, ctx) => {
-    if (val.mode !== "council" && !val.modelId) {
+    if (val.mode === "solo" && !val.modelId) {
       ctx.addIssue({
         code: "custom",
         message: "modelId is required in solo mode",

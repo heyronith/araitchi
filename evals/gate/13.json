@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-code_help-0",
+    "text": "debug actigraphy vs diaries",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-code_help-1",
+    "text": "code sample for sex differences in clearance",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-code_help-2",
+    "text": "debug AHI exclusion criteria",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-code_help-3",
+    "text": "code sample for casein before bed",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-code_help-4",
+    "text": "debug blue light melatonin",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-code_help-5",
+    "text": "code sample for protein synthesis overnight",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-code_help-6",
+    "text": "debug dropout rate 0.5",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-code_help-7",
+    "text": "code sample for learning rate warm-up",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-code_help-8",
+    "text": "debug citation graph density",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-code_help-9",
+    "text": "code sample for OpenAlex coverage",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  }
+]

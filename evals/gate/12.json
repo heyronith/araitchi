@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-repo_status-2",
+    "text": "repo changes?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-repo_status-3",
+    "text": "git log please",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-repo_status-4",
+    "text": "repo changes?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-repo_status-5",
+    "text": "git log please",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-repo_status-6",
+    "text": "repo changes?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-repo_status-7",
+    "text": "git log please",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-repo_status-8",
+    "text": "repo changes?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-repo_status-9",
+    "text": "git log please",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-repo_status-10",
+    "text": "repo changes?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-repo_status-11",
+    "text": "git log please",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  }
+]

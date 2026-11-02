@@ -30,7 +30,9 @@ export default defineConfig({
     {
       command: `pnpm exec tsx e2e/mock-openrouter.ts`,
       url: `http://127.0.0.1:${mockPort}/api/v1/models`,
-      reuseExistingServer: !process.env.CI,
+      // Never reuse: a leftover Next from another checkout (e.g. nested
+      // araitchi/) would silently break e2e against the wrong app.
+      reuseExistingServer: false,
       timeout: 60_000,
       env: {
         ...process.env,
@@ -40,7 +42,7 @@ export default defineConfig({
     {
       command: "pnpm exec next dev -H 127.0.0.1 -p 3000",
       url: "http://127.0.0.1:3000",
-      reuseExistingServer: !process.env.CI,
+      reuseExistingServer: false,
       timeout: 120_000,
       env: {
         ...process.env,

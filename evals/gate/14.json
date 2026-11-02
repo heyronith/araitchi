@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-code_help-10",
+    "text": "debug semantic similarity thresholds",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-code_help-11",
+    "text": "code sample for council synthesizer cost",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-planning_admin-0",
+    "text": "todo list for protein synthesis overnight",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-planning_admin-1",
+    "text": "organize work on dropout rate 0.5",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-planning_admin-2",
+    "text": "todo list for learning rate warm-up",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-planning_admin-3",
+    "text": "organize work on citation graph density",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-planning_admin-4",
+    "text": "todo list for OpenAlex coverage",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-planning_admin-5",
+    "text": "organize work on semantic similarity thresholds",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-planning_admin-6",
+    "text": "todo list for council synthesizer cost",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-planning_admin-7",
+    "text": "organize work on overfitting on small datasets",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  }
+]

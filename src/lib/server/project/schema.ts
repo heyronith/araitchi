@@ -126,3 +126,39 @@ export const toolCalls = sqliteTable("tool_calls", {
   sources: text("sources"),
   createdAt: integer("created_at").notNull(),
 });
+
+export const gateDecisions = sqliteTable("gate_decisions", {
+  id: text("id").primaryKey(),
+  messageId: text("message_id").notNull(),
+  chatId: text("chat_id").notNull(),
+  inputHash: text("input_hash").notNull(),
+  layer: text("layer").notNull(),
+  taskType: text("task_type").notNull(),
+  stakes: text("stakes").notNull(),
+  needsEvidence: integer("needs_evidence", { mode: "boolean" })
+    .notNull()
+    .default(false),
+  confidence: real("confidence").notNull(),
+  action: text("action").notNull(),
+  models: text("models").notNull().default("[]"),
+  estimatedCostUsd: real("estimated_cost_usd"),
+  actualCostUsd: real("actual_cost_usd"),
+  probeAgreement: real("probe_agreement"),
+  escalated: integer("escalated", { mode: "boolean" }).notNull().default(false),
+  userCorrection: text("user_correction"),
+  reason: text("reason").notNull().default(""),
+  latencyMs: integer("latency_ms").notNull().default(0),
+  createdAt: integer("created_at").notNull(),
+});
+
+export const gateCorrections = sqliteTable("gate_corrections", {
+  id: text("id").primaryKey(),
+  text: text("text").notNull(),
+  taskType: text("task_type").notNull(),
+  stakes: text("stakes").notNull(),
+  needsEvidence: integer("needs_evidence", { mode: "boolean" })
+    .notNull()
+    .default(false),
+  decisionId: text("decision_id"),
+  createdAt: integer("created_at").notNull(),
+});

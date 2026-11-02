@@ -30,6 +30,9 @@
 master.key
 .research/
 
+# Accidental nested clone / worktree — never ship or lint it
+/araitchi/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

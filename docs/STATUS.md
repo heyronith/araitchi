@@ -23,13 +23,13 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | T5 Tool broker & research tools | ✅ | `de170ec` |
 | T5b Chat UX polish | ✅ | `d4ff206` |
 | T6 Scribe & context | ✅ | `da535da` |
-| T7 Convene gate & merge modes | ⏳ | |
+| T7 Convene gate & merge modes | ✅ | (this commit) |
 | T8 Validation loop | ⏳ | |
 | T9 Eval harness & v0.1 | ⏳ | |
 
 ## Known issues / follow-ups
 
-- Auto mode remains disabled until Task 7.
+- Auto mode is the default. Owner should run `pnpm eval:gate` / `pnpm eval:probe` with a real OpenRouter key and paste tables into `evals/results/` (placeholders committed).
 - Default embedding model is Qwen3-Embedding-0.6B ONNX (~0.6 GB, downloaded once into `<dataDir>/models/`). Low-memory machines can switch to MiniLM in Settings → Memory (triggers re-index). If Qwen3 fails to load, the app falls back to EmbeddingGemma-300M, then keyword/FTS-only search.
 - Scribe quality eval (`pnpm eval:scribe`) is manual and needs a real OpenRouter key; not run in CI.
 - Optional real-embedding Vitest (`ARAITCHI_REAL_EMBEDDINGS=1`) is skipped in CI.

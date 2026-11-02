@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-hypothesis_generation-0",
+    "text": "Come up with rival explanations for overfitting on small datasets",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hypothesis_generation-1",
+    "text": "Hypothesis brainstorm: caffeine half-life",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hypothesis_generation-2",
+    "text": "Come up with rival explanations for transformer attention",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hypothesis_generation-3",
+    "text": "Hypothesis brainstorm: sleep deprivation",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hypothesis_generation-4",
+    "text": "Come up with rival explanations for graph neural nets for molecules",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hypothesis_generation-5",
+    "text": "Hypothesis brainstorm: IRB protocol",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hypothesis_generation-6",
+    "text": "Come up with rival explanations for batch norm vs layer norm",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hypothesis_generation-7",
+    "text": "Hypothesis brainstorm: novelty of our loss",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hypothesis_generation-8",
+    "text": "Come up with rival explanations for actigraphy vs diaries",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hypothesis_generation-9",
+    "text": "Hypothesis brainstorm: sex differences in clearance",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  }
+]

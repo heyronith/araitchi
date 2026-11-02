@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-planning_admin-8",
+    "text": "todo list for caffeine half-life",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-planning_admin-9",
+    "text": "organize work on transformer attention",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-planning_admin-10",
+    "text": "todo list for sleep deprivation",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-planning_admin-11",
+    "text": "organize work on graph neural nets for molecules",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-other-0",
+    "text": "tough call on graph neural nets for molecules",
+    "taskType": "other",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-other-1",
+    "text": "mixed signals about IRB protocol",
+    "taskType": "other",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-other-2",
+    "text": "tough call on batch norm vs layer norm",
+    "taskType": "other",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-other-3",
+    "text": "mixed signals about novelty of our loss",
+    "taskType": "other",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-other-4",
+    "text": "tough call on actigraphy vs diaries",
+    "taskType": "other",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-other-5",
+    "text": "mixed signals about sex differences in clearance",
+    "taskType": "other",
+    "stakes": "low",
+    "needsEvidence": false
+  }
+]

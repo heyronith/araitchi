@@ -350,6 +350,13 @@ export async function runCouncil(input: {
   allowOverBudget?: boolean;
   broker?: ToolBroker;
   maxSteps?: number;
+  /** Override synthesizer system prompt (task-specific merge modes). */
+  synthesizerSystem?: string;
+  /**
+   * Prefill member answers (e.g. probe reuse) — those model ids skip generation.
+   * Remaining council members still run normally.
+   */
+  prefilledMembers?: { modelId: string; content: string; cost?: number }[];
 }): Promise<CouncilRunResult> {
   const started = Date.now();
   const catalog = toCatalog(input.catalog);
@@ -382,8 +389,37 @@ export async function runCouncil(input: {
 
   const timeoutMs = input.config.memberTimeoutSec * 1000;
   const councilIds = [...input.config.members];
+  const prefilled = new Map(
+    (input.prefilledMembers ?? []).map((p) => [p.modelId, p]),
+  );
 
-  const memberPromises = input.config.members.map((modelId) => {
+  // Ensure prefilled probe models appear in the member list without duplicate pays.
+  const memberIds = [...input.config.members];
+  for (const p of input.prefilledMembers ?? []) {
+    if (!memberIds.includes(p.modelId)) memberIds.push(p.modelId);
+  }
+
+  const memberPromises = memberIds.map(async (modelId) => {
+    const pref = prefilled.get(modelId);
+    if (pref) {
+      input.hooks?.onMember?.({
+        phase: "finish",
+        modelId,
+        lab: labFromModelId(modelId),
+        content: pref.content,
+        cost: pref.cost ?? 0,
+        latencyMs: 0,
+      });
+      return {
+        modelId,
+        content: pref.content,
+        status: "done" as const,
+        usage: null,
+        cost: pref.cost ?? 0,
+        latencyMs: 0,
+        lab: labFromModelId(modelId),
+      };
+    }
     // Skip tools for models the catalog says cannot call them.
     const supportsTools =
       input.catalog.find((m) => m.id === modelId)?.supportsTools ?? true;
@@ -437,7 +473,8 @@ export async function runCouncil(input: {
     ok.map((m) => ({ modelId: m.modelId, content: m.content })),
   );
 
-  const synthSystem = loadPrompt("council-synthesizer.md");
+  const synthSystem =
+    input.synthesizerSystem ?? loadPrompt("council-synthesizer.md");
   const userPrompt = [
     "User question / conversation context is reflected in the member answers.",
     "Synthesize the following independent answers:",

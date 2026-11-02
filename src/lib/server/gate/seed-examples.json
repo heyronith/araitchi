@@ -1,0 +1,2277 @@
+[
+  {
+    "id": "seed-hypothesis_generation-0",
+    "text": "Propose 2 hypotheses for why OpenAlex coverage",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-hypothesis_generation-1",
+    "text": "What could explain semantic similarity thresholds? Generate testable hypotheses",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-2",
+    "text": "Brainstorm competing hypotheses about council synthesizer cost",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-3",
+    "text": "Why might overfitting on small datasets? Suggest research hypotheses with predictions",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-4",
+    "text": "Generate distinct hypotheses linking sleep debt to generalization",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-hypothesis_generation-5",
+    "text": "Propose 4 hypotheses for why transformer attention",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-6",
+    "text": "What could explain sleep deprivation? Generate testable hypotheses",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-7",
+    "text": "Brainstorm competing hypotheses about graph neural nets for molecules",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-8",
+    "text": "Why might IRB protocol? Suggest research hypotheses with predictions",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-hypothesis_generation-9",
+    "text": "Generate distinct hypotheses linking sleep debt to generalization",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-10",
+    "text": "Propose 3 hypotheses for why novelty of our loss",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-11",
+    "text": "What could explain actigraphy vs diaries? Generate testable hypotheses",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-12",
+    "text": "Brainstorm competing hypotheses about sex differences in clearance",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-hypothesis_generation-13",
+    "text": "Why might AHI exclusion criteria? Suggest research hypotheses with predictions",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-14",
+    "text": "Generate distinct hypotheses linking sleep debt to generalization",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-15",
+    "text": "Propose 2 hypotheses for why blue light melatonin",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-16",
+    "text": "What could explain protein synthesis overnight? Generate testable hypotheses",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-hypothesis_generation-17",
+    "text": "Brainstorm competing hypotheses about dropout rate 0.5",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-18",
+    "text": "Why might learning rate warm-up? Suggest research hypotheses with predictions",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-19",
+    "text": "Generate distinct hypotheses linking sleep debt to generalization",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-20",
+    "text": "Propose 4 hypotheses for why OpenAlex coverage",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-hypothesis_generation-21",
+    "text": "What could explain semantic similarity thresholds? Generate testable hypotheses",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-22",
+    "text": "Brainstorm competing hypotheses about council synthesizer cost",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-23",
+    "text": "Why might overfitting on small datasets? Suggest research hypotheses with predictions",
+    "taskType": "hypothesis_generation",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-24",
+    "text": "Generate distinct hypotheses linking sleep debt to generalization",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-experiment_design-0",
+    "text": "Design an experiment to test whether sex differences in clearance",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-experiment_design-1",
+    "text": "Propose a protocol with controls for AHI exclusion criteria",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-2",
+    "text": "How should we experimentally validate casein before bed?",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-3",
+    "text": "Draft an A/B study measuring blue light melatonin",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-4",
+    "text": "Experiment plan: success/failure criteria for protein synthesis overnight",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-experiment_design-5",
+    "text": "Design an experiment to test whether dropout rate 0.5",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-6",
+    "text": "Propose a protocol with controls for learning rate warm-up",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-7",
+    "text": "How should we experimentally validate citation graph density?",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-8",
+    "text": "Draft an A/B study measuring OpenAlex coverage",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-experiment_design-9",
+    "text": "Experiment plan: success/failure criteria for semantic similarity thresholds",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-10",
+    "text": "Design an experiment to test whether council synthesizer cost",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-11",
+    "text": "Propose a protocol with controls for overfitting on small datasets",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-12",
+    "text": "How should we experimentally validate caffeine half-life?",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-experiment_design-13",
+    "text": "Draft an A/B study measuring transformer attention",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-14",
+    "text": "Experiment plan: success/failure criteria for sleep deprivation",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-15",
+    "text": "Design an experiment to test whether graph neural nets for molecules",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-16",
+    "text": "Propose a protocol with controls for IRB protocol",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-experiment_design-17",
+    "text": "How should we experimentally validate batch norm vs layer norm?",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-18",
+    "text": "Draft an A/B study measuring novelty of our loss",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-19",
+    "text": "Experiment plan: success/failure criteria for actigraphy vs diaries",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-20",
+    "text": "Design an experiment to test whether sex differences in clearance",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-experiment_design-21",
+    "text": "Propose a protocol with controls for AHI exclusion criteria",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-22",
+    "text": "How should we experimentally validate casein before bed?",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-23",
+    "text": "Draft an A/B study measuring blue light melatonin",
+    "taskType": "experiment_design",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-24",
+    "text": "Experiment plan: success/failure criteria for protein synthesis overnight",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-0",
+    "text": "Survey recent papers on sex differences in clearance",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-1",
+    "text": "Literature review: what is known about AHI exclusion criteria?",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-2",
+    "text": "Is casein before bed novel compared to prior work?",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-3",
+    "text": "Find and compare key papers about blue light melatonin",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-4",
+    "text": "Novelty check for our approach to protein synthesis overnight",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-5",
+    "text": "Survey recent papers on dropout rate 0.5",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-6",
+    "text": "Literature review: what is known about learning rate warm-up?",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-7",
+    "text": "Is citation graph density novel compared to prior work?",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-8",
+    "text": "Find and compare key papers about OpenAlex coverage",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-9",
+    "text": "Novelty check for our approach to semantic similarity thresholds",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-10",
+    "text": "Survey recent papers on council synthesizer cost",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-11",
+    "text": "Literature review: what is known about overfitting on small datasets?",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-12",
+    "text": "Is caffeine half-life novel compared to prior work?",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-13",
+    "text": "Find and compare key papers about transformer attention",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-14",
+    "text": "Novelty check for our approach to sleep deprivation",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-15",
+    "text": "Survey recent papers on graph neural nets for molecules",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-16",
+    "text": "Literature review: what is known about IRB protocol?",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-17",
+    "text": "Is batch norm vs layer norm novel compared to prior work?",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-18",
+    "text": "Find and compare key papers about novelty of our loss",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-19",
+    "text": "Novelty check for our approach to actigraphy vs diaries",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-20",
+    "text": "Survey recent papers on sex differences in clearance",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-21",
+    "text": "Literature review: what is known about AHI exclusion criteria?",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-22",
+    "text": "Is casein before bed novel compared to prior work?",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-23",
+    "text": "Find and compare key papers about blue light melatonin",
+    "taskType": "literature_review",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-24",
+    "text": "Novelty check for our approach to protein synthesis overnight",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-critique-0",
+    "text": "Critique this plan: citation graph density",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-critique-1",
+    "text": "What are the weaknesses in OpenAlex coverage?",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-2",
+    "text": "Peer-review style critique of semantic similarity thresholds",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-3",
+    "text": "Find methodological flaws in council synthesizer cost",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-4",
+    "text": "Red-team our claim that overfitting on small datasets",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-critique-5",
+    "text": "Critique this plan: caffeine half-life",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-6",
+    "text": "What are the weaknesses in transformer attention?",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-7",
+    "text": "Peer-review style critique of sleep deprivation",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-8",
+    "text": "Find methodological flaws in graph neural nets for molecules",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-critique-9",
+    "text": "Red-team our claim that IRB protocol",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-10",
+    "text": "Critique this plan: batch norm vs layer norm",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-11",
+    "text": "What are the weaknesses in novelty of our loss?",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-12",
+    "text": "Peer-review style critique of actigraphy vs diaries",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-critique-13",
+    "text": "Find methodological flaws in sex differences in clearance",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-14",
+    "text": "Red-team our claim that AHI exclusion criteria",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-15",
+    "text": "Critique this plan: casein before bed",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-16",
+    "text": "What are the weaknesses in blue light melatonin?",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-critique-17",
+    "text": "Peer-review style critique of protein synthesis overnight",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-18",
+    "text": "Find methodological flaws in dropout rate 0.5",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-19",
+    "text": "Red-team our claim that learning rate warm-up",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-20",
+    "text": "Critique this plan: citation graph density",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-critique-21",
+    "text": "What are the weaknesses in OpenAlex coverage?",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-22",
+    "text": "Peer-review style critique of semantic similarity thresholds",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-23",
+    "text": "Find methodological flaws in council synthesizer cost",
+    "taskType": "critique",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-24",
+    "text": "Red-team our claim that overfitting on small datasets",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-0",
+    "text": "Interpret these results: dropout rate 0.5",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-1",
+    "text": "What do these metrics mean for learning rate warm-up?",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-2",
+    "text": "Do the findings support citation graph density?",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-3",
+    "text": "Explain the surprising result: OpenAlex coverage",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-4",
+    "text": "How should we read the ablation on semantic similarity thresholds?",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-5",
+    "text": "Interpret these results: council synthesizer cost",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-6",
+    "text": "What do these metrics mean for overfitting on small datasets?",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-7",
+    "text": "Do the findings support caffeine half-life?",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-8",
+    "text": "Explain the surprising result: transformer attention",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-9",
+    "text": "How should we read the ablation on sleep deprivation?",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-10",
+    "text": "Interpret these results: graph neural nets for molecules",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-11",
+    "text": "What do these metrics mean for IRB protocol?",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-12",
+    "text": "Do the findings support batch norm vs layer norm?",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-13",
+    "text": "Explain the surprising result: novelty of our loss",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-14",
+    "text": "How should we read the ablation on actigraphy vs diaries?",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-15",
+    "text": "Interpret these results: sex differences in clearance",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-16",
+    "text": "What do these metrics mean for AHI exclusion criteria?",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-17",
+    "text": "Do the findings support casein before bed?",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-18",
+    "text": "Explain the surprising result: blue light melatonin",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-19",
+    "text": "How should we read the ablation on protein synthesis overnight?",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-20",
+    "text": "Interpret these results: dropout rate 0.5",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-21",
+    "text": "What do these metrics mean for learning rate warm-up?",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-22",
+    "text": "Do the findings support citation graph density?",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-23",
+    "text": "Explain the surprising result: OpenAlex coverage",
+    "taskType": "results_interpretation",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-24",
+    "text": "How should we read the ablation on semantic similarity thresholds?",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-0",
+    "text": "What is the DOI of semantic similarity thresholds?",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-1",
+    "text": "Define council synthesizer cost",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-2",
+    "text": "What does paper overfitting on small datasets say about X?",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-3",
+    "text": "Citation for the original caffeine half-life paper",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-4",
+    "text": "arxiv id for transformer attention",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-5",
+    "text": "Who proposed sleep deprivation and when?",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-6",
+    "text": "What is the DOI of graph neural nets for molecules?",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-7",
+    "text": "Define IRB protocol",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-8",
+    "text": "What does paper batch norm vs layer norm say about X?",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-9",
+    "text": "Citation for the original novelty of our loss paper",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-10",
+    "text": "arxiv id for actigraphy vs diaries",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-11",
+    "text": "Who proposed sex differences in clearance and when?",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-12",
+    "text": "What is the DOI of AHI exclusion criteria?",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-13",
+    "text": "Define casein before bed",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-14",
+    "text": "What does paper blue light melatonin say about X?",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-15",
+    "text": "Citation for the original protein synthesis overnight paper",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-16",
+    "text": "arxiv id for dropout rate 0.5",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-17",
+    "text": "Who proposed learning rate warm-up and when?",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-18",
+    "text": "What is the DOI of citation graph density?",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-19",
+    "text": "Define OpenAlex coverage",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-20",
+    "text": "What does paper semantic similarity thresholds say about X?",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-21",
+    "text": "Citation for the original council synthesizer cost paper",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-22",
+    "text": "arxiv id for overfitting on small datasets",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-23",
+    "text": "Who proposed caffeine half-life and when?",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-24",
+    "text": "What is the DOI of transformer attention?",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-chat-0",
+    "text": "hi",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-1",
+    "text": "thanks!",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-2",
+    "text": "hello there",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-3",
+    "text": "ok got it",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-4",
+    "text": "good morning",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-5",
+    "text": "how's it going?",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-6",
+    "text": "hi",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-7",
+    "text": "thanks!",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-8",
+    "text": "hello there",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-9",
+    "text": "ok got it",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-10",
+    "text": "good morning",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-11",
+    "text": "how's it going?",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-12",
+    "text": "hi",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-13",
+    "text": "thanks!",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-14",
+    "text": "hello there",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-15",
+    "text": "ok got it",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-16",
+    "text": "good morning",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-17",
+    "text": "how's it going?",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-18",
+    "text": "hi",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-19",
+    "text": "thanks!",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-20",
+    "text": "hello there",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-21",
+    "text": "ok got it",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-22",
+    "text": "good morning",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-23",
+    "text": "how's it going?",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-24",
+    "text": "hi",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-0",
+    "text": "Reformat this as markdown bullets: AHI exclusion criteria",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-1",
+    "text": "Convert to a table: casein before bed",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-2",
+    "text": "Make this APA style: blue light melatonin",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-3",
+    "text": "Pretty-print this JSON: protein synthesis overnight",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-4",
+    "text": "Turn into a numbered list: dropout rate 0.5",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-5",
+    "text": "Reformat this as markdown bullets: learning rate warm-up",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-6",
+    "text": "Convert to a table: citation graph density",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-7",
+    "text": "Make this APA style: OpenAlex coverage",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-8",
+    "text": "Pretty-print this JSON: semantic similarity thresholds",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-9",
+    "text": "Turn into a numbered list: council synthesizer cost",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-10",
+    "text": "Reformat this as markdown bullets: overfitting on small datasets",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-11",
+    "text": "Convert to a table: caffeine half-life",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-12",
+    "text": "Make this APA style: transformer attention",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-13",
+    "text": "Pretty-print this JSON: sleep deprivation",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-14",
+    "text": "Turn into a numbered list: graph neural nets for molecules",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-15",
+    "text": "Reformat this as markdown bullets: IRB protocol",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-16",
+    "text": "Convert to a table: batch norm vs layer norm",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-17",
+    "text": "Make this APA style: novelty of our loss",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-18",
+    "text": "Pretty-print this JSON: actigraphy vs diaries",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-19",
+    "text": "Turn into a numbered list: sex differences in clearance",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-20",
+    "text": "Reformat this as markdown bullets: AHI exclusion criteria",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-21",
+    "text": "Convert to a table: casein before bed",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-22",
+    "text": "Make this APA style: blue light melatonin",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-23",
+    "text": "Pretty-print this JSON: protein synthesis overnight",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-24",
+    "text": "Turn into a numbered list: dropout rate 0.5",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-0",
+    "text": "Summarize this abstract: blue light melatonin",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-1",
+    "text": "TL;DR of the following paragraph: protein synthesis overnight",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-2",
+    "text": "Condense this note to 3 sentences: dropout rate 0.5",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-3",
+    "text": "One-paragraph summary of learning rate warm-up",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-4",
+    "text": "Brief synopsis: citation graph density",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-5",
+    "text": "Summarize this abstract: OpenAlex coverage",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-6",
+    "text": "TL;DR of the following paragraph: semantic similarity thresholds",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-7",
+    "text": "Condense this note to 3 sentences: council synthesizer cost",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-8",
+    "text": "One-paragraph summary of overfitting on small datasets",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-9",
+    "text": "Brief synopsis: caffeine half-life",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-10",
+    "text": "Summarize this abstract: transformer attention",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-11",
+    "text": "TL;DR of the following paragraph: sleep deprivation",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-12",
+    "text": "Condense this note to 3 sentences: graph neural nets for molecules",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-13",
+    "text": "One-paragraph summary of IRB protocol",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-14",
+    "text": "Brief synopsis: batch norm vs layer norm",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-15",
+    "text": "Summarize this abstract: novelty of our loss",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-16",
+    "text": "TL;DR of the following paragraph: actigraphy vs diaries",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-17",
+    "text": "Condense this note to 3 sentences: sex differences in clearance",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-18",
+    "text": "One-paragraph summary of AHI exclusion criteria",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-19",
+    "text": "Brief synopsis: casein before bed",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-20",
+    "text": "Summarize this abstract: blue light melatonin",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-21",
+    "text": "TL;DR of the following paragraph: protein synthesis overnight",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-22",
+    "text": "Condense this note to 3 sentences: dropout rate 0.5",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-23",
+    "text": "One-paragraph summary of learning rate warm-up",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-24",
+    "text": "Brief synopsis: citation graph density",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-0",
+    "text": "what changed in the repo?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-1",
+    "text": "git status of our project",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-2",
+    "text": "show recent commits",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-3",
+    "text": "what files did we modify today?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-4",
+    "text": "diff since last commit",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-5",
+    "text": "what changed in the repo?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-6",
+    "text": "git status of our project",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-7",
+    "text": "show recent commits",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-8",
+    "text": "what files did we modify today?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-9",
+    "text": "diff since last commit",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-10",
+    "text": "what changed in the repo?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-11",
+    "text": "git status of our project",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-12",
+    "text": "show recent commits",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-13",
+    "text": "what files did we modify today?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-14",
+    "text": "diff since last commit",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-15",
+    "text": "what changed in the repo?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-16",
+    "text": "git status of our project",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-17",
+    "text": "show recent commits",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-18",
+    "text": "what files did we modify today?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-19",
+    "text": "diff since last commit",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-20",
+    "text": "what changed in the repo?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-21",
+    "text": "git status of our project",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-22",
+    "text": "show recent commits",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-23",
+    "text": "what files did we modify today?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-24",
+    "text": "diff since last commit",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-0",
+    "text": "Fix this TypeScript error: protein synthesis overnight",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-1",
+    "text": "How do I implement dropout rate 0.5 in Python?",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-2",
+    "text": "Refactor this function: learning rate warm-up",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-3",
+    "text": "Why does this code throw citation graph density?",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-4",
+    "text": "Write a unit test for OpenAlex coverage",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-5",
+    "text": "Fix this TypeScript error: semantic similarity thresholds",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-6",
+    "text": "How do I implement council synthesizer cost in Python?",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-7",
+    "text": "Refactor this function: overfitting on small datasets",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-8",
+    "text": "Why does this code throw caffeine half-life?",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-9",
+    "text": "Write a unit test for transformer attention",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-10",
+    "text": "Fix this TypeScript error: sleep deprivation",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-11",
+    "text": "How do I implement graph neural nets for molecules in Python?",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-12",
+    "text": "Refactor this function: IRB protocol",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-13",
+    "text": "Why does this code throw batch norm vs layer norm?",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-14",
+    "text": "Write a unit test for novelty of our loss",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-15",
+    "text": "Fix this TypeScript error: actigraphy vs diaries",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-16",
+    "text": "How do I implement sex differences in clearance in Python?",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-17",
+    "text": "Refactor this function: AHI exclusion criteria",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-18",
+    "text": "Why does this code throw casein before bed?",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-19",
+    "text": "Write a unit test for blue light melatonin",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-20",
+    "text": "Fix this TypeScript error: protein synthesis overnight",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-21",
+    "text": "How do I implement dropout rate 0.5 in Python?",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-22",
+    "text": "Refactor this function: learning rate warm-up",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-23",
+    "text": "Why does this code throw citation graph density?",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-24",
+    "text": "Write a unit test for OpenAlex coverage",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-0",
+    "text": "Schedule next week's research tasks for semantic similarity thresholds",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-1",
+    "text": "Make a checklist for submitting council synthesizer cost",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-2",
+    "text": "Organize our meeting agenda about overfitting on small datasets",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-3",
+    "text": "Project milestones for caffeine half-life",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-4",
+    "text": "Admin: rename the workstream for transformer attention",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-5",
+    "text": "Schedule next week's research tasks for sleep deprivation",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-6",
+    "text": "Make a checklist for submitting graph neural nets for molecules",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-7",
+    "text": "Organize our meeting agenda about IRB protocol",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-8",
+    "text": "Project milestones for batch norm vs layer norm",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-9",
+    "text": "Admin: rename the workstream for novelty of our loss",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-10",
+    "text": "Schedule next week's research tasks for actigraphy vs diaries",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-11",
+    "text": "Make a checklist for submitting sex differences in clearance",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-12",
+    "text": "Organize our meeting agenda about AHI exclusion criteria",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-13",
+    "text": "Project milestones for casein before bed",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-14",
+    "text": "Admin: rename the workstream for blue light melatonin",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-15",
+    "text": "Schedule next week's research tasks for protein synthesis overnight",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-16",
+    "text": "Make a checklist for submitting dropout rate 0.5",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-17",
+    "text": "Organize our meeting agenda about learning rate warm-up",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-18",
+    "text": "Project milestones for citation graph density",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-19",
+    "text": "Admin: rename the workstream for OpenAlex coverage",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-20",
+    "text": "Schedule next week's research tasks for semantic similarity thresholds",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-21",
+    "text": "Make a checklist for submitting council synthesizer cost",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-22",
+    "text": "Organize our meeting agenda about overfitting on small datasets",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-23",
+    "text": "Project milestones for caffeine half-life",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-24",
+    "text": "Admin: rename the workstream for transformer attention",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-0",
+    "text": "Should we pivot or stay the course on IRB protocol?",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-other-1",
+    "text": "I'm unsure whether batch norm vs layer norm — what would you do?",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-2",
+    "text": "Ambiguous: compare options around novelty of our loss",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-other-3",
+    "text": "Help me think through tradeoffs of actigraphy vs diaries",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-4",
+    "text": "Not sure if this is a methods or theory question: sex differences in clearance",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-other-5",
+    "text": "Should we pivot or stay the course on AHI exclusion criteria?",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-6",
+    "text": "I'm unsure whether casein before bed — what would you do?",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-other-7",
+    "text": "Ambiguous: compare options around blue light melatonin",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-8",
+    "text": "Help me think through tradeoffs of protein synthesis overnight",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-other-9",
+    "text": "Not sure if this is a methods or theory question: dropout rate 0.5",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-10",
+    "text": "Should we pivot or stay the course on learning rate warm-up?",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-other-11",
+    "text": "I'm unsure whether citation graph density — what would you do?",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-12",
+    "text": "Ambiguous: compare options around OpenAlex coverage",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-other-13",
+    "text": "Help me think through tradeoffs of semantic similarity thresholds",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-14",
+    "text": "Not sure if this is a methods or theory question: council synthesizer cost",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-other-15",
+    "text": "Should we pivot or stay the course on overfitting on small datasets?",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-16",
+    "text": "I'm unsure whether caffeine half-life — what would you do?",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-other-17",
+    "text": "Ambiguous: compare options around transformer attention",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-18",
+    "text": "Help me think through tradeoffs of sleep deprivation",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-other-19",
+    "text": "Not sure if this is a methods or theory question: graph neural nets for molecules",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-20",
+    "text": "Should we pivot or stay the course on IRB protocol?",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-other-21",
+    "text": "I'm unsure whether batch norm vs layer norm — what would you do?",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-22",
+    "text": "Ambiguous: compare options around novelty of our loss",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-other-23",
+    "text": "Help me think through tradeoffs of actigraphy vs diaries",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-24",
+    "text": "Not sure if this is a methods or theory question: sex differences in clearance",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": true
+  }
+]

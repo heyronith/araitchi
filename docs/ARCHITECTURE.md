@@ -20,7 +20,9 @@ src/lib/server/project/       project open/init, lock, notebook db, records, exp
 src/lib/server/council/       estimate, presets, anonymize, analysis, pipeline
 src/lib/server/tools/         broker, cache, rate-limit, provenance, papers/, documents/, repo/, mcp/, memory/
 src/lib/server/memory/        embedder (worker), index, hybrid search, scribe, session summaries, settings
-src/lib/server/prompts/       council-member.md, council-synthesizer.md, tools-policy.md, scribe.md
+src/lib/server/gate/          Auto convene gate: rules, kNN, LLM classify, probe, merge, decisions
+src/lib/gate/                 shared taxonomy (client + server)
+src/lib/server/prompts/       council-*, tools-policy, scribe, evidence, merge/*
 src/lib/chat/                 shared validation + branch tree helpers
 drizzle/                      app DB migrations
 drizzle/project/              per-project notebook.db migrations
@@ -56,8 +58,23 @@ docs/                         architecture + task briefs + STATUS
 - `project_settings` — per-project key/value (`chat.mode`, `council.*`, `tools.*`, `scribe.*`, `memory.*`, `context.memoryTokens`)
 - `tool_calls` — provenance per call (tool, args, status, cached, duration, sources)
 - `tool_cache` — cached read-tool results keyed by tool + args hash
+- `gate_decisions` — Auto routing log (layer, taskType, action, costs, probe agreement, corrections)
+- `gate_corrections` — user overrides fed back into project kNN seeds
 
 **Scale:** brute-force cosine in JS is fine up to ~50k chunks per project; beyond that, plan a proper ANN index.
+
+## Convene gate (Auto mode)
+
+Default chat mode is **Auto**. Each request is classified (rules → embedding kNN on ≥300 seeds → LLM fallback) into a task type + stakes + needsEvidence, then mapped to an action:
+
+| Action | When |
+| --- | --- |
+| retrieve_evidence | factual_lookup (Papers+Web+Memory forced; `evidence.md`) |
+| solo | chat / formatting / summarize / repo / code / planning |
+| probe | `other` — two different-lab models; agreement via answer+claim embeddings; disagree → escalate to council reusing probe answers; agree + needsEvidence → still verify via evidence |
+| council | always-council research tasks + merge-mode synthesizer prompts in `prompts/merge/` |
+
+UI: gate chip above the reply (“Auto → Council · …”) with Why? / correct / re-run. Settings → Routing + routing log.
 
 ## Council pipeline
 

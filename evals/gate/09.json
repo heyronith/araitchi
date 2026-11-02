@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-chat-8",
+    "text": "yo",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-chat-9",
+    "text": "hey",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-chat-10",
+    "text": "thx",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-chat-11",
+    "text": "yo",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-formatting-0",
+    "text": "Format nicely: sex differences in clearance",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-formatting-1",
+    "text": "Markdown-ify: AHI exclusion criteria",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-formatting-2",
+    "text": "Format nicely: casein before bed",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-formatting-3",
+    "text": "Markdown-ify: blue light melatonin",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-formatting-4",
+    "text": "Format nicely: protein synthesis overnight",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-formatting-5",
+    "text": "Markdown-ify: dropout rate 0.5",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  }
+]

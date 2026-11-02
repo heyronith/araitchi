@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-literature_review-6",
+    "text": "Related work survey on transformer attention",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-literature_review-7",
+    "text": "Prior art search: sleep deprivation",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-literature_review-8",
+    "text": "Related work survey on graph neural nets for molecules",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-literature_review-9",
+    "text": "Prior art search: IRB protocol",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-literature_review-10",
+    "text": "Related work survey on batch norm vs layer norm",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-literature_review-11",
+    "text": "Prior art search: novelty of our loss",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-critique-0",
+    "text": "Tear apart the argument that novelty of our loss",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-critique-1",
+    "text": "Critical review of actigraphy vs diaries",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-critique-2",
+    "text": "Tear apart the argument that sex differences in clearance",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-critique-3",
+    "text": "Critical review of AHI exclusion criteria",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  }
+]

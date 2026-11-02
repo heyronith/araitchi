@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-results_interpretation-2",
+    "text": "Make sense of outcome: sleep deprivation",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-results_interpretation-3",
+    "text": "Result meaning: graph neural nets for molecules",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-results_interpretation-4",
+    "text": "Make sense of outcome: IRB protocol",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-results_interpretation-5",
+    "text": "Result meaning: batch norm vs layer norm",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-results_interpretation-6",
+    "text": "Make sense of outcome: novelty of our loss",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-results_interpretation-7",
+    "text": "Result meaning: actigraphy vs diaries",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-results_interpretation-8",
+    "text": "Make sense of outcome: sex differences in clearance",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-results_interpretation-9",
+    "text": "Result meaning: AHI exclusion criteria",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-results_interpretation-10",
+    "text": "Make sense of outcome: casein before bed",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-results_interpretation-11",
+    "text": "Result meaning: blue light melatonin",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  }
+]

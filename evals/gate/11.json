@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-summarize_single-4",
+    "text": "Shorten: council synthesizer cost",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-summarize_single-5",
+    "text": "Abstract this: overfitting on small datasets",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-summarize_single-6",
+    "text": "Shorten: caffeine half-life",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-summarize_single-7",
+    "text": "Abstract this: transformer attention",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-summarize_single-8",
+    "text": "Shorten: sleep deprivation",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-summarize_single-9",
+    "text": "Abstract this: graph neural nets for molecules",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-summarize_single-10",
+    "text": "Shorten: IRB protocol",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-summarize_single-11",
+    "text": "Abstract this: batch norm vs layer norm",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-repo_status-0",
+    "text": "repo changes?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-repo_status-1",
+    "text": "git log please",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  }
+]

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-factual_lookup-10",
+    "text": "Lookup DOI/definition: sleep deprivation",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-factual_lookup-11",
+    "text": "Exact fact: graph neural nets for molecules",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-chat-0",
+    "text": "hey",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-chat-1",
+    "text": "thx",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-chat-2",
+    "text": "yo",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-chat-3",
+    "text": "hey",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-chat-4",
+    "text": "thx",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-chat-5",
+    "text": "yo",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-chat-6",
+    "text": "hey",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-chat-7",
+    "text": "thx",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  }
+]

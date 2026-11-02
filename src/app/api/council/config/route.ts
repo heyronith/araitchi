@@ -54,7 +54,7 @@ const putSchema = z.object({
   budgetCapUsd: z.number().min(0.0001).max(100).optional(),
   memberTimeoutSec: z.number().int().min(10).max(600).optional(),
   preset: z.enum(["balanced", "budget", "custom"]).optional(),
-  mode: z.enum(["solo", "council"]).optional(),
+  mode: z.enum(["solo", "auto", "council"]).optional(),
   applyPreset: z.enum(["balanced", "budget"]).optional(),
 });
 

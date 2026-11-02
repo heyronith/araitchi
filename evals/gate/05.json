@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-critique-4",
+    "text": "Tear apart the argument that casein before bed",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-critique-5",
+    "text": "Critical review of blue light melatonin",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-critique-6",
+    "text": "Tear apart the argument that protein synthesis overnight",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-critique-7",
+    "text": "Critical review of dropout rate 0.5",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-critique-8",
+    "text": "Tear apart the argument that learning rate warm-up",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-critique-9",
+    "text": "Critical review of citation graph density",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-critique-10",
+    "text": "Tear apart the argument that OpenAlex coverage",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-critique-11",
+    "text": "Critical review of semantic similarity thresholds",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-results_interpretation-0",
+    "text": "Make sense of outcome: caffeine half-life",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-results_interpretation-1",
+    "text": "Result meaning: transformer attention",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  }
+]

@@ -1,0 +1,242 @@
+[
+  {
+    "id": "agree-0",
+    "question": "What is 2+0? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-1",
+    "question": "What is 2+1? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-2",
+    "question": "What is 2+2? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-3",
+    "question": "What is 2+3? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-4",
+    "question": "What is 2+4? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-5",
+    "question": "What is 2+5? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-6",
+    "question": "What is 2+6? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-7",
+    "question": "What is 2+7? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-8",
+    "question": "What is 2+8? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-9",
+    "question": "What is 2+9? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-10",
+    "question": "What is 2+10? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-11",
+    "question": "What is 2+11? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-12",
+    "question": "What is 2+12? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-13",
+    "question": "What is 2+13? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-14",
+    "question": "What is 2+14? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-15",
+    "question": "What is 2+15? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-16",
+    "question": "What is 2+16? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-17",
+    "question": "What is 2+17? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-18",
+    "question": "What is 2+18? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "agree-19",
+    "question": "What is 2+19? State the number only.",
+    "expectAgreement": true,
+    "notes": "trivial arithmetic — models should agree"
+  },
+  {
+    "id": "disagree-0",
+    "question": "Is overfitting on small datasets primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-1",
+    "question": "Is caffeine half-life primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-2",
+    "question": "Is transformer attention primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-3",
+    "question": "Is sleep deprivation primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-4",
+    "question": "Is graph neural nets for molecules primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-5",
+    "question": "Is IRB protocol primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-6",
+    "question": "Is batch norm vs layer norm primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-7",
+    "question": "Is novelty of our loss primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-8",
+    "question": "Is actigraphy vs diaries primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-9",
+    "question": "Is sex differences in clearance primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-10",
+    "question": "Is AHI exclusion criteria primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-11",
+    "question": "Is casein before bed primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-12",
+    "question": "Is blue light melatonin primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-13",
+    "question": "Is protein synthesis overnight primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-14",
+    "question": "Is dropout rate 0.5 primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-15",
+    "question": "Is learning rate warm-up primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-16",
+    "question": "Is citation graph density primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-17",
+    "question": "Is OpenAlex coverage primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-18",
+    "question": "Is semantic similarity thresholds primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  },
+  {
+    "id": "disagree-19",
+    "question": "Is council synthesizer cost primarily a methods question or a theory question? Pick exactly one word: methods OR theory. Be opinionated.",
+    "expectAgreement": false,
+    "notes": "underspecified forced choice — models often disagree"
+  }
+]

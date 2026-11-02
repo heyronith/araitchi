@@ -42,9 +42,9 @@ export function AppShell() {
   const searchParams = useSearchParams();
   const [settingsOpen, setSettingsOpen] = React.useState(false);
   const [settingsTab, setSettingsTab] = React.useState<
-    "keys" | "models" | "council" | "tools" | "memory"
+    "keys" | "models" | "council" | "tools" | "memory" | "routing"
   >("keys");
-  const [chatMode, setChatMode] = React.useState<ChatMode>("solo");
+  const [chatMode, setChatMode] = React.useState<ChatMode>("auto");
 
   const [mobileNavOpen, setMobileNavOpen] = React.useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false);
@@ -103,11 +103,18 @@ export function AppShell() {
     return data;
   }, []);
 
+  const modeFetchGen = React.useRef(0);
   const refreshMode = React.useCallback(async () => {
+    const gen = ++modeFetchGen.current;
     const res = await fetch("/api/council/config");
-    if (!res.ok) return;
+    if (!res.ok || gen !== modeFetchGen.current) return;
     const data = (await res.json()) as { mode: ChatMode };
-    setChatMode(data.mode === "council" ? "council" : "solo");
+    if (gen !== modeFetchGen.current) return;
+    setChatMode(
+      data.mode === "council" || data.mode === "solo" || data.mode === "auto"
+        ? data.mode
+        : "auto",
+    );
   }, []);
 
   React.useEffect(() => {
@@ -153,7 +160,8 @@ export function AppShell() {
   }, [searchParams, router, refreshSecrets]);
 
   const openSettings = (
-    tab: "keys" | "models" | "council" | "tools" | "memory" = "keys",
+    tab:
+      "keys" | "models" | "council" | "tools" | "memory" | "routing" = "keys",
   ) => {
     setSettingsTab(tab);
     void fetchSecretStatuses()
@@ -168,6 +176,8 @@ export function AppShell() {
   };
 
   const handleModeChange = async (mode: ChatMode) => {
+    // Bump gen so an in-flight refreshMode cannot overwrite the user choice.
+    modeFetchGen.current += 1;
     setChatMode(mode);
     try {
       const res = await fetch("/api/council/config", {

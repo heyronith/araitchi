@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-formatting-6",
+    "text": "Format nicely: learning rate warm-up",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-formatting-7",
+    "text": "Markdown-ify: citation graph density",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-formatting-8",
+    "text": "Format nicely: OpenAlex coverage",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-formatting-9",
+    "text": "Markdown-ify: semantic similarity thresholds",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-formatting-10",
+    "text": "Format nicely: council synthesizer cost",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-formatting-11",
+    "text": "Markdown-ify: overfitting on small datasets",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-summarize_single-0",
+    "text": "Shorten: learning rate warm-up",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-summarize_single-1",
+    "text": "Abstract this: citation graph density",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-summarize_single-2",
+    "text": "Shorten: OpenAlex coverage",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-summarize_single-3",
+    "text": "Abstract this: semantic similarity thresholds",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  }
+]

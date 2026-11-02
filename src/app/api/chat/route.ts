@@ -35,7 +35,7 @@ import {
   persistSessionTranscript,
   updateMessage,
 } from "@/lib/server/chats";
-import { listModels } from "@/lib/server/models";
+import { getDefaultModelId, listModels } from "@/lib/server/models";
 import {
   createOpenRouterClient,
   requireOpenRouterApiKey,
@@ -50,6 +50,16 @@ import {
 import { assertLocalOrigin } from "@/lib/server/security";
 import { runScribe } from "@/lib/server/memory/scribe";
 import type { ScribeOutput } from "@/lib/server/memory/scribe-schema";
+import { resolveGate } from "@/lib/server/gate/resolve";
+import {
+  insertGateDecision,
+  updateGateDecision,
+} from "@/lib/server/gate/decisions";
+import { runProbe } from "@/lib/server/gate/probe";
+import { synthesizerPromptForTask } from "@/lib/server/gate/merge";
+import type { Classification } from "@/lib/server/gate/classify";
+import type { GateAction } from "@/lib/server/gate/taxonomy";
+import { ACTION_LABELS, TASK_TYPE_LABELS } from "@/lib/server/gate/taxonomy";
 
 export const runtime = "nodejs";
 
@@ -94,7 +104,7 @@ export async function POST(request: Request) {
   }
 
   const projectPath = tryCurrentProjectPath() ?? ensureScratchProject().path;
-  const mode = parsed.data.mode ?? "solo";
+  const mode = parsed.data.mode ?? "auto";
   const { chatId, messages: uiMessages, allowOverBudget } = parsed.data;
   if (parsed.data.tools) {
     setToolToggles(projectPath, parsed.data.tools);
@@ -150,14 +160,149 @@ export async function POST(request: Request) {
     chatId,
   });
 
-  if (mode === "council") {
+  let gate: Classification | null = null;
+  let gateDecisionId: string | null = null;
+  let effectiveMode: "solo" | "council" =
+    mode === "council" ? "council" : "solo";
+  let evidenceMode = false;
+  let probePrefills:
+    { modelId: string; content: string; cost?: number }[] | undefined;
+  let escalated = false;
+  let probeAgreement: number | null = null;
+  let taskTypeForMerge = null as Classification["taskType"] | null;
+
+  if (mode === "auto" || parsed.data.forceAction) {
+    try {
+      gate = await resolveGate({
+        projectPath,
+        text: lastUserText,
+        mode: mode === "auto" ? "auto" : mode,
+        apiKey,
+        forceAction: parsed.data.forceAction as GateAction | undefined,
+        signal: request.signal,
+      });
+      const decision = insertGateDecision({
+        projectPath,
+        messageId: assistantId,
+        chatId,
+        classification: gate,
+      });
+      gateDecisionId = decision.id;
+      taskTypeForMerge = gate.taskType;
+
+      if (gate.action === "council") {
+        effectiveMode = "council";
+      } else if (gate.action === "retrieve_evidence") {
+        effectiveMode = "solo";
+        evidenceMode = true;
+      } else if (gate.action === "probe") {
+        try {
+          const probe = await runProbe({
+            projectPath,
+            apiKey,
+            userText: gate.cleanedText || lastUserText,
+            projectSystem: ctx.systemText,
+            signal: request.signal,
+          });
+          probeAgreement = probe.agreement;
+          if (probe.escalate) {
+            effectiveMode = "council";
+            escalated = true;
+            probePrefills = probe.answers.map((a) => ({
+              modelId: a.modelId,
+              content: a.content,
+              cost: a.costUsd ?? undefined,
+            }));
+            updateGateDecision(projectPath, decision.id, {
+              escalated: true,
+              probeAgreement: probe.agreement,
+              models: probe.answers.map((a) => a.modelId),
+              action: "council",
+            });
+          } else if (gate.needsEvidence) {
+            effectiveMode = "solo";
+            evidenceMode = true;
+            updateGateDecision(projectPath, decision.id, {
+              probeAgreement: probe.agreement,
+              models: probe.answers.map((a) => a.modelId),
+              action: "retrieve_evidence",
+            });
+          } else if (probe.winner) {
+            insertMessage({
+              id: assistantId,
+              chatId,
+              parentId: lastUser.id,
+              role: "assistant",
+              parts: [],
+              modelId: probe.winner.modelId,
+            });
+            const gateChip = {
+              type: "data-gate",
+              id: decision.id,
+              data: {
+                decisionId: decision.id,
+                action: "solo" as const,
+                actionLabel: ACTION_LABELS.solo,
+                taskType: gate.taskType,
+                taskLabel: TASK_TYPE_LABELS[gate.taskType],
+                stakes: gate.stakes,
+                layer: gate.layer,
+                confidence: gate.confidence,
+                reason: gate.reason,
+                probeAgreement: probe.agreement,
+                escalated: false,
+                costUsd: probe.winner.costUsd,
+              },
+            };
+            updateMessage(assistantId, {
+              parts: [{ type: "text", text: probe.winner.content }, gateChip],
+              modelId: probe.winner.modelId,
+              usage: { cost: probe.winner.costUsd ?? undefined },
+            });
+            updateGateDecision(projectPath, decision.id, {
+              actualCostUsd: probe.winner.costUsd,
+              probeAgreement: probe.agreement,
+              models: probe.answers.map((a) => a.modelId),
+            });
+            persistSessionTranscript(chatId);
+            const stream = createUIMessageStream({
+              originalMessages: uiMessages as UIMessage[],
+              generateId: () => assistantId,
+              execute: ({ writer }) => {
+                const textId = nanoid();
+                writer.write({ type: "text-start", id: textId });
+                writer.write({
+                  type: "text-delta",
+                  id: textId,
+                  delta: probe.winner!.content,
+                });
+                writer.write({ type: "text-end", id: textId });
+                writer.write(gateChip as never);
+              },
+            });
+            return createUIMessageStreamResponse({ stream });
+          }
+        } catch {
+          effectiveMode = "solo";
+        }
+      } else {
+        effectiveMode = "solo";
+      }
+    } catch {
+      effectiveMode = "solo";
+      gate = null;
+      gateDecisionId = null;
+    }
+  }
+
+  if (effectiveMode === "council" || mode === "council") {
     return handleCouncil({
       apiKey,
       projectPath,
       chatId,
       assistantId,
       lastUserId: lastUser.id,
-      lastUserText,
+      lastUserText: gate?.cleanedText || lastUserText,
       uiMessages: uiMessages as UIMessage[],
       allowOverBudget: Boolean(allowOverBudget),
       abortSignal: request.signal,
@@ -171,10 +316,30 @@ export async function POST(request: Request) {
       },
       toggles,
       toolApprovals: parsed.data.toolApprovals,
+      gate,
+      gateDecisionId,
+      synthesizerSystem: taskTypeForMerge
+        ? synthesizerPromptForTask(taskTypeForMerge)
+        : undefined,
+      prefilledMembers: probePrefills,
+      escalated,
+      probeAgreement,
     });
   }
 
-  const modelId = parsed.data.modelId!;
+  const modelId =
+    parsed.data.modelId || getDefaultModelId() || "openai/gpt-4o-mini";
+  let soloToggles = toggles;
+  let soloSystemExtra = "";
+  if (evidenceMode) {
+    soloToggles = {
+      ...toggles,
+      papers: true,
+      web: true,
+      memory: true,
+    };
+    soloSystemExtra = `\n\n${loadPrompt("evidence.md")}`;
+  }
   insertMessage({
     id: assistantId,
     chatId,
@@ -201,7 +366,11 @@ export async function POST(request: Request) {
   }
   const toolPartsSolo: unknown[] = [];
   broker.onToolEvent((event) => toolPartsSolo.push(toolEventPart(event)));
-  const built = await buildBrokerTools({ broker, projectPath, toggles });
+  const built = await buildBrokerTools({
+    broker,
+    projectPath,
+    toggles: soloToggles,
+  });
   let modelSupportsTools = true;
   try {
     const known = (await listModels()).find((m) => m.id === modelId);
@@ -219,14 +388,42 @@ export async function POST(request: Request) {
   const anyTools = Object.keys(aiTools).length > 0;
   const maxSteps = getMaxSteps(projectPath);
 
+  const gateChipSolo =
+    gate && gateDecisionId
+      ? {
+          type: "data-gate" as const,
+          id: gateDecisionId,
+          data: {
+            decisionId: gateDecisionId,
+            action: evidenceMode ? ("retrieve_evidence" as const) : gate.action,
+            actionLabel: evidenceMode
+              ? ACTION_LABELS.retrieve_evidence
+              : ACTION_LABELS[gate.action],
+            taskType: gate.taskType,
+            taskLabel: TASK_TYPE_LABELS[gate.taskType],
+            stakes: gate.stakes,
+            layer: gate.layer,
+            confidence: gate.confidence,
+            reason: gate.reason,
+            probeAgreement,
+            escalated,
+            costUsd: null as number | null,
+          },
+        }
+      : null;
+
   try {
     const modelMessages = await convertToModelMessages(
       sanitizeCouncilHistoryForModel(uiMessages as UIMessage[]),
     );
 
-    const systemText = anyTools
-      ? `${ctx.systemText}\n\n${loadPrompt("tools-policy.md")}`
-      : ctx.systemText;
+    const systemText = [
+      ctx.systemText,
+      soloSystemExtra,
+      anyTools ? `\n${loadPrompt("tools-policy.md")}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
 
     const result = streamText({
       model,
@@ -258,6 +455,16 @@ export async function POST(request: Request) {
         }
         parts.push(...toolPartsSolo);
         parts.push({ type: "text", text });
+        if (gateChipSolo) {
+          gateChipSolo.data.costUsd = cost ?? null;
+          parts.push(gateChipSolo);
+          if (gateDecisionId) {
+            updateGateDecision(projectPath, gateDecisionId, {
+              actualCostUsd: cost ?? null,
+              models: [modelId],
+            });
+          }
+        }
 
         let mockOutput: ScribeOutput | null = null;
         if (process.env.ARAITCHI_MOCK_SCRIBE) {
@@ -343,19 +550,24 @@ export async function POST(request: Request) {
       },
     };
 
-    if (!anyTools) {
+    // Always wrap when we have a gate chip and/or tools so data parts reach
+    // the client live (toUIMessageStreamResponse alone omits custom data-*).
+    if (!anyTools && !gateChipSolo) {
       return result.toUIMessageStreamResponse(uiStreamOptions);
     }
 
-    // With tools, merge the model stream with `data-tool-call` parts so the
-    // UI can render tool cards live; the same parts are persisted above.
     const uiStream = createUIMessageStream({
       originalMessages: uiMessages as UIMessage[],
       generateId: () => assistantId,
       execute: ({ writer }) => {
-        broker.onToolEvent((event) => {
-          writer.write(toolEventPart(event));
-        });
+        if (gateChipSolo) {
+          writer.write(gateChipSolo as never);
+        }
+        if (anyTools) {
+          broker.onToolEvent((event) => {
+            writer.write(toolEventPart(event));
+          });
+        }
         writer.merge(result.toUIMessageStream(uiStreamOptions));
       },
       onError: uiStreamOptions.onError,
@@ -410,6 +622,12 @@ async function handleCouncil(input: {
   };
   toggles: ToolToggles;
   toolApprovals?: Record<string, boolean>;
+  gate?: Classification | null;
+  gateDecisionId?: string | null;
+  synthesizerSystem?: string;
+  prefilledMembers?: { modelId: string; content: string; cost?: number }[];
+  escalated?: boolean;
+  probeAgreement?: number | null;
 }) {
   let config = getCouncilConfig(input.projectPath);
   const catalog = await listModels();
@@ -500,6 +718,8 @@ async function handleCouncil(input: {
           allowOverBudget: input.allowOverBudget,
           broker,
           maxSteps,
+          synthesizerSystem: input.synthesizerSystem,
+          prefilledMembers: input.prefilledMembers,
           hooks: {
             onMember: (event) => {
               writer.write({
@@ -571,6 +791,36 @@ async function handleCouncil(input: {
           parts.push({ type: "data-analysis", data: result.analysis });
         }
         parts.push({ type: "data-council-summary", data: result.summary });
+
+        if (input.gate && input.gateDecisionId) {
+          const gateChip = {
+            type: "data-gate",
+            id: input.gateDecisionId,
+            data: {
+              decisionId: input.gateDecisionId,
+              action: "council" as const,
+              actionLabel: ACTION_LABELS.council,
+              taskType: input.gate.taskType,
+              taskLabel: TASK_TYPE_LABELS[input.gate.taskType],
+              stakes: input.gate.stakes,
+              layer: input.gate.layer,
+              confidence: input.gate.confidence,
+              reason: input.gate.reason,
+              probeAgreement: input.probeAgreement ?? null,
+              escalated: Boolean(input.escalated),
+              costUsd: result.summary.totalCost,
+            },
+          };
+          parts.push(gateChip);
+          writer.write(gateChip as never);
+          updateGateDecision(input.projectPath, input.gateDecisionId, {
+            actualCostUsd: result.summary.totalCost,
+            escalated: Boolean(input.escalated),
+            probeAgreement: input.probeAgreement ?? null,
+            models: result.members.map((m) => m.modelId),
+            action: "council",
+          });
+        }
 
         let mockOutput: ScribeOutput | null = null;
         if (process.env.ARAITCHI_MOCK_SCRIBE) {

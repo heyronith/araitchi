@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-experiment_design-8",
+    "text": "Build a controlled study for graph neural nets for molecules",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-experiment_design-9",
+    "text": "Write methods for testing IRB protocol",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-experiment_design-10",
+    "text": "Build a controlled study for batch norm vs layer norm",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-experiment_design-11",
+    "text": "Write methods for testing novelty of our loss",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-literature_review-0",
+    "text": "Related work survey on citation graph density",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-literature_review-1",
+    "text": "Prior art search: OpenAlex coverage",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-literature_review-2",
+    "text": "Related work survey on semantic similarity thresholds",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-literature_review-3",
+    "text": "Prior art search: council synthesizer cost",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-literature_review-4",
+    "text": "Related work survey on overfitting on small datasets",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-literature_review-5",
+    "text": "Prior art search: caffeine half-life",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  }
+]

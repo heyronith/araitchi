@@ -47,8 +47,9 @@ export function setProjectSetting(
 }
 
 export function getChatMode(projectPath: string): ChatMode {
-  const mode = getProjectSetting<ChatMode>(projectPath, "chat.mode", "solo");
-  return mode === "council" ? "council" : "solo";
+  const mode = getProjectSetting<ChatMode>(projectPath, "chat.mode", "auto");
+  if (mode === "council" || mode === "solo" || mode === "auto") return mode;
+  return "auto";
 }
 
 export function setChatMode(projectPath: string, mode: ChatMode): void {

@@ -15,6 +15,13 @@ async function saveOpenRouterKey(page: import("@playwright/test").Page) {
   await page.keyboard.press("Escape");
 }
 
+async function ensureSolo(page: import("@playwright/test").Page) {
+  await page
+    .getByRole("group", { name: "Research mode" })
+    .getByRole("button", { name: "Solo", exact: true })
+    .click();
+}
+
 test.describe("project workspace", () => {
   test("open folder via paste path creates .research/", async ({ page }) => {
     const folder = mkdtempSync(path.join(tmpdir(), "araitchi-proj-"));
@@ -68,6 +75,7 @@ test.describe("project workspace", () => {
     expect(onDisk).toContain("E2E_BRIEF_TOKEN_XYZ");
 
     await saveOpenRouterKey(page);
+    await ensureSolo(page);
     await page.getByRole("textbox", { name: "Message" }).fill("Ping brief");
     await page.getByRole("button", { name: "Send message" }).click();
     await expect(page.getByText("Done.").first()).toBeVisible({
@@ -131,6 +139,7 @@ test.describe("project workspace", () => {
     await expect(page.getByText("FTS searchable hypothesis")).toBeVisible();
 
     await saveOpenRouterKey(page);
+    await ensureSolo(page);
     await page.getByRole("textbox", { name: "Message" }).fill("Save me");
     await page.getByRole("button", { name: "Send message" }).click();
     await expect(page.getByText("Done.").first()).toBeVisible({
@@ -167,6 +176,7 @@ test.describe("project workspace", () => {
     });
 
     await saveOpenRouterKey(page);
+    await ensureSolo(page);
     await page
       .getByRole("textbox", { name: "Message" })
       .fill("Project chat only");

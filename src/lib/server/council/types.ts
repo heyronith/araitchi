@@ -36,7 +36,7 @@ export type CouncilConfig = {
   preset: "balanced" | "budget" | "custom";
 };
 
-export type ChatMode = "solo" | "council";
+export type ChatMode = "solo" | "auto" | "council";
 
 export type MemberResultStatus =
   "done" | "failed" | "substituted" | "streaming" | "pending";

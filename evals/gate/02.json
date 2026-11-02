@@ -1,0 +1,72 @@
+[
+  {
+    "id": "eval-hypothesis_generation-10",
+    "text": "Come up with rival explanations for AHI exclusion criteria",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hypothesis_generation-11",
+    "text": "Hypothesis brainstorm: casein before bed",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-experiment_design-0",
+    "text": "Build a controlled study for citation graph density",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-experiment_design-1",
+    "text": "Write methods for testing OpenAlex coverage",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-experiment_design-2",
+    "text": "Build a controlled study for semantic similarity thresholds",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-experiment_design-3",
+    "text": "Write methods for testing council synthesizer cost",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-experiment_design-4",
+    "text": "Build a controlled study for overfitting on small datasets",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-experiment_design-5",
+    "text": "Write methods for testing caffeine half-life",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-experiment_design-6",
+    "text": "Build a controlled study for transformer attention",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-experiment_design-7",
+    "text": "Write methods for testing sleep deprivation",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  }
+]

@@ -46,6 +46,7 @@ import {
   type ScribeSummaryData,
 } from "@/components/chat/memory-line";
 import { ScribeSuggestions } from "@/components/chat/scribe-suggestions";
+import { GateChip, type GateChipData } from "@/components/chat/gate-chip";
 import type { ChatMode } from "@/components/shell/mode-switch";
 import {
   AlertDialog,
@@ -68,7 +69,7 @@ type ChatPanelProps = {
   hasKey: boolean;
   mode: ChatMode;
   onOpenSettings: (
-    tab?: "keys" | "models" | "council" | "tools" | "memory",
+    tab?: "keys" | "models" | "council" | "tools" | "memory" | "routing",
   ) => void;
   onChatUpdated?: () => void;
   onMemorySaved?: () => void;
@@ -231,6 +232,15 @@ function extractScribe(parts: UIMessage["parts"]): ScribeSummaryData | null {
   for (const p of parts) {
     if (p.type === "data-scribe" && "data" in p) {
       return p.data as ScribeSummaryData;
+    }
+  }
+  return null;
+}
+
+function extractGate(parts: UIMessage["parts"]): GateChipData | null {
+  for (const p of parts) {
+    if (p.type === "data-gate" && "data" in p) {
+      return p.data as GateChipData;
     }
   }
   return null;
@@ -802,13 +812,32 @@ export function ChatPanel({
 
                 {message.role === "assistant"
                   ? (() => {
+                      const gate = extractGate(message.parts);
                       const scribe = extractScribe(message.parts);
-                      return scribe ? (
-                        <MemoryLine
-                          data={scribe}
-                          onUndone={() => onMemorySaved?.()}
-                        />
-                      ) : null;
+                      return (
+                        <>
+                          {gate ? (
+                            <GateChip
+                              data={gate}
+                              onRerun={(action) => {
+                                void regenerate({
+                                  body: {
+                                    mode:
+                                      action === "council" ? "council" : "solo",
+                                    forceAction: action,
+                                  },
+                                });
+                              }}
+                            />
+                          ) : null}
+                          {scribe ? (
+                            <MemoryLine
+                              data={scribe}
+                              onUndone={() => onMemorySaved?.()}
+                            />
+                          ) : null}
+                        </>
+                      );
                     })()
                   : null}
 
