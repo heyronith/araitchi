@@ -33,10 +33,11 @@ test.describe("research tools", () => {
     await expect(page.getByTestId("tool-card").first()).toBeVisible({
       timeout: 60_000,
     });
-    await expect(page.getByTestId("sources-section")).toBeVisible({
-      timeout: 30_000,
-    });
-    const saveBtn = page.getByRole("button", { name: /Save paper:/i }).first();
+    const sources = page.getByTestId("sources-section").last();
+    await expect(sources).toBeVisible({ timeout: 30_000 });
+    const saveBtn = sources
+      .getByRole("button", { name: /Save paper:/i })
+      .first();
     await expect(saveBtn).toBeVisible();
     await saveBtn.click();
     await expect(page.getByText(/Saved to Papers/i).first()).toBeVisible({
