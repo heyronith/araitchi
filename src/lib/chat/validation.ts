@@ -19,7 +19,9 @@ export const chatUiMessageSchema = z.object({
 export const chatRequestSchema = z
   .object({
     chatId: z.string().min(1).max(128),
-    modelId: z.string().regex(MODEL_ID_RE, "Invalid modelId"),
+    modelId: z.string().regex(MODEL_ID_RE, "Invalid modelId").nullish(),
+    mode: z.enum(["solo", "council"]).optional().default("solo"),
+    allowOverBudget: z.boolean().optional(),
     messages: z.array(chatUiMessageSchema).min(1).max(200),
     parentId: z.string().nullable().optional(),
     id: z.string().optional(),
@@ -27,6 +29,13 @@ export const chatRequestSchema = z
     messageId: z.string().optional(),
   })
   .superRefine((val, ctx) => {
+    if (val.mode !== "council" && !val.modelId) {
+      ctx.addIssue({
+        code: "custom",
+        message: "modelId is required in solo mode",
+        path: ["modelId"],
+      });
+    }
     let total = 0;
     for (const m of val.messages) {
       if (typeof m.content === "string") total += m.content.length;

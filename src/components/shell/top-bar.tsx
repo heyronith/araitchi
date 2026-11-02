@@ -2,7 +2,7 @@
 
 import { GitBranch, Menu, Settings } from "lucide-react";
 
-import { ModeSwitch } from "@/components/shell/mode-switch";
+import { ModeSwitch, type ChatMode } from "@/components/shell/mode-switch";
 import { ThemeToggle } from "@/components/shell/theme-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,6 +12,8 @@ type TopBarProps = {
   onOpenMobileNav?: () => void;
   projectName?: string | null;
   repoPath?: string | null;
+  mode: ChatMode;
+  onModeChange: (mode: ChatMode) => void;
 };
 
 export function TopBar({
@@ -19,6 +21,8 @@ export function TopBar({
   onOpenMobileNav,
   projectName,
   repoPath,
+  mode,
+  onModeChange,
 }: TopBarProps) {
   return (
     <header className="bg-background/80 supports-[backdrop-filter]:bg-background/60 flex h-14 shrink-0 items-center gap-2 border-b px-3 backdrop-blur sm:gap-3 sm:px-4">
@@ -47,7 +51,7 @@ export function TopBar({
         ) : null}
       </div>
 
-      <ModeSwitch />
+      <ModeSwitch mode={mode} onChange={onModeChange} />
       <ThemeToggle />
       <Button
         type="button"

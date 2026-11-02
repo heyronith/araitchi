@@ -1,7 +1,19 @@
-import { convertToModelMessages, streamText, type UIMessage } from "ai";
+import {
+  convertToModelMessages,
+  createUIMessageStream,
+  createUIMessageStreamResponse,
+  streamText,
+  type UIMessage,
+} from "ai";
 import { nanoid } from "nanoid";
 
 import { chatRequestSchema } from "@/lib/chat/validation";
+import { estimateCouncilCost } from "@/lib/server/council/estimate";
+import {
+  resolveBalancedPreset,
+  resolveBudgetPreset,
+} from "@/lib/server/council/presets";
+import { countContextChars, runCouncil } from "@/lib/server/council/pipeline";
 import {
   ensureChat,
   insertMessage,
@@ -9,6 +21,7 @@ import {
   persistSessionTranscript,
   updateMessage,
 } from "@/lib/server/chats";
+import { listModels } from "@/lib/server/models";
 import {
   createOpenRouterClient,
   requireOpenRouterApiKey,
@@ -16,6 +29,10 @@ import {
 import { buildProjectSystemContext } from "@/lib/server/project/context";
 import { tryCurrentProjectPath } from "@/lib/server/project/registry";
 import { ensureScratchProject } from "@/lib/server/project/scratch";
+import {
+  getCouncilConfig,
+  setCouncilConfig,
+} from "@/lib/server/project/settings";
 import { assertLocalOrigin } from "@/lib/server/security";
 
 export const runtime = "nodejs";
@@ -56,8 +73,8 @@ export async function POST(request: Request) {
   }
 
   const projectPath = tryCurrentProjectPath() ?? ensureScratchProject().path;
-
-  const { chatId, modelId, messages: uiMessages } = parsed.data;
+  const mode = parsed.data.mode ?? "solo";
+  const { chatId, messages: uiMessages, allowOverBudget } = parsed.data;
   ensureChat(chatId);
 
   const lastUser = [...uiMessages].reverse().find((m) => m.role === "user");
@@ -90,6 +107,23 @@ export async function POST(request: Request) {
   }
 
   const assistantId = nanoid();
+  const ctx = buildProjectSystemContext(projectPath);
+
+  if (mode === "council") {
+    return handleCouncil({
+      apiKey,
+      projectPath,
+      chatId,
+      assistantId,
+      lastUserId: lastUser.id,
+      uiMessages: uiMessages as UIMessage[],
+      allowOverBudget: Boolean(allowOverBudget),
+      abortSignal: request.signal,
+      projectSystem: ctx.systemText,
+    });
+  }
+
+  const modelId = parsed.data.modelId!;
   insertMessage({
     id: assistantId,
     chatId,
@@ -98,8 +132,6 @@ export async function POST(request: Request) {
     parts: [],
     modelId,
   });
-
-  const ctx = buildProjectSystemContext(projectPath);
 
   const openrouter = createOpenRouterClient(apiKey);
   const model = openrouter(modelId, {
@@ -149,7 +181,7 @@ export async function POST(request: Request) {
         });
         persistSessionTranscript(chatId);
       } catch {
-        // aborted or failed mid-stream; leave partial message
+        // aborted or failed mid-stream
       }
     })();
 
@@ -209,4 +241,188 @@ export async function POST(request: Request) {
       { status: status >= 400 && status < 600 ? status : 500 },
     );
   }
+}
+
+async function handleCouncil(input: {
+  apiKey: string;
+  projectPath: string;
+  chatId: string;
+  assistantId: string;
+  lastUserId: string;
+  uiMessages: UIMessage[];
+  allowOverBudget: boolean;
+  abortSignal: AbortSignal;
+  projectSystem: string;
+}) {
+  let config = getCouncilConfig(input.projectPath);
+  const catalog = await listModels();
+  if (config.members.length < 3 || !config.synthesizer) {
+    const preset =
+      config.preset === "budget"
+        ? resolveBudgetPreset(catalog)
+        : resolveBalancedPreset(catalog);
+    config = setCouncilConfig(input.projectPath, {
+      members: preset.members,
+      synthesizer: preset.synthesizer,
+    });
+  }
+
+  if (config.members.length < 3 || !config.synthesizer) {
+    return Response.json(
+      { error: "Council is not configured (need 3 members + synthesizer)" },
+      { status: 400 },
+    );
+  }
+
+  const modelMessages = await convertToModelMessages(input.uiMessages);
+  const contextChars = countContextChars(input.projectSystem, modelMessages);
+  const estimate = estimateCouncilCost({
+    contextChars,
+    config,
+    catalog,
+  });
+  if (estimate.totalHighUsd > config.budgetCapUsd && !input.allowOverBudget) {
+    return Response.json(
+      {
+        error: `Estimated cost up to $${estimate.totalHighUsd.toFixed(4)} exceeds budget cap $${config.budgetCapUsd.toFixed(2)}`,
+        code: "OVER_BUDGET",
+        estimate,
+      },
+      { status: 402 },
+    );
+  }
+
+  insertMessage({
+    id: input.assistantId,
+    chatId: input.chatId,
+    parentId: input.lastUserId,
+    role: "assistant",
+    parts: [],
+    modelId: "council",
+  });
+
+  const stream = createUIMessageStream({
+    originalMessages: input.uiMessages,
+    generateId: () => input.assistantId,
+    execute: async ({ writer }) => {
+      const textId = nanoid();
+      try {
+        const result = await runCouncil({
+          apiKey: input.apiKey,
+          config,
+          catalog,
+          projectSystem: input.projectSystem,
+          modelMessages,
+          contextChars,
+          abortSignal: input.abortSignal,
+          allowOverBudget: input.allowOverBudget,
+          hooks: {
+            onMember: (event) => {
+              writer.write({
+                type: "data-member",
+                id: event.modelId,
+                data: event,
+              });
+            },
+            onSynthesis: (event) => {
+              writer.write({
+                type: "data-synthesis",
+                data: event,
+              });
+            },
+          },
+        });
+
+        if (result.error && !result.finalAnswer) {
+          writer.write({
+            type: "error",
+            errorText: result.error,
+          });
+        }
+
+        const finalText =
+          result.finalAnswer || result.error || "Council produced no answer.";
+
+        writer.write({ type: "text-start", id: textId });
+        writer.write({
+          type: "text-delta",
+          id: textId,
+          delta: finalText,
+        });
+        writer.write({ type: "text-end", id: textId });
+
+        if (result.analysis) {
+          writer.write({
+            type: "data-analysis",
+            data: result.analysis,
+          });
+        }
+
+        writer.write({
+          type: "data-council-summary",
+          data: result.summary,
+        });
+
+        const parts: unknown[] = [
+          { type: "text", text: finalText },
+          ...result.members.map((m) => ({
+            type: "data-member",
+            id: m.modelId,
+            data: {
+              phase: "finish",
+              modelId: m.modelId,
+              lab: m.lab,
+              content: m.content,
+              status: m.status,
+              usage: m.usage,
+              cost: m.cost,
+              latencyMs: m.latencyMs,
+              substitutedFrom: m.substitutedFrom ?? null,
+              error: m.error ?? null,
+            },
+          })),
+        ];
+        if (result.analysis) {
+          parts.push({ type: "data-analysis", data: result.analysis });
+        }
+        parts.push({ type: "data-council-summary", data: result.summary });
+
+        updateMessage(input.assistantId, {
+          parts,
+          modelId: "council",
+          usage: {
+            cost: result.summary.totalCost,
+          },
+        });
+        persistSessionTranscript(input.chatId);
+      } catch (error) {
+        const code =
+          error && typeof error === "object" && "code" in error
+            ? String((error as { code: string }).code)
+            : null;
+        const message =
+          error instanceof Error ? error.message : "Council failed";
+
+        if (code === "OVER_BUDGET") {
+          writer.write({
+            type: "error",
+            errorText: message,
+          });
+          updateMessage(input.assistantId, {
+            parts: [{ type: "text", text: message }],
+          });
+          return;
+        }
+
+        writer.write({ type: "error", errorText: message });
+        updateMessage(input.assistantId, {
+          parts: [{ type: "text", text: message }],
+        });
+      }
+    },
+    onError: (error) =>
+      error instanceof Error ? error.message : "Council stream failed",
+  });
+
+  return createUIMessageStreamResponse({ stream });
 }

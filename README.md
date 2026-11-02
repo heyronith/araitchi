@@ -2,7 +2,7 @@
 
 Araitchi is a local-first, self-hosted AI research workspace. It runs as a Next.js app on your machine; you bring your own OpenRouter API key. A team of models from different labs will help with literature review, hypotheses, and experiment design — each research project is a folder on disk.
 
-**Status:** pre-alpha, Task 3 of 9 (project workspace & memory).
+**Status:** pre-alpha, Task 4 of 9 (council engine).
 
 ## Requirements
 
@@ -44,6 +44,15 @@ A **project** is any folder on disk. Opening one creates `<folder>/.research/` (
 You may **commit `.research/` to git** or add it to `.gitignore` — your choice. Araitchi never writes into your repo except for that `.research/` directory at the project root.
 
 A default **Scratch** project lives under the app data dir so chatting never requires choosing a folder first.
+
+### Council mode
+
+Switch **Solo → Council** in the top bar. A council sends your message to **3–10 models in parallel** (they never see each other), then a synthesizer produces a final answer plus a structured disagreement analysis (consensus, contradictions with “needs evidence”, unique insights, blind spots).
+
+- Configure members, synthesizer, per-member token limit, timeout, and **budget cap** under **Settings → Council**.
+- Presets **Balanced** / **Budget** are resolved from the live OpenRouter catalog (never hard-coded model ids).
+- The composer shows a live cost estimate (`≈ $low–$high · cap $…`). If the high estimate exceeds the cap, confirm **Run anyway** or edit the council.
+- Expect higher cost and latency than Solo — you pay for every member call plus the synthesizer.
 
 ### Manual smoke (not CI)
 

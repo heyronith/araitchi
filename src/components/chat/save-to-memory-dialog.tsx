@@ -28,6 +28,7 @@ type SaveToMemoryDialogProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   initialBody: string;
+  initialType?: (typeof TYPES)[number];
   source: string;
   sourceChatId?: string | null;
   sourceMessageId?: string | null;
@@ -36,13 +37,14 @@ type SaveToMemoryDialogProps = {
 
 function SaveForm({
   initialBody,
+  initialType = "note",
   source,
   sourceChatId,
   sourceMessageId,
   onOpenChange,
   onSaved,
 }: Omit<SaveToMemoryDialogProps, "open">) {
-  const [type, setType] = React.useState<(typeof TYPES)[number]>("note");
+  const [type, setType] = React.useState<(typeof TYPES)[number]>(initialType);
   const [title, setTitle] = React.useState(
     () => initialBody.trim().split("\n")[0]?.slice(0, 80) ?? "",
   );
@@ -134,6 +136,7 @@ export function SaveToMemoryDialog({
   open,
   onOpenChange,
   initialBody,
+  initialType,
   source,
   sourceChatId,
   sourceMessageId,
@@ -147,8 +150,9 @@ export function SaveToMemoryDialog({
         </DialogHeader>
         {open ? (
           <SaveForm
-            key={`${sourceMessageId ?? "new"}:${initialBody.slice(0, 32)}`}
+            key={`${sourceMessageId ?? "new"}:${initialBody.slice(0, 32)}:${initialType ?? "note"}`}
             initialBody={initialBody}
+            initialType={initialType}
             source={source}
             sourceChatId={sourceChatId}
             sourceMessageId={sourceMessageId}

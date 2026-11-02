@@ -18,6 +18,7 @@ import {
   fetchSecretStatuses,
   type SecretStatus,
 } from "@/components/shell/settings-dialog";
+import type { ChatMode } from "@/components/shell/mode-switch";
 import { TopBar } from "@/components/shell/top-bar";
 import {
   Sheet,
@@ -40,9 +41,11 @@ export function AppShell() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [settingsOpen, setSettingsOpen] = React.useState(false);
-  const [settingsTab, setSettingsTab] = React.useState<"keys" | "models">(
-    "keys",
-  );
+  const [settingsTab, setSettingsTab] = React.useState<
+    "keys" | "models" | "council"
+  >("keys");
+  const [chatMode, setChatMode] = React.useState<ChatMode>("solo");
+
   const [mobileNavOpen, setMobileNavOpen] = React.useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false);
   const [memoryCollapsed, setMemoryCollapsed] = React.useState(() => {
@@ -100,10 +103,18 @@ export function AppShell() {
     return data;
   }, []);
 
+  const refreshMode = React.useCallback(async () => {
+    const res = await fetch("/api/council/config");
+    if (!res.ok) return;
+    const data = (await res.json()) as { mode: ChatMode };
+    setChatMode(data.mode === "council" ? "council" : "solo");
+  }, []);
+
   React.useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- mount fetch
     void refreshSecrets();
     void refreshProjects().then(() => {
+      void refreshMode();
       void refreshChats().then((list) => {
         if (list && list.length > 0) {
           setActiveChatId((current) => {
@@ -113,7 +124,7 @@ export function AppShell() {
         }
       });
     });
-  }, [refreshSecrets, refreshChats, refreshProjects]);
+  }, [refreshSecrets, refreshChats, refreshProjects, refreshMode]);
 
   React.useEffect(() => {
     window.localStorage.setItem(
@@ -141,7 +152,7 @@ export function AppShell() {
     }
   }, [searchParams, router, refreshSecrets]);
 
-  const openSettings = (tab: "keys" | "models" = "keys") => {
+  const openSettings = (tab: "keys" | "models" | "council" = "keys") => {
     setSettingsTab(tab);
     void fetchSecretStatuses()
       .then((data) => {
@@ -154,6 +165,20 @@ export function AppShell() {
       });
   };
 
+  const handleModeChange = async (mode: ChatMode) => {
+    setChatMode(mode);
+    try {
+      const res = await fetch("/api/council/config", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ mode }),
+      });
+      if (!res.ok) toast.error("Could not save chat mode");
+    } catch {
+      toast.error("Could not save chat mode");
+    }
+  };
+
   const handleNewChat = () => {
     setActiveChatId(nanoid());
     setMobileNavOpen(false);
@@ -161,6 +186,7 @@ export function AppShell() {
 
   const afterProjectChange = async () => {
     await refreshProjects();
+    await refreshMode();
     const list = await refreshChats();
     setActiveChatId(list && list.length > 0 ? list[0]!.id : nanoid());
     setMemoryRefresh((n) => n + 1);
@@ -256,13 +282,16 @@ export function AppShell() {
           onOpenMobileNav={() => setMobileNavOpen(true)}
           projectName={currentProject?.name}
           repoPath={currentProject?.repoPath}
+          mode={chatMode}
+          onModeChange={handleModeChange}
         />
 
         <ChatPanel
-          key={activeChatId}
+          key={`${activeChatId}:${chatMode}`}
           chatId={activeChatId}
           hasKey={hasKey}
-          onOpenSettings={() => openSettings("keys")}
+          mode={chatMode}
+          onOpenSettings={(tab) => openSettings(tab ?? "keys")}
           onChatUpdated={() => void refreshChats()}
           onMemorySaved={() => setMemoryRefresh((n) => n + 1)}
         />

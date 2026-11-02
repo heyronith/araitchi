@@ -7,6 +7,18 @@ import { createHash } from "node:crypto";
 
 const PORT = Number(process.env.MOCK_OPENROUTER_PORT ?? 4010);
 
+/** Per-model behavior overrides for e2e (fail / timeout / custom reply). */
+type ModelBehavior = {
+  fail?: boolean;
+  timeoutMs?: number;
+  reply?: string;
+  cost?: number;
+};
+
+const behaviors = new Map<string, ModelBehavior>();
+const chatRequests: unknown[] = [];
+let synthesizerCalls = 0;
+
 function readBody(req: IncomingMessage): Promise<string> {
   return new Promise((resolve, reject) => {
     const chunks: Buffer[] = [];
@@ -43,11 +55,82 @@ const MODELS = {
       architecture: { input_modalities: ["text", "image"] },
       supported_parameters: ["tools", "reasoning"],
     },
+    {
+      id: "google/gemini-2.0-flash",
+      name: "Gemini 2.0 Flash",
+      context_length: 1000000,
+      pricing: { prompt: "0.0000001", completion: "0.0000004" },
+      architecture: { input_modalities: ["text"] },
+      supported_parameters: ["response_format"],
+    },
+    {
+      id: "meta-llama/llama-3.3-70b",
+      name: "Llama 3.3 70B",
+      context_length: 128000,
+      pricing: { prompt: "0.00000035", completion: "0.0000004" },
+      architecture: { input_modalities: ["text"] },
+      supported_parameters: [],
+    },
+    {
+      id: "mistralai/mistral-small",
+      name: "Mistral Small",
+      context_length: 128000,
+      pricing: { prompt: "0.0000001", completion: "0.0000003" },
+      architecture: { input_modalities: ["text"] },
+      supported_parameters: [],
+    },
+    {
+      id: "deepseek/deepseek-chat",
+      name: "DeepSeek Chat",
+      context_length: 64000,
+      pricing: { prompt: "0.00000014", completion: "0.00000028" },
+      architecture: { input_modalities: ["text"] },
+      supported_parameters: [],
+    },
   ],
 };
 
-/** Last chat/completions request body (for e2e assertions). */
-let lastChatRequest: unknown = null;
+function defaultReplyFor(modelId: string): string {
+  if (modelId.includes("anthropic")) {
+    return "Anthropic view: caffeine half-life is ~5 hours in adults. Dose matters.";
+  }
+  if (modelId.includes("google")) {
+    return "Google view: caffeine half-life is ~3–7 hours; genetics vary clearance.";
+  }
+  if (
+    modelId.includes("meta-llama") ||
+    modelId.includes("mistral") ||
+    modelId.includes("deepseek")
+  ) {
+    return `Open-weight (${modelId}): caffeine clears in about 5 hours on average.`;
+  }
+  return "Here is a short answer with code:\n\n```js\nconsole.log('hello araitchi')\n```\n\nDone.";
+}
+
+function synthesizerJson(valid: boolean): string {
+  if (!valid) return "{ not valid json";
+  return JSON.stringify({
+    finalAnswer:
+      "Caffeine half-life is typically about 5 hours in healthy adults, with wide individual variation.",
+    consensus: ["Caffeine half-life is measured in hours, not minutes"],
+    contradictions: [
+      {
+        topic: "Typical half-life",
+        positions: [
+          { member: "Member A", stance: "~5 hours" },
+          { member: "Member B", stance: "~3–7 hours range" },
+          { member: "Member C", stance: "~5 hours average" },
+        ],
+        needsEvidence: true,
+      },
+    ],
+    uniqueInsights: [
+      { member: "Member B", insight: "Genetics affect clearance" },
+    ],
+    blindSpots: ["Pregnancy and liver disease not discussed"],
+    confidence: "medium",
+  });
+}
 
 const server = createServer(async (req, res) => {
   const url = new URL(req.url ?? "/", `http://127.0.0.1:${PORT}`);
@@ -60,6 +143,26 @@ const server = createServer(async (req, res) => {
       "Access-Control-Allow-Headers": "*",
     });
     res.end();
+    return;
+  }
+
+  if (req.method === "POST" && path === "/api/v1/_test/behaviors") {
+    const raw = await readBody(req);
+    try {
+      const body = JSON.parse(raw) as Record<string, ModelBehavior>;
+      behaviors.clear();
+      for (const [id, b] of Object.entries(body)) behaviors.set(id, b);
+      synthesizerCalls = 0;
+      chatRequests.length = 0;
+      json(res, 200, { ok: true });
+    } catch {
+      json(res, 400, { error: "bad json" });
+    }
+    return;
+  }
+
+  if (req.method === "GET" && path === "/api/v1/_test/requests") {
+    json(res, 200, { requests: chatRequests, synthesizerCalls });
     return;
   }
 
@@ -82,7 +185,7 @@ const server = createServer(async (req, res) => {
   }
 
   if (req.method === "GET" && path === "/api/v1/_test/last-chat") {
-    json(res, 200, { request: lastChatRequest });
+    json(res, 200, { request: chatRequests.at(-1) ?? null });
     return;
   }
 
@@ -117,7 +220,6 @@ const server = createServer(async (req, res) => {
       json(res, 403, { error: "Invalid code or code_verifier" });
       return;
     }
-    // Deterministic fake key for tests (not a real secret).
     const digest = createHash("sha256")
       .update(body.code_verifier)
       .digest("hex")
@@ -128,15 +230,75 @@ const server = createServer(async (req, res) => {
 
   if (req.method === "POST" && path === "/api/v1/chat/completions") {
     const raw = await readBody(req);
+    let parsed: {
+      model?: string;
+      stream?: boolean;
+      messages?: { role: string; content: string | unknown }[];
+      response_format?: { type?: string };
+    } = {};
     try {
-      lastChatRequest = JSON.parse(raw);
+      parsed = JSON.parse(raw) as typeof parsed;
+      chatRequests.push(parsed);
     } catch {
-      lastChatRequest = { raw };
+      chatRequests.push({ raw });
+    }
+
+    const modelId = parsed.model ?? "openai/gpt-4o-mini";
+    const behavior = behaviors.get(modelId) ?? {};
+    const msgBlob = JSON.stringify(parsed.messages ?? []);
+    const isSynth =
+      msgBlob.includes("Member A") ||
+      msgBlob.includes("anonymized") ||
+      msgBlob.includes("Synthesize") ||
+      msgBlob.includes("independent answers") ||
+      Boolean(parsed.response_format);
+
+    if (behavior.fail) {
+      // 400 so the AI SDK does not auto-retry forever on "retryable" 5xx
+      json(res, 400, {
+        error: { message: `Configured failure for ${modelId}` },
+      });
+      return;
+    }
+
+    if (behavior.timeoutMs) {
+      await new Promise((r) => setTimeout(r, behavior.timeoutMs));
     }
 
     const slow = url.searchParams.get("slow") === "1";
-    const reply =
-      "Here is a short answer with code:\n\n```js\nconsole.log('hello araitchi')\n```\n\nDone.";
+    let reply: string;
+    if (isSynth) {
+      synthesizerCalls += 1;
+      const malformedFirst =
+        behaviors.get("__synth__")?.fail && synthesizerCalls === 1;
+      reply = synthesizerJson(!malformedFirst);
+    } else {
+      reply = behavior.reply ?? defaultReplyFor(modelId);
+    }
+
+    const usage = {
+      prompt_tokens: 12,
+      completion_tokens: 28,
+      total_tokens: 40,
+      cost: behavior.cost ?? 0.0012,
+    };
+
+    // generateText/doGenerate omits stream or sets false; streamText sets true
+    if (parsed.stream !== true) {
+      json(res, 200, {
+        id: "chatcmpl-mock",
+        object: "chat.completion",
+        choices: [
+          {
+            index: 0,
+            message: { role: "assistant", content: reply },
+            finish_reason: "stop",
+          },
+        ],
+        usage,
+      });
+      return;
+    }
 
     res.writeHead(200, {
       "Content-Type": "text/event-stream",
@@ -171,12 +333,7 @@ const server = createServer(async (req, res) => {
       id,
       object: "chat.completion.chunk",
       choices: [{ index: 0, delta: {}, finish_reason: "stop" }],
-      usage: {
-        prompt_tokens: 12,
-        completion_tokens: 28,
-        total_tokens: 40,
-        cost: 0.0012,
-      },
+      usage,
     });
     res.write("data: [DONE]\n\n");
     res.end();

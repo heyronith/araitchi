@@ -8,6 +8,13 @@
       "when": 1793575646484,
       "tag": "0000_init_notebook",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1794100000000,
+      "tag": "0001_project_settings",
+      "breakpoints": true
     }
   ]
 }

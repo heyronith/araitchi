@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { CouncilSettings } from "@/components/shell/council-settings";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 type SecretStatus = { name: string; set: boolean };
@@ -59,7 +60,7 @@ type SettingsDialogProps = {
   onOpenChange: (open: boolean) => void;
   statuses: SecretStatus[];
   onStatusesChange: (statuses: SecretStatus[]) => void;
-  initialTab?: "keys" | "models";
+  initialTab?: "keys" | "models" | "council";
 };
 
 async function fetchSecretStatuses(): Promise<SecretStatus[]> {
@@ -86,7 +87,9 @@ export function SettingsDialog({
   const [modelOptions, setModelOptions] = React.useState<
     Array<{ id: string; name: string }>
   >([]);
-  const [tab, setTab] = React.useState<"keys" | "models">(initialTab);
+  const [tab, setTab] = React.useState<"keys" | "models" | "council">(
+    initialTab,
+  );
 
   const isSet = (name: string) =>
     statuses.find((s) => s.name === name)?.set ?? false;
@@ -188,10 +191,14 @@ export function SettingsDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <Tabs value={tab} onValueChange={(v) => setTab(v as "keys" | "models")}>
+        <Tabs
+          value={tab}
+          onValueChange={(v) => setTab(v as "keys" | "models" | "council")}
+        >
           <TabsList>
             <TabsTrigger value="keys">Keys</TabsTrigger>
             <TabsTrigger value="models">Models</TabsTrigger>
+            <TabsTrigger value="council">Council</TabsTrigger>
           </TabsList>
 
           <TabsContent value="keys" className="mt-4 space-y-5">
@@ -316,6 +323,10 @@ export function SettingsDialog({
                 composer picker.
               </p>
             </div>
+          </TabsContent>
+
+          <TabsContent value="council" className="mt-4">
+            <CouncilSettings />
           </TabsContent>
         </Tabs>
       </DialogContent>

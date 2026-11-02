@@ -121,6 +121,81 @@ function extractText(parts: unknown[]): string {
     .join("");
 }
 
+function formatCouncilParts(parts: unknown[]): string {
+  const lines: string[] = [];
+  const text = extractText(parts);
+  if (text) {
+    lines.push("### Final answer", "", text, "");
+  }
+
+  type Part = { type?: string; data?: Record<string, unknown> };
+  const typed = parts as Part[];
+
+  const analysis = typed.find((p) => p.type === "data-analysis")?.data as
+    | {
+        consensus?: string[];
+        contradictions?: { topic: string; needsEvidence?: boolean }[];
+        uniqueInsights?: { insight: string }[];
+        blindSpots?: string[];
+        confidence?: string;
+      }
+    | undefined;
+
+  if (analysis) {
+    lines.push("### Disagreement summary", "");
+    if (analysis.confidence)
+      lines.push(`Confidence: ${analysis.confidence}`, "");
+    if (analysis.consensus?.length) {
+      lines.push("Agreed:", ...analysis.consensus.map((c) => `- ${c}`), "");
+    }
+    if (analysis.contradictions?.length) {
+      lines.push("Disagreed:");
+      for (const c of analysis.contradictions) {
+        lines.push(
+          `- ${c.topic}${c.needsEvidence ? " _(needs evidence)_" : ""}`,
+        );
+      }
+      lines.push("");
+    }
+    if (analysis.uniqueInsights?.length) {
+      lines.push(
+        "Only one model raised:",
+        ...analysis.uniqueInsights.map((u) => `- ${u.insight}`),
+        "",
+      );
+    }
+    if (analysis.blindSpots?.length) {
+      lines.push(
+        "Blind spots:",
+        ...analysis.blindSpots.map((b) => `- ${b}`),
+        "",
+      );
+    }
+  }
+
+  const memberParts = typed.filter((p) => p.type === "data-member");
+  const finished = memberParts.filter(
+    (p) =>
+      p.data &&
+      (p.data.phase === "finish" ||
+        p.data.status === "done" ||
+        p.data.status === "substituted" ||
+        typeof p.data.content === "string"),
+  );
+  if (finished.length) {
+    lines.push("### Member answers", "");
+    for (const p of finished) {
+      const d = p.data ?? {};
+      const model = String(d.modelId ?? "member");
+      const content = String(d.content ?? "");
+      if (!content) continue;
+      lines.push(`#### ${model}`, "", content, "");
+    }
+  }
+
+  return lines.join("\n") || extractText(parts);
+}
+
 export function writeSessionTranscript(
   projectPath: string,
   chat: { id: string; title: string },
@@ -136,13 +211,19 @@ export function writeSessionTranscript(
 
   for (const m of branch) {
     const when = new Date(m.createdAt).toISOString();
-    const model = m.modelId ? ` · ${m.modelId}` : "";
+    const isCouncil = m.parts.some(
+      (p) =>
+        p &&
+        typeof p === "object" &&
+        (p as { type?: string }).type === "data-council-summary",
+    );
+    const model = m.modelId ? ` · ${m.modelId}` : isCouncil ? " · council" : "";
     lines.push(
       `## ${m.role}${model}`,
       "",
       `_${when}_`,
       "",
-      extractText(m.parts),
+      isCouncil ? formatCouncilParts(m.parts) : extractText(m.parts),
       "",
     );
   }

@@ -20,6 +20,12 @@ export const messages = sqliteTable("messages", {
   createdAt: integer("created_at").notNull(),
 });
 
+export const projectSettings = sqliteTable("project_settings", {
+  key: text("key").primaryKey(),
+  value: text("value").notNull(),
+  updatedAt: integer("updated_at").notNull(),
+});
+
 export const records = sqliteTable("records", {
   id: text("id").primaryKey(),
   type: text("type").notNull(),

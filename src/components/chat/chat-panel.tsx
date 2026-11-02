@@ -18,9 +18,26 @@ import {
 import * as React from "react";
 import { toast } from "sonner";
 
+import {
+  CouncilMessage,
+  type CouncilAnalysisView,
+  type CouncilMemberView,
+  type CouncilSummaryView,
+} from "@/components/chat/council-message";
 import { Markdown } from "@/components/chat/markdown";
 import { ModelPicker } from "@/components/chat/model-picker";
 import { SaveToMemoryDialog } from "@/components/chat/save-to-memory-dialog";
+import type { ChatMode } from "@/components/shell/mode-switch";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import {
   Collapsible,
@@ -34,7 +51,8 @@ import { cn } from "cn";
 type ChatPanelProps = {
   chatId: string;
   hasKey: boolean;
-  onOpenSettings: () => void;
+  mode: ChatMode;
+  onOpenSettings: (tab?: "keys" | "models" | "council") => void;
   onChatUpdated?: () => void;
   onMemorySaved?: () => void;
 };
@@ -70,9 +88,87 @@ function extractReasoning(message: UIMessage): string {
     .join("");
 }
 
+function isCouncilMessage(message: UIMessage): boolean {
+  return message.parts.some(
+    (p) =>
+      typeof p.type === "string" &&
+      (p.type === "data-council-summary" || p.type === "data-member"),
+  );
+}
+
+function parseCouncilFromParts(parts: UIMessage["parts"]): {
+  members: CouncilMemberView[];
+  analysis: CouncilAnalysisView | null;
+  summary: CouncilSummaryView | null;
+  finalAnswer: string;
+} {
+  const membersMap = new Map<string, CouncilMemberView>();
+  let analysis: CouncilAnalysisView | null = null;
+  let summary: CouncilSummaryView | null = null;
+  let finalAnswer = "";
+
+  for (const p of parts) {
+    if (p.type === "text") finalAnswer += p.text;
+    if (p.type === "data-analysis" && "data" in p) {
+      analysis = p.data as CouncilAnalysisView;
+    }
+    if (p.type === "data-council-summary" && "data" in p) {
+      summary = p.data as CouncilSummaryView;
+    }
+    if (p.type === "data-member" && "data" in p) {
+      const d = p.data as Record<string, unknown>;
+      const modelId = String(d.modelId ?? "");
+      if (!modelId) continue;
+      const prev = membersMap.get(modelId);
+      const streamingText =
+        d.phase === "delta"
+          ? `${prev?.streamingText ?? prev?.content ?? ""}${String(d.text ?? "")}`
+          : prev?.streamingText;
+      membersMap.set(modelId, {
+        modelId,
+        lab: typeof d.lab === "string" ? d.lab : prev?.lab,
+        content:
+          typeof d.content === "string"
+            ? d.content
+            : streamingText || prev?.content || "",
+        status: String(
+          d.status ??
+            (d.phase === "error"
+              ? "failed"
+              : d.phase === "substituted"
+                ? "substituted"
+                : d.phase === "finish"
+                  ? "done"
+                  : "streaming"),
+        ),
+        cost: typeof d.cost === "number" ? d.cost : prev?.cost,
+        latencyMs:
+          typeof d.latencyMs === "number" ? d.latencyMs : prev?.latencyMs,
+        usage: (d.usage as CouncilMemberView["usage"]) ?? prev?.usage,
+        substitutedFrom:
+          (d.substitutedFrom as string | null | undefined) ??
+          prev?.substitutedFrom,
+        error: (d.error as string | null | undefined) ?? prev?.error,
+        streamingText:
+          d.phase === "finish" || d.phase === "error"
+            ? undefined
+            : streamingText,
+      });
+    }
+  }
+
+  return {
+    members: [...membersMap.values()],
+    analysis,
+    summary,
+    finalAnswer: finalAnswer || analysis?.finalAnswer || "",
+  };
+}
+
 export function ChatPanel({
   chatId,
   hasKey,
+  mode,
   onOpenSettings,
   onChatUpdated,
   onMemorySaved,
@@ -89,6 +185,14 @@ export function ChatPanel({
   const [saveBody, setSaveBody] = React.useState("");
   const [saveSource, setSaveSource] = React.useState("user");
   const [saveMessageId, setSaveMessageId] = React.useState<string | null>(null);
+  const [saveType, setSaveType] = React.useState<
+    "hypothesis" | "experiment" | "decision" | "paper" | "question" | "note"
+  >("note");
+  const [allowOverBudget, setAllowOverBudget] = React.useState(false);
+  const [overBudgetOpen, setOverBudgetOpen] = React.useState(false);
+  const [estimateLabel, setEstimateLabel] = React.useState<string | null>(null);
+  const [councilChip, setCouncilChip] = React.useState("Council");
+  const [overBudget, setOverBudget] = React.useState(false);
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const bottomRef = React.useRef<HTMLDivElement>(null);
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
@@ -105,17 +209,19 @@ export function ChatPanel({
           messageId,
         }) => ({
           body: {
-            ...body,
             id,
             messages,
             trigger,
             messageId,
             chatId,
-            modelId,
+            ...(modelId ? { modelId } : {}),
+            mode,
+            allowOverBudget,
+            ...body,
           },
         }),
       }),
-    [chatId, modelId],
+    [chatId, modelId, mode, allowOverBudget],
   );
 
   const {
@@ -192,6 +298,44 @@ export function ChatPanel({
     };
   }, [chatId, onMemorySaved]);
 
+  const refreshEstimate = React.useCallback(async () => {
+    if (mode !== "council") {
+      setEstimateLabel(null);
+      return;
+    }
+    const res = await fetch("/api/council/estimate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messagesText: input }),
+    });
+    if (!res.ok) return;
+    const data = (await res.json()) as {
+      estimate: { totalLowUsd: number; totalHighUsd: number };
+      config: {
+        members: string[];
+        budgetCapUsd: number;
+        preset: string;
+      };
+      overBudget: boolean;
+    };
+    setOverBudget(data.overBudget);
+    setEstimateLabel(
+      `≈ $${data.estimate.totalLowUsd.toFixed(2)}–${data.estimate.totalHighUsd.toFixed(2)} · cap $${data.config.budgetCapUsd.toFixed(2)}`,
+    );
+    const presetLabel =
+      data.config.preset === "balanced"
+        ? "Balanced"
+        : data.config.preset === "budget"
+          ? "Budget"
+          : "Custom";
+    setCouncilChip(`${data.config.members.length} models · ${presetLabel}`);
+  }, [mode, input]);
+
+  React.useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- estimate fetch
+    void refreshEstimate();
+  }, [refreshEstimate]);
+
   function openSaveToMemory(message: UIMessage, selected?: string) {
     const text = selected?.trim() || extractText(message);
     const meta = (message.metadata ?? {}) as MessageMeta;
@@ -238,11 +382,25 @@ export function ChatPanel({
     setActiveLeafId(data.activeBranch.at(-1)?.id ?? next.id);
   }
 
-  async function handleSend() {
+  async function handleSend(force = false) {
     const text = input.trim();
-    if (!text || !modelId || isStreaming || !hasKey) return;
+    if (!text || isStreaming || !hasKey) return;
+    if (mode === "solo" && !modelId) return;
+    if (mode === "council" && overBudget && !force && !allowOverBudget) {
+      setOverBudgetOpen(true);
+      return;
+    }
     setInput("");
-    await sendMessage({ text });
+    await sendMessage(
+      { text },
+      {
+        body: {
+          allowOverBudget: force || allowOverBudget || false,
+          mode,
+        },
+      },
+    );
+    setAllowOverBudget(false);
     onChatUpdated?.();
   }
 
@@ -292,6 +450,9 @@ export function ChatPanel({
             const reasoning = extractReasoning(message);
             const meta = (message.metadata ?? {}) as MessageMeta;
             const branch = getBranchMeta(allStored, message.id);
+            const council = isCouncilMessage(message)
+              ? parseCouncilFromParts(message.parts)
+              : null;
 
             return (
               <div
@@ -301,58 +462,74 @@ export function ChatPanel({
                   message.role === "user" ? "items-end" : "items-start",
                 )}
               >
-                <div
-                  className={cn(
-                    "max-w-[95%] rounded-2xl px-4 py-3 sm:max-w-[85%]",
-                    message.role === "user"
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-muted/50 border",
-                  )}
-                >
-                  {editingId === message.id ? (
-                    <div className="space-y-2">
-                      <Textarea
-                        value={editText}
-                        onChange={(e) => setEditText(e.target.value)}
-                        rows={3}
-                        className="bg-background text-foreground min-w-[280px]"
-                      />
-                      <div className="flex gap-2">
-                        <Button
-                          size="sm"
-                          type="button"
-                          onClick={() => void handleEditSubmit(message)}
-                        >
-                          Save &amp; branch
-                        </Button>
-                        <Button
-                          size="sm"
-                          type="button"
-                          variant="ghost"
-                          onClick={() => setEditingId(null)}
-                        >
-                          Cancel
-                        </Button>
+                {council && message.role === "assistant" ? (
+                  <CouncilMessage
+                    finalAnswer={council.finalAnswer || text}
+                    members={council.members}
+                    analysis={council.analysis}
+                    summary={council.summary}
+                    onSaveToMemory={(body, preferredType) => {
+                      setSaveBody(body);
+                      setSaveSource("council");
+                      setSaveMessageId(message.id);
+                      setSaveType((preferredType as typeof saveType) || "note");
+                      setSaveOpen(true);
+                    }}
+                  />
+                ) : (
+                  <div
+                    className={cn(
+                      "max-w-[95%] rounded-2xl px-4 py-3 sm:max-w-[85%]",
+                      message.role === "user"
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-muted/50 border",
+                    )}
+                  >
+                    {editingId === message.id ? (
+                      <div className="space-y-2">
+                        <Textarea
+                          value={editText}
+                          onChange={(e) => setEditText(e.target.value)}
+                          rows={3}
+                          className="bg-background text-foreground min-w-[280px]"
+                        />
+                        <div className="flex gap-2">
+                          <Button
+                            size="sm"
+                            type="button"
+                            onClick={() => void handleEditSubmit(message)}
+                          >
+                            Save &amp; branch
+                          </Button>
+                          <Button
+                            size="sm"
+                            type="button"
+                            variant="ghost"
+                            onClick={() => setEditingId(null)}
+                          >
+                            Cancel
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                  ) : message.role === "assistant" ? (
-                    <>
-                      {reasoning ? (
-                        <Collapsible className="mb-3">
-                          <CollapsibleTrigger className="text-muted-foreground text-xs underline-offset-2 hover:underline">
-                            Reasoning
-                          </CollapsibleTrigger>
-                          <CollapsibleContent className="text-muted-foreground mt-2 text-xs whitespace-pre-wrap">
-                            {reasoning}
-                          </CollapsibleContent>
-                        </Collapsible>
-                      ) : null}
-                      <Markdown content={text || (isStreaming ? "…" : "")} />
-                    </>
-                  ) : (
-                    <p className="text-sm whitespace-pre-wrap">{text}</p>
-                  )}
-                </div>
+                    ) : message.role === "assistant" ? (
+                      <>
+                        {reasoning ? (
+                          <Collapsible className="mb-3">
+                            <CollapsibleTrigger className="text-muted-foreground text-xs underline-offset-2 hover:underline">
+                              Reasoning
+                            </CollapsibleTrigger>
+                            <CollapsibleContent className="text-muted-foreground mt-2 text-xs whitespace-pre-wrap">
+                              {reasoning}
+                            </CollapsibleContent>
+                          </Collapsible>
+                        ) : null}
+                        <Markdown content={text || (isStreaming ? "…" : "")} />
+                      </>
+                    ) : (
+                      <p className="text-sm whitespace-pre-wrap">{text}</p>
+                    )}
+                  </div>
+                )}
 
                 <div className="text-muted-foreground flex flex-wrap items-center gap-1 text-xs opacity-0 transition-opacity group-hover:opacity-100 focus-within:opacity-100">
                   {branch.total > 1 ? (
@@ -498,7 +675,7 @@ export function ChatPanel({
             <p className="text-muted-foreground text-sm">
               Connect OpenRouter to start chatting.
             </p>
-            <Button type="button" onClick={onOpenSettings}>
+            <Button type="button" onClick={() => onOpenSettings("keys")}>
               Connect OpenRouter to start
             </Button>
           </div>
@@ -507,9 +684,30 @@ export function ChatPanel({
             <p className="text-muted-foreground text-xs">
               Using project brief + {pinnedCount} pinned
             </p>
-            <div className="flex items-center gap-2">
-              <ModelPicker value={modelId} onChange={setModelId} />
-            </div>
+            {mode === "council" ? (
+              <div className="flex flex-wrap items-center gap-2 text-xs">
+                <button
+                  type="button"
+                  aria-label="Edit council"
+                  className="bg-muted hover:bg-muted/80 rounded-full border px-3 py-1"
+                  onClick={() => onOpenSettings("council")}
+                >
+                  {councilChip}
+                </button>
+                {estimateLabel ? (
+                  <span
+                    className="text-muted-foreground"
+                    data-testid="council-estimate"
+                  >
+                    {estimateLabel}
+                  </span>
+                ) : null}
+              </div>
+            ) : (
+              <div className="flex items-center gap-2">
+                <ModelPicker value={modelId} onChange={setModelId} />
+              </div>
+            )}
             <div className="bg-muted/40 flex items-end gap-2 rounded-2xl border p-2 shadow-sm">
               <Textarea
                 ref={textareaRef}
@@ -517,7 +715,7 @@ export function ChatPanel({
                 placeholder="Ask Araitchi…"
                 rows={1}
                 value={input}
-                disabled={isStreaming || !modelId}
+                disabled={isStreaming || (mode === "solo" && !modelId)}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && !e.shiftKey) {
@@ -544,7 +742,7 @@ export function ChatPanel({
                   size="icon"
                   className="shrink-0 rounded-xl"
                   aria-label="Send message"
-                  disabled={!input.trim() || !modelId}
+                  disabled={!input.trim() || (mode === "solo" && !modelId)}
                   onClick={() => void handleSend()}
                 >
                   <SendHorizontal className="size-4" />
@@ -555,10 +753,44 @@ export function ChatPanel({
         )}
       </div>
 
+      <AlertDialog open={overBudgetOpen} onOpenChange={setOverBudgetOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Over budget cap</AlertDialogTitle>
+            <AlertDialogDescription>
+              The estimated council cost exceeds this project&apos;s budget cap.
+              Run anyway, or edit the council in Settings.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                setOverBudgetOpen(false);
+                onOpenSettings("council");
+              }}
+            >
+              Edit council
+            </Button>
+            <AlertDialogAction
+              onClick={() => {
+                setOverBudgetOpen(false);
+                void handleSend(true);
+              }}
+            >
+              Run anyway
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
       <SaveToMemoryDialog
         open={saveOpen}
         onOpenChange={setSaveOpen}
         initialBody={saveBody}
+        initialType={saveType}
         source={saveSource}
         sourceChatId={chatId}
         sourceMessageId={saveMessageId}

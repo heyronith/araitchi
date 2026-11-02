@@ -29,6 +29,29 @@ describe("chat request validation", () => {
     expect(parsed.success).toBe(false);
   });
 
+  it("accepts council mode without modelId (nullish)", () => {
+    const parsed = chatRequestSchema.safeParse({
+      chatId: "abc",
+      modelId: null,
+      mode: "council",
+      messages: [
+        { id: "m1", role: "user", parts: [{ type: "text", text: "hi" }] },
+      ],
+    });
+    expect(parsed.success).toBe(true);
+  });
+
+  it("rejects solo mode without modelId", () => {
+    const parsed = chatRequestSchema.safeParse({
+      chatId: "abc",
+      mode: "solo",
+      messages: [
+        { id: "m1", role: "user", parts: [{ type: "text", text: "hi" }] },
+      ],
+    });
+    expect(parsed.success).toBe(false);
+  });
+
   it("rejects oversized total text", () => {
     const huge = "x".repeat(500_001);
     const parsed = chatRequestSchema.safeParse({
