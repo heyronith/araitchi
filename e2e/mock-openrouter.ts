@@ -265,7 +265,11 @@ const server = createServer(async (req, res) => {
       await new Promise((r) => setTimeout(r, behavior.timeoutMs));
     }
 
-    const slow = url.searchParams.get("slow") === "1";
+    const msgText = msgBlob.toLowerCase();
+    const slow =
+      url.searchParams.get("slow") === "1" ||
+      msgText.includes("stop please") ||
+      msgText.includes("stop council");
     let reply: string;
     if (isSynth) {
       synthesizerCalls += 1;
@@ -318,9 +322,11 @@ const server = createServer(async (req, res) => {
       choices: [{ index: 0, delta: { role: "assistant", content: "" } }],
     });
 
-    for (const ch of reply) {
+    // Word-sized chunks keep Stop tests reliable without making replies glacial
+    const chunks = slow ? reply.match(/.{1,8}/g) ?? [reply] : [reply];
+    for (const ch of chunks) {
       if (slow) {
-        await new Promise((r) => setTimeout(r, 40));
+        await new Promise((r) => setTimeout(r, 80));
       }
       send({
         id,

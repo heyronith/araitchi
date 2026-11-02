@@ -52,16 +52,17 @@ test.describe("solo chat", () => {
   });
 
   test("stop cancels an in-flight stream", async ({ page }) => {
+    test.setTimeout(60_000);
     await saveOpenRouterKey(page);
     await page.getByRole("textbox", { name: "Message" }).fill("Stop please");
     await page.getByRole("button", { name: "Send message" }).click();
     await expect(
       page.getByRole("button", { name: "Stop generating" }),
-    ).toBeVisible({ timeout: 10_000 });
+    ).toBeVisible({ timeout: 15_000 });
     await page.getByRole("button", { name: "Stop generating" }).click();
     await expect(
       page.getByRole("button", { name: "Send message" }),
-    ).toBeVisible({ timeout: 10_000 });
+    ).toBeVisible({ timeout: 15_000 });
   });
 
   test("reload restores chat; rename and delete work", async ({ page }) => {
