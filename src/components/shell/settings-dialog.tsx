@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CouncilSettings } from "@/components/shell/council-settings";
+import { ToolsSettings } from "@/components/shell/tools-settings";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 type SecretStatus = { name: string; set: boolean };
@@ -34,6 +35,12 @@ const KEY_FIELDS = [
     label: "OpenRouter API key",
     hint: "Manual fallback if you prefer pasting a key",
     required: true,
+  },
+  {
+    name: "openalex_api_key" as const,
+    label: "OpenAlex API key",
+    hint: "Optional",
+    required: false,
   },
   {
     name: "semantic_scholar_api_key" as const,
@@ -60,7 +67,7 @@ type SettingsDialogProps = {
   onOpenChange: (open: boolean) => void;
   statuses: SecretStatus[];
   onStatusesChange: (statuses: SecretStatus[]) => void;
-  initialTab?: "keys" | "models" | "council";
+  initialTab?: "keys" | "models" | "council" | "tools";
 };
 
 async function fetchSecretStatuses(): Promise<SecretStatus[]> {
@@ -87,7 +94,7 @@ export function SettingsDialog({
   const [modelOptions, setModelOptions] = React.useState<
     Array<{ id: string; name: string }>
   >([]);
-  const [tab, setTab] = React.useState<"keys" | "models" | "council">(
+  const [tab, setTab] = React.useState<"keys" | "models" | "council" | "tools">(
     initialTab,
   );
 
@@ -193,12 +200,15 @@ export function SettingsDialog({
 
         <Tabs
           value={tab}
-          onValueChange={(v) => setTab(v as "keys" | "models" | "council")}
+          onValueChange={(v) =>
+            setTab(v as "keys" | "models" | "council" | "tools")
+          }
         >
           <TabsList>
             <TabsTrigger value="keys">Keys</TabsTrigger>
             <TabsTrigger value="models">Models</TabsTrigger>
             <TabsTrigger value="council">Council</TabsTrigger>
+            <TabsTrigger value="tools">Tools</TabsTrigger>
           </TabsList>
 
           <TabsContent value="keys" className="mt-4 space-y-5">
@@ -327,6 +337,10 @@ export function SettingsDialog({
 
           <TabsContent value="council" className="mt-4">
             <CouncilSettings />
+          </TabsContent>
+
+          <TabsContent value="tools" className="mt-4">
+            <ToolsSettings />
           </TabsContent>
         </Tabs>
       </DialogContent>

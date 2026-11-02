@@ -259,3 +259,61 @@ describe("resilience thresholds", () => {
     expect(councilHasEnoughMembers(1)).toBe(false); // 2 failed of 3
   });
 });
+
+describe("council history for later turns", () => {
+  it("keeps only the final answer from prior council replies", async () => {
+    const { sanitizeCouncilHistoryForModel } =
+      await import("@/lib/server/council/history");
+    const messages = [
+      {
+        id: "u1",
+        role: "user" as const,
+        parts: [{ type: "text" as const, text: "Q1" }],
+      },
+      {
+        id: "a1",
+        role: "assistant" as const,
+        parts: [
+          { type: "text" as const, text: "Final synthesizer answer" },
+          {
+            type: "data-member" as const,
+            data: {
+              modelId: "openai/gpt-4o",
+              content: "SECRET_MEMBER_A_ONLY",
+              status: "done",
+            },
+          },
+          {
+            type: "data-member" as const,
+            data: {
+              modelId: "anthropic/claude",
+              content: "SECRET_MEMBER_B_ONLY",
+              status: "done",
+            },
+          },
+          {
+            type: "data-analysis" as const,
+            data: { finalAnswer: "Final synthesizer answer" },
+          },
+          {
+            type: "data-council-summary" as const,
+            data: { membersOk: 2, membersFailed: 0, totalCost: 0.01 },
+          },
+        ],
+      },
+      {
+        id: "u2",
+        role: "user" as const,
+        parts: [{ type: "text" as const, text: "Follow up" }],
+      },
+    ];
+    const cleaned = sanitizeCouncilHistoryForModel(messages);
+    const blob = JSON.stringify(cleaned);
+    expect(blob).toContain("Final synthesizer answer");
+    expect(blob).not.toContain("SECRET_MEMBER_A_ONLY");
+    expect(blob).not.toContain("SECRET_MEMBER_B_ONLY");
+    expect(cleaned[1]?.parts).toEqual([
+      { type: "text", text: "Final synthesizer answer" },
+    ]);
+  });
+});

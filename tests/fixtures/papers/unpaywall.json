@@ -1,0 +1,26 @@
+{
+  "doi": "10.1021/acs.jcim.9b00237",
+  "doi_url": "https://doi.org/10.1021/acs.jcim.9b00237",
+  "title": "Analyzing Learned Molecular Representations for Property Prediction",
+  "genre": "journal-article",
+  "is_oa": true,
+  "year": 2019,
+  "journal_name": "Journal of Chemical Information and Modeling",
+  "best_oa_location": {
+    "host_type": "repository",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6727618",
+    "url_for_pdf": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6727618/pdf",
+    "version": "acceptedVersion",
+    "license": null
+  },
+  "oa_locations": [
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6727618",
+      "url_for_pdf": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6727618/pdf"
+    }
+  ],
+  "z_authors": [
+    { "given": "Kevin", "family": "Yang" },
+    { "given": "Kyle", "family": "Swanson" }
+  ]
+}

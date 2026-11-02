@@ -1,0 +1,107 @@
+{
+  "meta": { "count": 3, "page": 1, "per_page": 3 },
+  "results": [
+    {
+      "id": "https://openalex.org/W2519887557",
+      "doi": "https://doi.org/10.48550/arxiv.1609.02907",
+      "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+      "display_name": "Semi-Supervised Classification with Graph Convolutional Networks",
+      "publication_year": 2016,
+      "cited_by_count": 24500,
+      "authorships": [
+        { "author": { "display_name": "Thomas N. Kipf" } },
+        { "author": { "display_name": "Max Welling" } }
+      ],
+      "primary_location": {
+        "landing_page_url": "https://arxiv.org/abs/1609.02907",
+        "pdf_url": "https://arxiv.org/pdf/1609.02907",
+        "source": { "display_name": "arXiv (Cornell University)" }
+      },
+      "best_oa_location": { "pdf_url": "https://arxiv.org/pdf/1609.02907" },
+      "open_access": { "oa_url": "https://arxiv.org/pdf/1609.02907" },
+      "locations": [
+        {
+          "landing_page_url": "https://arxiv.org/abs/1609.02907",
+          "pdf_url": "https://arxiv.org/pdf/1609.02907"
+        }
+      ],
+      "abstract_inverted_index": {
+        "We": [0],
+        "present": [1],
+        "a": [2, 12],
+        "scalable": [3],
+        "approach": [4],
+        "for": [5],
+        "semi-supervised": [6],
+        "learning": [7],
+        "on": [8],
+        "graph-structured": [9],
+        "data": [10],
+        "based": [11],
+        "variant": [13],
+        "of": [14],
+        "convolutional": [15],
+        "neural": [16],
+        "networks": [17]
+      }
+    },
+    {
+      "id": "https://openalex.org/W2606780347",
+      "doi": "https://doi.org/10.48550/arxiv.1704.01212",
+      "title": "Neural Message Passing for Quantum Chemistry",
+      "display_name": "Neural Message Passing for Quantum Chemistry",
+      "publication_year": 2017,
+      "cited_by_count": 6100,
+      "authorships": [
+        { "author": { "display_name": "Justin Gilmer" } },
+        { "author": { "display_name": "Samuel S. Schoenholz" } },
+        { "author": { "display_name": "Patrick F. Riley" } },
+        { "author": { "display_name": "Oriol Vinyals" } },
+        { "author": { "display_name": "George E. Dahl" } }
+      ],
+      "primary_location": {
+        "landing_page_url": "https://arxiv.org/abs/1704.01212",
+        "source": { "display_name": "arXiv (Cornell University)" }
+      },
+      "best_oa_location": { "pdf_url": "https://arxiv.org/pdf/1704.01212" },
+      "locations": [
+        {
+          "landing_page_url": "https://arxiv.org/abs/1704.01212",
+          "pdf_url": "https://arxiv.org/pdf/1704.01212"
+        }
+      ],
+      "abstract_inverted_index": {
+        "Supervised": [0],
+        "learning": [1],
+        "on": [2],
+        "molecules": [3],
+        "has": [4],
+        "incredible": [5],
+        "potential": [6]
+      }
+    },
+    {
+      "id": "https://openalex.org/W2981234567",
+      "doi": "https://doi.org/10.1021/acs.jcim.9b00237",
+      "title": "Analyzing Learned Molecular Representations for Property Prediction",
+      "display_name": "Analyzing Learned Molecular Representations for Property Prediction",
+      "publication_year": 2019,
+      "cited_by_count": 1450,
+      "authorships": [
+        { "author": { "display_name": "Kevin Yang" } },
+        { "author": { "display_name": "Kyle Swanson" } },
+        { "author": { "display_name": "Wengong Jin" } }
+      ],
+      "primary_location": {
+        "landing_page_url": "https://doi.org/10.1021/acs.jcim.9b00237",
+        "source": {
+          "display_name": "Journal of Chemical Information and Modeling"
+        }
+      },
+      "best_oa_location": null,
+      "open_access": { "oa_url": null },
+      "locations": [],
+      "abstract_inverted_index": null
+    }
+  ]
+}

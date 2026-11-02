@@ -1,0 +1,75 @@
+{
+  "total": 3,
+  "offset": 0,
+  "data": [
+    {
+      "paperId": "36eff562f65125511b5dfab68ce7f7a943c27478",
+      "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+      "authors": [
+        { "authorId": "41016725", "name": "Thomas Kipf" },
+        { "authorId": "1678311", "name": "M. Welling" }
+      ],
+      "year": 2016,
+      "venue": "International Conference on Learning Representations",
+      "abstract": "We present a scalable approach for semi-supervised learning on graph-structured data that is based on an efficient variant of convolutional neural networks which operate directly on graphs.",
+      "externalIds": {
+        "ArXiv": "1609.02907",
+        "DBLP": "journals/corr/KipfW16",
+        "CorpusId": 3144218
+      },
+      "url": "https://www.semanticscholar.org/paper/36eff562f65125511b5dfab68ce7f7a943c27478",
+      "openAccessPdf": {
+        "url": "https://arxiv.org/pdf/1609.02907",
+        "status": "GREEN"
+      },
+      "citationCount": 26000
+    },
+    {
+      "paperId": "e24cdf73b3e7e590c2fe5ecac9ae8aa983801367",
+      "title": "Neural Message Passing for Quantum Chemistry",
+      "authors": [
+        { "authorId": "2058362", "name": "J. Gilmer" },
+        { "authorId": "2330164", "name": "S. Schoenholz" },
+        { "authorId": "1409682645", "name": "Patrick F. Riley" },
+        { "authorId": "1689108", "name": "O. Vinyals" },
+        { "authorId": "35188630", "name": "George E. Dahl" }
+      ],
+      "year": 2017,
+      "venue": "International Conference on Machine Learning",
+      "abstract": null,
+      "externalIds": {
+        "ArXiv": "1704.01212v2",
+        "DOI": "10.48550/arXiv.1704.01212",
+        "CorpusId": 9665943
+      },
+      "url": "https://www.semanticscholar.org/paper/e24cdf73b3e7e590c2fe5ecac9ae8aa983801367",
+      "openAccessPdf": {
+        "url": "https://arxiv.org/pdf/1704.01212",
+        "status": "GREEN"
+      },
+      "citationCount": 6900
+    },
+    {
+      "paperId": "5a1fd0a5a9b4a5c8c1ab1c4e3f0d1c8a9d2f9b10",
+      "title": "Analyzing Learned Molecular Representations for Property Prediction",
+      "authors": [
+        { "authorId": "50295995", "name": "Kevin Yang" },
+        { "authorId": "40370555", "name": "Kyle Swanson" },
+        { "authorId": "2255329", "name": "Wengong Jin" }
+      ],
+      "year": 2019,
+      "venue": "Journal of Chemical Information and Modeling",
+      "abstract": "Advancements in neural machinery have led to a wide range of algorithmic solutions for molecular property prediction.",
+      "externalIds": {
+        "DOI": "10.1021/acs.jcim.9b00237",
+        "PubMedCentral": "6727618"
+      },
+      "url": "https://www.semanticscholar.org/paper/5a1fd0a5a9b4a5c8c1ab1c4e3f0d1c8a9d2f9b10",
+      "openAccessPdf": {
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6727618/pdf",
+        "status": "GREEN"
+      },
+      "citationCount": 1500
+    }
+  ]
+}

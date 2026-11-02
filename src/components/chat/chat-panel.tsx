@@ -24,9 +24,12 @@ import {
   type CouncilMemberView,
   type CouncilSummaryView,
 } from "@/components/chat/council-message";
+import { ApprovalDialog } from "@/components/chat/approval-dialog";
 import { Markdown } from "@/components/chat/markdown";
 import { ModelPicker } from "@/components/chat/model-picker";
 import { SaveToMemoryDialog } from "@/components/chat/save-to-memory-dialog";
+import { SourcesSection } from "@/components/chat/sources-section";
+import { ToolCard } from "@/components/chat/tool-card";
 import type { ChatMode } from "@/components/shell/mode-switch";
 import {
   AlertDialog,
@@ -46,15 +49,40 @@ import {
 } from "@/components/ui/collapsible";
 import { Textarea } from "@/components/ui/textarea";
 import { getBranchMeta, type StoredMessage } from "@/lib/chat/branches";
+import { extractToolCalls, type ToolCallView } from "@/lib/chat/tool-events";
 import { cn } from "cn";
 
 type ChatPanelProps = {
   chatId: string;
   hasKey: boolean;
   mode: ChatMode;
-  onOpenSettings: (tab?: "keys" | "models" | "council") => void;
+  onOpenSettings: (tab?: "keys" | "models" | "council" | "tools") => void;
   onChatUpdated?: () => void;
   onMemorySaved?: () => void;
+};
+
+type ToolToggleState = {
+  papers: boolean;
+  web: boolean;
+  documents: boolean;
+  repo: boolean;
+  mcp: boolean;
+};
+
+const TOOL_TOGGLE_LABELS: { key: keyof ToolToggleState; label: string }[] = [
+  { key: "papers", label: "Papers" },
+  { key: "web", label: "Web" },
+  { key: "documents", label: "Documents" },
+  { key: "repo", label: "Repo" },
+  { key: "mcp", label: "MCP" },
+];
+
+const DEFAULT_TOGGLES: ToolToggleState = {
+  papers: true,
+  web: true,
+  documents: false,
+  repo: false,
+  mcp: false,
 };
 
 type MessageMeta = {
@@ -193,6 +221,11 @@ export function ChatPanel({
   const [estimateLabel, setEstimateLabel] = React.useState<string | null>(null);
   const [councilChip, setCouncilChip] = React.useState("Council");
   const [overBudget, setOverBudget] = React.useState(false);
+  const [toggles, setToggles] =
+    React.useState<ToolToggleState>(DEFAULT_TOGGLES);
+  const [approvals, setApprovals] = React.useState<Record<string, boolean>>({});
+  const [pendingApproval, setPendingApproval] =
+    React.useState<ToolCallView | null>(null);
   const scrollRef = React.useRef<HTMLDivElement>(null);
   const bottomRef = React.useRef<HTMLDivElement>(null);
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
@@ -217,11 +250,12 @@ export function ChatPanel({
             ...(modelId ? { modelId } : {}),
             mode,
             allowOverBudget,
+            tools: toggles,
             ...body,
           },
         }),
       }),
-    [chatId, modelId, mode, allowOverBudget],
+    [chatId, modelId, mode, allowOverBudget, toggles],
   );
 
   const {
@@ -274,6 +308,46 @@ export function ChatPanel({
       cancelled = true;
     };
   }, [chatId, setMessages]);
+
+  React.useEffect(() => {
+    if (!hasKey) return;
+    let cancelled = false;
+    void (async () => {
+      const res = await fetch("/api/tools/config");
+      if (!res.ok || cancelled) return;
+      const data = (await res.json()) as { toggles?: Partial<ToolToggleState> };
+      if (!cancelled && data.toggles) {
+        setToggles((prev) => ({ ...prev, ...data.toggles }));
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [chatId, hasKey]);
+
+  async function toggleTool(key: keyof ToolToggleState) {
+    const next = !toggles[key];
+    setToggles((prev) => ({ ...prev, [key]: next }));
+    const res = await fetch("/api/tools/config", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ toggles: { [key]: next } }),
+    });
+    if (!res.ok) {
+      setToggles((prev) => ({ ...prev, [key]: !next }));
+      toast.error("Could not save tool setting");
+    }
+  }
+
+  function decideApproval(call: ToolCallView, approved: boolean) {
+    setPendingApproval(null);
+    if (!call.approvalKey) return;
+    const next = { ...approvals, [call.approvalKey]: approved };
+    setApprovals(next);
+    if (approved) {
+      void regenerate({ body: { toolApprovals: next } });
+    }
+  }
 
   React.useEffect(() => {
     if (isStreaming) {
@@ -453,6 +527,16 @@ export function ChatPanel({
             const council = isCouncilMessage(message)
               ? parseCouncilFromParts(message.parts)
               : null;
+            const toolCalls =
+              message.role === "assistant"
+                ? extractToolCalls(
+                    message.parts as unknown as {
+                      type: string;
+                      data?: unknown;
+                      id?: string;
+                    }[],
+                  )
+                : [];
 
             return (
               <div
@@ -462,6 +546,21 @@ export function ChatPanel({
                   message.role === "user" ? "items-end" : "items-start",
                 )}
               >
+                {toolCalls.length > 0 ? (
+                  <div
+                    className="flex w-full max-w-[95%] flex-col gap-1.5 sm:max-w-[85%]"
+                    data-testid="tool-calls"
+                  >
+                    {toolCalls.map((call) => (
+                      <ToolCard
+                        key={call.id}
+                        call={call}
+                        onReview={setPendingApproval}
+                      />
+                    ))}
+                  </div>
+                ) : null}
+
                 {council && message.role === "assistant" ? (
                   <CouncilMessage
                     finalAnswer={council.finalAnswer || text}
@@ -530,6 +629,12 @@ export function ChatPanel({
                     )}
                   </div>
                 )}
+
+                {toolCalls.length > 0 && !isStreaming ? (
+                  <div className="w-full max-w-[95%] sm:max-w-[85%]">
+                    <SourcesSection calls={toolCalls} />
+                  </div>
+                ) : null}
 
                 <div className="text-muted-foreground flex flex-wrap items-center gap-1 text-xs opacity-0 transition-opacity group-hover:opacity-100 focus-within:opacity-100">
                   {branch.total > 1 ? (
@@ -708,6 +813,30 @@ export function ChatPanel({
                 <ModelPicker value={modelId} onChange={setModelId} />
               </div>
             )}
+            <div
+              className="flex flex-wrap items-center gap-1.5 text-xs"
+              role="group"
+              aria-label="Tools"
+            >
+              {TOOL_TOGGLE_LABELS.map(({ key, label }) => (
+                <button
+                  key={key}
+                  type="button"
+                  aria-pressed={toggles[key]}
+                  data-testid={`tool-toggle-${key}`}
+                  disabled={isStreaming}
+                  onClick={() => void toggleTool(key)}
+                  className={cn(
+                    "rounded-full border px-2.5 py-0.5 transition-colors",
+                    toggles[key]
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-muted text-muted-foreground hover:bg-muted/80",
+                  )}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
             <div className="bg-muted/40 flex items-end gap-2 rounded-2xl border p-2 shadow-sm">
               <Textarea
                 ref={textareaRef}
@@ -785,6 +914,12 @@ export function ChatPanel({
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      <ApprovalDialog
+        call={pendingApproval}
+        onDecision={decideApproval}
+        onClose={() => setPendingApproval(null)}
+      />
 
       <SaveToMemoryDialog
         open={saveOpen}

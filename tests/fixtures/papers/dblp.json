@@ -1,0 +1,62 @@
+{
+  "result": {
+    "query": "graph neural",
+    "status": { "@code": "200", "text": "OK" },
+    "hits": {
+      "@total": "2",
+      "@computed": "2",
+      "@sent": "2",
+      "hit": [
+        {
+          "@score": "9",
+          "@id": "1",
+          "info": {
+            "authors": {
+              "author": [
+                { "@pid": "k/ThomasNKipf", "text": "Thomas N. Kipf" },
+                { "@pid": "w/MaxWelling", "text": "Max Welling" }
+              ]
+            },
+            "title": "Semi-Supervised Classification with Graph Convolutional Networks.",
+            "venue": "CoRR",
+            "volume": "abs/1609.02907",
+            "year": "2016",
+            "type": "Informal and Other Publications",
+            "access": "open",
+            "key": "journals/corr/KipfW16",
+            "ee": "https://arxiv.org/abs/1609.02907",
+            "url": "https://dblp.org/rec/journals/corr/KipfW16"
+          }
+        },
+        {
+          "@score": "8",
+          "@id": "2",
+          "info": {
+            "authors": {
+              "author": [
+                { "@pid": "g/JGilmer", "text": "Justin Gilmer" },
+                {
+                  "@pid": "s/SamuelSSchoenholz",
+                  "text": "Samuel S. Schoenholz"
+                },
+                { "@pid": "r/PatrickFRiley", "text": "Patrick F. Riley" },
+                { "@pid": "v/OriolVinyals", "text": "Oriol Vinyals" },
+                { "@pid": "d/GeorgeEDahl", "text": "George E. Dahl 0001" }
+              ]
+            },
+            "title": "Neural Message Passing for Quantum Chemistry.",
+            "venue": "ICML",
+            "pages": "1263-1272",
+            "year": "2017",
+            "type": "Conference and Workshop Papers",
+            "access": "open",
+            "key": "conf/icml/GilmerSRVD17",
+            "doi": "10.48550/ARXIV.1704.01212",
+            "ee": "http://proceedings.mlr.press/v70/gilmer17a.html",
+            "url": "https://dblp.org/rec/conf/icml/GilmerSRVD17"
+          }
+        }
+      ]
+    }
+  }
+}

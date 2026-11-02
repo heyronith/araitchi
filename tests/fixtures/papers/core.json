@@ -1,0 +1,52 @@
+{
+  "totalHits": 2,
+  "limit": 10,
+  "offset": 0,
+  "results": [
+    {
+      "id": "89123456",
+      "title": "How Powerful are Graph Neural Networks?",
+      "authors": [
+        { "name": "Keyulu Xu" },
+        { "name": "Weihua Hu" },
+        { "name": "Jure Leskovec" },
+        { "name": "Stefanie Jegelka" }
+      ],
+      "yearPublished": 2018,
+      "publishedDate": "2018-10-01T00:00:00",
+      "abstract": "Graph Neural Networks (GNNs) are an effective framework for representation learning of graphs.",
+      "doi": null,
+      "downloadUrl": "https://arxiv.org/pdf/1810.00826",
+      "publisher": "arXiv.org",
+      "journals": [],
+      "links": [
+        { "type": "download", "url": "https://arxiv.org/pdf/1810.00826" },
+        { "type": "display", "url": "https://core.ac.uk/works/89123456" }
+      ]
+    },
+    {
+      "id": "231987654",
+      "title": "Analyzing Learned Molecular Representations for Property Prediction",
+      "authors": [
+        { "name": "Kevin Yang" },
+        { "name": "Kyle Swanson" },
+        { "name": "Wengong Jin" },
+        { "name": "Connor W. Coley" }
+      ],
+      "yearPublished": 2019,
+      "publishedDate": "2019-08-01T00:00:00",
+      "abstract": "Advancements in neural machinery have led to a wide range of algorithmic solutions for molecular property prediction. Two classes of models in particular have yielded promising results.",
+      "doi": "10.1021/ACS.JCIM.9B00237",
+      "downloadUrl": "https://core.ac.uk/download/pdf/231987654.pdf",
+      "publisher": "American Chemical Society",
+      "journals": [{ "title": "Journal of Chemical Information and Modeling" }],
+      "citationCount": 1480,
+      "links": [
+        {
+          "type": "download",
+          "url": "https://core.ac.uk/download/pdf/231987654.pdf"
+        }
+      ]
+    }
+  ]
+}

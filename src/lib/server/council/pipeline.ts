@@ -2,8 +2,10 @@ import "server-only";
 
 import {
   generateText,
+  stepCountIs,
   streamText,
   type ModelMessage,
+  type ToolSet,
   type UIMessage,
 } from "ai";
 
@@ -11,6 +13,7 @@ import { labFromModelId } from "@/lib/server/models-utils";
 import type { ModelDto } from "@/lib/server/models";
 import { createOpenRouterClient } from "@/lib/server/openrouter";
 import { loadPrompt } from "@/lib/server/prompts/load";
+import type { ToolBroker } from "@/lib/server/tools/broker";
 
 import { ANALYSIS_REPAIR_PROMPT, parseCouncilAnalysis } from "./analysis";
 import {
@@ -91,18 +94,27 @@ async function runOneMember(input: {
   timeoutMs: number;
   abortSignal?: AbortSignal;
   onDelta?: (text: string) => void;
+  tools?: ToolSet;
+  maxSteps?: number;
 }): Promise<CouncilMemberResult> {
   const started = Date.now();
   const openrouter = createOpenRouterClient(input.apiKey);
   const model = openrouter(input.modelId, { usage: { include: true } });
 
   const run = async (): Promise<CouncilMemberResult> => {
+    const hasTools = input.tools && Object.keys(input.tools).length > 0;
     const result = streamText({
       model,
       system: input.system,
       messages: input.messages,
       maxOutputTokens: input.maxTokens,
       abortSignal: input.abortSignal,
+      ...(hasTools
+        ? {
+            tools: input.tools,
+            stopWhen: stepCountIs(input.maxSteps ?? 8),
+          }
+        : {}),
     });
 
     let content = "";
@@ -158,6 +170,8 @@ async function runMemberWithRetry(input: {
   catalog: CatalogModel[];
   councilIds: string[];
   hooks?: CouncilPipelineHooks;
+  tools?: ToolSet;
+  maxSteps?: number;
 }): Promise<CouncilMemberResult> {
   const { hooks } = input;
   hooks?.onMember?.({
@@ -175,6 +189,8 @@ async function runMemberWithRetry(input: {
       maxTokens: input.maxTokens,
       timeoutMs: input.timeoutMs,
       abortSignal: input.abortSignal,
+      tools: input.tools,
+      maxSteps: input.maxSteps,
       onDelta: (text) =>
         hooks?.onMember?.({
           phase: "delta",
@@ -332,6 +348,8 @@ export async function runCouncil(input: {
   abortSignal?: AbortSignal;
   hooks?: CouncilPipelineHooks;
   allowOverBudget?: boolean;
+  broker?: ToolBroker;
+  maxSteps?: number;
 }): Promise<CouncilRunResult> {
   const started = Date.now();
   const catalog = toCatalog(input.catalog);
@@ -355,15 +373,29 @@ export async function runCouncil(input: {
 
   const memberSystem = [
     loadPrompt("council-member.md"),
+    input.broker ? `\n${loadPrompt("tools-policy.md")}` : "",
     "",
     input.projectSystem,
-  ].join("\n");
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   const timeoutMs = input.config.memberTimeoutSec * 1000;
   const councilIds = [...input.config.members];
 
-  const memberPromises = input.config.members.map((modelId) =>
-    runMemberWithRetry({
+  const memberPromises = input.config.members.map((modelId) => {
+    // Skip tools for models the catalog says cannot call them.
+    const supportsTools =
+      input.catalog.find((m) => m.id === modelId)?.supportsTools ?? true;
+    const tools =
+      input.broker && supportsTools
+        ? input.broker.getAiSdkTools({
+            modelId,
+            signal: input.abortSignal,
+            includeNonRead: true,
+          })
+        : undefined;
+    return runMemberWithRetry({
       apiKey: input.apiKey,
       modelId,
       system: memberSystem,
@@ -374,8 +406,10 @@ export async function runCouncil(input: {
       catalog,
       councilIds,
       hooks: input.hooks,
-    }),
-  );
+      tools,
+      maxSteps: input.maxSteps,
+    });
+  });
 
   const members = await Promise.all(memberPromises);
   const ok = members.filter(

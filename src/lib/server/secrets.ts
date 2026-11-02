@@ -11,8 +11,10 @@ import { getAppDataDir } from "./paths";
 
 export const SECRET_NAMES = [
   "openrouter_api_key",
+  "openalex_api_key",
   "semantic_scholar_api_key",
   "core_api_key",
+  "openalex_api_key",
   "github_token",
 ] as const;
 

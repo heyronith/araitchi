@@ -107,6 +107,59 @@ function defaultReplyFor(modelId: string): string {
   return "Here is a short answer with code:\n\n```js\nconsole.log('hello araitchi')\n```\n\nDone.";
 }
 
+type ChatMsg = {
+  role: string;
+  content?: string | unknown;
+  tool_calls?: unknown;
+};
+
+function messageText(m: ChatMsg | undefined): string {
+  if (!m) return "";
+  if (typeof m.content === "string") return m.content;
+  if (Array.isArray(m.content)) {
+    return m.content
+      .map((p) =>
+        p && typeof p === "object" && "text" in p
+          ? String((p as { text: unknown }).text)
+          : "",
+      )
+      .join("");
+  }
+  return "";
+}
+
+/** True when the latest user turn asks for a paper search (tool-calling e2e). */
+function wantsPaperSearch(messages: ChatMsg[]): boolean {
+  const lastUser = [...messages].reverse().find((m) => m.role === "user");
+  const t = messageText(lastUser).toLowerCase();
+  return t.includes("search papers") || t.includes("find recent papers");
+}
+
+const MOCK_PAPERS = {
+  results: [
+    {
+      id: "https://openalex.org/W1",
+      doi: "https://doi.org/10.1234/mock.one",
+      title: "Mock Paper One: Graph Neural Networks for Molecules",
+      display_name: "Mock Paper One: Graph Neural Networks for Molecules",
+      publication_year: 2024,
+      cited_by_count: 12,
+      authorships: [{ author: { display_name: "Ada Lovelace" } }],
+      primary_location: { source: { display_name: "Mock Journal" } },
+    },
+    {
+      id: "https://openalex.org/W2",
+      doi: "https://doi.org/10.1234/mock.two",
+      title: "Mock Paper Two: Transformers at Scale",
+      display_name: "Mock Paper Two: Transformers at Scale",
+      publication_year: 2025,
+      cited_by_count: 3,
+      authorships: [{ author: { display_name: "Alan Turing" } }],
+      primary_location: { source: { display_name: "Mock Conference" } },
+    },
+  ],
+};
+
 function synthesizerJson(valid: boolean): string {
   if (!valid) return "{ not valid json";
   return JSON.stringify({
@@ -179,6 +232,17 @@ const server = createServer(async (req, res) => {
     return;
   }
 
+  if (req.method === "GET" && path === "/openalex/works") {
+    json(res, 200, MOCK_PAPERS);
+    return;
+  }
+
+  // Every other paper provider returns an empty / failing response offline.
+  if (path.startsWith("/mock/")) {
+    json(res, 404, { error: "mock provider has no data" });
+    return;
+  }
+
   if (req.method === "GET" && path === "/api/v1/models") {
     json(res, 200, MODELS);
     return;
@@ -233,7 +297,8 @@ const server = createServer(async (req, res) => {
     let parsed: {
       model?: string;
       stream?: boolean;
-      messages?: { role: string; content: string | unknown }[];
+      messages?: ChatMsg[];
+      tools?: unknown[];
       response_format?: { type?: string };
     } = {};
     try {
@@ -265,6 +330,91 @@ const server = createServer(async (req, res) => {
       await new Promise((r) => setTimeout(r, behavior.timeoutMs));
     }
 
+    const reqMessages = parsed.messages ?? [];
+    const hasTools = Array.isArray(parsed.tools) && parsed.tools.length > 0;
+    const lastMsg = reqMessages.at(-1);
+    const toolNames = new Set(
+      (parsed.tools ?? []).map(
+        (t) => (t as { function?: { name?: string } }).function?.name ?? "",
+      ),
+    );
+
+    // Tool round-trip: first answer with a search_papers call, then a final
+    // answer once the `tool` role message is present.
+    if (
+      !isSynth &&
+      hasTools &&
+      toolNames.has("search_papers") &&
+      wantsPaperSearch(reqMessages) &&
+      lastMsg?.role !== "tool"
+    ) {
+      const toolCall = {
+        id: "call_mock_papers",
+        type: "function",
+        function: {
+          name: "search_papers",
+          arguments: JSON.stringify({
+            query: "graph neural networks",
+            limit: 5,
+          }),
+        },
+      };
+      const toolUsage = {
+        prompt_tokens: 10,
+        completion_tokens: 5,
+        total_tokens: 15,
+        cost: behavior.cost ?? 0.0012,
+      };
+      if (parsed.stream !== true) {
+        json(res, 200, {
+          id: "chatcmpl-mock-tool",
+          object: "chat.completion",
+          choices: [
+            {
+              index: 0,
+              message: {
+                role: "assistant",
+                content: null,
+                tool_calls: [toolCall],
+              },
+              finish_reason: "tool_calls",
+            },
+          ],
+          usage: toolUsage,
+        });
+        return;
+      }
+      res.writeHead(200, {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        Connection: "keep-alive",
+        "Access-Control-Allow-Origin": "*",
+      });
+      const sendTool = (obj: unknown) =>
+        res.write(`data: ${JSON.stringify(obj)}\n\n`);
+      sendTool({
+        id: "chatcmpl-mock-tool",
+        object: "chat.completion.chunk",
+        choices: [{ index: 0, delta: { role: "assistant", content: null } }],
+      });
+      sendTool({
+        id: "chatcmpl-mock-tool",
+        object: "chat.completion.chunk",
+        choices: [
+          { index: 0, delta: { tool_calls: [{ index: 0, ...toolCall }] } },
+        ],
+      });
+      sendTool({
+        id: "chatcmpl-mock-tool",
+        object: "chat.completion.chunk",
+        choices: [{ index: 0, delta: {}, finish_reason: "tool_calls" }],
+        usage: toolUsage,
+      });
+      res.write("data: [DONE]\n\n");
+      res.end();
+      return;
+    }
+
     const msgText = msgBlob.toLowerCase();
     const slow =
       url.searchParams.get("slow") === "1" ||
@@ -276,6 +426,9 @@ const server = createServer(async (req, res) => {
       const malformedFirst =
         behaviors.get("__synth__")?.fail && synthesizerCalls === 1;
       reply = synthesizerJson(!malformedFirst);
+    } else if (lastMsg?.role === "tool") {
+      reply =
+        "Based on the search, here are recent papers: Mock Paper One: Graph Neural Networks for Molecules (doi:10.1234/mock.one) and Mock Paper Two: Transformers at Scale (doi:10.1234/mock.two).";
     } else {
       reply = behavior.reply ?? defaultReplyFor(modelId);
     }

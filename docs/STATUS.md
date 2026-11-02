@@ -20,7 +20,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | T2 OpenRouter + solo chat | ✅ | `bbcd690` |
 | T3 Project workspace & memory | ✅ | `1c4067c` |
 | T4 Council engine | ✅ | `34b03ae` |
-| T5 Tool broker & research tools | ⏳ | |
+| T5 Tool broker & research tools | ✅ | SHA after commit |
 | T6 Scribe & context | ⏳ | |
 | T7 Convene gate & merge modes | ⏳ | |
 | T8 Validation loop | ⏳ | |
@@ -30,6 +30,10 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 
 - Auto mode remains disabled until Task 7.
 - Automatic memory scribe is Task 6; memory is manual only.
+- Embeddings (classifier / retrieval) land in Task 6; document `read_document` uses keyword chunk scoring for now.
+- Web search uses OpenRouter server tools and may be region-limited; unavailable regions show a notice instead of failing the chat.
+- Playwright covers solo papers + sources save, council tool cards, repo open, toggles/MCP warning; PDF upload and MCP deny flows are covered in Vitest (`documents`, `mcp-approval`) more than full UI e2e.
+- Optional GitHub remote repo tools need a `github_token` secret and are minimal (log / read file).
 - Chat UI uses `@ai-sdk/react` + `AssistantChatTransport` rather than a full assistant-ui Thread primitive tree.
 - Cost footer relies on OpenRouter usage accounting (`usage.include`); mock e2e covers `$0.0012`.
 - Next.js `cacheComponents` stays off so DB routes can use `runtime = "nodejs"`.

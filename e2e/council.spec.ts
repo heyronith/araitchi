@@ -197,6 +197,50 @@ test.describe("council mode", () => {
     });
   });
 
+  test("member request payloads never include other members' answers", async ({
+    page,
+    request,
+  }) => {
+    await request.post("http://127.0.0.1:4010/api/v1/_test/behaviors", {
+      data: {},
+    });
+    await saveOpenRouterKey(page);
+    await newChat(page);
+    await switchCouncil(page);
+    await ensureBudgetCap(page, "0.50");
+    await page
+      .getByRole("textbox", { name: "Message" })
+      .fill("Isolation check caffeine");
+    await page.getByRole("button", { name: "Send message" }).click();
+    await expect(page.getByText("Final answer").last()).toBeVisible({
+      timeout: 60_000,
+    });
+
+    const res = await request.get(
+      "http://127.0.0.1:4010/api/v1/_test/requests",
+    );
+    const data = (await res.json()) as {
+      requests: { model?: string; messages?: unknown[] }[];
+    };
+    const memberReqs = data.requests.filter((r) => {
+      const blob = JSON.stringify(r.messages ?? []);
+      return (
+        !blob.includes("Member A") &&
+        !blob.includes("Synthesize") &&
+        !blob.includes("independent answers")
+      );
+    });
+    expect(memberReqs.length).toBeGreaterThanOrEqual(3);
+
+    const uniqueSnippets = ["Anthropic view:", "Google view:", "Open-weight ("];
+    for (const req of memberReqs) {
+      const blob = JSON.stringify(req.messages ?? []);
+      const hits = uniqueSnippets.filter((s) => blob.includes(s));
+      // A member request must not contain another member's distinctive answer
+      expect(hits.length).toBeLessThanOrEqual(0);
+    }
+  });
+
   test("mode and council config persist per project after switching", async ({
     page,
   }) => {

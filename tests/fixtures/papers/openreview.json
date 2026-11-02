@@ -1,0 +1,43 @@
+{
+  "notes": [
+    {
+      "id": "SJU4ayYgl",
+      "forum": "SJU4ayYgl",
+      "cdate": 1478900000000,
+      "content": {
+        "title": {
+          "value": "Semi-Supervised Classification with Graph Convolutional Networks"
+        },
+        "authors": { "value": ["Thomas N. Kipf", "Max Welling"] },
+        "abstract": {
+          "value": "We present a scalable approach for semi-supervised learning on graph-structured data."
+        },
+        "venue": { "value": "ICLR 2017 Poster" },
+        "pdf": { "value": "/pdf/0a1b2c3d4e5f.pdf" },
+        "keywords": { "value": ["graph convolution", "semi-supervised"] }
+      }
+    },
+    {
+      "id": "ryGs6iA5Km",
+      "forum": "ryGs6iA5Km",
+      "cdate": 1538000000000,
+      "content": {
+        "title": { "value": "How Powerful are Graph Neural Networks?" },
+        "authors": {
+          "value": [
+            "Keyulu Xu",
+            "Weihua Hu",
+            "Jure Leskovec",
+            "Stefanie Jegelka"
+          ]
+        },
+        "abstract": {
+          "value": "Graph Neural Networks (GNNs) are an effective framework for representation learning of graphs."
+        },
+        "venue": { "value": "ICLR 2019 Poster" },
+        "pdf": { "value": "/pdf/9f8e7d6c5b4a.pdf" }
+      }
+    }
+  ],
+  "count": 2
+}

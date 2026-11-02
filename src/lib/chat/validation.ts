@@ -16,12 +16,22 @@ export const chatUiMessageSchema = z.object({
   content: z.string().optional(),
 });
 
+export const toolTogglesSchema = z.object({
+  papers: z.boolean().optional(),
+  web: z.boolean().optional(),
+  documents: z.boolean().optional(),
+  repo: z.boolean().optional(),
+  mcp: z.boolean().optional(),
+});
+
 export const chatRequestSchema = z
   .object({
     chatId: z.string().min(1).max(128),
     modelId: z.string().regex(MODEL_ID_RE, "Invalid modelId").nullish(),
     mode: z.enum(["solo", "council"]).optional().default("solo"),
     allowOverBudget: z.boolean().optional(),
+    tools: toolTogglesSchema.optional(),
+    toolApprovals: z.record(z.string(), z.boolean()).optional(),
     messages: z.array(chatUiMessageSchema).min(1).max(200),
     parentId: z.string().nullable().optional(),
     id: z.string().optional(),

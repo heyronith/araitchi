@@ -2,6 +2,7 @@ import {
   convertToModelMessages,
   createUIMessageStream,
   createUIMessageStreamResponse,
+  stepCountIs,
   streamText,
   type UIMessage,
 } from "ai";
@@ -13,7 +14,20 @@ import {
   resolveBalancedPreset,
   resolveBudgetPreset,
 } from "@/lib/server/council/presets";
+import { sanitizeCouncilHistoryForModel } from "@/lib/server/council/history";
 import { countContextChars, runCouncil } from "@/lib/server/council/pipeline";
+import {
+  createBrokerForRequest,
+  type BrokerToolEvent,
+} from "@/lib/server/tools/broker";
+import { buildBrokerTools } from "@/lib/server/tools/register";
+import {
+  getMaxSteps,
+  getToolToggles,
+  setToolToggles,
+} from "@/lib/server/tools/tools-settings";
+import { loadPrompt } from "@/lib/server/prompts/load";
+import type { ToolToggles } from "@/lib/server/tools/types";
 import {
   ensureChat,
   insertMessage,
@@ -36,6 +50,11 @@ import {
 import { assertLocalOrigin } from "@/lib/server/security";
 
 export const runtime = "nodejs";
+
+/** UI part for one finished tool call (streamed live and persisted). */
+function toolEventPart(event: BrokerToolEvent) {
+  return { type: "data-tool-call" as const, id: event.id, data: event };
+}
 
 function friendlyError(status: number, message?: string) {
   if (status === 401) return "Invalid OpenRouter API key.";
@@ -75,6 +94,13 @@ export async function POST(request: Request) {
   const projectPath = tryCurrentProjectPath() ?? ensureScratchProject().path;
   const mode = parsed.data.mode ?? "solo";
   const { chatId, messages: uiMessages, allowOverBudget } = parsed.data;
+  if (parsed.data.tools) {
+    setToolToggles(projectPath, parsed.data.tools);
+  }
+  const toggles: ToolToggles = {
+    ...getToolToggles(projectPath),
+    ...parsed.data.tools,
+  };
   ensureChat(chatId);
 
   const lastUser = [...uiMessages].reverse().find((m) => m.role === "user");
@@ -120,6 +146,8 @@ export async function POST(request: Request) {
       allowOverBudget: Boolean(allowOverBudget),
       abortSignal: request.signal,
       projectSystem: ctx.systemText,
+      toggles,
+      toolApprovals: parsed.data.toolApprovals,
     });
   }
 
@@ -138,16 +166,53 @@ export async function POST(request: Request) {
     usage: { include: true },
   });
 
+  const broker = createBrokerForRequest({
+    projectPath,
+    chatId,
+    messageId: assistantId,
+  });
+  if (parsed.data.toolApprovals) {
+    for (const [k, v] of Object.entries(parsed.data.toolApprovals)) {
+      broker.setApproval(k, v);
+    }
+  }
+  const toolPartsSolo: unknown[] = [];
+  broker.onToolEvent((event) => toolPartsSolo.push(toolEventPart(event)));
+  const built = await buildBrokerTools({ broker, projectPath, toggles });
+  let modelSupportsTools = true;
+  try {
+    const known = (await listModels()).find((m) => m.id === modelId);
+    if (known) modelSupportsTools = known.supportsTools;
+  } catch {
+    // catalog unavailable: assume tool support
+  }
+  const aiTools = modelSupportsTools
+    ? broker.getAiSdkTools({
+        modelId,
+        signal: request.signal,
+        includeNonRead: true,
+      })
+    : {};
+  const anyTools = Object.keys(aiTools).length > 0;
+  const maxSteps = getMaxSteps(projectPath);
+
   try {
     const modelMessages = await convertToModelMessages(
-      uiMessages as UIMessage[],
+      sanitizeCouncilHistoryForModel(uiMessages as UIMessage[]),
     );
+
+    const systemText = anyTools
+      ? `${ctx.systemText}\n\n${loadPrompt("tools-policy.md")}`
+      : ctx.systemText;
 
     const result = streamText({
       model,
-      system: ctx.systemText,
+      system: systemText,
       messages: modelMessages,
       abortSignal: request.signal,
+      ...(Object.keys(aiTools).length > 0
+        ? { tools: aiTools, stopWhen: stepCountIs(maxSteps) }
+        : {}),
     });
 
     result.consumeStream();
@@ -168,6 +233,7 @@ export async function POST(request: Request) {
         if (reasoning) {
           parts.push({ type: "reasoning", text: reasoning });
         }
+        parts.push(...toolPartsSolo);
         parts.push({ type: "text", text });
 
         updateMessage(assistantId, {
@@ -182,13 +248,15 @@ export async function POST(request: Request) {
         persistSessionTranscript(chatId);
       } catch {
         // aborted or failed mid-stream
+      } finally {
+        await built.close();
       }
     })();
 
-    return result.toUIMessageStreamResponse({
+    const uiStreamOptions = {
       originalMessages: uiMessages as UIMessage[],
       generateMessageId: () => assistantId,
-      messageMetadata: async ({ part }) => {
+      messageMetadata: async ({ part }: { part: { type: string } }) => {
         if (part.type !== "finish") return undefined;
         const usage = await result.usage;
         const providerMeta = await result.providerMetadata;
@@ -209,13 +277,33 @@ export async function POST(request: Request) {
           },
         };
       },
-      onError: (error) => {
+      onError: (error: unknown) => {
         const message =
           error instanceof Error ? error.message : "Chat stream failed";
         return friendlyError(500, message);
       },
+    };
+
+    if (!anyTools) {
+      return result.toUIMessageStreamResponse(uiStreamOptions);
+    }
+
+    // With tools, merge the model stream with `data-tool-call` parts so the
+    // UI can render tool cards live; the same parts are persisted above.
+    const uiStream = createUIMessageStream({
+      originalMessages: uiMessages as UIMessage[],
+      generateId: () => assistantId,
+      execute: ({ writer }) => {
+        broker.onToolEvent((event) => {
+          writer.write(toolEventPart(event));
+        });
+        writer.merge(result.toUIMessageStream(uiStreamOptions));
+      },
+      onError: uiStreamOptions.onError,
     });
+    return createUIMessageStreamResponse({ stream: uiStream });
   } catch (error) {
+    await built.close();
     const status =
       typeof error === "object" &&
       error &&
@@ -253,6 +341,8 @@ async function handleCouncil(input: {
   allowOverBudget: boolean;
   abortSignal: AbortSignal;
   projectSystem: string;
+  toggles: ToolToggles;
+  toolApprovals?: Record<string, boolean>;
 }) {
   let config = getCouncilConfig(input.projectPath);
   const catalog = await listModels();
@@ -274,7 +364,9 @@ async function handleCouncil(input: {
     );
   }
 
-  const modelMessages = await convertToModelMessages(input.uiMessages);
+  const modelMessages = await convertToModelMessages(
+    sanitizeCouncilHistoryForModel(input.uiMessages),
+  );
   const contextChars = countContextChars(input.projectSystem, modelMessages);
   const estimate = estimateCouncilCost({
     contextChars,
@@ -301,11 +393,34 @@ async function handleCouncil(input: {
     modelId: "council",
   });
 
+  const broker = createBrokerForRequest({
+    projectPath: input.projectPath,
+    chatId: input.chatId,
+    messageId: input.assistantId,
+  });
+  if (input.toolApprovals) {
+    for (const [k, v] of Object.entries(input.toolApprovals)) {
+      broker.setApproval(k, v);
+    }
+  }
+  const built = await buildBrokerTools({
+    broker,
+    projectPath: input.projectPath,
+    toggles: input.toggles,
+  });
+  const maxSteps = getMaxSteps(input.projectPath);
+  const toolPartsCouncil: unknown[] = [];
+
   const stream = createUIMessageStream({
     originalMessages: input.uiMessages,
     generateId: () => input.assistantId,
     execute: async ({ writer }) => {
       const textId = nanoid();
+      broker.onToolEvent((event) => {
+        const part = toolEventPart(event);
+        toolPartsCouncil.push(part);
+        writer.write(part);
+      });
       try {
         const result = await runCouncil({
           apiKey: input.apiKey,
@@ -316,6 +431,8 @@ async function handleCouncil(input: {
           contextChars,
           abortSignal: input.abortSignal,
           allowOverBudget: input.allowOverBudget,
+          broker,
+          maxSteps,
           hooks: {
             onMember: (event) => {
               writer.write({
@@ -365,6 +482,7 @@ async function handleCouncil(input: {
 
         const parts: unknown[] = [
           { type: "text", text: finalText },
+          ...toolPartsCouncil,
           ...result.members.map((m) => ({
             type: "data-member",
             id: m.modelId,
@@ -418,6 +536,8 @@ async function handleCouncil(input: {
         updateMessage(input.assistantId, {
           parts: [{ type: "text", text: message }],
         });
+      } finally {
+        await built.close();
       }
     },
     onError: (error) =>

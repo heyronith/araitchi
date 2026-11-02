@@ -2,7 +2,7 @@
 
 Araitchi is a local-first, self-hosted AI research workspace. It runs as a Next.js app on your machine; you bring your own OpenRouter API key. A team of models from different labs will help with literature review, hypotheses, and experiment design — each research project is a folder on disk.
 
-**Status:** pre-alpha, Task 4 of 9 (council engine).
+**Status:** pre-alpha, Task 5 of 9 complete (tool broker & research tools).
 
 ## Requirements
 
@@ -54,6 +54,30 @@ Switch **Solo → Council** in the top bar. A council sends your message to **3�
 - The composer shows a live cost estimate (`≈ $low–$high · cap $…`). If the high estimate exceeds the cap, confirm **Run anyway** or edit the council.
 - Expect higher cost and latency than Solo — you pay for every member call plus the synthesizer.
 
+### Tools (research tools)
+
+Open **Settings → Tools** to choose what models may use. Toggles are per project:
+
+| Toggle | What it does |
+| --- | --- |
+| Papers | Search OpenAlex, Semantic Scholar, arXiv, DBLP, Crossref, CORE, OpenReview; resolve open-access PDFs via Unpaywall |
+| Web | OpenRouter server-side web search (may be region-limited) |
+| Documents | Read PDFs / text you add to the project library |
+| Repo | Read-only git/repo tools (needs the `git` binary on PATH; refuses `.env` and similar) |
+| MCP | Tools from MCP servers you add |
+
+- **Optional keys** (Settings → Keys): OpenAlex, CORE, Semantic Scholar, and a GitHub token (read-only). Paper search works without them, with lower rate limits.
+- **Contact email** (`contact_email`): sent to Crossref / OpenAlex polite pools and required for Unpaywall. It is not a secret.
+- **Providers:** each paper provider can be switched off individually.
+- **MCP servers:** add a name plus a stdio command or an http URL. **Stdio MCP servers run commands on this computer — only add servers you trust.** MCP tools are approval-gated unless you mark the server read-only.
+- Tool output is treated as untrusted data, never as instructions.
+
+Manual paper-API smoke (hits real services, no LLM, not CI):
+
+```bash
+pnpm smoke:papers "graph neural networks for molecules"
+```
+
 ### Manual smoke (not CI)
 
 ```bash
@@ -76,6 +100,7 @@ Lists models, sends a tiny prompt to a cheap model, prints reply + cost.
 | `pnpm check:secrets` | Fail if client bundle leaks `sk-or-` |
 | `pnpm check:secrets:selftest` | Asserts the leak checker detects a planted string |
 | `pnpm smoke:openrouter` | Live OpenRouter smoke (manual) |
+| `pnpm smoke:papers "<query>"` | Live paper-provider smoke (manual) |
 | `pnpm db:generate` / `pnpm db:migrate` | App DB Drizzle migrations |
 | `pnpm db:generate:project` | Project notebook migrations |
 

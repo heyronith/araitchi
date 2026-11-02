@@ -1,0 +1,47 @@
+{
+  "status": "ok",
+  "message-type": "work-list",
+  "message": {
+    "total-results": 2,
+    "items": [
+      {
+        "DOI": "10.1021/acs.jcim.9b00237",
+        "title": [
+          "Analyzing Learned Molecular Representations for Property Prediction"
+        ],
+        "author": [
+          { "given": "Kevin", "family": "Yang", "sequence": "first" },
+          { "given": "Kyle", "family": "Swanson", "sequence": "additional" },
+          { "given": "Wengong", "family": "Jin", "sequence": "additional" },
+          { "given": "Connor", "family": "Coley", "sequence": "additional" }
+        ],
+        "container-title": ["Journal of Chemical Information and Modeling"],
+        "issued": { "date-parts": [[2019, 7, 18]] },
+        "abstract": "<jats:p>Advancements in neural machinery have led to a wide range of algorithmic solutions for molecular property prediction. Two classes of models in particular have yielded promising results: neural networks applied to computed molecular fingerprints or expert-crafted descriptors and graph convolutional neural networks.</jats:p>",
+        "URL": "https://doi.org/10.1021/acs.jcim.9b00237",
+        "is-referenced-by-count": 1520,
+        "link": [
+          {
+            "URL": "https://pubs.acs.org/doi/pdf/10.1021/acs.jcim.9b00237",
+            "content-type": "application/pdf"
+          }
+        ]
+      },
+      {
+        "DOI": "10.1007/s10822-016-9938-8",
+        "title": ["Molecular graph convolutions: moving beyond fingerprints"],
+        "author": [
+          { "given": "Steven", "family": "Kearnes" },
+          { "given": "Kevin", "family": "McCloskey" },
+          { "given": "Marc", "family": "Berndl" },
+          { "given": "Vijay", "family": "Pande" },
+          { "given": "Patrick", "family": "Riley" }
+        ],
+        "container-title": ["Journal of Computer-Aided Molecular Design"],
+        "published-print": { "date-parts": [[2016, 8]] },
+        "URL": "https://doi.org/10.1007/s10822-016-9938-8",
+        "is-referenced-by-count": 1100
+      }
+    ]
+  }
+}
