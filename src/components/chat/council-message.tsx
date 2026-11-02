@@ -55,6 +55,9 @@ type CouncilMessageProps = {
   analysis: CouncilAnalysisView | null;
   summary: CouncilSummaryView | null;
   onSaveToMemory: (body: string, preferredType?: string) => void;
+  /** When true and there is no final answer yet, omit the empty answer shell. */
+  streaming?: boolean;
+  statusSlot?: React.ReactNode;
 };
 
 function labOf(modelId: string, lab?: string) {
@@ -67,6 +70,8 @@ export function CouncilMessage({
   analysis,
   summary,
   onSaveToMemory,
+  streaming = false,
+  statusSlot,
 }: CouncilMessageProps) {
   const hasContradictions = (analysis?.contradictions.length ?? 0) > 0;
   const [disagreementOpen, setDisagreementOpen] =
@@ -79,10 +84,18 @@ export function CouncilMessage({
       ? Math.round(summary.totalTimeMs / 1000)
       : null;
   const confidence = analysis?.confidence ?? summary?.confidence;
+  const showFinal = Boolean(finalAnswer.trim()) || (!streaming && !statusSlot);
 
   return (
-    <div className="flex w-full max-w-[95%] flex-col gap-3 sm:max-w-[90%]">
+    <div
+      className="flex w-full flex-col gap-3"
+      data-variant="open"
+      data-testid="council-message"
+    >
       <div className="text-muted-foreground flex flex-wrap items-center gap-2 text-xs">
+        <span className="bg-muted text-foreground inline-flex size-5 items-center justify-center rounded-full text-[10px] font-semibold">
+          C
+        </span>
         <span className="text-foreground font-medium">Council</span>
         <span>·</span>
         <span>{memberCount} members</span>
@@ -106,37 +119,41 @@ export function CouncilMessage({
         ) : null}
       </div>
 
-      <div className="bg-muted/50 rounded-2xl border px-4 py-3">
-        <div className="mb-2 flex items-center justify-between gap-2">
-          <p className="text-xs font-medium tracking-wide uppercase">
-            Final answer
-          </p>
-          <div className="flex gap-1">
-            <Button
-              type="button"
-              size="icon-xs"
-              variant="ghost"
-              aria-label="Copy final answer"
-              onClick={async () => {
-                await navigator.clipboard.writeText(finalAnswer);
-                toast.success("Copied");
-              }}
-            >
-              <Copy className="size-3.5" />
-            </Button>
-            <Button
-              type="button"
-              size="icon-xs"
-              variant="ghost"
-              aria-label="Save final answer to memory"
-              onClick={() => onSaveToMemory(finalAnswer, "note")}
-            >
-              <BookmarkPlus className="size-3.5" />
-            </Button>
+      {statusSlot}
+
+      {showFinal ? (
+        <div className="w-full" data-testid="council-final-answer">
+          <div className="mb-2 flex items-center justify-between gap-2">
+            <p className="text-muted-foreground text-xs font-medium tracking-wide uppercase">
+              Final answer
+            </p>
+            <div className="flex gap-1">
+              <Button
+                type="button"
+                size="icon-xs"
+                variant="ghost"
+                aria-label="Copy final answer"
+                onClick={async () => {
+                  await navigator.clipboard.writeText(finalAnswer);
+                  toast.success("Copied");
+                }}
+              >
+                <Copy className="size-3.5" />
+              </Button>
+              <Button
+                type="button"
+                size="icon-xs"
+                variant="ghost"
+                aria-label="Save final answer to memory"
+                onClick={() => onSaveToMemory(finalAnswer, "note")}
+              >
+                <BookmarkPlus className="size-3.5" />
+              </Button>
+            </div>
           </div>
+          {finalAnswer.trim() ? <Markdown content={finalAnswer} /> : null}
         </div>
-        <Markdown content={finalAnswer || "…"} />
-      </div>
+      ) : null}
 
       {analysis ? (
         <Collapsible open={disagreementOpen} onOpenChange={setDisagreementOpen}>

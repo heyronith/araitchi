@@ -18,6 +18,8 @@ type ModelBehavior = {
 const behaviors = new Map<string, ModelBehavior>();
 const chatRequests: unknown[] = [];
 let synthesizerCalls = 0;
+/** When a council member sees “council progress”, delay the next synthesizer. */
+let pendingSynthDelayMs = 0;
 
 function readBody(req: IncomingMessage): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -420,6 +422,15 @@ const server = createServer(async (req, res) => {
       url.searchParams.get("slow") === "1" ||
       msgText.includes("stop please") ||
       msgText.includes("stop council");
+    const thinkDelay =
+      url.searchParams.get("think") === "1" ||
+      msgText.includes("think carefully") ||
+      msgText.includes("show your thinking") ||
+      (modelId.includes("anthropic") && msgText.includes("reasoning demo"));
+    const withReasoning =
+      thinkDelay ||
+      msgText.includes("show your thinking") ||
+      msgText.includes("reasoning demo");
     let reply: string;
     if (isSynth) {
       synthesizerCalls += 1;
@@ -442,13 +453,31 @@ const server = createServer(async (req, res) => {
 
     // generateText/doGenerate omits stream or sets false; streamText sets true
     if (parsed.stream !== true) {
+      if (isSynth && pendingSynthDelayMs > 0) {
+        const ms = pendingSynthDelayMs;
+        pendingSynthDelayMs = 0;
+        await new Promise((r) => setTimeout(r, ms));
+      }
       json(res, 200, {
         id: "chatcmpl-mock",
         object: "chat.completion",
         choices: [
           {
             index: 0,
-            message: { role: "assistant", content: reply },
+            message: {
+              role: "assistant",
+              content: reply,
+              ...(withReasoning
+                ? {
+                    reasoning_details: [
+                      {
+                        type: "reasoning.text",
+                        text: "Considering the evidence carefully before answering.",
+                      },
+                    ],
+                  }
+                : {}),
+            },
             finish_reason: "stop",
           },
         ],
@@ -474,6 +503,49 @@ const server = createServer(async (req, res) => {
       object: "chat.completion.chunk",
       choices: [{ index: 0, delta: { role: "assistant", content: "" } }],
     });
+
+    // Stagger council members so the UI can show “1/3 done” progress.
+    if (msgText.includes("council progress") && !isSynth) {
+      pendingSynthDelayMs = 2000;
+      const staggerMs = modelId.includes("anthropic")
+        ? 400
+        : modelId.includes("google")
+          ? 1200
+          : modelId.includes("meta") || modelId.includes("llama")
+            ? 2000
+            : 800;
+      await new Promise((r) => setTimeout(r, staggerMs));
+    }
+    if (isSynth && pendingSynthDelayMs > 0) {
+      const ms = pendingSynthDelayMs;
+      pendingSynthDelayMs = 0;
+      await new Promise((r) => setTimeout(r, ms));
+    }
+
+    // ~1.5s delay before first visible token for Thinking… e2e coverage
+    if (thinkDelay) {
+      await new Promise((r) => setTimeout(r, 1500));
+    }
+
+    if (withReasoning) {
+      const reasoning = "Considering the evidence carefully before answering.";
+      for (const ch of reasoning.match(/.{1,24}/g) ?? [reasoning]) {
+        send({
+          id,
+          object: "chat.completion.chunk",
+          choices: [
+            {
+              index: 0,
+              delta: {
+                reasoning_details: [{ type: "reasoning.text", text: ch }],
+              },
+            },
+          ],
+        });
+        await new Promise((r) => setTimeout(r, 40));
+      }
+      await new Promise((r) => setTimeout(r, 200));
+    }
 
     // Word-sized chunks keep Stop tests reliable without making replies glacial
     const chunks = slow ? (reply.match(/.{1,8}/g) ?? [reply]) : [reply];

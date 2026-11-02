@@ -11,13 +11,22 @@ async function saveOpenRouterKey(page: import("@playwright/test").Page) {
   await page.keyboard.press("Escape");
 }
 
+async function ensureSoloChat(page: import("@playwright/test").Page) {
+  await page
+    .getByRole("group", { name: "Research mode" })
+    .getByRole("button", { name: "Solo", exact: true })
+    .click();
+  await page.getByRole("button", { name: "New chat" }).first().click();
+  await expect(page.getByLabel("Select model")).toBeVisible({
+    timeout: 15_000,
+  });
+}
+
 test.describe("solo chat", () => {
   test("stream reply with code copy and cost footer", async ({ page }) => {
     await saveOpenRouterKey(page);
+    await ensureSoloChat(page);
 
-    await expect(page.getByLabel("Select model")).toBeVisible({
-      timeout: 15_000,
-    });
     await page.getByRole("textbox", { name: "Message" }).fill("Hello from e2e");
     await page.getByRole("button", { name: "Send message" }).click();
 
@@ -32,13 +41,14 @@ test.describe("solo chat", () => {
 
   test("retry creates a branch; edit creates another", async ({ page }) => {
     await saveOpenRouterKey(page);
+    await ensureSoloChat(page);
     await page.getByRole("textbox", { name: "Message" }).fill("Branch me");
     await page.getByRole("button", { name: "Send message" }).click();
     await expect(page.getByText("Done.").first()).toBeVisible({
       timeout: 20_000,
     });
 
-    await page.getByRole("button", { name: "Retry" }).click();
+    await page.getByRole("button", { name: "Retry" }).last().click();
     await expect(page.getByText("2/2")).toBeVisible({ timeout: 20_000 });
 
     await page.getByRole("button", { name: "Edit message" }).first().click();
@@ -54,6 +64,7 @@ test.describe("solo chat", () => {
   test("stop cancels an in-flight stream", async ({ page }) => {
     test.setTimeout(60_000);
     await saveOpenRouterKey(page);
+    await ensureSoloChat(page);
     await page.getByRole("textbox", { name: "Message" }).fill("Stop please");
     await page.getByRole("button", { name: "Send message" }).click();
     await expect(
@@ -67,6 +78,7 @@ test.describe("solo chat", () => {
 
   test("reload restores chat; rename and delete work", async ({ page }) => {
     await saveOpenRouterKey(page);
+    await ensureSoloChat(page);
     await page
       .getByRole("textbox", { name: "Message" })
       .fill("Persist this conversation forever");

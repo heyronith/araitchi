@@ -83,8 +83,11 @@ export function Markdown({
   return (
     <div
       className={cn(
-        "prose prose-neutral dark:prose-invert max-w-none text-sm leading-relaxed",
+        "prose prose-neutral dark:prose-invert max-w-none text-base leading-[1.7]",
+        "prose-p:my-3 prose-ul:my-3 prose-ol:my-3 prose-li:my-1",
+        "prose-headings:font-semibold prose-h1:text-2xl prose-h2:text-xl prose-h3:text-lg",
         "prose-pre:bg-transparent prose-pre:p-0 prose-code:before:content-none prose-code:after:content-none",
+        "prose-table:my-0",
         className,
       )}
     >

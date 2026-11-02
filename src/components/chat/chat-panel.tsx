@@ -27,8 +27,15 @@ import {
 import { ApprovalDialog } from "@/components/chat/approval-dialog";
 import { Markdown } from "@/components/chat/markdown";
 import { ModelPicker } from "@/components/chat/model-picker";
+import { ReasoningBlock } from "@/components/chat/reasoning-block";
 import { SaveToMemoryDialog } from "@/components/chat/save-to-memory-dialog";
 import { SourcesSection } from "@/components/chat/sources-section";
+import {
+  phaseFromCouncil,
+  phaseFromToolCalls,
+  ThinkingStatus,
+  type ThinkingPhase,
+} from "@/components/chat/thinking-status";
 import { ToolCard } from "@/components/chat/tool-card";
 import type { ChatMode } from "@/components/shell/mode-switch";
 import {
@@ -42,11 +49,6 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
 import { Textarea } from "@/components/ui/textarea";
 import { getBranchMeta, type StoredMessage } from "@/lib/chat/branches";
 import { extractToolCalls, type ToolCallView } from "@/lib/chat/tool-events";
@@ -124,16 +126,25 @@ function isCouncilMessage(message: UIMessage): boolean {
   );
 }
 
+function modelLabel(modelId?: string): { initial: string; name: string } {
+  if (!modelId) return { initial: "A", name: "Assistant" };
+  const [lab, ...rest] = modelId.split("/");
+  const name = rest.join("/") || modelId;
+  return { initial: (lab?.[0] ?? "A").toUpperCase(), name };
+}
+
 function parseCouncilFromParts(parts: UIMessage["parts"]): {
   members: CouncilMemberView[];
   analysis: CouncilAnalysisView | null;
   summary: CouncilSummaryView | null;
   finalAnswer: string;
+  synthesizing: boolean;
 } {
   const membersMap = new Map<string, CouncilMemberView>();
   let analysis: CouncilAnalysisView | null = null;
   let summary: CouncilSummaryView | null = null;
   let finalAnswer = "";
+  let synthesizing = false;
 
   for (const p of parts) {
     if (p.type === "text") finalAnswer += p.text;
@@ -142,6 +153,9 @@ function parseCouncilFromParts(parts: UIMessage["parts"]): {
     }
     if (p.type === "data-council-summary" && "data" in p) {
       summary = p.data as CouncilSummaryView;
+    }
+    if (p.type === "data-synthesis") {
+      synthesizing = true;
     }
     if (p.type === "data-member" && "data" in p) {
       const d = p.data as Record<string, unknown>;
@@ -190,7 +204,34 @@ function parseCouncilFromParts(parts: UIMessage["parts"]): {
     analysis,
     summary,
     finalAnswer: finalAnswer || analysis?.finalAnswer || "",
+    synthesizing,
   };
+}
+
+function resolvePhase(input: {
+  toolCalls: ToolCallView[];
+  council: ReturnType<typeof parseCouncilFromParts> | null;
+  hasAnswerText: boolean;
+}): ThinkingPhase {
+  if (input.hasAnswerText) return { kind: "thinking" };
+  if (input.council) {
+    const done = input.council.members.filter(
+      (m) =>
+        m.status === "done" ||
+        m.status === "failed" ||
+        m.status === "substituted",
+    ).length;
+    const councilPhase = phaseFromCouncil({
+      memberCount: input.council.members.length,
+      doneCount: done,
+      synthesizing: input.council.synthesizing,
+      hasFinalAnswer: Boolean(input.council.finalAnswer.trim()),
+    });
+    if (councilPhase) return councilPhase;
+  }
+  const toolPhase = phaseFromToolCalls(input.toolCalls);
+  if (toolPhase) return toolPhase;
+  return { kind: "thinking" };
 }
 
 export function ChatPanel({
@@ -289,6 +330,31 @@ export function ChatPanel({
   });
 
   const isStreaming = status === "streaming" || status === "submitted";
+  const [streamStartedAt, setStreamStartedAt] = React.useState<number | null>(
+    null,
+  );
+  const [streamNow, setStreamNow] = React.useState(() => Date.now());
+  const thoughtSeconds =
+    streamStartedAt != null
+      ? Math.max(1, Math.floor((streamNow - streamStartedAt) / 1000) || 1)
+      : 1;
+
+  React.useEffect(() => {
+    if (!isStreaming) {
+      const t = window.setTimeout(() => setStreamStartedAt(null), 0);
+      return () => window.clearTimeout(t);
+    }
+    const start = Date.now();
+    const boot = window.setTimeout(() => {
+      setStreamStartedAt(start);
+      setStreamNow(start);
+    }, 0);
+    const id = window.setInterval(() => setStreamNow(Date.now()), 250);
+    return () => {
+      window.clearTimeout(boot);
+      window.clearInterval(id);
+    };
+  }, [isStreaming]);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -519,7 +585,7 @@ export function ChatPanel({
             </div>
           ) : null}
 
-          {messages.map((message) => {
+          {messages.map((message, messageIndex) => {
             const text = extractText(message);
             const reasoning = extractReasoning(message);
             const meta = (message.metadata ?? {}) as MessageMeta;
@@ -537,18 +603,32 @@ export function ChatPanel({
                     }[],
                   )
                 : [];
+            const isLast = messageIndex === messages.length - 1;
+            const isActiveStream =
+              isStreaming && isLast && message.role === "assistant" && !error;
+            const answerText = council ? council.finalAnswer || text : text;
+            const hasAnswerText = Boolean(answerText.trim());
+            const phase = resolvePhase({
+              toolCalls,
+              council,
+              hasAnswerText,
+            });
+            const showStatus = isActiveStream && !hasAnswerText && !error;
+            const reasoningStreaming =
+              isActiveStream && Boolean(reasoning) && !hasAnswerText;
+            const label = modelLabel(meta.modelId ?? modelId ?? undefined);
 
             return (
               <div
                 key={message.id}
                 className={cn(
-                  "group flex flex-col gap-2",
+                  "group flex w-full flex-col gap-2",
                   message.role === "user" ? "items-end" : "items-start",
                 )}
               >
                 {toolCalls.length > 0 ? (
                   <div
-                    className="flex w-full max-w-[95%] flex-col gap-1.5 sm:max-w-[85%]"
+                    className="flex w-full flex-col gap-1.5"
                     data-testid="tool-calls"
                   >
                     {toolCalls.map((call) => (
@@ -563,10 +643,19 @@ export function ChatPanel({
 
                 {council && message.role === "assistant" ? (
                   <CouncilMessage
-                    finalAnswer={council.finalAnswer || text}
+                    finalAnswer={answerText}
                     members={council.members}
                     analysis={council.analysis}
                     summary={council.summary}
+                    streaming={isActiveStream}
+                    statusSlot={
+                      showStatus ? (
+                        <ThinkingStatus
+                          phase={phase}
+                          startedAt={streamStartedAt ?? undefined}
+                        />
+                      ) : null
+                    }
                     onSaveToMemory={(body, preferredType) => {
                       setSaveBody(body);
                       setSaveSource("council");
@@ -575,68 +664,83 @@ export function ChatPanel({
                       setSaveOpen(true);
                     }}
                   />
+                ) : editingId === message.id ? (
+                  <div className="bg-muted/40 w-full max-w-[80%] space-y-2 rounded-2xl px-4 py-3">
+                    <Textarea
+                      value={editText}
+                      onChange={(e) => setEditText(e.target.value)}
+                      rows={3}
+                      className="bg-background text-foreground min-w-[280px]"
+                    />
+                    <div className="flex gap-2">
+                      <Button
+                        size="sm"
+                        type="button"
+                        onClick={() => void handleEditSubmit(message)}
+                      >
+                        Save &amp; branch
+                      </Button>
+                      <Button
+                        size="sm"
+                        type="button"
+                        variant="ghost"
+                        onClick={() => setEditingId(null)}
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  </div>
+                ) : message.role === "assistant" ? (
+                  <div
+                    className="w-full"
+                    data-variant="open"
+                    data-testid="assistant-message"
+                  >
+                    <div className="text-muted-foreground mb-2 flex items-center gap-2 text-xs">
+                      <span className="bg-muted text-foreground inline-flex size-5 items-center justify-center rounded-full text-[10px] font-semibold">
+                        {label.initial}
+                      </span>
+                      <span className="truncate">{label.name}</span>
+                    </div>
+                    <ReasoningBlock
+                      text={reasoning}
+                      streaming={reasoningStreaming}
+                      thoughtSeconds={thoughtSeconds}
+                    />
+                    {showStatus ? (
+                      <ThinkingStatus
+                        phase={phase}
+                        startedAt={streamStartedAt ?? undefined}
+                      />
+                    ) : hasAnswerText ? (
+                      <Markdown content={answerText} />
+                    ) : null}
+                  </div>
                 ) : (
                   <div
-                    className={cn(
-                      "max-w-[95%] rounded-2xl px-4 py-3 sm:max-w-[85%]",
-                      message.role === "user"
-                        ? "bg-primary text-primary-foreground"
-                        : "bg-muted/50 border",
-                    )}
+                    className="bg-muted max-w-[80%] rounded-2xl px-4 py-2.5"
+                    data-variant="bubble"
+                    data-testid="user-message"
                   >
-                    {editingId === message.id ? (
-                      <div className="space-y-2">
-                        <Textarea
-                          value={editText}
-                          onChange={(e) => setEditText(e.target.value)}
-                          rows={3}
-                          className="bg-background text-foreground min-w-[280px]"
-                        />
-                        <div className="flex gap-2">
-                          <Button
-                            size="sm"
-                            type="button"
-                            onClick={() => void handleEditSubmit(message)}
-                          >
-                            Save &amp; branch
-                          </Button>
-                          <Button
-                            size="sm"
-                            type="button"
-                            variant="ghost"
-                            onClick={() => setEditingId(null)}
-                          >
-                            Cancel
-                          </Button>
-                        </div>
-                      </div>
-                    ) : message.role === "assistant" ? (
-                      <>
-                        {reasoning ? (
-                          <Collapsible className="mb-3">
-                            <CollapsibleTrigger className="text-muted-foreground text-xs underline-offset-2 hover:underline">
-                              Reasoning
-                            </CollapsibleTrigger>
-                            <CollapsibleContent className="text-muted-foreground mt-2 text-xs whitespace-pre-wrap">
-                              {reasoning}
-                            </CollapsibleContent>
-                          </Collapsible>
-                        ) : null}
-                        <Markdown content={text || (isStreaming ? "…" : "")} />
-                      </>
-                    ) : (
-                      <p className="text-sm whitespace-pre-wrap">{text}</p>
-                    )}
+                    <p className="text-base leading-[1.7] whitespace-pre-wrap">
+                      {text}
+                    </p>
                   </div>
                 )}
 
                 {toolCalls.length > 0 && !isStreaming ? (
-                  <div className="w-full max-w-[95%] sm:max-w-[85%]">
+                  <div className="w-full">
                     <SourcesSection calls={toolCalls} />
                   </div>
                 ) : null}
 
-                <div className="text-muted-foreground flex flex-wrap items-center gap-1 text-xs opacity-0 transition-opacity group-hover:opacity-100 focus-within:opacity-100">
+                <div
+                  className={cn(
+                    "text-muted-foreground flex flex-wrap items-center gap-1 text-xs transition-opacity",
+                    "opacity-100",
+                    "[@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:focus-within:opacity-100",
+                  )}
+                >
                   {branch.total > 1 ? (
                     <div className="mr-1 flex items-center gap-0.5">
                       <Button
@@ -688,7 +792,7 @@ export function ChatPanel({
                         variant="ghost"
                         aria-label="Copy message"
                         onClick={async () => {
-                          await navigator.clipboard.writeText(text);
+                          await navigator.clipboard.writeText(answerText);
                           toast.success("Copied");
                         }}
                       >
@@ -719,27 +823,44 @@ export function ChatPanel({
                   >
                     <BookmarkPlus className="size-3.5" />
                   </Button>
-                </div>
 
-                {message.role === "assistant" && !isStreaming ? (
-                  <div className="text-muted-foreground px-1 text-[11px]">
-                    {[
-                      meta.modelId,
-                      meta.usage?.inputTokens != null ||
-                      meta.usage?.outputTokens != null
-                        ? `${meta.usage?.inputTokens ?? 0}→${meta.usage?.outputTokens ?? 0} tok`
-                        : null,
-                      typeof meta.usage?.cost === "number"
-                        ? `$${meta.usage.cost.toFixed(4)}`
-                        : null,
-                    ]
-                      .filter(Boolean)
-                      .join(" · ")}
-                  </div>
-                ) : null}
+                  {message.role === "assistant" &&
+                  !isStreaming &&
+                  (meta.modelId ||
+                    meta.usage?.inputTokens != null ||
+                    typeof meta.usage?.cost === "number") ? (
+                    <span className="text-muted-foreground/80 ml-1 text-[11px]">
+                      {[
+                        meta.modelId,
+                        meta.usage?.inputTokens != null ||
+                        meta.usage?.outputTokens != null
+                          ? `${meta.usage?.inputTokens ?? 0}→${meta.usage?.outputTokens ?? 0} tok`
+                          : null,
+                        typeof meta.usage?.cost === "number"
+                          ? `$${meta.usage.cost.toFixed(4)}`
+                          : null,
+                      ]
+                        .filter(Boolean)
+                        .join(" · ")}
+                    </span>
+                  ) : null}
+                </div>
               </div>
             );
           })}
+
+          {isStreaming && !error && messages.at(-1)?.role === "user" ? (
+            <div
+              className="w-full"
+              data-variant="open"
+              data-testid="assistant-message"
+            >
+              <ThinkingStatus
+                phase={{ kind: "thinking" }}
+                startedAt={streamStartedAt ?? undefined}
+              />
+            </div>
+          ) : null}
 
           {error ? (
             <div className="border-destructive/30 bg-destructive/5 text-destructive flex items-center justify-between gap-3 rounded-xl border px-4 py-3 text-sm">
