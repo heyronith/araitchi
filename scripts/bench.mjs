@@ -10,7 +10,7 @@ import { spawnSync } from "node:child_process";
 import { createInterface } from "node:readline";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -109,16 +109,14 @@ const forward = [
   ...(budget != null ? ["--budget", String(budget)] : []),
 ];
 
+// Windows requires a file:// URL for --import (absolute D:\… paths fail).
+const serverOnlyRegister = pathToFileURL(
+  path.join(root, "scripts/register-server-only.mjs"),
+).href;
+
 const result = spawnSync(
   "pnpm",
-  [
-    "exec",
-    "tsx",
-    "--import",
-    path.join(root, "scripts/register-server-only.mjs"),
-    runner,
-    ...forward,
-  ],
+  ["exec", "tsx", "--import", serverOnlyRegister, runner, ...forward],
   {
     cwd: root,
     stdio: "inherit",
