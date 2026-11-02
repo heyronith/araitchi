@@ -25,9 +25,9 @@ export type AppDefaults = {
 
 const FALLBACK: AppDefaults = {
   version: 1,
-  scribeModel: "~openai/gpt-oss-latest",
-  classifierModel: "~openai/gpt-oss-latest",
-  strongestSoloModel: "~anthropic/claude-opus-latest",
+  scribeModel: "~openai/gpt-latest",
+  classifierModel: "openai/gpt-oss-20b",
+  strongestSoloModel: "~anthropic/claude-sonnet-latest",
   probeModels: [
     "~anthropic/claude-haiku-latest",
     "~google/gemini-flash-latest",

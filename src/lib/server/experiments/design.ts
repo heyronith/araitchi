@@ -81,6 +81,7 @@ export async function designExperimentDraft(input: {
       model,
       system: SYSTEM,
       prompt: extra ? `${userPrompt}\n\n${extra}` : userPrompt,
+      maxOutputTokens: 2048,
       abortSignal: input.signal,
     });
     return parseExperimentDraft(result.text);

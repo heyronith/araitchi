@@ -76,11 +76,25 @@ export async function searchDblp(
     const res = await fetchJson<unknown>(
       `${getProviderBaseUrl("dblp")}?${params}`,
       {
-        headers: { "User-Agent": userAgent(opts.mailto) },
+        headers: {
+          "User-Agent": userAgent(opts.mailto),
+          Accept: "application/json",
+        },
         signal: opts.signal,
       },
     );
-    if (!res.ok) return { ok: false, error: res.error };
+    if (!res.ok) {
+      if (
+        res.error === "invalid_json" &&
+        res.contentType?.toLowerCase().includes("text/html")
+      ) {
+        return {
+          ok: false,
+          error: "dblp_bot_challenge (JSON API blocked by bot check)",
+        };
+      }
+      return { ok: false, error: res.error };
+    }
     return { ok: true, papers: normalizeDblp(res.data) };
   });
 }

@@ -3,7 +3,7 @@ import "server-only";
 import { getProviderBaseUrl } from "../env";
 import { normalizeArxivId, normalizeDoi } from "../merge";
 import type { Paper, ProviderSearchResult } from "../types";
-import { fetchJson } from "./http";
+import { fetchJson, withSemanticScholarQueue } from "./http";
 import {
   arxivIdFromUrl,
   asArr,
@@ -62,11 +62,22 @@ function headers(mailto?: string): Record<string, string> {
   return h;
 }
 
+function mapFetchError(
+  res: { ok: false; error: string; status?: number },
+  hasKey: boolean,
+): string {
+  if (res.error === "rate_limited" && !hasKey) {
+    return "rate_limited: add a free Semantic Scholar API key in Settings → Keys (or SEMANTIC_SCHOLAR_API_KEY)";
+  }
+  return res.error;
+}
+
 export async function searchSemanticScholar(
   query: string,
   opts: ProviderSearchOpts,
 ): Promise<ProviderSearchResult> {
   return runProvider("semantic_scholar", opts, async () => {
+    const hasKey = Boolean(optionalSecret("semantic_scholar_api_key"));
     const params = new URLSearchParams({
       query,
       limit: String(clampLimit(opts.limit, 100)),
@@ -75,11 +86,13 @@ export async function searchSemanticScholar(
     if (opts.yearFrom !== undefined || opts.yearTo !== undefined) {
       params.set("year", `${opts.yearFrom ?? ""}-${opts.yearTo ?? ""}`);
     }
-    const res = await fetchJson<unknown>(
-      `${getProviderBaseUrl("semantic_scholar")}/paper/search?${params}`,
-      { headers: headers(opts.mailto), signal: opts.signal },
+    const res = await withSemanticScholarQueue(() =>
+      fetchJson<unknown>(
+        `${getProviderBaseUrl("semantic_scholar")}/paper/search?${params}`,
+        { headers: headers(opts.mailto), signal: opts.signal },
+      ),
     );
-    if (!res.ok) return { ok: false, error: res.error };
+    if (!res.ok) return { ok: false, error: mapFetchError(res, hasKey) };
     return { ok: true, papers: normalizeSemanticScholar(res.data) };
   });
 }
@@ -110,9 +123,11 @@ export async function fetchSemanticScholarPaper(
   const ref = paperRef(id);
   if (!ref) return null;
   try {
-    const res = await fetchJson<unknown>(
-      `${getProviderBaseUrl("semantic_scholar")}/paper/${ref}?fields=${FIELDS}`,
-      { headers: headers(), signal: id.signal },
+    const res = await withSemanticScholarQueue(() =>
+      fetchJson<unknown>(
+        `${getProviderBaseUrl("semantic_scholar")}/paper/${ref}?fields=${FIELDS}`,
+        { headers: headers(), signal: id.signal },
+      ),
     );
     return res.ok ? normalizeSemanticScholarPaper(res.data) : null;
   } catch {
@@ -131,9 +146,11 @@ export async function fetchSemanticScholarLinks(
       fields: FIELDS,
       limit: String(clampLimit(id.limit, 100)),
     });
-    const res = await fetchJson<unknown>(
-      `${getProviderBaseUrl("semantic_scholar")}/paper/${ref}/${id.direction}?${params}`,
-      { headers: headers(), signal: id.signal },
+    const res = await withSemanticScholarQueue(() =>
+      fetchJson<unknown>(
+        `${getProviderBaseUrl("semantic_scholar")}/paper/${ref}/${id.direction}?${params}`,
+        { headers: headers(), signal: id.signal },
+      ),
     );
     if (!res.ok) return [];
     return asArr(asObj(res.data).data)

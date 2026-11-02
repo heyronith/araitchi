@@ -1,0 +1,15 @@
+{
+  "user": "Same as before: protein before bed hypothesis stands.",
+  "reply": "Affirming protein-before-bed hypothesis unchanged.",
+  "expected": {
+    "records": []
+  },
+  "existing": [
+    {
+      "id": "h1",
+      "type": "hypothesis",
+      "title": "Protein before bed improves sleep quality",
+      "status": "proposed"
+    }
+  ]
+}

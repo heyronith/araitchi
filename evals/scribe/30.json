@@ -1,0 +1,15 @@
+{
+  "user": "We decided n=40 for 0.8 power (again).",
+  "reply": "Sample size n=40 chosen for 80% power.",
+  "expected": {
+    "records": []
+  },
+  "existing": [
+    {
+      "id": "d1",
+      "type": "decision",
+      "title": "n=40 for power 0.8",
+      "status": "active"
+    }
+  ]
+}

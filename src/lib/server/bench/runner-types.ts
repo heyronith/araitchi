@@ -7,6 +7,8 @@ export type BenchOptions = {
   limit?: number;
   repeats?: number;
   budgetCapUsd?: number;
+  /** Stop after cumulative spend exceeds this (live runs; partial report). */
+  maxSpendUsd?: number;
   dryRun?: boolean;
   /** Skip interactive cost confirmation for live runs. */
   yes?: boolean;

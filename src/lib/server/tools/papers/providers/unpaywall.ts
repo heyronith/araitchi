@@ -40,7 +40,8 @@ export async function lookupByDoi(
 ): Promise<UnpaywallResult | null> {
   const email = opts.email?.trim();
   const clean = normalizeDoi(doi);
-  if (!email || !clean) return null;
+  if (!clean) return null;
+  if (!email) return null;
   try {
     const res = await fetchJson<unknown>(
       `${getProviderBaseUrl("unpaywall")}/${encodeDoiPath(clean)}?email=${encodeURIComponent(email)}`,

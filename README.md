@@ -93,17 +93,19 @@ Open **Settings → Tools** to choose what models may use. Toggles are per proje
 | MCP | Tools from MCP servers you add |
 | Memory | Search notebook / hypotheses / library (default on) |
 
-- **Optional keys** (Settings → Keys): OpenAlex, CORE, Semantic Scholar, and a GitHub token (read-only). Paper search works without them, with lower rate limits.
-- **Contact email** (`contact_email`): sent to Crossref / OpenAlex polite pools and required for Unpaywall. It is not a secret.
+- **Optional keys** (Settings → Keys): OpenAlex, CORE, Semantic Scholar, and a GitHub token (read-only). Paper search works without them, with lower rate limits. For scripts and smoke tests, the same keys can live in `.env.local` (`OPENALEX_API_KEY`, `CORE_API_KEY`, `SEMANTIC_SCHOLAR_API_KEY`); the app reads Settings first and falls back to those env vars when a setting is missing.
+- **Contact email** (`contact_email` in Settings, or `ARAITCHI_CONTACT_EMAIL` in `.env.local`): sent to Crossref / OpenAlex polite pools and required for Unpaywall. It is not a secret.
 - **Providers:** each paper provider can be switched off individually.
 - **MCP servers:** add a name plus a stdio command or an http URL. **Stdio MCP servers run commands on this computer — only add servers you trust.** MCP tools are approval-gated unless you mark the server read-only.
 - Tool output is treated as untrusted data, never as instructions.
 
-Manual paper-API smoke (hits real services, no LLM, not CI):
+Manual paper-API smoke (hits real services, no LLM, not CI). Loads `.env.local` if present:
 
 ```bash
 pnpm smoke:papers "graph neural networks for molecules"
 ```
+
+Prints keyed vs keyless status for OpenAlex, CORE, and Semantic Scholar.
 
 ### Memory & scribe
 

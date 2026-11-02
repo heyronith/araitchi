@@ -1,0 +1,8 @@
+{
+  "user": "Reply mentions p<0.001 for HRV but user never provided stats.",
+  "reply": "Highly significant HRV gain p<0.001 (fabricated precision).",
+  "expected": {
+    "records": []
+  },
+  "existing": []
+}

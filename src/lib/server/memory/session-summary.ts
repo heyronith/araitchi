@@ -126,6 +126,7 @@ export async function maybeUpdateSessionSummary(input: {
           existing?.summary ? `Previous summary:\n${existing.summary}\n\n` : "",
           `Recent messages:\n${transcript}`,
         ].join(""),
+        maxOutputTokens: 1024,
       });
       summary = truncateWords(result.text, WORD_CAP);
     } catch {

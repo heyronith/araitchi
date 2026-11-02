@@ -133,13 +133,33 @@ export function makePaper(
   };
 }
 
-/** Optional API key from the encrypted store; never throws. */
+const SECRET_ENV: Record<string, string> = {
+  openalex_api_key: "OPENALEX_API_KEY",
+  semantic_scholar_api_key: "SEMANTIC_SCHOLAR_API_KEY",
+  core_api_key: "CORE_API_KEY",
+};
+
+/** Settings placeholders from the UI ("paste your key…") count as unset. */
+export function isUsableSecret(value: string | null | undefined): boolean {
+  const s = value?.trim();
+  if (!s) return false;
+  return !s.toLowerCase().startsWith("paste");
+}
+
+/** Optional API key from Settings, with env fallback for scripts; never throws. */
 export function optionalSecret(name: string): string | null {
   try {
-    return getSecret(name);
+    const fromStore = getSecret(name);
+    if (isUsableSecret(fromStore)) return fromStore!.trim();
   } catch {
-    return null;
+    // missing secret
   }
+  const envName = SECRET_ENV[name];
+  if (envName) {
+    const fromEnv = process.env[envName];
+    if (isUsableSecret(fromEnv)) return fromEnv!.trim();
+  }
+  return null;
 }
 
 export function userAgent(mailto?: string): string {

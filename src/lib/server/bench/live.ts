@@ -170,6 +170,9 @@ async function runSoloText(input: {
     system,
     prompt: input.userText,
     tools,
+    // Keep reservation small: OpenRouter account credits (separate from key
+    // limit) reject high max_tokens even when the key still has headroom.
+    maxOutputTokens: 512,
     stopWhen: stepCountIs(8),
     abortSignal: AbortSignal.timeout(180_000),
   });
@@ -213,7 +216,7 @@ async function runCouncilText(input: {
       ? preset.members
       : [defaults.strongestSoloModel],
     synthesizer: preset.synthesizer || defaults.scribeModel,
-    maxOutputTokensPerMember: 2048,
+    maxOutputTokensPerMember: 512,
     budgetCapUsd: input.budgetCapUsd,
     memberTimeoutSec: 90,
     preset: "balanced",

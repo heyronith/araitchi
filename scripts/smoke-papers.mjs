@@ -7,12 +7,42 @@
  * Standalone: plain Node, no TypeScript / `server-only` / app database. It uses
  * minimal inline parsing just to count and dedupe hits per provider.
  *
- * Optional env: ARAITCHI_CONTACT_EMAIL, OPENALEX_API_KEY, CORE_API_KEY (CORE is
- * skipped without it), SEMANTIC_SCHOLAR_API_KEY, and ARAITCHI_<PROVIDER>_BASE_URL
- * overrides (OPENALEX, CORE, SEMANTIC_SCHOLAR, ARXIV, DBLP, OPENREVIEW, CROSSREF).
+ * Reads `.env.local` when present (same vars as the app/scripts). Optional env:
+ * ARAITCHI_CONTACT_EMAIL, OPENALEX_API_KEY, CORE_API_KEY, SEMANTIC_SCHOLAR_API_KEY,
+ * and ARAITCHI_<PROVIDER>_BASE_URL overrides.
  *
  * Exit code is always 0 unless the query is missing; offline runs just print failures.
  */
+
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(__dirname, "..");
+
+function loadEnvLocal() {
+  const envPath = path.join(root, ".env.local");
+  if (!existsSync(envPath)) return;
+  for (const line of readFileSync(envPath, "utf8").split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const eq = trimmed.indexOf("=");
+    if (eq <= 0) continue;
+    const key = trimmed.slice(0, eq).trim();
+    if (process.env[key]) continue;
+    let val = trimmed.slice(eq + 1).trim();
+    if (
+      (val.startsWith('"') && val.endsWith('"')) ||
+      (val.startsWith("'") && val.endsWith("'"))
+    ) {
+      val = val.slice(1, -1);
+    }
+    process.env[key] = val;
+  }
+}
+
+loadEnvLocal();
 
 const query = process.argv.slice(2).join(" ").trim();
 if (!query) {
@@ -25,21 +55,47 @@ const TIMEOUT_MS = 15_000;
 const email = process.env.ARAITCHI_CONTACT_EMAIL?.trim() || "";
 const ua = `araitchi-smoke/0.1${email ? ` (mailto:${email})` : ""}`;
 
+function usableKey(name) {
+  const v = process.env[name]?.trim();
+  if (!v || v.toLowerCase().startsWith("paste")) return null;
+  return v;
+}
+
+const keyStatus = {
+  openalex: usableKey("OPENALEX_API_KEY") ? "keyed" : "keyless",
+  core: usableKey("CORE_API_KEY") ? "keyed" : "keyless",
+  semantic_scholar: usableKey("SEMANTIC_SCHOLAR_API_KEY") ? "keyed" : "keyless",
+  contact_email: email ? "set" : "unset",
+};
+
 const base = (name, fallback) =>
   (process.env[`ARAITCHI_${name}_BASE_URL`]?.trim() || fallback).replace(
     /\/+$/,
     "",
   );
 
-async function get(url, headers = {}) {
+async function get(url, headers = {}, opts = {}) {
   const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
+  const timer = setTimeout(() => ctrl.abort(), opts.timeoutMs ?? TIMEOUT_MS);
   try {
     const res = await fetch(url, {
-      headers: { "User-Agent": ua, ...headers },
+      headers: { "User-Agent": ua, Accept: "application/json", ...headers },
       signal: ctrl.signal,
     });
+    if (res.status === 429) throw new Error("rate_limited (HTTP 429)");
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const ct = (res.headers.get("content-type") || "").toLowerCase();
+    if (opts.expectJson && !ct.includes("json")) {
+      const peek = (await res.clone().text()).slice(0, 80).toLowerCase();
+      if (
+        ct.includes("text/html") ||
+        peek.includes("<!doctype") ||
+        peek.includes("not a bot")
+      ) {
+        throw new Error("dblp_bot_challenge (JSON API blocked by bot check)");
+      }
+      throw new Error(`unexpected content-type: ${ct || "unknown"}`);
+    }
     return res;
   } finally {
     clearTimeout(timer);
@@ -69,8 +125,8 @@ const providers = {
   async openalex() {
     const p = new URLSearchParams({ search: query, per_page: String(LIMIT) });
     if (email) p.set("mailto", email);
-    if (process.env.OPENALEX_API_KEY)
-      p.set("api_key", process.env.OPENALEX_API_KEY);
+    const oaKey = usableKey("OPENALEX_API_KEY");
+    if (oaKey) p.set("api_key", oaKey);
     const j = await (
       await get(`${base("OPENALEX", "https://api.openalex.org")}/works?${p}`)
     ).json();
@@ -81,15 +137,17 @@ const providers = {
     }));
   },
   async core() {
-    const key = process.env.CORE_API_KEY;
-    if (!key) throw new Error("skipped (set CORE_API_KEY)");
+    const key = usableKey("CORE_API_KEY");
+    if (!key)
+      throw new Error(
+        "skipped (add free CORE_API_KEY — https://core.ac.uk/services/api)",
+      );
     const p = new URLSearchParams({ q: query, limit: String(LIMIT) });
     const j = await (
       await get(
         `${base("CORE", "https://api.core.ac.uk/v3")}/search/works?${p}`,
-        {
-          Authorization: `Bearer ${key}`,
-        },
+        { Authorization: `Bearer ${key}` },
+        { timeoutMs: 30_000, expectJson: true },
       )
     ).json();
     return arr(j.results).map((w) => ({
@@ -104,15 +162,27 @@ const providers = {
       limit: String(LIMIT),
       fields: "title,year,externalIds",
     });
-    const headers = process.env.SEMANTIC_SCHOLAR_API_KEY
-      ? { "x-api-key": process.env.SEMANTIC_SCHOLAR_API_KEY }
-      : {};
-    const j = await (
-      await get(
+    const s2Key = usableKey("SEMANTIC_SCHOLAR_API_KEY");
+    const headers = s2Key ? { "x-api-key": s2Key } : {};
+    let res;
+    try {
+      res = await get(
         `${base("SEMANTIC_SCHOLAR", "https://api.semanticscholar.org/graph/v1")}/paper/search?${p}`,
         headers,
-      )
-    ).json();
+        { expectJson: true },
+      );
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      if (msg.includes("429") || msg.includes("rate_limited")) {
+        throw new Error(
+          s2Key
+            ? "rate_limited"
+            : "rate_limited (add free SEMANTIC_SCHOLAR_API_KEY — https://www.semanticscholar.org/product/api#api-key-form)",
+        );
+      }
+      throw e;
+    }
+    const j = await res.json();
     return arr(j.data).map((w) => ({
       title: w.title,
       year: w.year,
@@ -144,9 +214,12 @@ const providers = {
       format: "json",
       h: String(LIMIT),
     });
-    const j = await (
-      await get(`${base("DBLP", "https://dblp.org/search/publ/api")}?${p}`)
-    ).json();
+    const res = await get(
+      `${base("DBLP", "https://dblp.org/search/publ/api")}?${p}`,
+      { Accept: "application/json" },
+      { expectJson: true },
+    );
+    const j = await res.json();
     return arr(j.result?.hits?.hit).map((h) => ({
       title: clean(h.info?.title).replace(/\.$/, ""),
       year: Number(h.info?.year) || null,
@@ -198,7 +271,10 @@ const key = (p) =>
           .replace(/[^a-z0-9]+/g, " ")
           .trim()}|${p.year ?? ""}`;
 
-console.log(`query: ${query}\n`);
+console.log(`query: ${query}`);
+console.log(
+  `keys: openalex=${keyStatus.openalex} core=${keyStatus.core} semantic_scholar=${keyStatus.semantic_scholar} contact_email=${keyStatus.contact_email}\n`,
+);
 const started = Date.now();
 const results = await Promise.all(
   Object.entries(providers).map(async ([name, run]) => {

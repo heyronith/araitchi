@@ -281,6 +281,7 @@ async function runSynthesizer(input: {
       model,
       system: input.system,
       prompt: extra ? `${input.userPrompt}\n\n${extra}` : input.userPrompt,
+      maxOutputTokens: 2048,
       abortSignal: input.abortSignal,
       ...(input.supportsStructured
         ? {

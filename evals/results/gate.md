@@ -1,37 +1,37 @@
 # Gate classifier eval
 
-Examples: 156 (held-out). Seeds: 364.
+Examples: 326 (held-out). Seeds: 364. Embedder: `onnx-community/Qwen3-Embedding-0.6B-ONNX`.
 
-| Method | Accuracy | Always-council recall | Median latency | Cost/call |
-| --- | ---: | ---: | ---: | ---: |
-| difficulty baseline | 44.2% | 31.7% | 0ms | $0.0000 |
-| kNN only | 13.5% | 61.7% | 0ms | $0.0000 |
-| kNN + openai/gpt-oss-20b | 4.5% | 5.0% | 150ms | $0.0000 |
-| kNN + ~google/gemini-flash-latest | 8.3% | 20.0% | 2282ms | $0.0009 |
-| kNN + ~anthropic/claude-haiku-latest | 12.8% | 13.3% | 307ms | $0.0001 |
-| LLM only openai/gpt-oss-20b | 3.8% | 0.0% | 117ms | — |
-| LLM only ~openai/gpt-oss-latest (invalid alias) | 7.7% | 0.0% | 0ms | — |
+| Method | Task acc | Action acc | Always-council recall | Median latency | Cost/call | Parse fail |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| difficulty baseline | 40.5% | 45.1% | 41.3% | 0ms | $0.0000 | — |
+| kNN only (production embedder) | 27.3% | 50.9% | 88.9% | 32ms | $0.0000 | — |
+| kNN + ~openai/gpt-latest | 84.4% | 89.3% | 96.8% | 2922ms | $0.0010 | 0.0% |
+| kNN + ~google/gemini-flash-latest | 78.8% | 85.0% | 95.2% | 2665ms | $0.0009 | 0.0% |
+| kNN + ~anthropic/claude-haiku-latest | 81.0% | 86.5% | 96.8% | 1028ms | $0.0001 | 0.0% |
+| kNN + openai/gpt-oss-20b | 73.6% | 79.8% | 92.9% | 2075ms | $0.0000 | 0.0% |
+| LLM only ~openai/gpt-latest | 92.0% | 94.2% | 96.8% | 3046ms | $0.0009 | 2.8% |
 
-### Per-class F1 (difficulty baseline — best accuracy)
+### Per-class F1 (best action-accuracy row)
+
+Best: **LLM only ~openai/gpt-latest**
 
 | Class | F1 |
 | --- | ---: |
-| chat | 50.0% |
-| code_help | 95.7% |
-| critique | 0.0% |
-| experiment_design | 11.8% |
-| factual_lookup | 56.0% |
-| formatting | 95.7% |
-| hypothesis_generation | 66.7% |
-| literature_review | 60.9% |
-| other | 21.1% |
-| planning_admin | 0.0% |
-| repo_status | 100.0% |
-| results_interpretation | 0.0% |
-| summarize_single | 0.0% |
+| chat | 93.9% |
+| code_help | 91.3% |
+| critique | 94.1% |
+| experiment_design | 96.2% |
+| factual_lookup | 96.0% |
+| formatting | 87.3% |
+| hypothesis_generation | 100.0% |
+| literature_review | 98.1% |
+| other | 70.2% |
+| planning_admin | 96.0% |
+| repo_status | 98.0% |
+| results_interpretation | 93.9% |
+| summarize_single | 83.7% |
 
-Notes:
-- `~openai/gpt-oss-latest` is **not a valid OpenRouter model id** (HTTP 400). Eval scripts now use `openai/gpt-oss-20b`.
-- kNN in this harness uses the script's fake embedder (not Qwen); do not use these kNN numbers to tune production.
-- Target: accuracy ≥ 85%, always-council recall ≥ 95%. **No candidate met the target** on this held-out set; difficulty baseline remains best.
+Target: **action-level accuracy ≥ 85%**, always-council recall ≥ 95%.
+Debug log: `evals/results/gate-debug.jsonl`.
 

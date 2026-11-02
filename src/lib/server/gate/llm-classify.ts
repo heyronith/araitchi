@@ -51,10 +51,14 @@ export async function classifyWithLlm(input: {
 }): Promise<ClassifierLlmOutput & { costUsd: number | null }> {
   const openrouter = createOpenRouterClient(input.apiKey);
   const model = openrouter(input.modelId, { usage: { include: true } });
+  // Cap output: OpenRouter reserves max_tokens against remaining credits;
+  // unbounded defaults (65k) caused classify failures near spend limits.
+  const maxOutputTokens = 256;
   const result = await generateText({
     model,
     system: SYSTEM,
     prompt: input.text.slice(0, 4000),
+    maxOutputTokens,
     abortSignal: input.signal,
   });
   const cost =
@@ -68,6 +72,7 @@ export async function classifyWithLlm(input: {
       model,
       system: SYSTEM,
       prompt: `Previous invalid reply. Emit ONLY valid JSON.\nUser message:\n${input.text.slice(0, 2000)}\n\nBad reply:\n${result.text.slice(0, 500)}`,
+      maxOutputTokens,
       abortSignal: input.signal,
     });
     parsed = parseClassifierOutput(repair.text);

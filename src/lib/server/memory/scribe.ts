@@ -141,6 +141,7 @@ async function callScribeModel(input: {
     model,
     system: input.system,
     prompt: input.user,
+    maxOutputTokens: 2048,
     abortSignal: input.signal,
   });
   const cost =

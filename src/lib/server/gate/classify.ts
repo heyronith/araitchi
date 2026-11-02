@@ -120,16 +120,34 @@ export async function classifyRequest(input: {
     };
   }
 
+  // Safety until the gate target is met: never down-route research-critical
+  // work to solo/probe when confidence is low and the text looks researchy.
+  const researchCriticalHint =
+    /hypothesis|hypotheses|experiment|protocol|literature|survey|novelty|papers?\b|critique|weakness|flaw|results?\b|interpret/i.test(
+      text,
+    );
+
   // LLM fallback
   if (!input.apiKey) {
+    const safeAction =
+      researchCriticalHint && action !== "council"
+        ? ("council" as GateAction)
+        : action;
     return {
-      taskType: knn.taskType,
+      taskType:
+        safeAction === "council" &&
+        !settings.alwaysCouncil.includes(knn.taskType)
+          ? ("other" as TaskType)
+          : knn.taskType,
       stakes: knn.stakes,
-      needsEvidence: knn.needsEvidence,
-      action,
+      needsEvidence: knn.needsEvidence || researchCriticalHint,
+      action: safeAction,
       layer: "knn",
       confidence: knn.confidence,
-      reason: `${knn.reason} (LLM skipped: no API key)`,
+      reason:
+        safeAction === "council" && action !== "council"
+          ? `${knn.reason} (low-confidence research hint → council; no API key)`
+          : `${knn.reason} (LLM skipped: no API key)`,
       inputHash,
       cleanedText: text,
       costUsd: null,
@@ -148,6 +166,14 @@ export async function classifyRequest(input: {
     if (settings.alwaysCouncil.includes(llm.taskType)) {
       llmAction = "council";
     }
+    // Low-confidence research safety: escalate to council rather than solo/probe
+    if (
+      researchCriticalHint &&
+      llmAction !== "council" &&
+      llmAction !== "retrieve_evidence"
+    ) {
+      llmAction = "council";
+    }
     return {
       taskType: llm.taskType,
       stakes: llm.stakes,
@@ -155,15 +181,34 @@ export async function classifyRequest(input: {
       action: llmAction,
       layer: "llm",
       confidence: 0.8,
-      reason: llm.reason,
+      reason:
+        llmAction === "council" &&
+        actionForTaskType(llm.taskType) !== "council" &&
+        researchCriticalHint
+          ? `${llm.reason} (research-critical safety → council)`
+          : llm.reason,
       inputHash,
       cleanedText: text,
       costUsd: llm.costUsd,
       latencyMs: Date.now() - started,
     };
   } catch (e) {
-    // Without a working LLM, do not escalate on low-confidence kNN — solo is
-    // the safe cheap default (council/probe/evidence need higher certainty).
+    // Prefer council over solo when the request looks research-critical.
+    if (researchCriticalHint) {
+      return {
+        taskType: knn.taskType,
+        stakes: knn.stakes,
+        needsEvidence: true,
+        action: "council",
+        layer: "knn",
+        confidence: knn.confidence,
+        reason: `${knn.reason} (LLM failed; research-critical safety → council)`,
+        inputHash,
+        cleanedText: text,
+        costUsd: null,
+        latencyMs: Date.now() - started,
+      };
+    }
     const safe =
       action === "solo"
         ? {

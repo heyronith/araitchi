@@ -11,6 +11,21 @@ import { createHash } from "node:crypto";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const fixturesPath = path.join(root, "evals/probe/fixtures.json");
+const gpqaPath = path.join(root, "evals/probe/gpqa-derived.json");
+
+function loadFixtures() {
+  const base = JSON.parse(readFileSync(fixturesPath, "utf8"));
+  if (!existsSync(gpqaPath)) return base;
+  const derived = JSON.parse(readFileSync(gpqaPath, "utf8"));
+  const seen = new Set(base.map((f) => f.id));
+  const merged = [...base];
+  for (const row of derived) {
+    if (!row?.id || seen.has(row.id)) continue;
+    seen.add(row.id);
+    merged.push(row);
+  }
+  return merged;
+}
 
 const args = process.argv.slice(2).filter((a) => !a.startsWith("-"));
 const MODEL_A = args[0] || "~anthropic/claude-haiku-latest";
@@ -59,6 +74,7 @@ async function ask(apiKey, model, question) {
     body: JSON.stringify({
       model,
       temperature: 0,
+      max_tokens: 256,
       messages: [
         {
           role: "system",
@@ -79,7 +95,7 @@ async function main() {
     console.error("OPENROUTER_API_KEY required");
     process.exit(1);
   }
-  const fixtures = JSON.parse(readFileSync(fixturesPath, "utf8"));
+  const fixtures = loadFixtures();
   const scores = [];
   for (const f of fixtures) {
     try {

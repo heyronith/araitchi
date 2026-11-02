@@ -1,0 +1,8 @@
+{
+  "user": "Assistant claimed quantum tunneling explains our logits (unsupported).",
+  "reply": "Quantum tunneling explains the logit spike we saw (no data cited).",
+  "expected": {
+    "records": []
+  },
+  "existing": []
+}

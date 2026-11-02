@@ -1,11 +1,12 @@
 {
-  "generatedAt": "2026-11-02T08:29:42.230Z",
+  "generatedAt": "2026-11-02T19:37:18.713Z",
   "options": {
     "sets": ["1"],
-    "configs": ["A", "C"],
-    "limit": 2,
+    "configs": ["A"],
+    "limit": 1,
     "repeats": 1,
-    "budgetCapUsd": 0.2,
+    "budgetCapUsd": 0.5,
+    "maxSpendUsd": 0.5,
     "dryRun": false,
     "yes": true
   },
@@ -16,48 +17,10 @@
       "itemId": "ver-0",
       "correct": false,
       "score": 0,
-      "costUsd": 0.0263,
-      "latencyMs": 6701,
+      "costUsd": 0,
+      "latencyMs": 300,
       "borderline": false,
-      "detail": "",
-      "excludedFromHeadline": false
-    },
-    {
-      "set": "1",
-      "config": "A",
-      "itemId": "ver-1",
-      "correct": false,
-      "score": 0,
-      "costUsd": 0.02626,
-      "latencyMs": 6883,
-      "borderline": false,
-      "detail": "",
-      "excludedFromHeadline": false
-    },
-    {
-      "set": "1",
-      "config": "C",
-      "itemId": "ver-0",
-      "correct": false,
-      "score": 0,
-      "costUsd": 0.051244000000000005,
-      "latencyMs": 16303,
-      "borderline": false,
-      "detail": "",
-      "gateAction": "retrieve_evidence",
-      "excludedFromHeadline": false
-    },
-    {
-      "set": "1",
-      "config": "C",
-      "itemId": "ver-1",
-      "correct": false,
-      "score": 0,
-      "costUsd": 0.051932,
-      "latencyMs": 24487,
-      "borderline": false,
-      "detail": "",
-      "gateAction": "retrieve_evidence",
+      "detail": "error: This request requires more credits, or fewer max_tokens. You requested up to 512 tokens, but can only afford 205. To increase, visit https://openrouter.ai/workspaces/default/keys/37340b493ebfd2d280e73d1ce459da2ed1a3cf23f8709f92c7d570f41d9757c6 and adjust the key's total limit",
       "excludedFromHeadline": false
     }
   ],
@@ -66,23 +29,11 @@
       "meanScore": 0,
       "ciLow": 0,
       "ciHigh": 0,
-      "meanCost": 0.026279999999999998,
+      "meanCost": 0,
       "costPerCorrect": null,
-      "meanLatencyMs": 6792,
-      "n": 2
-    },
-    "1:C": {
-      "meanScore": 0,
-      "ciLow": 0,
-      "ciHigh": 0,
-      "meanCost": 0.051588,
-      "costPerCorrect": null,
-      "meanLatencyMs": 20395,
-      "n": 2
+      "meanLatencyMs": 300,
+      "n": 1
     }
   },
-  "findings": [
-    "Adaptive (C) matched or beat strongest solo (A) on verifiable questions in this dry/real run.",
-    "Live run used budget-capped real pipelines."
-  ]
+  "findings": ["Live run used budget-capped real pipelines."]
 }

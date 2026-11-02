@@ -1,0 +1,8 @@
+{
+  "user": "Chat only — great weather today!",
+  "reply": "Indeed, sunny and nice.",
+  "expected": {
+    "records": []
+  },
+  "existing": []
+}

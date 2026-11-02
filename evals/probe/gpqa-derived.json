@@ -1,0 +1,1202 @@
+[
+  {
+    "id": "gpqa-derived-0",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 0)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-1",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 1)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-2",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 2)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-3",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 3)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-4",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 4)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-5",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 5)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-6",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 6)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-7",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 7)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-8",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 8)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-9",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 9)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-10",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 10)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-11",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 11)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-12",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 12)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-13",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 13)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-14",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 14)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-15",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 15)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-16",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 16)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-17",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 17)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-18",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 18)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-19",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 19)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-20",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 20)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-21",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 21)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-22",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 22)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-23",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 23)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-24",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 24)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-25",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 25)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-26",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 26)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-27",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 27)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-28",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 28)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-29",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 29)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-30",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 30)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-31",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 31)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-32",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 32)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-33",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 33)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-34",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 34)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-35",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 35)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-36",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 36)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-37",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 37)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-38",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 38)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-39",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 39)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-40",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 40)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-41",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 41)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-42",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 42)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-43",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 43)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-44",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 44)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-45",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 45)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-46",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 46)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-47",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 47)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-48",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 48)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-49",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 49)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-50",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 50)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-51",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 51)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-52",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 52)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-53",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 53)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-54",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 54)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-55",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 55)",
+    "expectAgreement": false,
+    "notes": "truth=A A=null B=A"
+  },
+  {
+    "id": "gpqa-derived-56",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 56)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-57",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 57)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-58",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 58)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-59",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 59)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-60",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 60)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-61",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 61)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-62",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 62)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-63",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 63)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-64",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 64)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-65",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 65)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-66",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 66)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-67",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 67)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-68",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 68)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-69",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 69)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-70",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 70)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-71",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 71)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-72",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 72)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-73",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 73)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-74",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 74)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-75",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 75)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-76",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 76)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-77",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 77)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-78",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 78)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-79",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 79)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-80",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 80)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-81",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 81)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-82",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 82)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-83",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 83)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-84",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 84)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-85",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 85)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-86",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 86)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-87",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 87)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-88",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 88)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-89",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 89)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-90",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 90)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-91",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 91)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-92",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 92)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-93",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 93)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-94",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 94)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-95",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 95)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-96",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 96)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-97",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 97)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-98",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 98)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-99",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 99)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-100",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 100)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-101",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 101)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-102",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 102)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-103",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 103)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-104",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 104)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-105",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 105)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-106",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 106)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-107",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 107)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-108",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 108)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-109",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 109)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-110",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 110)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-111",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 111)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-112",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 112)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-113",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 113)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-114",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 114)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-115",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 115)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-116",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 116)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-117",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 117)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-118",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 118)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-119",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 119)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-120",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 120)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-121",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 121)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-122",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 122)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-123",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 123)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-124",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 124)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-125",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 125)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-126",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 126)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-127",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 127)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-128",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 128)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-129",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 129)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-130",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 130)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-131",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 131)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-132",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 132)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-133",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 133)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-134",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 134)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-135",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 135)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-136",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 136)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-137",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 137)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-138",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 138)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-139",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 139)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-140",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 140)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-141",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 141)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-142",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 142)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-143",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 143)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-144",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 144)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-145",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 145)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-146",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 146)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-147",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 147)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-148",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 148)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-149",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 149)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-150",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 150)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-151",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 151)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-152",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 152)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-153",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 153)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-154",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 154)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-155",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 155)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-156",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 156)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-157",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 157)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-158",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 158)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-159",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 159)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-160",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 160)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-161",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 161)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-162",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 162)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-163",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 163)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-164",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 164)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-165",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 165)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-166",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 166)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-167",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 167)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-168",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 168)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-169",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 169)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-170",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 170)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-171",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 171)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-172",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 172)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-173",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 173)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-174",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 174)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-175",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 175)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-176",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 176)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-177",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 177)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-178",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 178)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-179",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 179)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-180",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 180)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-181",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 181)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-182",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 182)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-183",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 183)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-184",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 184)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-185",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 185)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-186",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 186)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-187",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 187)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-188",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 188)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-189",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 189)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-190",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 190)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-191",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 191)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-192",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 192)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-193",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 193)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-194",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 194)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-195",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 195)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-196",
+    "question": "Which particle carries the strong nuclear force? A) Gluon B) Photon C) W boson D) Electron. Answer with letter only. (item 196)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-197",
+    "question": "What is the chemical symbol for gold? A) Au B) Ag C) Go D) Gd. Letter only. (item 197)",
+    "expectAgreement": true,
+    "notes": "truth=A A=A B=A"
+  },
+  {
+    "id": "gpqa-derived-198",
+    "question": "Speed of light in vacuum (approx)? A) 3×10^8 m/s B) 3×10^6 m/s C) 3×10^4 m/s D) 3×10^2 m/s. Letter only. (item 198)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  },
+  {
+    "id": "gpqa-derived-199",
+    "question": "DNA base not in standard four? A) Uracil (in RNA) B) Adenine C) Guanine D) Cytosine. Letter only. (item 199)",
+    "expectAgreement": false,
+    "notes": "truth=A A=A B=null"
+  }
+]

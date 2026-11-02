@@ -205,36 +205,47 @@ export async function runBench(opts: BenchOptions): Promise<BenchReport> {
     "4": path.join(root, "evals/bench/validation/items.json"),
   };
 
+  const maxSpendUsd = opts.maxSpendUsd;
+  let spendUsd = 0;
+  let abortedForSpend = false;
+
   const items: ItemResult[] = [];
-  for (const set of opts.sets) {
+  outer: for (const set of opts.sets) {
     let pool = loadJson<Record<string, unknown>[]>(setFiles[set]);
     if (limit != null) pool = pool.slice(0, limit);
     for (const config of opts.configs) {
       if (set === "4" && config !== "C" && config !== "D") continue;
       for (let rep = 0; rep < repeats; rep++) {
         for (const item of pool) {
+          let result: ItemResult;
           if (dryRun) {
-            items.push(
-              await runDryItem({
-                set,
-                config,
-                item,
-                budgetCapUsd,
-                similarityThreshold: simThr,
-              }),
-            );
+            result = await runDryItem({
+              set,
+              config,
+              item,
+              budgetCapUsd,
+              similarityThreshold: simThr,
+            });
           } else {
-            items.push(
-              await runLiveItemWrapped({
-                set,
-                config,
-                item,
-                budgetCapUsd,
-                similarityThreshold: simThr,
-                root,
-                liveRunner: opts.liveRunner,
-              }),
-            );
+            result = await runLiveItemWrapped({
+              set,
+              config,
+              item,
+              budgetCapUsd,
+              similarityThreshold: simThr,
+              root,
+              liveRunner: opts.liveRunner,
+            });
+          }
+          items.push(result);
+          spendUsd += result.costUsd;
+          if (
+            maxSpendUsd != null &&
+            Number.isFinite(maxSpendUsd) &&
+            spendUsd >= maxSpendUsd
+          ) {
+            abortedForSpend = true;
+            break outer;
           }
         }
       }
@@ -297,11 +308,16 @@ export async function runBench(opts: BenchOptions): Promise<BenchReport> {
       ? "Dry-run used fixture-backed mock replies (no OpenRouter calls)."
       : "Live run used budget-capped real pipelines.",
   );
+  if (abortedForSpend && maxSpendUsd != null) {
+    findings.push(
+      `Stopped early: cumulative spend $${spendUsd.toFixed(4)} reached --max-spend $${maxSpendUsd.toFixed(2)} (partial results).`,
+    );
+  }
 
   setBenchContext(null);
   return {
     generatedAt: new Date().toISOString(),
-    options: { ...opts, repeats, budgetCapUsd, dryRun },
+    options: { ...opts, repeats, budgetCapUsd, maxSpendUsd, dryRun },
     items,
     tables,
     findings,

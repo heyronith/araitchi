@@ -1,0 +1,19 @@
+{
+  "user": "User: We think melatonin 300mcg helps sleep onset.\nAssistant: Noted.\nUser: Update — pilot n=12 showed 8 min faster onset (p=0.04).",
+  "reply": "Pilot complete: melatonin 300mcg associated with ~8 min faster sleep onset (n=12, p=0.04).",
+  "expected": {
+    "records": [
+      {
+        "type": "hypothesis",
+        "titleTerms": ["melatonin"],
+        "status": "proposed"
+      },
+      {
+        "type": "experiment",
+        "titleTerms": ["melatonin", "pilot"],
+        "status": "done"
+      }
+    ]
+  },
+  "existing": []
+}

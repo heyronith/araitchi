@@ -1,0 +1,21 @@
+{
+  "user": "Multi-finding reply: HRV up 5ms, latency down 9min, no effect on WASO.",
+  "reply": "HRV +5ms, sleep latency −9 min; WASO unchanged in this arm.",
+  "expected": {
+    "records": [
+      {
+        "type": "note",
+        "titleTerms": ["HRV"]
+      },
+      {
+        "type": "note",
+        "titleTerms": ["latency"]
+      },
+      {
+        "type": "note",
+        "titleTerms": ["WASO"]
+      }
+    ]
+  },
+  "existing": []
+}

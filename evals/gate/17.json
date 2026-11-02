@@ -1,0 +1,1192 @@
+[
+  {
+    "id": "eval-hard-0",
+    "text": "Could sleep restriction explain the variance we saw — list competing stories, not an experiment yet",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-1",
+    "text": "Brainstorm rival mechanisms for blue-light filters; I'm not asking for a protocol",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-2",
+    "text": "What might cause HRV recovery? Hypotheses only, don't design a study",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-3",
+    "text": "Speculative: LoRA rank selection — what are distinct causal hypotheses?",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-4",
+    "text": "I'm torn on explanations for tool-use finetuning; propose hypotheses, not methods",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-5",
+    "text": "Rival accounts for council merge modes? Keep it conjecture-level",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-6",
+    "text": "Generate competing hypotheses about probe agreement thresholds without sampling plans",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-7",
+    "text": "Why might scribe duplicate detection happen? Hypothesis menu, not an RCT outline",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-8",
+    "text": "Theory-building: bench fixture DOIs — enumerate hypotheses, skip power analysis",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-9",
+    "text": "Unclear mechanism for semantic scholar backoff; hypothesis brainstorm requested",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-10",
+    "text": "Not sure if attention head collapse is confounding or causal — hypothesis ideas?",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-11",
+    "text": "What could underlie batch norm in small batches? Competing hypotheses welcome",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-12",
+    "text": "Design a study to test probe agreement thresholds — controls, n, and endpoints",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-13",
+    "text": "Protocol sketch: how would we experimentally isolate scribe duplicate detection?",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-14",
+    "text": "Power and randomization plan for bench fixture DOIs, not literature summary",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-15",
+    "text": "Experimental manipulation to test semantic scholar backoff; include blinding if relevant",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-16",
+    "text": "Two-arm design comparing attention head collapse; specify primary outcome",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-17",
+    "text": "Pre-registerable protocol for batch norm in small batches with exclusion criteria",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-18",
+    "text": "How should we run an ablation experiment on contrastive temperature?",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-19",
+    "text": "Sample size and blocking strategy for MoE load balancing lab study",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-20",
+    "text": "Draft methods section experiment for dataset contamination checks",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-21",
+    "text": "Operationalize sleep restriction into measurable variables in a study design",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-22",
+    "text": "Pilot experiment plan for blue-light filters with stopping rules",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-23",
+    "text": "Within-subjects design proposal for HRV recovery",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-24",
+    "text": "Survey papers on contrastive temperature since 2018 — synthesis, not a single DOI lookup",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-25",
+    "text": "What does the literature say about MoE load balancing? Thematic review",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-26",
+    "text": "Compare major approaches to dataset contamination checks across publications",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-27",
+    "text": "Narrative review outline for sleep restriction with key citations",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-28",
+    "text": "Map the evidence landscape on blue-light filters; not just one fact",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-29",
+    "text": "Systematic-style scan: HRV recovery in ML/NLP venues",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-30",
+    "text": "Prior work on LoRA rank selection: trends and gaps for a related-work section",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-31",
+    "text": "Literature synthesis on tool-use finetuning for our intro chapter",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-32",
+    "text": "Which papers define council merge modes? Review-level, not trivia",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-33",
+    "text": "State of the art summary for probe agreement thresholds from published work",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-34",
+    "text": "Coverage of scribe duplicate detection in peer-reviewed sources — overview",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-35",
+    "text": "Related work paragraph sources for bench fixture DOIs",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-36",
+    "text": "What's weak about the LoRA rank selection claim in our draft?",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-37",
+    "text": "Methodological flaws in the tool-use finetuning argument — be harsh",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-38",
+    "text": "Peer-review style critique of council merge modes section",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-39",
+    "text": "Identify limitations and threats to validity for probe agreement thresholds",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-40",
+    "text": "Why reviewers might reject the scribe duplicate detection framing",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-41",
+    "text": "Attack the bench fixture DOIs evidence chain — logical gaps",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-42",
+    "text": "Weaknesses in how we justify semantic scholar backoff",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-43",
+    "text": "Critical reading of attention head collapse assumptions",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-44",
+    "text": "What would a skeptical reviewer say about batch norm in small batches?",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-45",
+    "text": "Problems with the contrastive temperature experimental claims",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-46",
+    "text": "Critique the MoE load balancing statistical story",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-47",
+    "text": "Flaws in our dataset contamination checks narrative, not new results",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-48",
+    "text": "Table shows semantic scholar backoff — what does it mean for our claim?",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-49",
+    "text": "Interpret the attention head collapse outcome we measured yesterday",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-50",
+    "text": "We got batch norm in small batches in the run — implications?",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-51",
+    "text": "How to read the contrastive temperature effect size in context",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-52",
+    "text": "Explain what the MoE load balancing numbers imply (results already in hand)",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-53",
+    "text": "Discussion paragraph for dataset contamination checks finding",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-54",
+    "text": "Does sleep restriction support or undermine H1? Results interpretation",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-55",
+    "text": "Meaning of the blue-light filters CI crossing zero",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-56",
+    "text": "Post-hoc interpretation of HRV recovery ablation outcome",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-57",
+    "text": "Translate LoRA rank selection metric shift into scientific takeaway",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-58",
+    "text": "Our logged tool-use finetuning delta — interpret, don't redesign study",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-59",
+    "text": "What story do the council merge modes plots tell?",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-60",
+    "text": "What is the DOI for the paper titled sleep restriction?",
+    "taskType": "factual_lookup",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-hard-61",
+    "text": "Who authored the canonical blue-light filters benchmark paper?",
+    "taskType": "factual_lookup",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-hard-62",
+    "text": "Publication year of the original HRV recovery work?",
+    "taskType": "factual_lookup",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-hard-63",
+    "text": "Exact citation for LoRA rank selection — need the reference string",
+    "taskType": "factual_lookup",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-hard-64",
+    "text": "What's the arXiv id for tool-use finetuning?",
+    "taskType": "factual_lookup",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-hard-65",
+    "text": "Lookup: first author of council merge modes Nature paper",
+    "taskType": "factual_lookup",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-hard-66",
+    "text": "Factual: venue where probe agreement thresholds was published",
+    "taskType": "factual_lookup",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-hard-67",
+    "text": "Retrieve bibliographic metadata for scribe duplicate detection",
+    "taskType": "factual_lookup",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-hard-68",
+    "text": "Which journal published bench fixture DOIs?",
+    "taskType": "factual_lookup",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-hard-69",
+    "text": "Find the official title of the semantic scholar backoff dataset paper",
+    "taskType": "factual_lookup",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-hard-70",
+    "text": "What license does the attention head collapse code release use? (cite source)",
+    "taskType": "factual_lookup",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-hard-71",
+    "text": "How many citations does batch norm in small batches have on OpenAlex?",
+    "taskType": "factual_lookup",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-hard-72",
+    "text": "Hey — quick check-in about probe agreement thresholds before coffee",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-73",
+    "text": "Thanks for helping with scribe duplicate detection yesterday, casual question",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-74",
+    "text": "lol the bench fixture DOIs plot looks wild, just chatting",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-75",
+    "text": "Good morning — any thoughts on semantic scholar backoff? (no deliverable)",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-76",
+    "text": "Off-topic: attention head collapse reminded me of a podcast",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-77",
+    "text": "Friendly ping about batch norm in small batches, not a research task",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-78",
+    "text": "Small talk: how's contrastive temperature going on your end?",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-79",
+    "text": "Just venting about MoE load balancing debugging frustration",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-80",
+    "text": "Appreciate the dataset contamination checks help — general chit-chat follow-up",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-81",
+    "text": "Random: favorite paper on sleep restriction? conversational",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-82",
+    "text": "Checking in — no rush on blue-light filters",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-83",
+    "text": "Banter about HRV recovery conference hallway vibes",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-84",
+    "text": "Reformat the contrastive temperature list into APA references only",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-85",
+    "text": "Convert MoE load balancing bullet notes to numbered outline — formatting only",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-86",
+    "text": "Fix markdown headings in the dataset contamination checks section",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-87",
+    "text": "Make the sleep restriction table LaTeX-ready, no new analysis",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-88",
+    "text": "Clean up whitespace and cite keys in blue-light filters draft",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-89",
+    "text": "Turn HRV recovery sentences into passive voice for the paper",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-90",
+    "text": "Apply our house style to LoRA rank selection paragraph",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-91",
+    "text": "Reorder tool-use finetuning sections per template — cosmetic edit",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-92",
+    "text": "Normalize notation for council merge modes symbols in text",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-93",
+    "text": "Pretty-print the probe agreement thresholds JSON config snippet",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-94",
+    "text": "Bullet list to prose for scribe duplicate detection appendix — format task",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-95",
+    "text": "Indent and capitalize bench fixture DOIs methods list consistently",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-96",
+    "text": "TL;DR the attached LoRA rank selection abstract in 3 bullets",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-97",
+    "text": "Summarize this one tool-use finetuning paragraph for slack",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-98",
+    "text": "Short summary of the council merge modes section I pasted",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-99",
+    "text": "One-paragraph recap of probe agreement thresholds intro only",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-100",
+    "text": "Condense scribe duplicate detection email thread into key points",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-101",
+    "text": "Summarize the bench fixture DOIs figure caption text",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-102",
+    "text": "Brief summary of single semantic scholar backoff blog post",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-103",
+    "text": "Executive summary of attention head collapse one-pager",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-104",
+    "text": "Summarize batch norm in small batches methods blurb — no critique",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-105",
+    "text": "Digest the contrastive temperature changelog entry",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-106",
+    "text": "Summarize one MoE load balancing reviewer comment",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-107",
+    "text": "Quick summary of dataset contamination checks slide notes",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-108",
+    "text": "What's the git status of semantic scholar backoff branch?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-109",
+    "text": "Any uncommitted changes in attention head collapse repo?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-110",
+    "text": "Did CI pass on batch norm in small batches last commit?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-111",
+    "text": "Show open PRs touching contrastive temperature module",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-112",
+    "text": "Which files changed in MoE load balancing since yesterday?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-113",
+    "text": "Is dataset contamination checks branch ahead of main?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-114",
+    "text": "Latest commit message on sleep restriction workspace",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-115",
+    "text": "Repo health check for blue-light filters project folder",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-116",
+    "text": "Count failing tests in HRV recovery pipeline",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-117",
+    "text": "When was LoRA rank selection last deployed from this repo?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-118",
+    "text": "Diff summary for tool-use finetuning feature branch",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-119",
+    "text": "List merge conflicts in council merge modes checkout",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-120",
+    "text": "Fix the TypeError in sleep restriction training script",
+    "taskType": "code_help",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-121",
+    "text": "Why does blue-light filters dataloader hang on macOS?",
+    "taskType": "code_help",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-122",
+    "text": "Refactor HRV recovery function to avoid O(n^2) loop",
+    "taskType": "code_help",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-123",
+    "text": "Write unit test for LoRA rank selection parser edge case",
+    "taskType": "code_help",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-124",
+    "text": "Debug CUDA OOM in tool-use finetuning finetune job",
+    "taskType": "code_help",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-125",
+    "text": "How to vectorize council merge modes preprocessing in numpy?",
+    "taskType": "code_help",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-126",
+    "text": "Implement probe agreement thresholds metric in pytorch idiomatically",
+    "taskType": "code_help",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-127",
+    "text": "Resolve import cycle in scribe duplicate detection package",
+    "taskType": "code_help",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-128",
+    "text": "Explain stack trace from bench fixture DOIs eval crash",
+    "taskType": "code_help",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-129",
+    "text": "Optimize SQL query for semantic scholar backoff feature store",
+    "taskType": "code_help",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-130",
+    "text": "Add retry logic to attention head collapse API client",
+    "taskType": "code_help",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-131",
+    "text": "TypeScript types for batch norm in small batches config object",
+    "taskType": "code_help",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-132",
+    "text": "Schedule lab meeting about probe agreement thresholds next Tuesday",
+    "taskType": "planning_admin",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-133",
+    "text": "Draft agenda for scribe duplicate detection grant check-in",
+    "taskType": "planning_admin",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-134",
+    "text": "Who owns the bench fixture DOIs milestone on the roadmap?",
+    "taskType": "planning_admin",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-135",
+    "text": "Budget line items for semantic scholar backoff cloud spend",
+    "taskType": "planning_admin",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-136",
+    "text": "IRB timeline for attention head collapse human subjects study",
+    "taskType": "planning_admin",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-137",
+    "text": "Assign reviewers for batch norm in small batches internal doc",
+    "taskType": "planning_admin",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-138",
+    "text": "Calendar hold for contrastive temperature data collection week",
+    "taskType": "planning_admin",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-139",
+    "text": "Travel planning for MoE load balancing conference submission",
+    "taskType": "planning_admin",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-140",
+    "text": "Compliance checklist before dataset contamination checks trial starts",
+    "taskType": "planning_admin",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-141",
+    "text": "Stakeholder email template for sleep restriction delay",
+    "taskType": "planning_admin",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-142",
+    "text": "Project plan Gantt for blue-light filters phase 2",
+    "taskType": "planning_admin",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-143",
+    "text": "Reschedule HRV recovery sync due to holiday",
+    "taskType": "planning_admin",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-144",
+    "text": "Mixed signals on contrastive temperature — not sure which bucket",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-145",
+    "text": "Tough call: MoE load balancing could be chat or research",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-146",
+    "text": "Edge case routing: dataset contamination checks with low stakes",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-147",
+    "text": "Ambiguous ask about sleep restriction — classify carefully",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-148",
+    "text": "Unclear intent on blue-light filters message",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-149",
+    "text": "Hybrid message mixing HRV recovery admin and science",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-150",
+    "text": "Non-standard LoRA rank selection request for the gate",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-151",
+    "text": "Gray area: tool-use finetuning might be critique or results",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-152",
+    "text": "Hard routing example involving council merge modes",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-153",
+    "text": "Boundary stress test: probe agreement thresholds",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-154",
+    "text": "Confusable phrasing around scribe duplicate detection",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-155",
+    "text": "Evaluator probe: bench fixture DOIs near class border",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-156",
+    "text": "Review papers on sleep debt but also give me the exact DOI of Walker 2017",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-157",
+    "text": "Is dropout 0.5 too high? Sounds like a methods critique but I only want the number from our run log",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-158",
+    "text": "Maybe we should A/B test blue filters — hypothesis or experiment design?",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-159",
+    "text": "What papers argue against melatonin? Also hi, hope your week is fine",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-160",
+    "text": "Summarize the critique section of our draft on protein timing",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-161",
+    "text": "Plan Tuesday standup and also sketch an RCT for caffeine washout",
+    "taskType": "planning_admin",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-162",
+    "text": "Find citation count for Attention Is All You Need and compare transformer survey themes",
+    "taskType": "factual_lookup",
+    "stakes": "medium",
+    "needsEvidence": true
+  },
+  {
+    "id": "eval-hard-163",
+    "text": "The ablation shows +2 BLEU — celebrate or tear apart the claim?",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-164",
+    "text": "git status on bench branch — also interpret yesterday's loss spike",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-165",
+    "text": "Fix the pandas bug in results.py and explain whether p<0.05 supports H1",
+    "taskType": "code_help",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-166",
+    "text": "Reformat references — unrelated: rival hypotheses for HRV drop?",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-167",
+    "text": "General question: what's entropy? (not our project results)",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-168",
+    "text": "Uncategorizable slack noise about lunch and logits",
+    "taskType": "other",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "eval-hard-169",
+    "text": "Interpret Table 2 but first list papers on Table 2's method",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": false
+  }
+]

@@ -80,9 +80,28 @@ export type CachedModelRow = {
   supportsTools: boolean;
 };
 
-/** Pick a cheap default: cheapest tools-capable model from a major lab. */
+function isFreeTierModelId(id: string): boolean {
+  return id.includes(":free");
+}
+
+function isSonnetLatestAlias(m: CachedModelRow): boolean {
+  return (
+    m.id === "~anthropic/claude-sonnet-latest" ||
+    m.id === "anthropic/claude-sonnet-latest" ||
+    /anthropic\/claude-sonnet-latest$/i.test(m.id)
+  );
+}
+
+/** Pick default chat: paid tools-capable; prefer Claude Sonnet latest alias. */
 export function pickDefaultModelId(models: CachedModelRow[]): string | null {
-  const candidates = models
+  const paid = models.filter((m) => !isFreeTierModelId(m.id));
+
+  const sonnet = paid.find((m) => isSonnetLatestAlias(m) && m.supportsTools);
+  if (sonnet) {
+    return sonnet.id;
+  }
+
+  const candidates = paid
     .filter((m) => m.supportsTools && MAJOR_LABS.has(m.lab))
     .filter((m) => m.priceInPerMtok !== null)
     .sort(
@@ -93,11 +112,12 @@ export function pickDefaultModelId(models: CachedModelRow[]): string | null {
     return candidates[0].id;
   }
 
-  const anyTools = models
+  const anyTools = paid
     .filter((m) => m.supportsTools && m.priceInPerMtok !== null)
     .sort(
       (a, b) => (a.priceInPerMtok ?? Infinity) - (b.priceInPerMtok ?? Infinity),
     );
 
-  return anyTools[0]?.id ?? models[0]?.id ?? null;
+  const fallback = paid.find((m) => m.supportsTools) ?? paid[0];
+  return anyTools[0]?.id ?? fallback?.id ?? null;
 }

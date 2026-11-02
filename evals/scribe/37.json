@@ -1,0 +1,15 @@
+{
+  "user": "Duplicate paper cite: Vaswani et al. 2017 transformers.",
+  "reply": "Citing Vaswani 2017 Attention Is All You Need.",
+  "expected": {
+    "records": []
+  },
+  "existing": [
+    {
+      "id": "p1",
+      "type": "paper",
+      "title": "Attention Is All You Need",
+      "year": 2017
+    }
+  ]
+}

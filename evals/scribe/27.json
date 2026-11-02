@@ -1,0 +1,15 @@
+{
+  "user": "Results: filters −12 min latency (already logged).",
+  "reply": "Re-stating −12 min latency improvement with filters.",
+  "expected": {
+    "records": []
+  },
+  "existing": [
+    {
+      "id": "e1",
+      "type": "experiment",
+      "title": "Blue-light filters reduce sleep latency by 12 min",
+      "status": "done"
+    }
+  ]
+}

@@ -60,4 +60,31 @@ describe("models utils", () => {
     ]);
     expect(id).toBe("openai/cheaper");
   });
+
+  it("never picks :free models and prefers claude-sonnet-latest alias", () => {
+    const id = pickDefaultModelId([
+      {
+        id: "meta-llama/llama-3:free",
+        name: "Free",
+        lab: "meta-llama",
+        priceInPerMtok: 0,
+        supportsTools: true,
+      },
+      {
+        id: "~anthropic/claude-sonnet-latest",
+        name: "Sonnet",
+        lab: "anthropic",
+        priceInPerMtok: 3,
+        supportsTools: true,
+      },
+      {
+        id: "openai/cheaper",
+        name: "Cheaper",
+        lab: "openai",
+        priceInPerMtok: 0.05,
+        supportsTools: true,
+      },
+    ]);
+    expect(id).toBe("~anthropic/claude-sonnet-latest");
+  });
 });

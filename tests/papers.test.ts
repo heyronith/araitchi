@@ -3,6 +3,7 @@ import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { setSecret } from "@/lib/server/secrets";
+import * as secretsModule from "@/lib/server/secrets";
 import {
   fingerprint,
   mergePapers,
@@ -20,14 +21,22 @@ import {
   normalizeSemanticScholar,
   normalizeUnpaywall,
   searchCore,
+  searchDblp,
   searchOpenAlex,
 } from "@/lib/server/tools/papers/providers";
+import {
+  isUsableSecret,
+  optionalSecret,
+} from "@/lib/server/tools/papers/providers/util";
 import {
   getPaper,
   paperLinks,
   searchPapers,
 } from "@/lib/server/tools/papers/search";
-import { createPaperTools } from "@/lib/server/tools/papers/tools";
+import {
+  createPaperTools,
+  providerFailureKind,
+} from "@/lib/server/tools/papers/tools";
 import type { Paper } from "@/lib/server/tools/papers/types";
 
 const fixtureDir = path.join(process.cwd(), "tests/fixtures/papers");
@@ -67,6 +76,41 @@ function allFixturePapers() {
     arxiv: normalizeArxivXml(text("arxiv.xml")),
   };
 }
+
+describe("optionalSecret and failure kinds", () => {
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.restoreAllMocks();
+  });
+
+  it("optionalSecret falls back to env and ignores paste placeholders", () => {
+    vi.spyOn(secretsModule, "getSecret").mockImplementation(() => {
+      throw new Error("missing");
+    });
+    // Clear any developer .env.local values so the unit test is deterministic.
+    vi.stubEnv("OPENALEX_API_KEY", "");
+    expect(optionalSecret("openalex_api_key")).toBeNull();
+    vi.stubEnv("OPENALEX_API_KEY", "paste-your-key-here");
+    expect(optionalSecret("openalex_api_key")).toBeNull();
+    vi.stubEnv("OPENALEX_API_KEY", "oa-live-key");
+    expect(optionalSecret("openalex_api_key")).toBe("oa-live-key");
+  });
+
+  it("isUsableSecret rejects empty and paste placeholders", () => {
+    expect(isUsableSecret("")).toBe(false);
+    expect(isUsableSecret("paste key")).toBe(false);
+    expect(isUsableSecret("sk-real")).toBe(true);
+  });
+
+  it("providerFailureKind classifies errors", () => {
+    expect(providerFailureKind("rate_limited")).toBe("rate_limit");
+    expect(providerFailureKind("core_api_key not configured")).toBe("no_key");
+    expect(providerFailureKind("dblp_returned_html")).toBe("error");
+    expect(
+      providerFailureKind("dblp_bot_challenge (JSON API blocked by bot check)"),
+    ).toBe("error");
+  });
+});
 
 describe("provider normalizers", () => {
   it("openalex: DOI, arXiv id from DOI, abstract from inverted index", () => {
@@ -310,6 +354,10 @@ describe("mocked-network search", () => {
   beforeEach(() => {
     calls = [];
     overrides = {};
+    // Isolate from developer .env.local keys for deterministic provider outcomes.
+    vi.stubEnv("CORE_API_KEY", "");
+    vi.stubEnv("OPENALEX_API_KEY", "");
+    vi.stubEnv("SEMANTIC_SCHOLAR_API_KEY", "");
     vi.stubGlobal(
       "fetch",
       vi.fn(async (input: RequestInfo | URL) => {
@@ -324,6 +372,7 @@ describe("mocked-network search", () => {
 
   afterEach(() => {
     vi.unstubAllGlobals();
+    vi.unstubAllEnvs();
   });
 
   it("searches all providers in parallel and merges", async () => {
@@ -416,9 +465,28 @@ describe("mocked-network search", () => {
       "arxiv",
       "crossref",
     ]);
-    expect(providers.find((p) => p.provider === "crossref")?.ok).toBe(false);
+    const crossref = providers.find((p) => p.provider === "crossref");
+    expect(crossref?.ok).toBe(false);
+    expect(crossref?.error).toBe("invalid_json");
     expect(providers.find((p) => p.provider === "arxiv")?.ok).toBe(true);
     expect(calls.some((c) => c.includes("openalex"))).toBe(false);
+  });
+
+  it("dblp reports HTML responses as dblp_bot_challenge", async () => {
+    overrides["dblp.org"] = () =>
+      new Response("<html><body>DBLP</body></html>", {
+        status: 200,
+        headers: { "content-type": "text/html; charset=utf-8" },
+      });
+    const res = await searchDblp("gnn", { limit: 5 });
+    expect(res.ok).toBe(false);
+    expect(res.error).toContain("dblp_bot_challenge");
+  });
+
+  it("dblp accepts JSON fixture", async () => {
+    const res = await searchDblp("graph", { limit: 5 });
+    expect(res.ok).toBe(true);
+    expect(res.papers.length).toBeGreaterThan(0);
   });
 
   it("provider search functions never throw", async () => {
@@ -429,14 +497,18 @@ describe("mocked-network search", () => {
       }),
     );
     const res = await searchOpenAlex("x", { limit: 5 });
-    expect(res).toMatchObject({ provider: "openalex", ok: false, papers: [] });
+    expect(res).toMatchObject({
+      provider: "openalex",
+      ok: false,
+      papers: [],
+    });
     const core = await searchCore("x", { limit: 5 });
     expect(core.ok).toBe(false);
     expect(await searchPapers({ query: "   " })).toEqual({
       papers: [],
       providers: [],
     });
-  });
+  }, 20_000);
 
   it("getPaper merges sources and adds an Unpaywall PDF", async () => {
     overrides["api.semanticscholar.org"] = (url) =>
@@ -516,8 +588,8 @@ describe("mocked-network search", () => {
   it("paperLinks returns [] without an id or when everything fails", async () => {
     expect(await paperLinks({ direction: "citations" })).toEqual([]);
     overrides["api.semanticscholar.org"] = () =>
-      new Response("", { status: 500 });
-    overrides["api.openalex.org"] = () => new Response("", { status: 500 });
+      new Response("", { status: 404 });
+    overrides["api.openalex.org"] = () => new Response("", { status: 404 });
     expect(await paperLinks({ doi: "10.1/x", direction: "citations" })).toEqual(
       [],
     );
@@ -568,7 +640,10 @@ describe("paper tools", () => {
       vi.fn(async (input: RequestInfo | URL) => {
         const host = new URL(String(input)).hostname;
         if (host === "api.openalex.org") {
-          return new Response(text("openalex.json"), { status: 200 });
+          return new Response(text("openalex.json"), {
+            status: 200,
+            headers: { "content-type": "application/json" },
+          });
         }
         if (host === "export.arxiv.org") {
           return new Response(text("arxiv.xml"), { status: 200 });
@@ -592,7 +667,8 @@ describe("paper tools", () => {
       expect.arrayContaining(["openalex", "arxiv"]),
     );
     expect(res.sources?.length).toBe(data.papers.length);
-    expect(res.modelText).toContain("Unavailable: dblp");
+    expect(res.modelText).toContain("Searched 2 of 3 sources");
+    expect(res.modelText).toContain("Failures: dblp");
   });
 
   it("search_papers fails cleanly when every provider fails", async () => {

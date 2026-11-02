@@ -1,0 +1,13 @@
+{
+  "user": "Long thread recap — user asked about melatonin, then power, then IRB.\nFinal ask: store IRB submission date April 3.",
+  "reply": "IRB submitted April 3 for melatonin pilot.",
+  "expected": {
+    "records": [
+      {
+        "type": "note",
+        "titleTerms": ["IRB", "April"]
+      }
+    ]
+  },
+  "existing": []
+}

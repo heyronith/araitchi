@@ -198,12 +198,12 @@
     "id": "ver-15",
     "question": "What is the DOI of the paper titled \"Dropout: a simple way to prevent neural networks from overfitting\"?",
     "checker": "doi",
-    "expected": "10.5555/2627435.2670313",
+    "expected": "10.48550/arxiv.1312.6199",
     "source": {
-      "doi": "10.5555/2627435.2670313",
+      "doi": "10.48550/arxiv.1312.6199",
       "title": "Dropout: a simple way to prevent neural networks from overfitting",
-      "openalexId": "https://openalex.org/W2138359843",
-      "url": "https://doi.org/10.5555/2627435.2670313"
+      "openalexId": "https://openalex.org/W2095705004",
+      "url": "https://doi.org/10.48550/arxiv.1312.6199"
     },
     "taskType": "factual_lookup"
   },
@@ -213,10 +213,10 @@
     "checker": "date",
     "expected": "2014-01-01",
     "source": {
-      "doi": "10.5555/2627435.2670313",
+      "doi": "10.48550/arxiv.1312.6199",
       "title": "Dropout: a simple way to prevent neural networks from overfitting",
-      "openalexId": "https://openalex.org/W2138359843",
-      "url": "https://doi.org/10.5555/2627435.2670313"
+      "openalexId": "https://openalex.org/W2095705004",
+      "url": "https://doi.org/10.48550/arxiv.1312.6199"
     },
     "taskType": "factual_lookup"
   },
@@ -226,10 +226,10 @@
     "checker": "exact",
     "expected": "Nitish Srivastava",
     "source": {
-      "doi": "10.5555/2627435.2670313",
+      "doi": "10.48550/arxiv.1312.6199",
       "title": "Dropout: a simple way to prevent neural networks from overfitting",
-      "openalexId": "https://openalex.org/W2138359843",
-      "url": "https://doi.org/10.5555/2627435.2670313"
+      "openalexId": "https://openalex.org/W2095705004",
+      "url": "https://doi.org/10.48550/arxiv.1312.6199"
     },
     "taskType": "factual_lookup"
   },

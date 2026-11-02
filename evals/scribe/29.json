@@ -1,0 +1,21 @@
+{
+  "user": "Hypothesis H2: caffeine after 2pm hurts deep sleep.",
+  "reply": "Proposed H2 linking afternoon caffeine to deep sleep loss.",
+  "expected": {
+    "records": [
+      {
+        "type": "hypothesis",
+        "titleTerms": ["caffeine", "deep"],
+        "status": "proposed"
+      }
+    ]
+  },
+  "existing": [
+    {
+      "id": "h0",
+      "type": "hypothesis",
+      "title": "Caffeine after 2pm reduces deep sleep",
+      "status": "proposed"
+    }
+  ]
+}

@@ -77,10 +77,10 @@ const PAPERS = [
   },
   {
     title: "Dropout: a simple way to prevent neural networks from overfitting",
-    doi: "10.5555/2627435.2670313",
+    doi: "10.48550/arxiv.1312.6199",
     year: 2014,
     author: "Nitish Srivastava",
-    openalexId: "https://openalex.org/W2138359843",
+    openalexId: "https://openalex.org/W2095705004",
   },
   {
     title: "ImageNet Classification with Deep Convolutional Neural Networks",

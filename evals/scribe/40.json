@@ -1,0 +1,23 @@
+{
+  "user": "Bundle: new hypothesis on magnesium; planned AB test; question on dropout.",
+  "reply": "Hypothesis: magnesium aids sleep onset. Planned AB test next month. Open question: optimal dropout for sleep model?",
+  "expected": {
+    "records": [
+      {
+        "type": "hypothesis",
+        "titleTerms": ["magnesium"],
+        "status": "proposed"
+      },
+      {
+        "type": "experiment",
+        "titleTerms": ["AB"],
+        "status": "planned"
+      },
+      {
+        "type": "question",
+        "titleTerms": ["dropout"]
+      }
+    ]
+  },
+  "existing": []
+}

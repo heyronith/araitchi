@@ -60,6 +60,24 @@ function errorMessage(e: unknown): string {
   return e instanceof Error ? e.message : "Paper tool failed";
 }
 
+/** Maps provider error strings to rate_limit | no_key | error for model text. */
+export function providerFailureKind(
+  error?: string,
+): "rate_limit" | "no_key" | "error" {
+  if (!error) return "error";
+  const e = error.toLowerCase();
+  if (e.startsWith("rate_limited") || e.includes("rate limit"))
+    return "rate_limit";
+  if (e.includes("_api_key") || e.includes("not configured")) return "no_key";
+  return "error";
+}
+
+function formatProviderFailure(provider: string, error?: string): string {
+  const kind = providerFailureKind(error);
+  if (kind === "error" && error) return `${provider} (${kind}: ${error})`;
+  return `${provider} (${kind})`;
+}
+
 const searchSchema = z.object({
   query: z.string().min(1).max(500),
   yearFrom: z.number().int().min(1000).max(3000).optional(),
@@ -127,12 +145,13 @@ export function createPaperTools(ctx: PaperToolContext = {}): RegisteredTool[] {
           };
         }
         const okCount = providers.filter((p) => p.ok).length;
+        const totalSources = providers.length;
         const failed = providerSummary
           .filter((p) => !p.ok)
-          .map((p) => `${p.provider} (${p.error})`);
+          .map((p) => formatProviderFailure(p.provider, p.error));
         const modelText = [
-          `${papers.length} papers from ${okCount}/${providers.length} sources for "${args.query}"`,
-          failed.length ? `Unavailable: ${failed.join(", ")}` : null,
+          `Searched ${okCount} of ${totalSources} sources for "${args.query}"`,
+          failed.length ? `Failures: ${failed.join(", ")}` : null,
           ...papers.map((p, i) => formatPaperForModel(p, i)),
         ]
           .filter((l): l is string => l !== null)

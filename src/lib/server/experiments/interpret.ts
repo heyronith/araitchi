@@ -49,6 +49,7 @@ Focus on confounds, threats to validity, and next steps. Set concern=true only f
     model,
     system,
     prompt,
+    maxOutputTokens: 1024,
     abortSignal: input.signal,
   });
 

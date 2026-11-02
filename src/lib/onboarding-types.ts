@@ -3,6 +3,7 @@
 export const ONBOARDING_STEPS = [
   "welcome",
   "connect",
+  "paper_keys",
   "project",
   "preset",
   "memory",

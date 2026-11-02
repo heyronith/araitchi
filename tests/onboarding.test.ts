@@ -27,7 +27,10 @@ describe("onboarding state machine", () => {
 
   it("advances and retreats", () => {
     expect(nextStep("welcome")).toBe("connect");
+    expect(nextStep("connect")).toBe("paper_keys");
+    expect(nextStep("paper_keys")).toBe("project");
     expect(prevStep("connect")).toBe("welcome");
+    expect(prevStep("project")).toBe("paper_keys");
     expect(stepIndex("tour_validation")).toBeGreaterThan(0);
     expect(isTourStep("tour_mode")).toBe(true);
 

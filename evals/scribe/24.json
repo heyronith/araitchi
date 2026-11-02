@@ -1,0 +1,13 @@
+{
+  "user": "Paper: Walker 2017 Why We Sleep — useful background.",
+  "reply": "Added Walker 2017 as background reading.",
+  "expected": {
+    "records": [
+      {
+        "type": "paper",
+        "titleTerms": ["Walker", "Sleep"]
+      }
+    ]
+  },
+  "existing": []
+}

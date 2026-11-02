@@ -1,0 +1,21 @@
+{
+  "user": "Mark experiment 'filter crossover' as completed.",
+  "reply": "Experiment filter crossover marked complete.",
+  "expected": {
+    "records": [
+      {
+        "type": "experiment",
+        "titleTerms": ["filter", "crossover"],
+        "status": "done"
+      }
+    ]
+  },
+  "existing": [
+    {
+      "id": "x1",
+      "type": "experiment",
+      "title": "Filter crossover sleep study",
+      "status": "planned"
+    }
+  ]
+}

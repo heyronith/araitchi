@@ -1,0 +1,13 @@
+{
+  "user": "Note exclusion: shift workers only if <6h sleep baseline.",
+  "reply": "Eligibility note: shift workers need <6h baseline sleep.",
+  "expected": {
+    "records": [
+      {
+        "type": "note",
+        "titleTerms": ["shift", "6h"]
+      }
+    ]
+  },
+  "existing": []
+}

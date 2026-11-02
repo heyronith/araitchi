@@ -277,6 +277,17 @@ export function RoutingSettings() {
           type="button"
           variant="outline"
           size="sm"
+          data-testid="routing-export-corrections"
+          onClick={() => {
+            window.location.href = "/api/gate/corrections/export?optIn=1";
+          }}
+        >
+          Export anonymised corrections for eval
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
           onClick={() => void load()}
         >
           Refresh log

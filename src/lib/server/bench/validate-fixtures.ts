@@ -4,6 +4,178 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
+import {
+  normalizeArxivId,
+  normalizeDoi,
+} from "@/lib/server/tools/papers/merge";
+
+export type FetchLike = typeof fetch;
+
+export type ResolveOptions = {
+  fetch?: FetchLike;
+  mailto?: string;
+  signal?: AbortSignal;
+};
+
+const BENCH_ITEM_FILES = [
+  "evals/bench/verifiable/items.json",
+  "evals/bench/literature/items.json",
+  "evals/bench/rediscovery/items.json",
+  "evals/bench/validation/items.json",
+] as const;
+
+export function arxivIdFromDoi(doi: string | null | undefined): string | null {
+  const normalized = normalizeDoi(doi);
+  if (!normalized) return null;
+  const m = /^10\.48550\/arxiv\.(.+)$/.exec(normalized);
+  return m ? normalizeArxivId(m[1]) : null;
+}
+
+export function crossrefWorksUrl(doi: string, mailto?: string): string {
+  const base = `https://api.crossref.org/works/${encodeURIComponent(doi)}`;
+  if (!mailto) return base;
+  return `${base}?mailto=${encodeURIComponent(mailto)}`;
+}
+
+/** True when Crossref `/works/{doi}` returns HTTP 200. */
+export async function resolveViaCrossref(
+  doi: string,
+  options: ResolveOptions = {},
+): Promise<boolean> {
+  const normalized = normalizeDoi(doi);
+  if (!normalized) return false;
+  const fetchImpl = options.fetch ?? fetch;
+  const res = await fetchImpl(crossrefWorksUrl(normalized, options.mailto), {
+    signal: options.signal,
+    headers: { Accept: "application/json" },
+  });
+  return res.ok;
+}
+
+/** True when doi.org handle API reports `responseCode` 1. */
+export async function resolveViaDoiHandle(
+  doi: string,
+  options: ResolveOptions = {},
+): Promise<boolean> {
+  const normalized = normalizeDoi(doi);
+  if (!normalized) return false;
+  const fetchImpl = options.fetch ?? fetch;
+  const res = await fetchImpl(
+    `https://doi.org/api/handles/${encodeURIComponent(normalized)}`,
+    { signal: options.signal, headers: { Accept: "application/json" } },
+  );
+  if (!res.ok) return false;
+  const data = (await res.json()) as { responseCode?: number };
+  return data.responseCode === 1;
+}
+
+/** True when export.arxiv.org returns at least one entry for the id. */
+export async function resolveViaArxiv(
+  arxivId: string,
+  options: ResolveOptions = {},
+): Promise<boolean> {
+  const id = normalizeArxivId(arxivId);
+  if (!id) return false;
+  const fetchImpl = options.fetch ?? fetch;
+  const url = `https://export.arxiv.org/api/query?id_list=${encodeURIComponent(id)}&max_results=1`;
+  const res = await fetchImpl(url, { signal: options.signal });
+  if (!res.ok) return false;
+  const text = await res.text();
+  return (
+    /<entry[\s>]/i.test(text) ||
+    /<opensearch:totalResults>([1-9]\d*)<\/opensearch:totalResults>/i.test(text)
+  );
+}
+
+/** Crossref → doi.org handles → arXiv (for DataCite arXiv DOIs). */
+export async function resolveBenchDoi(
+  doi: string,
+  options: ResolveOptions = {},
+): Promise<boolean> {
+  if (await resolveViaCrossref(doi, options)) return true;
+  if (await resolveViaDoiHandle(doi, options)) return true;
+  const arxiv = arxivIdFromDoi(doi);
+  if (arxiv) return resolveViaArxiv(arxiv, options);
+  return false;
+}
+
+export type BenchSourceRef = {
+  doi?: string;
+  arxivId?: string;
+  openalexId?: string;
+  url?: string;
+};
+
+export async function resolveBenchSourceRef(
+  source: BenchSourceRef,
+  options: ResolveOptions = {},
+): Promise<boolean> {
+  const doi = normalizeDoi(source.doi);
+  if (doi && (await resolveBenchDoi(doi, options))) return true;
+  const arxiv =
+    normalizeArxivId(source.arxivId) ?? arxivIdFromDoi(source.doi ?? null);
+  if (arxiv && (await resolveViaArxiv(arxiv, options))) return true;
+  return false;
+}
+
+export function collectBenchFixtureDois(root = process.cwd()): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const rel of BENCH_ITEM_FILES) {
+    for (const item of loadArr(path.join(root, rel))) {
+      const src = item.source as BenchSourceRef | undefined;
+      if (src?.doi) {
+        const d = normalizeDoi(src.doi);
+        if (d && !seen.has(d)) {
+          seen.add(d);
+          out.push(d);
+        }
+      }
+      const gold = item.goldDois as unknown;
+      if (Array.isArray(gold)) {
+        for (const raw of gold) {
+          const d = normalizeDoi(String(raw));
+          if (d && d.startsWith("10.") && !seen.has(d)) {
+            seen.add(d);
+            out.push(d);
+          }
+        }
+      }
+    }
+  }
+  return out;
+}
+
+export type OnlineFixtureValidation = {
+  ok: boolean;
+  total: number;
+  resolved: number;
+  pct: number;
+  failures: string[];
+};
+
+export async function validateBenchFixturesOnline(
+  root = process.cwd(),
+  options: ResolveOptions = {},
+): Promise<OnlineFixtureValidation> {
+  const dois = collectBenchFixtureDois(root);
+  const failures: string[] = [];
+  let resolved = 0;
+  for (const doi of dois) {
+    if (await resolveBenchDoi(doi, options)) resolved++;
+    else failures.push(doi);
+  }
+  const total = dois.length;
+  const pct = total ? (100 * resolved) / total : 100;
+  return {
+    ok: pct >= 98,
+    total,
+    resolved,
+    pct,
+    failures,
+  };
+}
+
 export type FixtureIssue = { set: string; id?: string; message: string };
 
 export type FixtureValidation = {

@@ -1,0 +1,18 @@
+{
+  "user": "Turn 1: plan crossover study.\nTurn 2: add washout week.\nTurn 3: exclude apnea AHI>15.",
+  "reply": "Crossover sleep study with 1-week washout; exclude AHI>15.",
+  "expected": {
+    "records": [
+      {
+        "type": "experiment",
+        "titleTerms": ["crossover"],
+        "status": "planned"
+      },
+      {
+        "type": "note",
+        "titleTerms": ["AHI"]
+      }
+    ]
+  },
+  "existing": []
+}

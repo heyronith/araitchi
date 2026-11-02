@@ -30,7 +30,10 @@ echo "→ Enabling corepack…"
 corepack enable
 
 echo "→ Installing dependencies (pnpm install)…"
-pnpm install
+if ! pnpm install; then
+  echo "→ pnpm install failed; retrying once…"
+  pnpm install
+fi
 
 echo "→ Building (pnpm build)…"
 pnpm build

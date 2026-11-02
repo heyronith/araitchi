@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Benchmark harness. Usage:
- *   pnpm bench [--dry-run] [--yes] [--sets 1,2] [--configs A,C] [--limit 5] [--repeats 3] [--budget 0.5]
+ *   pnpm bench [--dry-run] [--yes] [--sets 1,2] [--configs A,C] [--limit 5] [--repeats 3] [--budget 0.5] [--max-spend 2]
  *
  * Needs OpenRouter key for live runs. CI uses --dry-run (no network).
  * Live runs print an estimated cost and require confirmation unless --yes.
@@ -34,6 +34,9 @@ const configs = String(arg("--configs", "A,B,C,D"))
 const limit = arg("--limit", "") ? Number(arg("--limit")) : undefined;
 const repeats = arg("--repeats", "") ? Number(arg("--repeats")) : undefined;
 const budget = arg("--budget", "") ? Number(arg("--budget")) : undefined;
+const maxSpend = arg("--max-spend", "")
+  ? Number(arg("--max-spend"))
+  : undefined;
 
 const defaultsPath = path.join(root, "config/defaults.json");
 const defaults = existsSync(defaultsPath)
@@ -57,21 +60,41 @@ function countItems(setId) {
   return limit != null ? Math.min(limit, n) : n;
 }
 
-let estItems = 0;
-for (const s of sets) {
-  const n = countItems(s);
-  for (const c of configs) {
-    if (s === "4" && c !== "C" && c !== "D") continue;
-    estItems += n * rep;
-  }
+function runsForSetConfig(setId, configId) {
+  if (setId === "4" && configId !== "C" && configId !== "D") return 0;
+  return countItems(setId) * rep;
 }
-const estimate = estItems * budgetCap;
+
+let estItems = 0;
+let estimate = 0;
 console.log(
   `Bench plan: sets=${sets.join(",")} configs=${configs.join(",")} limit=${limit ?? "all"} repeats=${rep}`,
 );
+console.log("Estimated cost breakdown (upper bound = per-item cap × runs):");
+for (const s of sets) {
+  for (const c of configs) {
+    const runs = runsForSetConfig(s, c);
+    if (!runs) continue;
+    const part = runs * budgetCap;
+    estItems += runs;
+    estimate += part;
+    console.log(
+      `  set ${s} × config ${c}: ${runs} runs × $${budgetCap.toFixed(2)} ≈ $${part.toFixed(2)}`,
+    );
+  }
+}
+const cappedEstimate =
+  maxSpend != null && Number.isFinite(maxSpend)
+    ? Math.min(estimate, maxSpend)
+    : estimate;
 console.log(
-  `Estimated upper cost ≈ $${estimate.toFixed(2)} (cap $${budgetCap}/item × ${estItems} runs). dryRun=${dryRun}`,
+  `Total upper cost ≈ $${estimate.toFixed(2)} across ${estItems} runs${maxSpend != null ? ` (effective cap --max-spend $${maxSpend.toFixed(2)})` : ""}. dryRun=${dryRun}`,
 );
+if (maxSpend != null && estimate > maxSpend) {
+  console.log(
+    `Note: plan exceeds --max-spend; runner will stop early with partial results (~$${cappedEstimate.toFixed(2)} spent).`,
+  );
+}
 
 async function confirm() {
   if (dryRun || yes) return true;
@@ -79,10 +102,12 @@ async function confirm() {
     console.error("Live bench requires --yes when stdin is not a TTY.");
     return false;
   }
+  const spendPrompt =
+    maxSpend != null ? Math.min(estimate, maxSpend) : estimate;
   const rl = createInterface({ input: process.stdin, output: process.stdout });
   const answer = await new Promise((resolve) => {
     rl.question(
-      `Proceed with live OpenRouter spend up to ~$${estimate.toFixed(2)}? [y/N] `,
+      `Proceed with live OpenRouter spend up to ~$${spendPrompt.toFixed(2)}? [y/N] `,
       resolve,
     );
   });
@@ -107,6 +132,7 @@ const forward = [
   ...(limit != null ? ["--limit", String(limit)] : []),
   ...(repeats != null ? ["--repeats", String(repeats)] : []),
   ...(budget != null ? ["--budget", String(budget)] : []),
+  ...(maxSpend != null ? ["--max-spend", String(maxSpend)] : []),
 ];
 
 // Windows requires a file:// URL for --import (absolute D:\… paths fail).

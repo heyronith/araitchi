@@ -90,6 +90,16 @@ export function setEmbedderForTests(embedder: Embedder | null) {
   setStatus(embedder?.getStatus() ?? { state: "idle" });
 }
 
+/** Tear down the worker embedder so CLI processes can exit cleanly. */
+export async function shutdownEmbedder(): Promise<void> {
+  const current = singleton;
+  singleton = null;
+  if (current instanceof WorkerEmbedder) {
+    await current.shutdown();
+  }
+  setStatus({ state: "idle" });
+}
+
 class WorkerEmbedder implements Embedder {
   readonly modelId: EmbeddingModelId;
   dims = 1024;
@@ -187,6 +197,16 @@ class WorkerEmbedder implements Embedder {
       });
       void this.drain();
     });
+  }
+
+  async shutdown(): Promise<void> {
+    this.ready = false;
+    this.queue = [];
+    const w = this.worker;
+    this.worker = null;
+    if (w) {
+      await w.terminate();
+    }
   }
 
   private async drain() {

@@ -6,7 +6,13 @@
  * Scores precision, recall, duplicate rate, invented-content rate, and cost.
  * Defaults use OpenRouter "latest" aliases (quality-first).
  */
-import { readFileSync, readdirSync, existsSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+} from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -96,6 +102,8 @@ async function callModel(apiKey, model, system, user) {
         { role: "user", content: user },
       ],
       temperature: 0,
+      // Cap reservation: unbounded max_tokens (65k) 402s when credit headroom is tight
+      max_tokens: 2048,
     }),
   });
   if (!res.ok) {
@@ -179,15 +187,25 @@ async function main() {
     });
   }
 
-  console.log(
+  const lines = [
+    "# Scribe eval",
+    "",
+    `Fixtures: ${files.length}. Models: ${MODELS.join(", ")}.`,
+    "",
     "| Model | Precision | Recall | Dup rate | Invented | Cost/reply |",
-  );
-  console.log("| --- | ---: | ---: | ---: | ---: | ---: |");
+    "| --- | ---: | ---: | ---: | ---: | ---: |",
+  ];
   for (const r of rows) {
-    console.log(
+    lines.push(
       `| ${r.model} | ${(r.precision * 100).toFixed(0)}% | ${(r.recall * 100).toFixed(0)}% | ${(r.duplicateRate * 100).toFixed(0)}% | ${(r.inventedRate * 100).toFixed(0)}% | ${r.costPerReply == null ? "—" : "$" + r.costPerReply.toFixed(4)} |`,
     );
   }
+  const outDir = path.join(root, "evals/results");
+  mkdirSync(outDir, { recursive: true });
+  const outPath = path.join(outDir, "scribe.md");
+  writeFileSync(outPath, lines.join("\n") + "\n");
+  console.log(lines.join("\n"));
+  console.log("\nWrote", outPath);
 }
 
 main().catch((e) => {

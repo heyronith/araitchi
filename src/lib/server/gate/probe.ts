@@ -109,6 +109,7 @@ async function runProbeMember(input: {
     model,
     system: input.system,
     prompt: input.user,
+    maxOutputTokens: 1024,
     abortSignal: input.signal,
   });
   const cost =

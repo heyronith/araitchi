@@ -45,19 +45,22 @@ const KEY_FIELDS = [
   {
     name: "openalex_api_key" as const,
     label: "OpenAlex API key",
-    hint: "Optional",
+    hint: "Optional — free at openalex.org",
+    signup: "https://openalex.org/",
     required: false,
   },
   {
     name: "semantic_scholar_api_key" as const,
     label: "Semantic Scholar API key",
-    hint: "Optional",
+    hint: "Optional — semanticscholar.org/product/api",
+    signup: "https://www.semanticscholar.org/product/api",
     required: false,
   },
   {
     name: "core_api_key" as const,
     label: "CORE API key",
-    hint: "Optional",
+    hint: "Optional — core.ac.uk/services/api",
+    signup: "https://core.ac.uk/services/api",
     required: false,
   },
   {
@@ -274,6 +277,16 @@ export function SettingsDialog({
                     </Badge>
                   </div>
                   <p className="text-muted-foreground text-xs">{field.hint}</p>
+                  {"signup" in field && field.signup ? (
+                    <a
+                      className="text-primary text-xs underline"
+                      href={field.signup}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Sign up
+                    </a>
+                  ) : null}
                   <Input
                     id={field.name}
                     type="password"

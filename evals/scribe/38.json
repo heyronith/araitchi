@@ -1,0 +1,13 @@
+{
+  "user": "User: maybe n=30?\nUser: actually n=40.\nUser: lock it.",
+  "reply": "Final decision n=40 locked.",
+  "expected": {
+    "records": [
+      {
+        "type": "decision",
+        "titleTerms": ["n=40"]
+      }
+    ]
+  },
+  "existing": []
+}

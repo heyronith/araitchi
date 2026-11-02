@@ -1,0 +1,13 @@
+{
+  "user": "Lock decision: primary endpoint is sleep latency not WASO.",
+  "reply": "Decision recorded: primary endpoint = sleep latency.",
+  "expected": {
+    "records": [
+      {
+        "type": "decision",
+        "titleTerms": ["sleep latency", "endpoint"]
+      }
+    ]
+  },
+  "existing": []
+}

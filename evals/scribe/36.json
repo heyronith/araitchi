@@ -1,0 +1,13 @@
+{
+  "user": "Finding: melatonin group REM +4% (pre-registered secondary).",
+  "reply": "Secondary outcome: REM +4% in melatonin arm.",
+  "expected": {
+    "records": [
+      {
+        "type": "note",
+        "titleTerms": ["REM", "melatonin"]
+      }
+    ]
+  },
+  "existing": []
+}

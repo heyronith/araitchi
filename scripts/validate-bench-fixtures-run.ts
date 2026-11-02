@@ -1,6 +1,22 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import path from "node:path";
 
-import { validateBenchFixturesOffline } from "../src/lib/server/bench/validate-fixtures";
+import {
+  validateBenchFixturesOffline,
+  validateBenchFixturesOnline,
+} from "../src/lib/server/bench/validate-fixtures";
+
+function loadEnvLocal(key: string): string | undefined {
+  const fromEnv = process.env[key]?.trim();
+  if (fromEnv) return fromEnv;
+  const envPath = path.join(process.cwd(), ".env.local");
+  if (!existsSync(envPath)) return undefined;
+  const text = readFileSync(envPath, "utf8");
+  const re = new RegExp(`^${key}=(.+)$`, "m");
+  const m = text.match(re);
+  if (!m) return undefined;
+  return m[1].trim().replace(/^["']|["']$/g, "");
+}
 
 async function main() {
   const online = process.argv.includes("--online");
@@ -21,40 +37,19 @@ async function main() {
   console.log("Offline validation OK");
 
   if (online) {
-    const sets = [
-      "evals/bench/verifiable/items.json",
-      "evals/bench/literature/items.json",
-      "evals/bench/rediscovery/items.json",
-      "evals/bench/validation/items.json",
-    ];
-    let total = 0;
-    let ok = 0;
-    for (const f of sets) {
-      const items = JSON.parse(readFileSync(f, "utf8")) as Array<{
-        source?: { doi?: string };
-        goldDois?: string[];
-      }>;
-      for (const it of items) {
-        const ids = [
-          ...(it.source?.doi ? [it.source.doi] : []),
-          ...(it.goldDois ?? []).filter((d) => String(d).startsWith("10.")),
-        ];
-        for (const doi of ids.slice(0, 3)) {
-          total++;
-          try {
-            const res = await fetch(`https://doi.org/${doi}`, {
-              method: "HEAD",
-              redirect: "follow",
-            });
-            if (res.ok || res.status === 302 || res.status === 301) ok++;
-          } catch {
-            // ignore
-          }
-        }
-      }
+    const mailto = loadEnvLocal("ARAITCHI_CONTACT_EMAIL");
+    const onlineResult = await validateBenchFixturesOnline(process.cwd(), {
+      mailto,
+    });
+    console.log(
+      `Online resolution: ${onlineResult.resolved}/${onlineResult.total} DOIs resolved (${onlineResult.pct.toFixed(1)}%)`,
+    );
+    if (onlineResult.failures.length) {
+      console.error(
+        `Unresolved (${onlineResult.failures.length}): ${onlineResult.failures.slice(0, 15).join(", ")}${onlineResult.failures.length > 15 ? " …" : ""}`,
+      );
     }
-    const pct = total ? ((100 * ok) / total).toFixed(1) : "0";
-    console.log(`Online spot-check: ${ok}/${total} DOIs resolved (${pct}%)`);
+    if (!onlineResult.ok) process.exit(1);
   }
 }
 

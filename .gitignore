@@ -24,6 +24,7 @@
 
 # misc
 .DS_Store
+evals/cache/
 *.pem
 *.db
 *.db-*
@@ -49,3 +50,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Gate eval debug (local, large)
+evals/results/gate-debug.jsonl

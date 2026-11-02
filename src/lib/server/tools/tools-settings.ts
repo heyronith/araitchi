@@ -84,7 +84,13 @@ export function setMaxSteps(projectPath: string, value: number): number {
 /** Non-secret app-level contact email (sent as `mailto` to polite pools). */
 export function getContactEmail(): string {
   const v = getSetting<unknown>(CONTACT_EMAIL_KEY, "");
-  return typeof v === "string" ? v : "";
+  const fromSettings = typeof v === "string" ? v.trim() : "";
+  if (fromSettings && !fromSettings.toLowerCase().startsWith("paste")) {
+    return fromSettings;
+  }
+  const fromEnv = process.env.ARAITCHI_CONTACT_EMAIL?.trim();
+  if (fromEnv && !fromEnv.toLowerCase().startsWith("paste")) return fromEnv;
+  return "";
 }
 
 export function setContactEmail(email: string): string {

@@ -1,9 +1,9 @@
 {
   "version": 1,
   "notes": "Quality-first defaults using OpenRouter latest aliases where possible. Owner updates after pnpm eval:* / pnpm bench. See docs/MODEL_DEFAULTS.md.",
-  "scribeModel": "~openai/gpt-oss-latest",
-  "classifierModel": "~openai/gpt-oss-latest",
-  "strongestSoloModel": "~anthropic/claude-opus-latest",
+  "scribeModel": "~openai/gpt-latest",
+  "classifierModel": "~openai/gpt-latest",
+  "strongestSoloModel": "~anthropic/claude-sonnet-latest",
   "probeModels": [
     "~anthropic/claude-haiku-latest",
     "~google/gemini-flash-latest"

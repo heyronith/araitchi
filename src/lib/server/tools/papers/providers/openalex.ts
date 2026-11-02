@@ -3,7 +3,7 @@ import "server-only";
 import { getProviderBaseUrl } from "../env";
 import { normalizeArxivId, normalizeDoi } from "../merge";
 import type { Paper, ProviderSearchResult } from "../types";
-import { fetchJson } from "./http";
+import { fetchJson, withOpenAlexQueue } from "./http";
 import {
   arxivIdFromDoi,
   arxivIdFromUrl,
@@ -90,11 +90,22 @@ function authParams(mailto?: string): URLSearchParams {
   return params;
 }
 
+function mapFetchError(
+  res: { ok: false; error: string; status?: number },
+  hasKey: boolean,
+): string {
+  if (res.error === "rate_limited" && !hasKey) {
+    return "rate_limited: add a free OpenAlex API key in Settings → Keys (or OPENALEX_API_KEY)";
+  }
+  return res.error;
+}
+
 export async function searchOpenAlex(
   query: string,
   opts: ProviderSearchOpts,
 ): Promise<ProviderSearchResult> {
   return runProvider("openalex", opts, async () => {
+    const hasKey = Boolean(optionalSecret("openalex_api_key"));
     const params = authParams(opts.mailto);
     params.set("search", query);
     params.set("per_page", String(clampLimit(opts.limit, 200)));
@@ -106,14 +117,13 @@ export async function searchOpenAlex(
       filters.push(`to_publication_date:${opts.yearTo}-12-31`);
     }
     if (filters.length > 0) params.set("filter", filters.join(","));
-    const res = await fetchJson<unknown>(
-      `${getProviderBaseUrl("openalex")}/works?${params}`,
-      {
+    const res = await withOpenAlexQueue(() =>
+      fetchJson<unknown>(`${getProviderBaseUrl("openalex")}/works?${params}`, {
         headers: { "User-Agent": userAgent(opts.mailto) },
         signal: opts.signal,
-      },
+      }),
     );
-    if (!res.ok) return { ok: false, error: res.error };
+    if (!res.ok) return { ok: false, error: mapFetchError(res, hasKey) };
     return { ok: true, papers: normalizeOpenAlex(res.data) };
   });
 }
@@ -135,9 +145,14 @@ async function lookupWork(
       normalizeDoi(ref.doi ?? null) ??
       (arxiv ? `10.48550/arxiv.${arxiv}` : null);
     if (!doi) return { openAlexId: null, paper: null };
-    const res = await fetchJson<unknown>(
-      `${getProviderBaseUrl("openalex")}/works/doi:${encodeDoiPath(doi)}?${authParams(ref.mailto)}`,
-      { headers: { "User-Agent": userAgent(ref.mailto) }, signal: ref.signal },
+    const res = await withOpenAlexQueue(() =>
+      fetchJson<unknown>(
+        `${getProviderBaseUrl("openalex")}/works/doi:${encodeDoiPath(doi)}?${authParams(ref.mailto)}`,
+        {
+          headers: { "User-Agent": userAgent(ref.mailto) },
+          signal: ref.signal,
+        },
+      ),
     );
     if (!res.ok) return { openAlexId: null, paper: null };
     const rawId = asStr(asObj(res.data).id);
@@ -170,9 +185,11 @@ export async function fetchOpenAlexLinks(
         : `cited_by:${openAlexId}`,
     );
     params.set("per_page", String(clampLimit(ref.limit, 200)));
-    const res = await fetchJson<unknown>(
-      `${getProviderBaseUrl("openalex")}/works?${params}`,
-      { headers: { "User-Agent": userAgent(ref.mailto) }, signal: ref.signal },
+    const res = await withOpenAlexQueue(() =>
+      fetchJson<unknown>(`${getProviderBaseUrl("openalex")}/works?${params}`, {
+        headers: { "User-Agent": userAgent(ref.mailto) },
+        signal: ref.signal,
+      }),
     );
     return res.ok ? normalizeOpenAlex(res.data) : [];
   } catch {

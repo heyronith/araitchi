@@ -19,7 +19,7 @@ Per-project Settings (Routing, Council, Memory) can override classifier, probe, 
 
 ## Preference: OpenRouter latest aliases
 
-Prefer OpenRouter **latest** aliases (for example `~openai/gpt-oss-latest`, `~anthropic/claude-haiku-latest`) so defaults track current catalog quality without editing the file on every model bump. Pin a concrete catalog id in Settings when you need a fixed mock/e2e target or a frozen eval snapshot.
+Prefer OpenRouter **latest** aliases (for example `~openai/gpt-latest`, `~anthropic/claude-haiku-latest`) so defaults track current catalog quality without editing the file on every model bump. Pin a concrete catalog id in Settings when you need a fixed mock/e2e target or a frozen eval snapshot. Do **not** use `~openai/gpt-oss-latest` — it is not a valid catalog alias.
 
 ## How defaults are chosen (quality first)
 
@@ -43,7 +43,7 @@ Held-out labeled set in `evals/gate/`. Compare kNN only, kNN + each LLM candidat
 
 Fixtures with known agree/disagree outcomes. Reports agreement-threshold ROC and a chosen threshold.
 
-**Pick:** a two-lab pair that separates agreement well; set `gate.probeAgreementThreshold` from the eval (also mirrored in bench rediscovery similarity when appropriate). Models must be from **different labs**.
+**Pick:** a two-lab pair that separates agreement well; set `gate.probeAgreementThreshold` from the eval (also mirrored in bench rediscovery similarity when appropriate). Models must be from **different labs**. Provisional shipped default: **0.48** (update after `pnpm eval:probe` on your fixtures).
 
 ### Bench — `pnpm bench`
 

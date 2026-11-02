@@ -1,0 +1,13 @@
+{
+  "user": "Open question: does blue light filter wear time matter?",
+  "reply": "Open question on filter wear duration.",
+  "expected": {
+    "records": [
+      {
+        "type": "question",
+        "titleTerms": ["blue", "filter"]
+      }
+    ]
+  },
+  "existing": []
+}

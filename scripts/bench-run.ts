@@ -1,3 +1,5 @@
+import { closeAppDb } from "@/lib/server/db/client";
+import { shutdownEmbedder } from "@/lib/server/memory/embedder";
 import { runBench, writeBenchReport } from "../src/lib/server/bench/runner";
 
 function arg(name: string, fallback?: string): string | undefined {
@@ -20,6 +22,9 @@ async function main() {
   const limit = arg("--limit") ? Number(arg("--limit")) : undefined;
   const repeats = arg("--repeats") ? Number(arg("--repeats")) : undefined;
   const budgetCapUsd = arg("--budget") ? Number(arg("--budget")) : undefined;
+  const maxSpendUsd = arg("--max-spend")
+    ? Number(arg("--max-spend"))
+    : undefined;
 
   const report = await runBench({
     sets,
@@ -27,6 +32,7 @@ async function main() {
     limit,
     repeats,
     budgetCapUsd,
+    maxSpendUsd,
     dryRun,
     yes,
   });
@@ -34,6 +40,23 @@ async function main() {
   console.log(`Wrote ${mdPath}`);
   console.log(`Wrote ${jsonPath}`);
   console.log(`Items: ${report.items.length}`);
+
+  setTimeout(() => {
+    console.error("Bench runner: hard exit after 10s shutdown timeout");
+    process.exit(0);
+  }, 10_000);
+
+  try {
+    await shutdownEmbedder();
+  } catch (e) {
+    console.error("shutdownEmbedder:", e);
+  }
+  try {
+    closeAppDb();
+  } catch (e) {
+    console.error("closeAppDb:", e);
+  }
+  process.exit(0);
 }
 
 main().catch((e) => {

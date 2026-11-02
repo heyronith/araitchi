@@ -43,7 +43,7 @@ function gateDefaultsFromConfig(): Pick<
  */
 export const DEFAULT_GATE_SETTINGS: GateSettings = {
   knnThreshold: 0.55,
-  probeAgreementThreshold: 0.72,
+  probeAgreementThreshold: 0.48,
   ...gateDefaultsFromConfig(),
   alwaysCouncil: [...ALWAYS_COUNCIL] as TaskType[],
   knnK: 7,

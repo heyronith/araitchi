@@ -89,6 +89,20 @@ export function OnboardingWizard({
   const [hasKey, setHasKey] = React.useState(false);
   const [hasProject, setHasProject] = React.useState(false);
   const [keyValue, setKeyValue] = React.useState("");
+  const [paperKeys, setPaperKeys] = React.useState<
+    Record<
+      "openalex_api_key" | "semantic_scholar_api_key" | "core_api_key",
+      string
+    >
+  >({
+    openalex_api_key: "",
+    semantic_scholar_api_key: "",
+    core_api_key: "",
+  });
+  const [paperKeySet, setPaperKeySet] = React.useState<Record<string, boolean>>(
+    {},
+  );
+  const [paperTestBusy, setPaperTestBusy] = React.useState<string | null>(null);
   const [preset, setPreset] = React.useState<"balanced" | "budget" | null>(
     null,
   );
@@ -118,6 +132,15 @@ export function OnboardingWizard({
         setHasKey(
           secrets.find((s) => s.name === "openrouter_api_key")?.set ?? false,
         );
+        const nextPaper: Record<string, boolean> = {};
+        for (const name of [
+          "openalex_api_key",
+          "semantic_scholar_api_key",
+          "core_api_key",
+        ] as const) {
+          nextPaper[name] = secrets.find((s) => s.name === name)?.set ?? false;
+        }
+        setPaperKeySet(nextPaper);
       }
       if (projectsRes.ok) {
         const projects = (await projectsRes.json()) as {
@@ -239,6 +262,77 @@ export function OnboardingWizard({
     }
   };
 
+  async function savePaperKey(
+    name: "openalex_api_key" | "semantic_scholar_api_key" | "core_api_key",
+  ) {
+    const trimmed = paperKeys[name].trim();
+    if (!trimmed) {
+      toast.error("Paste a key or skip this step");
+      return;
+    }
+    setBusy(true);
+    try {
+      const res = await fetch("/api/secrets", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, value: trimmed }),
+      });
+      if (!res.ok) throw new Error("save failed");
+      setPaperKeys((prev) => ({ ...prev, [name]: "" }));
+      await refreshHints();
+      toast.success("Key saved");
+    } catch {
+      toast.error("Failed to save key");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function testPaperProvider(
+    provider: "openalex" | "semantic_scholar" | "core",
+  ) {
+    setPaperTestBusy(provider);
+    try {
+      const res = await fetch("/api/papers/test", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ provider }),
+      });
+      const json = (await res.json()) as { ok?: boolean; error?: string };
+      if (json.ok) toast.success(`${provider}: test search OK`);
+      else toast.error(json.error ?? `${provider} test failed`);
+    } catch {
+      toast.error("Test request failed");
+    } finally {
+      setPaperTestBusy(null);
+    }
+  }
+
+  const PAPER_PROVIDER_CARDS = [
+    {
+      id: "openalex" as const,
+      secret: "openalex_api_key" as const,
+      title: "OpenAlex",
+      blurb:
+        "Higher rate limits and richer metadata for literature search (free API key).",
+      signup: "https://openalex.org/",
+    },
+    {
+      id: "semantic_scholar" as const,
+      secret: "semantic_scholar_api_key" as const,
+      title: "Semantic Scholar",
+      blurb: "Stable graph search when anonymous requests are throttled.",
+      signup: "https://www.semanticscholar.org/product/api",
+    },
+    {
+      id: "core" as const,
+      secret: "core_api_key" as const,
+      title: "CORE",
+      blurb: "Full-text open-access index; requires a free CORE API key.",
+      signup: "https://core.ac.uk/services/api",
+    },
+  ];
+
   async function saveKey() {
     const trimmed = keyValue.trim();
     if (!trimmed) {
@@ -280,6 +374,7 @@ export function OnboardingWizard({
   const titles: Record<OnboardingStep, string> = {
     welcome: "Welcome to Araitchi",
     connect: "Connect OpenRouter",
+    paper_keys: "Boost paper coverage",
     project: "Open a project",
     preset: "Council preset",
     memory: "Memory model",
@@ -360,6 +455,75 @@ export function OnboardingWizard({
                   Save key
                 </Button>
               </div>
+            </div>
+          ) : null}
+
+          {step === "paper_keys" ? (
+            <div className="space-y-4" data-testid="onboarding-paper-keys">
+              <p className="text-sm leading-relaxed">
+                Optional free API keys widen literature search coverage (~2
+                min). Skippable — keyless arXiv, Crossref, and DBLP still work.
+              </p>
+              {PAPER_PROVIDER_CARDS.map((card) => {
+                const set = paperKeySet[card.secret] ?? false;
+                return (
+                  <div
+                    key={card.id}
+                    className="space-y-2 rounded-xl border p-3"
+                  >
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <p className="text-sm font-medium">{card.title}</p>
+                      <Badge variant={set ? "default" : "secondary"}>
+                        {set ? "Key saved" : "Not set"}
+                      </Badge>
+                    </div>
+                    <p className="text-muted-foreground text-xs">
+                      {card.blurb}
+                    </p>
+                    <a
+                      className="text-primary text-xs underline"
+                      href={card.signup}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Get a free key
+                    </a>
+                    <Input
+                      type="password"
+                      autoComplete="off"
+                      spellCheck={false}
+                      placeholder={set ? "••••••••••••" : "Paste API key"}
+                      value={paperKeys[card.secret]}
+                      onChange={(e) =>
+                        setPaperKeys((prev) => ({
+                          ...prev,
+                          [card.secret]: e.target.value,
+                        }))
+                      }
+                    />
+                    <div className="flex flex-wrap gap-2">
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="outline"
+                        disabled={busy}
+                        onClick={() => void savePaperKey(card.secret)}
+                      >
+                        Save
+                      </Button>
+                      <Button
+                        type="button"
+                        size="sm"
+                        variant="ghost"
+                        disabled={paperTestBusy === card.id}
+                        onClick={() => void testPaperProvider(card.id)}
+                      >
+                        Test key
+                      </Button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           ) : null}
 
