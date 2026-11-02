@@ -23,7 +23,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | T5 Tool broker & research tools | ✅ | `de170ec` |
 | T5b Chat UX polish | ✅ | `d4ff206` |
 | T6 Scribe & context | ✅ | `da535da` |
-| T7 Convene gate & merge modes | ✅ | (this commit) |
+| T7 Convene gate & merge modes | ✅ | `a6092e6` |
 | T8 Validation loop | ⏳ | |
 | T9 Eval harness & v0.1 | ⏳ | |
 
