@@ -21,7 +21,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | T3 Project workspace & memory | ✅ | `1c4067c` |
 | T4 Council engine | ✅ | `34b03ae` |
 | T5 Tool broker & research tools | ✅ | `de170ec` |
-| T5b Chat UX polish | ✅ | SHA after commit |
+| T5b Chat UX polish | ✅ | `d4ff206` |
 | T6 Scribe & context | ⏳ | |
 | T7 Convene gate & merge modes | ⏳ | |
 | T8 Validation loop | ⏳ | |
