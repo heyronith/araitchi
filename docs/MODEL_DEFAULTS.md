@@ -47,9 +47,9 @@ Fixtures with known agree/disagree outcomes. Reports agreement-threshold ROC and
 
 ### Bench — `pnpm bench`
 
-Compares strongest solo, always-council, adaptive Auto, and adaptive + validation under a fixed per-item budget (`bench.budgetCapUsd`, default `$0.50`). Use results to confirm adaptive routing still wins on verified progress per dollar; adjust `strongestSoloModel`, council labs, or gate defaults only when evidence says so.
+Compares strongest solo, always-council, adaptive Auto, and adaptive + validation under a fixed per-item budget (`bench.budgetCapUsd`, default `$0.50`). **Live runs** call real pipelines (v0.1.1+); `--dry-run` is mock-only for CI. Live runs print an estimated cost and require confirmation unless `--yes`.
 
-Quick smoke: `pnpm bench --sets 1,2 --configs A,C --limit 5`. Full runs are manual and cost real OpenRouter spend.
+Quick smoke: `pnpm bench --dry-run --sets 1,2 --configs A,C --limit 5`. Live: `pnpm bench --limit 2 --repeats 1` then full `pnpm bench --yes`. Review rediscovery with `pnpm bench:review`.
 
 ## Owner workflow
 

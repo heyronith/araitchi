@@ -1,67 +1,34 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import path from "node:path";
 
-import { loadDefaults } from "@/lib/server/defaults";
 import { FakeEmbedder } from "@/lib/server/memory/fake-embedder";
-import { cosine } from "@/lib/server/memory/vector";
+import { loadDefaults } from "@/lib/server/defaults";
 
-import {
-  bootstrapMeanCi,
-  checkDate,
-  checkDoi,
-  checkExactEntity,
-  checkNumeric,
-  extractDoisAndArxiv,
-  precisionOfCitations,
-  recallAtK,
-  rediscoveryHit,
-} from "./checkers";
+import { bootstrapMeanCi } from "./checkers";
 import { setBenchContext, withBenchContext } from "./context";
+import * as mock from "./mock";
+import type {
+  BenchConfigId,
+  BenchOptions,
+  BenchReport,
+  BenchSetId,
+  ItemResult,
+} from "./runner-types";
+import {
+  parseStatedVerdict,
+  parseTopHypotheses,
+  scoreLiterature,
+  scoreRediscovery,
+  scoreVerifiable,
+} from "./scoring";
 
-export type BenchConfigId = "A" | "B" | "C" | "D";
-export type BenchSetId = "1" | "2" | "3" | "4";
-
-export type BenchOptions = {
-  sets: BenchSetId[];
-  configs: BenchConfigId[];
-  limit?: number;
-  repeats?: number;
-  budgetCapUsd?: number;
-  dryRun?: boolean;
-  root?: string;
-};
-
-export type ItemResult = {
-  set: BenchSetId;
-  config: BenchConfigId;
-  itemId: string;
-  correct: boolean;
-  score: number;
-  costUsd: number;
-  latencyMs: number;
-  borderline?: boolean;
-  detail?: string;
-  gateAction?: string;
-};
-
-export type BenchReport = {
-  generatedAt: string;
-  options: BenchOptions;
-  items: ItemResult[];
-  tables: Record<
-    string,
-    {
-      meanScore: number;
-      ciLow: number;
-      ciHigh: number;
-      meanCost: number;
-      costPerCorrect: number;
-      meanLatencyMs: number;
-      n: number;
-    }
-  >;
-  findings: string[];
-};
+export type {
+  BenchConfigId,
+  BenchOptions,
+  BenchReport,
+  BenchSetId,
+  ItemResult,
+} from "./runner-types";
 
 function rootDir(opts: BenchOptions) {
   return opts.root ?? process.cwd();
@@ -71,48 +38,10 @@ function loadJson<T>(file: string): T {
   return JSON.parse(readFileSync(file, "utf8")) as T;
 }
 
-function mockReplyForItem(
-  item: Record<string, unknown>,
-  set: BenchSetId,
-): string {
-  if (set === "1") {
-    const c = item.checker as string;
-    if (c === "doi") return `The DOI is ${item.expected}`;
-    if (c === "numeric") return `Answer: ${item.expected}`;
-    if (c === "exact") return String(item.expected);
-    if (c === "date") return String(item.expected);
-  }
-  if (set === "2") {
-    const gold = (item.goldDois as string[]) ?? [];
-    return `Sources: ${gold.join(", ")}`;
-  }
-  if (set === "3") {
-    return String(item.goldStatement ?? "");
-  }
-  return "ok";
-}
-
-function scoreVerifiable(item: Record<string, unknown>, text: string): boolean {
-  const checker = item.checker as string;
-  if (checker === "numeric") {
-    return checkNumeric(
-      text,
-      item.expected as number,
-      (item.tolerance as number) ?? 0,
-    );
-  }
-  if (checker === "doi") return checkDoi(text, item.expected as string);
-  if (checker === "exact")
-    return checkExactEntity(text, item.expected as string);
-  if (checker === "date") return checkDate(text, item.expected as string);
-  return false;
-}
-
-async function runItem(input: {
+async function runDryItem(input: {
   set: BenchSetId;
   config: BenchConfigId;
   item: Record<string, unknown>;
-  dryRun: boolean;
   budgetCapUsd: number;
   similarityThreshold: number;
 }): Promise<ItemResult> {
@@ -123,78 +52,56 @@ async function runItem(input: {
       yearTo,
       configId: input.config,
       budgetCapUsd: input.budgetCapUsd,
-      dryRun: input.dryRun,
+      dryRun: true,
     },
     async () => {
-      // Dry-run / CI: no network — synthetic replies from fixtures.
-      const text = mockReplyForItem(input.item, input.set);
+      const text = mock.mockReplyForItem(input.item, input.set);
+      const costUsd = mock.mockCostUsd(input.config, true);
       let correct = false;
       let score = 0;
       let borderline = false;
       let detail = "";
-      let costUsd = input.dryRun ? 0.01 : 0.05;
-      if (input.config === "B") costUsd *= 3;
-      if (input.config === "D") costUsd *= 1.2;
+      let excludedFromHeadline = false;
 
       if (input.set === "1") {
         correct = scoreVerifiable(input.item, text);
         score = correct ? 1 : 0;
       } else if (input.set === "2") {
-        const predicted = extractDoisAndArxiv(text);
-        const gold = (input.item.goldDois as string[]) ?? [];
-        const resolvable = new Set(
-          ((input.item.resolvable as string[]) ?? gold).map((x) => x),
-        );
-        const r = recallAtK(predicted, gold, 20);
-        const p = precisionOfCitations(predicted, resolvable);
-        score = r;
-        correct = r >= 0.5 && p >= 0.5;
-        detail = `recall@20=${r.toFixed(2)} precision=${p.toFixed(2)}`;
+        const lit = await scoreLiterature({ item: input.item, text });
+        correct = lit.correct;
+        score = lit.score;
+        detail = lit.detail;
       } else if (input.set === "3") {
         const embedder = new FakeEmbedder();
-        const [hVec, gVec] = await embedder.embed(
-          [text, String(input.item.goldStatement ?? "")],
-          { isQuery: false },
-        );
-        const sim = cosine(hVec!, gVec!);
-        const rd = rediscoveryHit({
-          hypotheses: [text],
-          requiredTerms: (input.item.requiredTerms as string[]) ?? [],
-          goldStatement: String(input.item.goldStatement ?? ""),
-          similarity: sim,
+        const rd = await scoreRediscovery({
+          item: input.item,
+          text,
+          hypotheses: parseTopHypotheses(text, 3),
+          embedder,
           similarityThreshold: input.similarityThreshold,
         });
-        correct = rd.hit;
-        score = rd.hit ? 1 : 0;
+        correct = rd.correct;
+        score = rd.score;
         borderline = rd.borderline;
-        detail = `termScore=${rd.termScore.toFixed(2)} sim=${sim.toFixed(2)}`;
+        detail = rd.detail;
+        excludedFromHeadline = rd.excludedFromHeadline;
       } else if (input.set === "4") {
-        // Validation: check fixture results against expected verdict without LLM.
-        const expected = String(input.item.expectedVerdict);
-        // Config C has no validation loop → wrong unless we skip; D locks then checks.
         if (input.config === "D") {
-          const lockedBefore = true; // harness encodes lock-before-results
-          correct =
-            lockedBefore && expected === String(input.item.expectedVerdict);
-          // Simulate reading fixture results.json
+          // Dry-run: simulate verdict engine by reading fixture predictions vs results
+          // without marking by construction — reuse same comparison helpers as scoring.
+          const expected = String(input.item.expectedVerdict);
           const resultsFile = String(input.item.resultsFile ?? "");
-          if (
-            resultsFile &&
-            existsSync(path.join(process.cwd(), resultsFile))
-          ) {
-            correct = true; // fixture known outcome matches expectedVerdict by construction
-            // actually verify pass/fail from metrics vs prediction
-            const raw = JSON.parse(
-              readFileSync(path.join(process.cwd(), resultsFile), "utf8"),
-            ) as { runs: { metrics: Record<string, number> }[] };
+          const full = path.join(process.cwd(), resultsFile);
+          if (resultsFile && existsSync(full)) {
+            const raw = JSON.parse(readFileSync(full, "utf8")) as {
+              runs?: { metrics: Record<string, number> }[];
+            };
             const pred = (
-              input.item.predictions as {
-                comparator: string;
-                value: number;
-                metric: string;
-              }[]
-            )[0];
-            if (pred) {
+              input.item.predictions as
+                | { comparator: string; value: number; metric: string }[]
+                | undefined
+            )?.[0];
+            if (pred && raw.runs?.length) {
               const mean =
                 raw.runs.reduce(
                   (s, r) => s + (r.metrics[pred.metric] ?? 0),
@@ -205,14 +112,31 @@ async function runItem(input: {
                   ? mean > pred.value
                   : pred.comparator === "<"
                     ? mean < pred.value
-                    : false;
-              const verdict = pass ? "supported" : "refuted";
+                    : pred.comparator === ">="
+                      ? mean >= pred.value
+                      : pred.comparator === "<="
+                        ? mean <= pred.value
+                        : false;
+              let verdict = pass ? "supported" : "refuted";
+              if (
+                expected === "inconclusive" &&
+                (!raw.runs || raw.runs.length < 2)
+              ) {
+                verdict = "inconclusive";
+              }
+              // Prefer item's incompleteRuns flag for inconclusive fixtures
+              if (input.item.incompleteRuns === true) verdict = "inconclusive";
               correct = verdict === expected;
+              detail = `dry_verdict=${verdict}`;
+            } else if (expected === "inconclusive") {
+              correct = true;
+              detail = "dry_inconclusive";
             }
           }
         } else {
-          correct = false; // C without validation cannot produce locked verdicts
-          detail = "no validation loop";
+          const stated = parseStatedVerdict(text);
+          correct = stated === String(input.item.expectedVerdict);
+          detail = stated ? `stated=${stated}` : "no_verdict";
         }
         score = correct ? 1 : 0;
       }
@@ -233,9 +157,36 @@ async function runItem(input: {
         detail,
         gateAction:
           input.config === "C" || input.config === "D" ? "auto" : undefined,
+        excludedFromHeadline,
       };
     },
   ) as Promise<ItemResult>;
+}
+
+async function runLiveItemWrapped(input: {
+  set: BenchSetId;
+  config: BenchConfigId;
+  item: Record<string, unknown>;
+  budgetCapUsd: number;
+  similarityThreshold: number;
+  root: string;
+  liveRunner?: BenchOptions["liveRunner"];
+}): Promise<ItemResult> {
+  const live = input.liveRunner ?? (await import("./live")).runLiveItem;
+  const result = await live({
+    set: input.set,
+    config: input.config,
+    item: input.item,
+    budgetCapUsd: input.budgetCapUsd,
+    similarityThreshold: input.similarityThreshold,
+    root: input.root,
+  });
+  return {
+    set: input.set,
+    config: input.config,
+    itemId: String(input.item.id),
+    ...result,
+  };
 }
 
 export async function runBench(opts: BenchOptions): Promise<BenchReport> {
@@ -262,16 +213,29 @@ export async function runBench(opts: BenchOptions): Promise<BenchReport> {
       if (set === "4" && config !== "C" && config !== "D") continue;
       for (let rep = 0; rep < repeats; rep++) {
         for (const item of pool) {
-          items.push(
-            await runItem({
-              set,
-              config,
-              item,
-              dryRun,
-              budgetCapUsd,
-              similarityThreshold: simThr,
-            }),
-          );
+          if (dryRun) {
+            items.push(
+              await runDryItem({
+                set,
+                config,
+                item,
+                budgetCapUsd,
+                similarityThreshold: simThr,
+              }),
+            );
+          } else {
+            items.push(
+              await runLiveItemWrapped({
+                set,
+                config,
+                item,
+                budgetCapUsd,
+                similarityThreshold: simThr,
+                root,
+                liveRunner: opts.liveRunner,
+              }),
+            );
+          }
         }
       }
     }
@@ -280,7 +244,9 @@ export async function runBench(opts: BenchOptions): Promise<BenchReport> {
   const tables: BenchReport["tables"] = {};
   for (const set of opts.sets) {
     for (const config of opts.configs) {
-      const slice = items.filter((i) => i.set === set && i.config === config);
+      const slice = items.filter(
+        (i) => i.set === set && i.config === config && !i.excludedFromHeadline,
+      );
       if (!slice.length) continue;
       const scores = slice.map((i) => i.score);
       const costs = slice.map((i) => i.costUsd);
@@ -318,10 +284,18 @@ export async function runBench(opts: BenchOptions): Promise<BenchReport> {
       `${borderline} rediscovery item(s) flagged borderline for human review.`,
     );
   }
+  const unverifiedRediscovery = items
+    .filter((i) => i.set === "3" && i.excludedFromHeadline)
+    .map((i) => ({ id: i.itemId }));
+  if (unverifiedRediscovery.length) {
+    findings.push(
+      `${unverifiedRediscovery.length} unverified rediscovery item(s) excluded from headline metrics (pnpm bench:review).`,
+    );
+  }
   findings.push(
     dryRun
       ? "Dry-run used fixture-backed mock replies (no OpenRouter calls)."
-      : "Live run used budget-capped pipelines.",
+      : "Live run used budget-capped real pipelines.",
   );
 
   setBenchContext(null);
@@ -331,6 +305,9 @@ export async function runBench(opts: BenchOptions): Promise<BenchReport> {
     items,
     tables,
     findings,
+    unverifiedRediscovery: unverifiedRediscovery.length
+      ? unverifiedRediscovery
+      : undefined,
   };
 }
 
@@ -353,17 +330,27 @@ export function writeBenchReport(
     "",
     report.options.dryRun
       ? "_Dry-run (fixture-backed mocks, no OpenRouter)._"
-      : "_Live run._",
+      : "_Live run (real pipelines)._",
     "",
     "## Findings",
     "",
     ...report.findings.map((f) => `- ${f}`),
     "",
+  ];
+  if (report.unverifiedRediscovery?.length) {
+    lines.push(
+      "## Unverified rediscovery (excluded from headline)",
+      "",
+      ...report.unverifiedRediscovery.map((u) => `- ${u.id}`),
+      "",
+    );
+  }
+  lines.push(
     "## Tables",
     "",
     "| Set:Config | Mean score | 95% CI | Mean cost | Cost / correct | Latency ms | N |",
     "| --- | ---: | --- | ---: | ---: | ---: | ---: |",
-  ];
+  );
   for (const [k, v] of Object.entries(report.tables)) {
     lines.push(
       `| ${k} | ${v.meanScore.toFixed(3)} | [${v.ciLow.toFixed(3)}, ${v.ciHigh.toFixed(3)}] | $${v.meanCost.toFixed(4)} | $${Number.isFinite(v.costPerCorrect) ? v.costPerCorrect.toFixed(4) : "∞"} | ${v.meanLatencyMs.toFixed(0)} | ${v.n} |`,

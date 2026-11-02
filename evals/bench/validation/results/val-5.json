@@ -1,24 +1,25 @@
 {
-  "experimentId": "E-bench-5",
-  "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "experimentId": "E-bench-val-5",
+  "lockHash": "0f9c3b1a6cdf648f2bf4fa12abc98dbbc611626cc4d49bca02875bcdc2b4435e",
   "runs": [
     {
-      "seed": 1,
+      "seed": 51,
       "metrics": {
-        "score": 0.1
+        "exact_match": 0.32
       }
     },
     {
-      "seed": 2,
+      "seed": 52,
       "metrics": {
-        "score": 0.15
+        "exact_match": 0.28
       }
     },
     {
-      "seed": 3,
+      "seed": 53,
       "metrics": {
-        "score": 0.12
+        "exact_match": 0.35
       }
     }
-  ]
+  ],
+  "notes": "Mean exact_match ≈ 0.32 not > 0.70 → refuted; few-shot gains emerge mainly at much larger scale (GPT-3)."
 }

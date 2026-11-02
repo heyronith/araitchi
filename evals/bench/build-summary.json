@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-11-02T05:26:51.831Z",
+  "counts": {
+    "verifiable": 40,
+    "literature": 29,
+    "rediscovery": 15,
+    "validation": 10
+  },
+  "stats": {
+    "literature": {
+      "ok": 29,
+      "skipped": 6,
+      "networkErrors": 0
+    },
+    "verifiable": {
+      "ok": 40,
+      "networkErrors": 0
+    },
+    "rediscovery": {
+      "ok": 15
+    },
+    "validation": {
+      "ok": 10
+    },
+    "failures": []
+  },
+  "sampleIds": {
+    "verifiable": ["v-0", "v-1", "v-2"],
+    "literature": ["lit-0", "lit-1", "lit-2"],
+    "rediscovery": ["red-0", "red-1", "red-2"],
+    "validation": ["val-0", "val-1", "val-2"]
+  }
+}

@@ -1,24 +1,25 @@
 {
-  "experimentId": "E-bench-8",
-  "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "experimentId": "E-bench-val-8",
+  "lockHash": "654621782e9d66f98f0a18abd7c5180f57231b5915820b7e1cd307c02d463f90",
   "runs": [
     {
-      "seed": 1,
+      "seed": 81,
       "metrics": {
-        "score": 0.9
+        "inception_score": 8.2
       }
     },
     {
-      "seed": 2,
+      "seed": 82,
       "metrics": {
-        "score": 0.85
+        "inception_score": 8.5
       }
     },
     {
-      "seed": 3,
+      "seed": 83,
       "metrics": {
-        "score": 0.88
+        "inception_score": 8.1
       }
     }
-  ]
+  ],
+  "notes": "Runs exist but metric 'fid' is missing from all runs → incomplete metrics → inconclusive."
 }

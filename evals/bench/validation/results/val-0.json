@@ -1,24 +1,25 @@
 {
-  "experimentId": "E-bench-0",
-  "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "experimentId": "E-bench-val-0",
+  "lockHash": "b55f265c2d151926dfa311485d4acaa54ec32449bf45baf0fa4e557c71f496a9",
   "runs": [
     {
       "seed": 1,
       "metrics": {
-        "score": 0.9
+        "top1_accuracy": 0.78
       }
     },
     {
       "seed": 2,
       "metrics": {
-        "score": 0.85
+        "top1_accuracy": 0.81
       }
     },
     {
       "seed": 3,
       "metrics": {
-        "score": 0.88
+        "top1_accuracy": 0.79
       }
     }
-  ]
+  ],
+  "notes": "Mean top1_accuracy ≈ 0.793 > 0.75, so all predictions pass → supported. Inspired by ResNet (DOI 10.1109/CVPR.2016.90)."
 }

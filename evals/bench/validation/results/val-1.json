@@ -1,24 +1,25 @@
 {
-  "experimentId": "E-bench-1",
-  "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "experimentId": "E-bench-val-1",
+  "lockHash": "78ebb52514278a87ef363d9ddce393747c510c3884b3450e3dd83b4b4e73a565",
   "runs": [
     {
-      "seed": 1,
+      "seed": 11,
       "metrics": {
-        "score": 0.1
+        "bleu": 18.2
       }
     },
     {
-      "seed": 2,
+      "seed": 12,
       "metrics": {
-        "score": 0.15
+        "bleu": 17.5
       }
     },
     {
-      "seed": 3,
+      "seed": 13,
       "metrics": {
-        "score": 0.12
+        "bleu": 19.1
       }
     }
-  ]
+  ],
+  "notes": "Mean BLEU ≈ 18.3 is not > 28 → prediction fails → refuted. Attention is essential (DOI 10.48550/arXiv.1706.03762)."
 }

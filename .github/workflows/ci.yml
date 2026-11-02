@@ -47,6 +47,9 @@ jobs:
         env:
           NEXT_TELEMETRY_DISABLED: "1"
 
+      - name: Validate bench fixtures (offline)
+        run: pnpm bench:validate-fixtures
+
       - name: Bench dry-run
         run: pnpm bench --dry-run --sets 1 --configs A --limit 2 --repeats 1
 

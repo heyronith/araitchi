@@ -103,7 +103,25 @@ export function createOpenRouterClient(apiKey: string) {
 }
 
 export async function requireOpenRouterApiKey(): Promise<string | null> {
-  return getSecret("openrouter_api_key");
+  const stored = await getSecret("openrouter_api_key");
+  if (stored?.trim()) return stored.trim();
+  // CLI / bench: allow OPENROUTER_API_KEY or .env.local without writing secrets.
+  const fromEnv = process.env.OPENROUTER_API_KEY?.trim();
+  if (fromEnv) return fromEnv;
+  try {
+    const { existsSync, readFileSync } = await import("node:fs");
+    const { join } = await import("node:path");
+    const envPath = join(process.cwd(), ".env.local");
+    if (existsSync(envPath)) {
+      const m = readFileSync(envPath, "utf8").match(
+        /^OPENROUTER_API_KEY=(.+)$/m,
+      );
+      if (m?.[1]) return m[1].trim().replace(/^["']|["']$/g, "");
+    }
+  } catch {
+    // ignore
+  }
+  return null;
 }
 
 export function getCallbackUrl(): string {

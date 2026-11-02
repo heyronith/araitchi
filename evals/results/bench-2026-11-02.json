@@ -1,45 +1,48 @@
 {
-  "generatedAt": "2026-11-02T05:02:55.164Z",
+  "generatedAt": "2026-11-02T05:51:40.200Z",
   "options": {
     "sets": ["1"],
     "configs": ["A"],
     "limit": 2,
     "repeats": 1,
     "budgetCapUsd": 0.5,
-    "dryRun": true
+    "dryRun": true,
+    "yes": false
   },
   "items": [
     {
       "set": "1",
       "config": "A",
-      "itemId": "v-doi-0",
+      "itemId": "ver-0",
       "correct": false,
       "score": 0,
       "costUsd": 0.01,
-      "latencyMs": 0,
+      "latencyMs": 1,
       "borderline": false,
-      "detail": ""
+      "detail": "",
+      "excludedFromHeadline": false
     },
     {
       "set": "1",
       "config": "A",
-      "itemId": "v-doi-1",
-      "correct": false,
-      "score": 0,
+      "itemId": "ver-1",
+      "correct": true,
+      "score": 1,
       "costUsd": 0.01,
       "latencyMs": 0,
       "borderline": false,
-      "detail": ""
+      "detail": "",
+      "excludedFromHeadline": false
     }
   ],
   "tables": {
     "1:A": {
-      "meanScore": 0,
+      "meanScore": 0.5,
       "ciLow": 0,
-      "ciHigh": 0,
+      "ciHigh": 1,
       "meanCost": 0.01,
-      "costPerCorrect": null,
-      "meanLatencyMs": 0,
+      "costPerCorrect": 0.02,
+      "meanLatencyMs": 0.5,
       "n": 2
     }
   },

@@ -1,24 +1,19 @@
 {
-  "experimentId": "E-bench-9",
-  "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "experimentId": "E-bench-val-9",
+  "lockHash": "662a6d6fe653ad9514d7475b344d28c38772388ec6528f2a13be9f25af166e5c",
   "runs": [
     {
-      "seed": 1,
+      "seed": 91,
       "metrics": {
-        "score": 0.1
+        "val_accuracy": 0.92
       }
     },
     {
-      "seed": 2,
+      "seed": 92,
       "metrics": {
-        "score": 0.15
-      }
-    },
-    {
-      "seed": 3,
-      "metrics": {
-        "score": 0.12
+        "val_accuracy": 0.91
       }
     }
-  ]
+  ],
+  "notes": "requiredRuns=4 but only 2 runs committed → inconclusive (too few runs)."
 }

@@ -1,24 +1,25 @@
 {
-  "experimentId": "E-bench-2",
-  "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "experimentId": "E-bench-val-2",
+  "lockHash": "c15534a434887db6f60b5088256e3bc8eec0775646d8e0f628ef8b56d1ee4b7b",
   "runs": [
     {
-      "seed": 1,
+      "seed": 21,
       "metrics": {
-        "score": 0.9
+        "glue_score": 0.84
       }
     },
     {
-      "seed": 2,
+      "seed": 22,
       "metrics": {
-        "score": 0.85
+        "glue_score": 0.83
       }
     },
     {
-      "seed": 3,
+      "seed": 23,
       "metrics": {
-        "score": 0.88
+        "glue_score": 0.85
       }
     }
-  ]
+  ],
+  "notes": "Mean glue_score ≈ 0.84 > 0.80 → supported (BERT DOI 10.48550/arXiv.1810.04805)."
 }

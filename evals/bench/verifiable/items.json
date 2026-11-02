@@ -1,292 +1,516 @@
 [
   {
-    "id": "v-doi-0",
-    "type": "doi",
-    "question": "What is the DOI for Attention Is All You Need DOI?",
-    "expected": "10.48550/arXiv.1706.03762",
-    "checker": "doi"
+    "id": "ver-0",
+    "question": "What is the DOI of the paper titled \"Attention Is All You Need\"?",
+    "checker": "doi",
+    "expected": "10.48550/arxiv.1706.03762",
+    "source": {
+      "doi": "10.48550/arxiv.1706.03762",
+      "title": "Attention Is All You Need",
+      "openalexId": "https://openalex.org/W2964202944",
+      "url": "https://doi.org/10.48550/arxiv.1706.03762"
+    },
+    "taskType": "factual_lookup"
   },
   {
-    "id": "v-doi-1",
-    "type": "doi",
-    "question": "What is the DOI for BERT DOI?",
-    "expected": "10.48550/arXiv.1810.04805",
-    "checker": "doi"
-  },
-  {
-    "id": "v-doi-2",
-    "type": "doi",
-    "question": "What is the DOI for GPT-3 DOI?",
-    "expected": "10.48550/arXiv.2005.14165",
-    "checker": "doi"
-  },
-  {
-    "id": "v-doi-3",
-    "type": "doi",
-    "question": "What is the DOI for RoBERTa DOI?",
-    "expected": "10.48550/arXiv.1907.11692",
-    "checker": "doi"
-  },
-  {
-    "id": "v-doi-4",
-    "type": "doi",
-    "question": "What is the DOI for T5 DOI?",
-    "expected": "10.48550/arXiv.1910.10683",
-    "checker": "doi"
-  },
-  {
-    "id": "v-doi-5",
-    "type": "doi",
-    "question": "What is the DOI for Attention Is All You Need DOI?",
-    "expected": "10.48550/arXiv.1706.03762",
-    "checker": "doi"
-  },
-  {
-    "id": "v-doi-6",
-    "type": "doi",
-    "question": "What is the DOI for BERT DOI?",
-    "expected": "10.48550/arXiv.1810.04805",
-    "checker": "doi"
-  },
-  {
-    "id": "v-doi-7",
-    "type": "doi",
-    "question": "What is the DOI for GPT-3 DOI?",
-    "expected": "10.48550/arXiv.2005.14165",
-    "checker": "doi"
-  },
-  {
-    "id": "v-doi-8",
-    "type": "doi",
-    "question": "What is the DOI for RoBERTa DOI?",
-    "expected": "10.48550/arXiv.1907.11692",
-    "checker": "doi"
-  },
-  {
-    "id": "v-doi-9",
-    "type": "doi",
-    "question": "What is the DOI for T5 DOI?",
-    "expected": "10.48550/arXiv.1910.10683",
-    "checker": "doi"
-  },
-  {
-    "id": "v-num-0",
-    "type": "numeric",
-    "question": "What is 10 + 20?",
-    "expected": 30,
-    "tolerance": 0,
-    "checker": "numeric"
-  },
-  {
-    "id": "v-num-1",
-    "type": "numeric",
-    "question": "What is 11 + 21?",
-    "expected": 32,
-    "tolerance": 0,
-    "checker": "numeric"
-  },
-  {
-    "id": "v-num-2",
-    "type": "numeric",
-    "question": "What is 12 + 22?",
-    "expected": 34,
-    "tolerance": 0,
-    "checker": "numeric"
-  },
-  {
-    "id": "v-num-3",
-    "type": "numeric",
-    "question": "What is 13 + 23?",
-    "expected": 36,
-    "tolerance": 0,
-    "checker": "numeric"
-  },
-  {
-    "id": "v-num-4",
-    "type": "numeric",
-    "question": "What is 14 + 24?",
-    "expected": 38,
-    "tolerance": 0,
-    "checker": "numeric"
-  },
-  {
-    "id": "v-num-5",
-    "type": "numeric",
-    "question": "What is 15 + 25?",
-    "expected": 40,
-    "tolerance": 0,
-    "checker": "numeric"
-  },
-  {
-    "id": "v-num-6",
-    "type": "numeric",
-    "question": "What is 16 + 26?",
-    "expected": 42,
-    "tolerance": 0,
-    "checker": "numeric"
-  },
-  {
-    "id": "v-num-7",
-    "type": "numeric",
-    "question": "What is 17 + 27?",
-    "expected": 44,
-    "tolerance": 0,
-    "checker": "numeric"
-  },
-  {
-    "id": "v-num-8",
-    "type": "numeric",
-    "question": "What is 18 + 28?",
-    "expected": 46,
-    "tolerance": 0,
-    "checker": "numeric"
-  },
-  {
-    "id": "v-num-9",
-    "type": "numeric",
-    "question": "What is 19 + 29?",
-    "expected": 48,
-    "tolerance": 0,
-    "checker": "numeric"
-  },
-  {
-    "id": "v-ent-0",
-    "type": "entity",
-    "question": "Name the concept: transformer (reply with that exact term).",
-    "expected": "transformer",
-    "checker": "exact"
-  },
-  {
-    "id": "v-ent-1",
-    "type": "entity",
-    "question": "Name the concept: attention (reply with that exact term).",
-    "expected": "attention",
-    "checker": "exact"
-  },
-  {
-    "id": "v-ent-2",
-    "type": "entity",
-    "question": "Name the concept: BERT (reply with that exact term).",
-    "expected": "BERT",
-    "checker": "exact"
-  },
-  {
-    "id": "v-ent-3",
-    "type": "entity",
-    "question": "Name the concept: RoBERTa (reply with that exact term).",
-    "expected": "RoBERTa",
-    "checker": "exact"
-  },
-  {
-    "id": "v-ent-4",
-    "type": "entity",
-    "question": "Name the concept: T5 (reply with that exact term).",
-    "expected": "T5",
-    "checker": "exact"
-  },
-  {
-    "id": "v-ent-5",
-    "type": "entity",
-    "question": "Name the concept: GPT-3 (reply with that exact term).",
-    "expected": "GPT-3",
-    "checker": "exact"
-  },
-  {
-    "id": "v-ent-6",
-    "type": "entity",
-    "question": "Name the concept: ResNet (reply with that exact term).",
-    "expected": "ResNet",
-    "checker": "exact"
-  },
-  {
-    "id": "v-ent-7",
-    "type": "entity",
-    "question": "Name the concept: Adam (reply with that exact term).",
-    "expected": "Adam",
-    "checker": "exact"
-  },
-  {
-    "id": "v-ent-8",
-    "type": "entity",
-    "question": "Name the concept: dropout (reply with that exact term).",
-    "expected": "dropout",
-    "checker": "exact"
-  },
-  {
-    "id": "v-ent-9",
-    "type": "entity",
-    "question": "Name the concept: batch normalization (reply with that exact term).",
-    "expected": "batch normalization",
-    "checker": "exact"
-  },
-  {
-    "id": "v-date-0",
-    "type": "date",
-    "question": "What is the ISO date for Jan 1 2015?",
-    "expected": "2015-01-01",
-    "checker": "date"
-  },
-  {
-    "id": "v-date-1",
-    "type": "date",
-    "question": "What is the ISO date for Jan 1 2016?",
-    "expected": "2016-01-01",
-    "checker": "date"
-  },
-  {
-    "id": "v-date-2",
-    "type": "date",
-    "question": "What is the ISO date for Jan 1 2017?",
+    "id": "ver-1",
+    "question": "What is the publication date (YYYY-MM-DD) of \"Attention Is All You Need\"? If only the year is known, use YYYY-01-01.",
+    "checker": "date",
     "expected": "2017-01-01",
-    "checker": "date"
+    "source": {
+      "doi": "10.48550/arxiv.1706.03762",
+      "title": "Attention Is All You Need",
+      "openalexId": "https://openalex.org/W2964202944",
+      "url": "https://doi.org/10.48550/arxiv.1706.03762"
+    },
+    "taskType": "factual_lookup"
   },
   {
-    "id": "v-date-3",
-    "type": "date",
-    "question": "What is the ISO date for Jan 1 2018?",
+    "id": "ver-2",
+    "question": "Who is listed as the first author of \"Attention Is All You Need\"?",
+    "checker": "exact",
+    "expected": "Ashish Vaswani",
+    "source": {
+      "doi": "10.48550/arxiv.1706.03762",
+      "title": "Attention Is All You Need",
+      "openalexId": "https://openalex.org/W2964202944",
+      "url": "https://doi.org/10.48550/arxiv.1706.03762"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-3",
+    "question": "What is the DOI of the paper titled \"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\"?",
+    "checker": "doi",
+    "expected": "10.48550/arxiv.1810.04805",
+    "source": {
+      "doi": "10.48550/arxiv.1810.04805",
+      "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "openalexId": "https://openalex.org/W2897081623",
+      "url": "https://doi.org/10.48550/arxiv.1810.04805"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-4",
+    "question": "What is the publication date (YYYY-MM-DD) of \"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\"? If only the year is known, use YYYY-01-01.",
+    "checker": "date",
     "expected": "2018-01-01",
-    "checker": "date"
+    "source": {
+      "doi": "10.48550/arxiv.1810.04805",
+      "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "openalexId": "https://openalex.org/W2897081623",
+      "url": "https://doi.org/10.48550/arxiv.1810.04805"
+    },
+    "taskType": "factual_lookup"
   },
   {
-    "id": "v-date-4",
-    "type": "date",
-    "question": "What is the ISO date for Jan 1 2019?",
-    "expected": "2019-01-01",
-    "checker": "date"
+    "id": "ver-5",
+    "question": "Who is listed as the first author of \"BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding\"?",
+    "checker": "exact",
+    "expected": "Jacob Devlin",
+    "source": {
+      "doi": "10.48550/arxiv.1810.04805",
+      "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "openalexId": "https://openalex.org/W2897081623",
+      "url": "https://doi.org/10.48550/arxiv.1810.04805"
+    },
+    "taskType": "factual_lookup"
   },
   {
-    "id": "v-date-5",
-    "type": "date",
-    "question": "What is the ISO date for Jan 1 2020?",
-    "expected": "2020-01-01",
-    "checker": "date"
+    "id": "ver-6",
+    "question": "What is the DOI of the paper titled \"Deep Residual Learning for Image Recognition\"?",
+    "checker": "doi",
+    "expected": "10.1109/cvpr.2016.90",
+    "source": {
+      "doi": "10.1109/cvpr.2016.90",
+      "title": "Deep Residual Learning for Image Recognition",
+      "openalexId": "https://openalex.org/W2520845465",
+      "url": "https://doi.org/10.1109/cvpr.2016.90"
+    },
+    "taskType": "factual_lookup"
   },
   {
-    "id": "v-date-6",
-    "type": "date",
-    "question": "What is the ISO date for Jan 1 2021?",
-    "expected": "2021-01-01",
-    "checker": "date"
+    "id": "ver-7",
+    "question": "What is the publication date (YYYY-MM-DD) of \"Deep Residual Learning for Image Recognition\"? If only the year is known, use YYYY-01-01.",
+    "checker": "date",
+    "expected": "2016-01-01",
+    "source": {
+      "doi": "10.1109/cvpr.2016.90",
+      "title": "Deep Residual Learning for Image Recognition",
+      "openalexId": "https://openalex.org/W2520845465",
+      "url": "https://doi.org/10.1109/cvpr.2016.90"
+    },
+    "taskType": "factual_lookup"
   },
   {
-    "id": "v-date-7",
-    "type": "date",
-    "question": "What is the ISO date for Jan 1 2022?",
-    "expected": "2022-01-01",
-    "checker": "date"
+    "id": "ver-8",
+    "question": "Who is listed as the first author of \"Deep Residual Learning for Image Recognition\"?",
+    "checker": "exact",
+    "expected": "Kaiming He",
+    "source": {
+      "doi": "10.1109/cvpr.2016.90",
+      "title": "Deep Residual Learning for Image Recognition",
+      "openalexId": "https://openalex.org/W2520845465",
+      "url": "https://doi.org/10.1109/cvpr.2016.90"
+    },
+    "taskType": "factual_lookup"
   },
   {
-    "id": "v-date-8",
-    "type": "date",
-    "question": "What is the ISO date for Jan 1 2023?",
-    "expected": "2023-01-01",
-    "checker": "date"
+    "id": "ver-9",
+    "question": "What is the DOI of the paper titled \"Adam: A Method for Stochastic Optimization\"?",
+    "checker": "doi",
+    "expected": "10.48550/arxiv.1412.6980",
+    "source": {
+      "doi": "10.48550/arxiv.1412.6980",
+      "title": "Adam: A Method for Stochastic Optimization",
+      "openalexId": "https://openalex.org/W2144873047",
+      "url": "https://doi.org/10.48550/arxiv.1412.6980"
+    },
+    "taskType": "factual_lookup"
   },
   {
-    "id": "v-date-9",
-    "type": "date",
-    "question": "What is the ISO date for Jan 1 2024?",
-    "expected": "2024-01-01",
-    "checker": "date"
+    "id": "ver-10",
+    "question": "What is the publication date (YYYY-MM-DD) of \"Adam: A Method for Stochastic Optimization\"? If only the year is known, use YYYY-01-01.",
+    "checker": "date",
+    "expected": "2014-01-01",
+    "source": {
+      "doi": "10.48550/arxiv.1412.6980",
+      "title": "Adam: A Method for Stochastic Optimization",
+      "openalexId": "https://openalex.org/W2144873047",
+      "url": "https://doi.org/10.48550/arxiv.1412.6980"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-11",
+    "question": "Who is listed as the first author of \"Adam: A Method for Stochastic Optimization\"?",
+    "checker": "exact",
+    "expected": "Diederik P. Kingma",
+    "source": {
+      "doi": "10.48550/arxiv.1412.6980",
+      "title": "Adam: A Method for Stochastic Optimization",
+      "openalexId": "https://openalex.org/W2144873047",
+      "url": "https://doi.org/10.48550/arxiv.1412.6980"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-12",
+    "question": "What is the DOI of the paper titled \"Generative Adversarial Nets\"?",
+    "checker": "doi",
+    "expected": "10.48550/arxiv.1406.2661",
+    "source": {
+      "doi": "10.48550/arxiv.1406.2661",
+      "title": "Generative Adversarial Nets",
+      "openalexId": "https://openalex.org/W2102159465",
+      "url": "https://doi.org/10.48550/arxiv.1406.2661"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-13",
+    "question": "What is the publication date (YYYY-MM-DD) of \"Generative Adversarial Nets\"? If only the year is known, use YYYY-01-01.",
+    "checker": "date",
+    "expected": "2014-01-01",
+    "source": {
+      "doi": "10.48550/arxiv.1406.2661",
+      "title": "Generative Adversarial Nets",
+      "openalexId": "https://openalex.org/W2102159465",
+      "url": "https://doi.org/10.48550/arxiv.1406.2661"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-14",
+    "question": "Who is listed as the first author of \"Generative Adversarial Nets\"?",
+    "checker": "exact",
+    "expected": "Ian J. Goodfellow",
+    "source": {
+      "doi": "10.48550/arxiv.1406.2661",
+      "title": "Generative Adversarial Nets",
+      "openalexId": "https://openalex.org/W2102159465",
+      "url": "https://doi.org/10.48550/arxiv.1406.2661"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-15",
+    "question": "What is the DOI of the paper titled \"Dropout: a simple way to prevent neural networks from overfitting\"?",
+    "checker": "doi",
+    "expected": "10.5555/2627435.2670313",
+    "source": {
+      "doi": "10.5555/2627435.2670313",
+      "title": "Dropout: a simple way to prevent neural networks from overfitting",
+      "openalexId": "https://openalex.org/W2138359843",
+      "url": "https://doi.org/10.5555/2627435.2670313"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-16",
+    "question": "What is the publication date (YYYY-MM-DD) of \"Dropout: a simple way to prevent neural networks from overfitting\"? If only the year is known, use YYYY-01-01.",
+    "checker": "date",
+    "expected": "2014-01-01",
+    "source": {
+      "doi": "10.5555/2627435.2670313",
+      "title": "Dropout: a simple way to prevent neural networks from overfitting",
+      "openalexId": "https://openalex.org/W2138359843",
+      "url": "https://doi.org/10.5555/2627435.2670313"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-17",
+    "question": "Who is listed as the first author of \"Dropout: a simple way to prevent neural networks from overfitting\"?",
+    "checker": "exact",
+    "expected": "Nitish Srivastava",
+    "source": {
+      "doi": "10.5555/2627435.2670313",
+      "title": "Dropout: a simple way to prevent neural networks from overfitting",
+      "openalexId": "https://openalex.org/W2138359843",
+      "url": "https://doi.org/10.5555/2627435.2670313"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-18",
+    "question": "What is the DOI of the paper titled \"ImageNet Classification with Deep Convolutional Neural Networks\"?",
+    "checker": "doi",
+    "expected": "10.1145/3065386",
+    "source": {
+      "doi": "10.1145/3065386",
+      "title": "ImageNet Classification with Deep Convolutional Neural Networks",
+      "openalexId": "https://openalex.org/W2108546565",
+      "url": "https://doi.org/10.1145/3065386"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-19",
+    "question": "In what year was \"ImageNet Classification with Deep Convolutional Neural Networks\" first published?",
+    "checker": "numeric",
+    "expected": 2017,
+    "tolerance": 0,
+    "source": {
+      "doi": "10.1145/3065386",
+      "title": "ImageNet Classification with Deep Convolutional Neural Networks",
+      "openalexId": "https://openalex.org/W2108546565",
+      "url": "https://doi.org/10.1145/3065386"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-20",
+    "question": "Who is listed as the first author of \"ImageNet Classification with Deep Convolutional Neural Networks\"?",
+    "checker": "exact",
+    "expected": "Alex Krizhevsky",
+    "source": {
+      "doi": "10.1145/3065386",
+      "title": "ImageNet Classification with Deep Convolutional Neural Networks",
+      "openalexId": "https://openalex.org/W2108546565",
+      "url": "https://doi.org/10.1145/3065386"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-21",
+    "question": "What is the DOI of the paper titled \"U-Net: Convolutional Networks for Biomedical Image Segmentation\"?",
+    "checker": "doi",
+    "expected": "10.1007/978-3-319-24574-4_28",
+    "source": {
+      "doi": "10.1007/978-3-319-24574-4_28",
+      "title": "U-Net: Convolutional Networks for Biomedical Image Segmentation",
+      "openalexId": "https://openalex.org/W2151991443",
+      "url": "https://doi.org/10.1007/978-3-319-24574-4_28"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-22",
+    "question": "In what year was \"U-Net: Convolutional Networks for Biomedical Image Segmentation\" first published?",
+    "checker": "numeric",
+    "expected": 2015,
+    "tolerance": 0,
+    "source": {
+      "doi": "10.1007/978-3-319-24574-4_28",
+      "title": "U-Net: Convolutional Networks for Biomedical Image Segmentation",
+      "openalexId": "https://openalex.org/W2151991443",
+      "url": "https://doi.org/10.1007/978-3-319-24574-4_28"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-23",
+    "question": "Who is listed as the first author of \"U-Net: Convolutional Networks for Biomedical Image Segmentation\"?",
+    "checker": "exact",
+    "expected": "Olaf Ronneberger",
+    "source": {
+      "doi": "10.1007/978-3-319-24574-4_28",
+      "title": "U-Net: Convolutional Networks for Biomedical Image Segmentation",
+      "openalexId": "https://openalex.org/W2151991443",
+      "url": "https://doi.org/10.1007/978-3-319-24574-4_28"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-24",
+    "question": "What is the DOI of the paper titled \"You Only Look Once: Unified, Real-Time Object Detection\"?",
+    "checker": "doi",
+    "expected": "10.1109/cvpr.2016.91",
+    "source": {
+      "doi": "10.1109/cvpr.2016.91",
+      "title": "You Only Look Once: Unified, Real-Time Object Detection",
+      "openalexId": "https://openalex.org/W2268860727",
+      "url": "https://doi.org/10.1109/cvpr.2016.91"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-25",
+    "question": "In what year was \"You Only Look Once: Unified, Real-Time Object Detection\" first published?",
+    "checker": "numeric",
+    "expected": 2016,
+    "tolerance": 0,
+    "source": {
+      "doi": "10.1109/cvpr.2016.91",
+      "title": "You Only Look Once: Unified, Real-Time Object Detection",
+      "openalexId": "https://openalex.org/W2268860727",
+      "url": "https://doi.org/10.1109/cvpr.2016.91"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-26",
+    "question": "Who is listed as the first author of \"You Only Look Once: Unified, Real-Time Object Detection\"?",
+    "checker": "exact",
+    "expected": "Joseph Redmon",
+    "source": {
+      "doi": "10.1109/cvpr.2016.91",
+      "title": "You Only Look Once: Unified, Real-Time Object Detection",
+      "openalexId": "https://openalex.org/W2268860727",
+      "url": "https://doi.org/10.1109/cvpr.2016.91"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-27",
+    "question": "What is the DOI of the paper titled \"Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift\"?",
+    "checker": "doi",
+    "expected": "10.48550/arxiv.1502.03167",
+    "source": {
+      "doi": "10.48550/arxiv.1502.03167",
+      "title": "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift",
+      "openalexId": "https://openalex.org/W1900047752",
+      "url": "https://doi.org/10.48550/arxiv.1502.03167"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-28",
+    "question": "In what year was \"Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift\" first published?",
+    "checker": "numeric",
+    "expected": 2015,
+    "tolerance": 0,
+    "source": {
+      "doi": "10.48550/arxiv.1502.03167",
+      "title": "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift",
+      "openalexId": "https://openalex.org/W1900047752",
+      "url": "https://doi.org/10.48550/arxiv.1502.03167"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-29",
+    "question": "Who is listed as the first author of \"Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift\"?",
+    "checker": "exact",
+    "expected": "Sergey Ioffe",
+    "source": {
+      "doi": "10.48550/arxiv.1502.03167",
+      "title": "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift",
+      "openalexId": "https://openalex.org/W1900047752",
+      "url": "https://doi.org/10.48550/arxiv.1502.03167"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-30",
+    "question": "Compute 128 + 64.",
+    "checker": "numeric",
+    "expected": 192,
+    "tolerance": 1e-9,
+    "source": {
+      "url": "https://en.wikipedia.org/wiki/Arithmetic",
+      "title": "Closed-form arithmetic (harness-computed)"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-31",
+    "question": "Compute 512 ÷ 8.",
+    "checker": "numeric",
+    "expected": 64,
+    "tolerance": 1e-9,
+    "source": {
+      "url": "https://en.wikipedia.org/wiki/Arithmetic",
+      "title": "Closed-form arithmetic (harness-computed)"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-32",
+    "question": "Compute 7^3.",
+    "checker": "numeric",
+    "expected": 343,
+    "tolerance": 1e-9,
+    "source": {
+      "url": "https://en.wikipedia.org/wiki/Arithmetic",
+      "title": "Closed-form arithmetic (harness-computed)"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-33",
+    "question": "Compute 1000 - 250.",
+    "checker": "numeric",
+    "expected": 750,
+    "tolerance": 1e-9,
+    "source": {
+      "url": "https://en.wikipedia.org/wiki/Arithmetic",
+      "title": "Closed-form arithmetic (harness-computed)"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-34",
+    "question": "Compute 16 × 16.",
+    "checker": "numeric",
+    "expected": 256,
+    "tolerance": 1e-9,
+    "source": {
+      "url": "https://en.wikipedia.org/wiki/Arithmetic",
+      "title": "Closed-form arithmetic (harness-computed)"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-35",
+    "question": "Compute 81 ÷ 9.",
+    "checker": "numeric",
+    "expected": 9,
+    "tolerance": 1e-9,
+    "source": {
+      "url": "https://en.wikipedia.org/wiki/Arithmetic",
+      "title": "Closed-form arithmetic (harness-computed)"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-36",
+    "question": "Compute 2^10.",
+    "checker": "numeric",
+    "expected": 1024,
+    "tolerance": 1e-9,
+    "source": {
+      "url": "https://en.wikipedia.org/wiki/Arithmetic",
+      "title": "Closed-form arithmetic (harness-computed)"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-37",
+    "question": "Compute 45 + 17.",
+    "checker": "numeric",
+    "expected": 62,
+    "tolerance": 1e-9,
+    "source": {
+      "url": "https://en.wikipedia.org/wiki/Arithmetic",
+      "title": "Closed-form arithmetic (harness-computed)"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-38",
+    "question": "Compute 99 - 1.",
+    "checker": "numeric",
+    "expected": 98,
+    "tolerance": 1e-9,
+    "source": {
+      "url": "https://en.wikipedia.org/wiki/Arithmetic",
+      "title": "Closed-form arithmetic (harness-computed)"
+    },
+    "taskType": "factual_lookup"
+  },
+  {
+    "id": "ver-39",
+    "question": "Compute 12 × 12.",
+    "checker": "numeric",
+    "expected": 144,
+    "tolerance": 1e-9,
+    "source": {
+      "url": "https://en.wikipedia.org/wiki/Arithmetic",
+      "title": "Closed-form arithmetic (harness-computed)"
+    },
+    "taskType": "factual_lookup"
   }
 ]

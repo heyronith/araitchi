@@ -1,24 +1,25 @@
 {
-  "experimentId": "E-bench-4",
-  "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "experimentId": "E-bench-val-4",
+  "lockHash": "25f78a61caaaa5a3dd04d5be2fff1fb183c03e726894bfc8cdf179dd1bd5b4ac",
   "runs": [
     {
-      "seed": 1,
+      "seed": 41,
       "metrics": {
-        "score": 0.9
+        "disc_accuracy": 0.52
       }
     },
     {
-      "seed": 2,
+      "seed": 42,
       "metrics": {
-        "score": 0.85
+        "disc_accuracy": 0.55
       }
     },
     {
-      "seed": 3,
+      "seed": 43,
       "metrics": {
-        "score": 0.88
+        "disc_accuracy": 0.49
       }
     }
-  ]
+  ],
+  "notes": "Mean disc_accuracy ≈ 0.52 > 0.45 → supported (GAN DOI 10.48550/arXiv.1406.2661)."
 }

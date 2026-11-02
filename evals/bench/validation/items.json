@@ -1,182 +1,252 @@
 [
   {
     "id": "val-0",
-    "hypothesis": "Bench hypothesis 0: metric score high",
+    "hypothesis": "A residual CNN with skip connections achieves mean top-1 accuracy above 0.75 on a held-out ImageNet-scale subset.",
     "expectedVerdict": "supported",
     "resultsFile": "evals/bench/validation/results/val-0.json",
     "predictions": [
       {
         "id": "p1",
-        "metric": "score",
+        "metric": "top1_accuracy",
         "comparator": ">",
-        "value": 0.5,
+        "value": 0.75,
         "aggregate": "mean"
       }
     ],
     "requiredRuns": 3,
     "seeds": [1, 2, 3],
-    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "lockHash": "b55f265c2d151926dfa311485d4acaa54ec32449bf45baf0fa4e557c71f496a9",
+    "experimentId": "E-bench-val-0",
+    "reasoning": "Mean top1_accuracy ≈ 0.793 > 0.75, so all predictions pass → supported. Inspired by ResNet (DOI 10.1109/CVPR.2016.90).",
+    "source": {
+      "doi": "10.1109/CVPR.2016.90",
+      "title": "Deep Residual Learning for Image Recognition",
+      "url": "https://doi.org/10.1109/CVPR.2016.90"
+    }
   },
   {
     "id": "val-1",
-    "hypothesis": "Bench hypothesis 1: metric score low",
+    "hypothesis": "Removing attention from a Transformer encoder still yields mean BLEU above 28 on a WMT-like translation probe.",
     "expectedVerdict": "refuted",
     "resultsFile": "evals/bench/validation/results/val-1.json",
     "predictions": [
       {
         "id": "p1",
-        "metric": "score",
-        "comparator": "<",
-        "value": 0.5,
+        "metric": "bleu",
+        "comparator": ">",
+        "value": 28,
         "aggregate": "mean"
       }
     ],
     "requiredRuns": 3,
-    "seeds": [1, 2, 3],
-    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "seeds": [11, 12, 13],
+    "lockHash": "78ebb52514278a87ef363d9ddce393747c510c3884b3450e3dd83b4b4e73a565",
+    "experimentId": "E-bench-val-1",
+    "reasoning": "Mean BLEU ≈ 18.3 is not > 28 → prediction fails → refuted. Attention is essential (DOI 10.48550/arXiv.1706.03762).",
+    "source": {
+      "doi": "10.48550/arXiv.1706.03762",
+      "title": "Attention Is All You Need",
+      "url": "https://doi.org/10.48550/arXiv.1706.03762"
+    }
   },
   {
     "id": "val-2",
-    "hypothesis": "Bench hypothesis 2: metric score high",
+    "hypothesis": "Masked language model pretraining improves mean GLUE score above 0.80 versus a randomly initialized encoder.",
     "expectedVerdict": "supported",
     "resultsFile": "evals/bench/validation/results/val-2.json",
     "predictions": [
       {
         "id": "p1",
-        "metric": "score",
+        "metric": "glue_score",
         "comparator": ">",
-        "value": 0.5,
+        "value": 0.8,
         "aggregate": "mean"
       }
     ],
     "requiredRuns": 3,
-    "seeds": [1, 2, 3],
-    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "seeds": [21, 22, 23],
+    "lockHash": "c15534a434887db6f60b5088256e3bc8eec0775646d8e0f628ef8b56d1ee4b7b",
+    "experimentId": "E-bench-val-2",
+    "reasoning": "Mean glue_score ≈ 0.84 > 0.80 → supported (BERT DOI 10.48550/arXiv.1810.04805).",
+    "source": {
+      "doi": "10.48550/arXiv.1810.04805",
+      "title": "BERT",
+      "url": "https://doi.org/10.48550/arXiv.1810.04805"
+    }
   },
   {
     "id": "val-3",
-    "hypothesis": "Bench hypothesis 3: metric score low",
+    "hypothesis": "Training without residual connections keeps mean training loss below 0.5 at 100 epochs for a 50-layer CNN.",
     "expectedVerdict": "refuted",
     "resultsFile": "evals/bench/validation/results/val-3.json",
     "predictions": [
       {
         "id": "p1",
-        "metric": "score",
+        "metric": "train_loss",
         "comparator": "<",
         "value": 0.5,
         "aggregate": "mean"
       }
     ],
     "requiredRuns": 3,
-    "seeds": [1, 2, 3],
-    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "seeds": [31, 32, 33],
+    "lockHash": "e7d12f8905d8fdc1fc96d8893165e55287574a9c525864fdbdba5d78e53484df",
+    "experimentId": "E-bench-val-3",
+    "reasoning": "Mean train_loss ≈ 2.37 is not < 0.5 → refuted; plain deep nets degrade without residuals.",
+    "source": {
+      "doi": "10.1109/CVPR.2016.90",
+      "title": "Deep Residual Learning for Image Recognition",
+      "url": "https://doi.org/10.1109/CVPR.2016.90"
+    }
   },
   {
     "id": "val-4",
-    "hypothesis": "Bench hypothesis 4: metric score high",
+    "hypothesis": "A GAN discriminator mean accuracy stays above 0.45 at equilibrium across three seeds (healthy adversarial training).",
     "expectedVerdict": "supported",
     "resultsFile": "evals/bench/validation/results/val-4.json",
     "predictions": [
       {
         "id": "p1",
-        "metric": "score",
+        "metric": "disc_accuracy",
         "comparator": ">",
-        "value": 0.5,
+        "value": 0.45,
         "aggregate": "mean"
       }
     ],
     "requiredRuns": 3,
-    "seeds": [1, 2, 3],
-    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "seeds": [41, 42, 43],
+    "lockHash": "25f78a61caaaa5a3dd04d5be2fff1fb183c03e726894bfc8cdf179dd1bd5b4ac",
+    "experimentId": "E-bench-val-4",
+    "reasoning": "Mean disc_accuracy ≈ 0.52 > 0.45 → supported (GAN DOI 10.48550/arXiv.1406.2661).",
+    "source": {
+      "doi": "10.48550/arXiv.1406.2661",
+      "title": "Generative Adversarial Networks",
+      "url": "https://doi.org/10.48550/arXiv.1406.2661"
+    }
   },
   {
     "id": "val-5",
-    "hypothesis": "Bench hypothesis 5: metric score low",
+    "hypothesis": "Few-shot prompting of a 1B-parameter model achieves mean exact-match above 0.70 on a hard MMLU-style subset.",
     "expectedVerdict": "refuted",
     "resultsFile": "evals/bench/validation/results/val-5.json",
     "predictions": [
       {
         "id": "p1",
-        "metric": "score",
-        "comparator": "<",
-        "value": 0.5,
+        "metric": "exact_match",
+        "comparator": ">",
+        "value": 0.7,
         "aggregate": "mean"
       }
     ],
     "requiredRuns": 3,
-    "seeds": [1, 2, 3],
-    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "seeds": [51, 52, 53],
+    "lockHash": "0f9c3b1a6cdf648f2bf4fa12abc98dbbc611626cc4d49bca02875bcdc2b4435e",
+    "experimentId": "E-bench-val-5",
+    "reasoning": "Mean exact_match ≈ 0.32 not > 0.70 → refuted; few-shot gains emerge mainly at much larger scale (GPT-3).",
+    "source": {
+      "doi": "10.48550/arXiv.2005.14165",
+      "title": "Language Models are Few-Shot Learners",
+      "url": "https://doi.org/10.48550/arXiv.2005.14165"
+    }
   },
   {
     "id": "val-6",
-    "hypothesis": "Bench hypothesis 6: metric score high",
+    "hypothesis": "AlphaFold-style models achieve mean GDT_TS above 80 on a CASP-like hard target set.",
     "expectedVerdict": "supported",
     "resultsFile": "evals/bench/validation/results/val-6.json",
     "predictions": [
       {
         "id": "p1",
-        "metric": "score",
+        "metric": "gdt_ts",
         "comparator": ">",
-        "value": 0.5,
+        "value": 80,
         "aggregate": "mean"
       }
     ],
     "requiredRuns": 3,
-    "seeds": [1, 2, 3],
-    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "seeds": [61, 62, 63],
+    "lockHash": "c5d9ad5a9f689225923b65b787471fdca1984ac753215169f2d8968384132419",
+    "experimentId": "E-bench-val-6",
+    "reasoning": "Mean GDT_TS ≈ 88.7 > 80 → supported (AlphaFold DOI 10.1038/s41586-021-03819-2).",
+    "source": {
+      "doi": "10.1038/s41586-021-03819-2",
+      "title": "Highly accurate protein structure prediction with AlphaFold",
+      "url": "https://doi.org/10.1038/s41586-021-03819-2"
+    }
   },
   {
     "id": "val-7",
-    "hypothesis": "Bench hypothesis 7: metric score low",
-    "expectedVerdict": "refuted",
+    "hypothesis": "Adam converges to mean final loss below 0.2 within 5 epochs on a convex quadratic probe.",
+    "expectedVerdict": "inconclusive",
     "resultsFile": "evals/bench/validation/results/val-7.json",
     "predictions": [
       {
         "id": "p1",
-        "metric": "score",
+        "metric": "final_loss",
         "comparator": "<",
-        "value": 0.5,
+        "value": 0.2,
         "aggregate": "mean"
       }
     ],
     "requiredRuns": 3,
-    "seeds": [1, 2, 3],
-    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "seeds": [71],
+    "lockHash": "b966b46c138b4dab944794f77c087a45186b63042fae939fea3d9581f336951d",
+    "experimentId": "E-bench-val-7",
+    "reasoning": "Only 1 of 3 required runs present → verdict engine returns inconclusive (missing runs).",
+    "source": {
+      "doi": "10.48550/arXiv.1412.6980",
+      "title": "Adam: A Method for Stochastic Optimization",
+      "url": "https://doi.org/10.48550/arXiv.1412.6980"
+    }
   },
   {
     "id": "val-8",
-    "hypothesis": "Bench hypothesis 8: metric score high",
-    "expectedVerdict": "supported",
+    "hypothesis": "Diffusion sampling FID stays below 10 on CIFAR-10 across required seeds.",
+    "expectedVerdict": "inconclusive",
     "resultsFile": "evals/bench/validation/results/val-8.json",
     "predictions": [
       {
         "id": "p1",
-        "metric": "score",
-        "comparator": ">",
-        "value": 0.5,
+        "metric": "fid",
+        "comparator": "<",
+        "value": 10,
         "aggregate": "mean"
       }
     ],
     "requiredRuns": 3,
-    "seeds": [1, 2, 3],
-    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "seeds": [81, 82, 83],
+    "lockHash": "654621782e9d66f98f0a18abd7c5180f57231b5915820b7e1cd307c02d463f90",
+    "experimentId": "E-bench-val-8",
+    "reasoning": "Runs exist but metric 'fid' is missing from all runs → incomplete metrics → inconclusive.",
+    "source": {
+      "doi": "10.48550/arXiv.2006.11239",
+      "title": "Denoising Diffusion Probabilistic Models",
+      "url": "https://doi.org/10.48550/arXiv.2006.11239"
+    }
   },
   {
     "id": "val-9",
-    "hypothesis": "Bench hypothesis 9: metric score low",
-    "expectedVerdict": "refuted",
+    "hypothesis": "Batch-normalized ResNet mean validation accuracy exceeds 0.90 after short CIFAR training.",
+    "expectedVerdict": "inconclusive",
     "resultsFile": "evals/bench/validation/results/val-9.json",
     "predictions": [
       {
         "id": "p1",
-        "metric": "score",
-        "comparator": "<",
-        "value": 0.5,
+        "metric": "val_accuracy",
+        "comparator": ">",
+        "value": 0.9,
         "aggregate": "mean"
       }
     ],
-    "requiredRuns": 3,
-    "seeds": [1, 2, 3],
-    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    "requiredRuns": 4,
+    "seeds": [91, 92],
+    "lockHash": "662a6d6fe653ad9514d7475b344d28c38772388ec6528f2a13be9f25af166e5c",
+    "experimentId": "E-bench-val-9",
+    "reasoning": "requiredRuns=4 but only 2 runs committed → inconclusive (too few runs).",
+    "source": {
+      "doi": "10.48550/arXiv.1502.03167",
+      "title": "Batch Normalization",
+      "url": "https://doi.org/10.48550/arXiv.1502.03167"
+    }
   }
 ]

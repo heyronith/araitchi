@@ -1,24 +1,25 @@
 {
-  "experimentId": "E-bench-6",
-  "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "experimentId": "E-bench-val-6",
+  "lockHash": "c5d9ad5a9f689225923b65b787471fdca1984ac753215169f2d8968384132419",
   "runs": [
     {
-      "seed": 1,
+      "seed": 61,
       "metrics": {
-        "score": 0.9
+        "gdt_ts": 88.1
       }
     },
     {
-      "seed": 2,
+      "seed": 62,
       "metrics": {
-        "score": 0.85
+        "gdt_ts": 90.4
       }
     },
     {
-      "seed": 3,
+      "seed": 63,
       "metrics": {
-        "score": 0.88
+        "gdt_ts": 87.5
       }
     }
-  ]
+  ],
+  "notes": "Mean GDT_TS ≈ 88.7 > 80 → supported (AlphaFold DOI 10.1038/s41586-021-03819-2)."
 }

@@ -2,7 +2,7 @@
 
 Araitchi is a local-first, self-hosted AI research workspace. It runs as a Next.js app on your machine; you bring your own OpenRouter API key. A team of models from different labs will help with literature review, hypotheses, and experiment design — each research project is a folder on disk.
 
-**Status:** v0.1.0
+**Status:** v0.1.1
 
 ![Chat — Auto mode](docs/screenshots/chat-auto.png)
 ![Council reply](docs/screenshots/council.png)

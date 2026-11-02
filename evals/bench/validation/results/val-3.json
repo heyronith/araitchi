@@ -1,24 +1,25 @@
 {
-  "experimentId": "E-bench-3",
-  "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "experimentId": "E-bench-val-3",
+  "lockHash": "e7d12f8905d8fdc1fc96d8893165e55287574a9c525864fdbdba5d78e53484df",
   "runs": [
     {
-      "seed": 1,
+      "seed": 31,
       "metrics": {
-        "score": 0.1
+        "train_loss": 2.4
       }
     },
     {
-      "seed": 2,
+      "seed": 32,
       "metrics": {
-        "score": 0.15
+        "train_loss": 2.1
       }
     },
     {
-      "seed": 3,
+      "seed": 33,
       "metrics": {
-        "score": 0.12
+        "train_loss": 2.6
       }
     }
-  ]
+  ],
+  "notes": "Mean train_loss ≈ 2.37 is not < 0.5 → refuted; plain deep nets degrade without residuals."
 }

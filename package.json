@@ -1,6 +1,6 @@
 {
   "name": "araitchi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -23,7 +23,10 @@
     "eval:scribe": "node scripts/eval-scribe.mjs",
     "eval:gate": "node scripts/eval-gate.mjs",
     "eval:probe": "node scripts/eval-probe.mjs",
-    "bench": "node scripts/bench.mjs"
+    "bench": "node scripts/bench.mjs",
+    "bench:build-fixtures": "node scripts/build-bench-fixtures.mjs",
+    "bench:validate-fixtures": "node scripts/validate-bench-fixtures.mjs",
+    "bench:review": "node scripts/bench-review.mjs"
   },
   "dependencies": {
     "@ai-sdk/react": "^4.0.163",

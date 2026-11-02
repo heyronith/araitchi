@@ -8,6 +8,7 @@ function arg(name: string, fallback?: string): string | undefined {
 
 async function main() {
   const dryRun = process.argv.includes("--dry-run");
+  const yes = process.argv.includes("--yes");
   const sets = String(arg("--sets", "1,2,3,4"))
     .split(",")
     .map((s) => s.trim())
@@ -27,6 +28,7 @@ async function main() {
     repeats,
     budgetCapUsd,
     dryRun,
+    yes,
   });
   const { mdPath, jsonPath } = writeBenchReport(report);
   console.log(`Wrote ${mdPath}`);

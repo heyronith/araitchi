@@ -26,16 +26,18 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | T7 Convene gate & merge modes | ✅ | `a6092e6` |
 | T8 Validation loop | ✅ | `abf5407` |
 | T9 Eval harness & v0.1 | ✅ | v0.1.0 |
+| T9b Real benchmark | ✅ | v0.1.1 |
 
 ## Known issues / follow-ups
 
-- **Owner:** run `pnpm eval:scribe` / `eval:gate` / `eval:probe` with a real OpenRouter key, update `config/defaults.json` winners (see `docs/MODEL_DEFAULTS.md`). Placeholders remain in `evals/results/`.
-- **Owner:** `pnpm bench --limit 5` then full `pnpm bench` when ready; send `evals/results/bench-*.md` to the lead. Live bench needs OpenRouter; CI only runs `--dry-run`.
+- **Owner:** run `pnpm eval:scribe` / `eval:gate` / `eval:probe` with a real OpenRouter key, update `config/defaults.json` winners (see `docs/MODEL_DEFAULTS.md`).
+- **Owner:** `pnpm bench --limit 2 --repeats 1` (confirm estimate, `--yes` to skip prompt) then full `pnpm bench`; `pnpm bench:review` for rediscovery. CI runs `--dry-run` + offline fixture validation only.
+- Rediscovery fixtures ship `verified: false` — excluded from headline bench tables until reviewed.
 - Validation loop never executes experiment code — Cursor (or you) must write `experiments/<id>/results.json` and commit; Araitchi only reads and scores.
 - **Resolved (T8b):** experiment `resultsPath` is confined to relative `experiments/<id>/*.json` and read only via repo path-safety (no absolute/`..` escapes).
 - Default embedding model is Qwen3-Embedding-0.6B ONNX (~0.6 GB, downloaded once into `<dataDir>/models/`). Low-memory machines can switch to MiniLM in Settings → Memory (triggers re-index). If Qwen3 fails to load, the app falls back to EmbeddingGemma-300M, then keyword/FTS-only search.
 - Scribe / gate / probe evals are manual (real key); not run in CI. Bench dry-run is in CI.
-- Optional real-embedding Vitest (`ARAITCHI_REAL_EMBEDDINGS=1`) is skipped in CI.
+- Optional real-embedding Vitest (`ARAITCHI_REAL_EMBEDDINGS=1`) is skipped in CI. Optional live bench smoke: `ARAITCHI_LIVE_BENCH=1`.
 - Web search uses OpenRouter server tools and may be region-limited; unavailable regions show a notice instead of failing the chat.
 - Playwright covers onboarding skip, Evaluations fixture, solo papers + sources, council tool cards, repo open, toggles/MCP warning; PDF upload and MCP deny flows are covered in Vitest more than full UI e2e.
 - Optional GitHub remote repo tools need a `github_token` secret and are minimal (log / read file).
@@ -49,5 +51,4 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 
 ## Next steps
 
-- Capture README screenshots; fill live eval/bench tables; tune `config/defaults.json`.
-- Optional: richer live bench pipelines (not only dry-run mocks) and more rediscovery gold items.
+- Capture README screenshots; owner live bench + rediscovery review; tune `config/defaults.json` from eval tables.

@@ -1,8 +1,19 @@
 # Changelog
 
+## 0.1.1 — 2026-11-02
+
+### T9b — Real benchmark
+
+- Live `pnpm bench` runs real solo/council/auto pipelines (dry-run stays mock-only)
+- Real fixtures from OpenAlex/Crossref metadata (no templated placeholders)
+- Rediscovery items ship `verified: false` until `pnpm bench:review`; excluded from headline metrics
+- Config D uses the real lock + verdict engine (never “correct by construction”)
+- `pnpm bench:validate-fixtures`, `bench:build-fixtures`, `bench:review`
+
 ## 0.1.0 — 2026-11-01
 
 First tagged release. Local-first research workspace on Next.js + OpenRouter.
+Note: the v0.1.0 bench harness only exercised dry-run mocks; live scoring arrived in 0.1.1.
 
 ### T1 — Scaffold
 

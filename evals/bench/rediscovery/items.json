@@ -1,107 +1,212 @@
 [
   {
     "id": "red-0",
-    "question": "Before 2017, what mechanism or result might explain: Multi-head self-attention enables parallel sequence transduction without recurrence.",
+    "question": "Before 2017, what mechanism or result might explain: Multi-head self-attention enables parallel sequence transduction without recurrence or convolution.",
     "yearTo": 2016,
     "requiredTerms": ["attention", "transformer", "multi-head"],
-    "goldStatement": "Multi-head self-attention enables parallel sequence transduction without recurrence."
+    "goldStatement": "Multi-head self-attention enables parallel sequence transduction without recurrence or convolution.",
+    "verified": false,
+    "source": {
+      "doi": "10.48550/arXiv.1706.03762",
+      "title": "Attention Is All You Need",
+      "year": 2017,
+      "url": "https://doi.org/10.48550/arXiv.1706.03762"
+    }
   },
   {
     "id": "red-1",
-    "question": "Before 2018, what mechanism or result might explain: BERT pretrains deep bidirectional representations with masked language modeling.",
+    "question": "Before 2018, what mechanism or result might explain: BERT pretrains deep bidirectional representations using masked language modeling and next-sentence prediction.",
     "yearTo": 2017,
     "requiredTerms": ["bert", "bidirectional", "masked"],
-    "goldStatement": "BERT pretrains deep bidirectional representations with masked language modeling."
+    "goldStatement": "BERT pretrains deep bidirectional representations using masked language modeling and next-sentence prediction.",
+    "verified": false,
+    "source": {
+      "doi": "10.48550/arXiv.1810.04805",
+      "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "year": 2018,
+      "url": "https://doi.org/10.48550/arXiv.1810.04805"
+    }
   },
   {
     "id": "red-2",
-    "question": "Before 2019, what mechanism or result might explain: RoBERTa improves BERT with more data and dynamic masking.",
-    "yearTo": 2018,
-    "requiredTerms": ["roberta", "dynamic", "masking"],
-    "goldStatement": "RoBERTa improves BERT with more data and dynamic masking."
+    "question": "Before 2016, what mechanism or result might explain: Residual skip connections ease training of very deep convolutional networks by learning residual functions.",
+    "yearTo": 2015,
+    "requiredTerms": ["residual", "skip", "deep"],
+    "goldStatement": "Residual skip connections ease training of very deep convolutional networks by learning residual functions.",
+    "verified": false,
+    "source": {
+      "doi": "10.1109/CVPR.2016.90",
+      "title": "Deep Residual Learning for Image Recognition",
+      "year": 2016,
+      "url": "https://doi.org/10.1109/CVPR.2016.90"
+    }
   },
   {
     "id": "red-3",
-    "question": "Before 2020, what mechanism or result might explain: GPT-3 shows few-shot learning emerges at scale.",
+    "question": "Before 2020, what mechanism or result might explain: Large autoregressive language models exhibit few-shot in-context learning that improves with scale.",
     "yearTo": 2019,
-    "requiredTerms": ["gpt-3", "few-shot", "scale"],
-    "goldStatement": "GPT-3 shows few-shot learning emerges at scale."
+    "requiredTerms": ["few-shot", "language", "scale"],
+    "goldStatement": "Large autoregressive language models exhibit few-shot in-context learning that improves with scale.",
+    "verified": false,
+    "source": {
+      "doi": "10.48550/arXiv.2005.14165",
+      "title": "Language Models are Few-Shot Learners",
+      "year": 2020,
+      "url": "https://doi.org/10.48550/arXiv.2005.14165"
+    }
   },
   {
     "id": "red-4",
-    "question": "Before 2015, what mechanism or result might explain: Residual connections ease training of very deep networks.",
-    "yearTo": 2014,
-    "requiredTerms": ["resnet", "residual", "skip"],
-    "goldStatement": "Residual connections ease training of very deep networks."
+    "question": "Before 2021, what mechanism or result might explain: AlphaFold predicts protein structures at near-experimental accuracy using deep learning on evolutionary and geometric features.",
+    "yearTo": 2020,
+    "requiredTerms": ["alphafold", "protein", "structure"],
+    "goldStatement": "AlphaFold predicts protein structures at near-experimental accuracy using deep learning on evolutionary and geometric features.",
+    "verified": false,
+    "source": {
+      "doi": "10.1038/s41586-021-03819-2",
+      "title": "Highly accurate protein structure prediction with AlphaFold",
+      "year": 2021,
+      "url": "https://doi.org/10.1038/s41586-021-03819-2"
+    }
   },
   {
     "id": "red-5",
-    "question": "Before 2017, what mechanism or result might explain: Multi-head self-attention enables parallel sequence transduction without recurrence.",
-    "yearTo": 2016,
-    "requiredTerms": ["attention", "transformer", "multi-head"],
-    "goldStatement": "Multi-head self-attention enables parallel sequence transduction without recurrence."
+    "question": "Before 2014, what mechanism or result might explain: A generator and discriminator are trained adversarially so the generator learns to match the data distribution.",
+    "yearTo": 2013,
+    "requiredTerms": ["generator", "discriminator", "adversarial"],
+    "goldStatement": "A generator and discriminator are trained adversarially so the generator learns to match the data distribution.",
+    "verified": false,
+    "source": {
+      "doi": "10.48550/arXiv.1406.2661",
+      "title": "Generative Adversarial Networks",
+      "year": 2014,
+      "url": "https://doi.org/10.48550/arXiv.1406.2661"
+    }
   },
   {
     "id": "red-6",
-    "question": "Before 2018, what mechanism or result might explain: BERT pretrains deep bidirectional representations with masked language modeling.",
-    "yearTo": 2017,
-    "requiredTerms": ["bert", "bidirectional", "masked"],
-    "goldStatement": "BERT pretrains deep bidirectional representations with masked language modeling."
+    "question": "Before 2012, what mechanism or result might explain: A deep convolutional neural network (AlexNet) substantially improved ImageNet classification using GPUs and ReLU nonlinearities.",
+    "yearTo": 2011,
+    "requiredTerms": ["convolutional", "imagenet", "gpu"],
+    "goldStatement": "A deep convolutional neural network (AlexNet) substantially improved ImageNet classification using GPUs and ReLU nonlinearities.",
+    "verified": false,
+    "source": {
+      "doi": "10.1145/3065386",
+      "title": "ImageNet Classification with Deep Convolutional Neural Networks",
+      "year": 2012,
+      "url": "https://doi.org/10.1145/3065386"
+    }
   },
   {
     "id": "red-7",
-    "question": "Before 2019, what mechanism or result might explain: RoBERTa improves BERT with more data and dynamic masking.",
-    "yearTo": 2018,
-    "requiredTerms": ["roberta", "dynamic", "masking"],
-    "goldStatement": "RoBERTa improves BERT with more data and dynamic masking."
+    "question": "Before 2013, what mechanism or result might explain: A deep Q-network learns control policies directly from raw pixels by combining Q-learning with convolutional networks.",
+    "yearTo": 2012,
+    "requiredTerms": ["q-learning", "atari", "pixels"],
+    "goldStatement": "A deep Q-network learns control policies directly from raw pixels by combining Q-learning with convolutional networks.",
+    "verified": false,
+    "source": {
+      "doi": "10.48550/arXiv.1312.5602",
+      "title": "Playing Atari with Deep Reinforcement Learning",
+      "year": 2013,
+      "url": "https://doi.org/10.48550/arXiv.1312.5602"
+    }
   },
   {
     "id": "red-8",
-    "question": "Before 2020, what mechanism or result might explain: GPT-3 shows few-shot learning emerges at scale.",
-    "yearTo": 2019,
-    "requiredTerms": ["gpt-3", "few-shot", "scale"],
-    "goldStatement": "GPT-3 shows few-shot learning emerges at scale."
+    "question": "Before 2014, what mechanism or result might explain: Adam adapts per-parameter learning rates using estimates of first and second moments of the gradients.",
+    "yearTo": 2013,
+    "requiredTerms": ["adam", "moments", "adaptive"],
+    "goldStatement": "Adam adapts per-parameter learning rates using estimates of first and second moments of the gradients.",
+    "verified": false,
+    "source": {
+      "doi": "10.48550/arXiv.1412.6980",
+      "title": "Adam: A Method for Stochastic Optimization",
+      "year": 2014,
+      "url": "https://doi.org/10.48550/arXiv.1412.6980"
+    }
   },
   {
     "id": "red-9",
-    "question": "Before 2015, what mechanism or result might explain: Residual connections ease training of very deep networks.",
-    "yearTo": 2014,
-    "requiredTerms": ["resnet", "residual", "skip"],
-    "goldStatement": "Residual connections ease training of very deep networks."
+    "question": "Before 2020, what mechanism or result might explain: Denoising diffusion models generate samples by reversing a gradual noising process with a learned denoiser.",
+    "yearTo": 2019,
+    "requiredTerms": ["diffusion", "denoising", "noise"],
+    "goldStatement": "Denoising diffusion models generate samples by reversing a gradual noising process with a learned denoiser.",
+    "verified": false,
+    "source": {
+      "doi": "10.48550/arXiv.2006.11239",
+      "title": "Denoising Diffusion Probabilistic Models",
+      "year": 2020,
+      "url": "https://doi.org/10.48550/arXiv.2006.11239"
+    }
   },
   {
     "id": "red-10",
-    "question": "Before 2017, what mechanism or result might explain: Multi-head self-attention enables parallel sequence transduction without recurrence.",
-    "yearTo": 2016,
-    "requiredTerms": ["attention", "transformer", "multi-head"],
-    "goldStatement": "Multi-head self-attention enables parallel sequence transduction without recurrence."
+    "question": "Before 2019, what mechanism or result might explain: RoBERTa improves BERT pretraining with more data, larger batches, and dynamic masking without next-sentence prediction.",
+    "yearTo": 2018,
+    "requiredTerms": ["roberta", "masking", "bert"],
+    "goldStatement": "RoBERTa improves BERT pretraining with more data, larger batches, and dynamic masking without next-sentence prediction.",
+    "verified": false,
+    "source": {
+      "doi": "10.48550/arXiv.1907.11692",
+      "title": "RoBERTa: A Robustly Optimized BERT Pretraining Approach",
+      "year": 2019,
+      "url": "https://doi.org/10.48550/arXiv.1907.11692"
+    }
   },
   {
     "id": "red-11",
-    "question": "Before 2018, what mechanism or result might explain: BERT pretrains deep bidirectional representations with masked language modeling.",
-    "yearTo": 2017,
-    "requiredTerms": ["bert", "bidirectional", "masked"],
-    "goldStatement": "BERT pretrains deep bidirectional representations with masked language modeling."
+    "question": "Before 2015, what mechanism or result might explain: U-Net uses a symmetric encoder–decoder with skip connections for precise biomedical image segmentation from few labeled examples.",
+    "yearTo": 2014,
+    "requiredTerms": ["u-net", "segmentation", "skip"],
+    "goldStatement": "U-Net uses a symmetric encoder–decoder with skip connections for precise biomedical image segmentation from few labeled examples.",
+    "verified": false,
+    "source": {
+      "doi": "10.1007/978-3-319-24574-4_28",
+      "title": "U-Net: Convolutional Networks for Biomedical Image Segmentation",
+      "year": 2015,
+      "url": "https://doi.org/10.1007/978-3-319-24574-4_28"
+    }
   },
   {
     "id": "red-12",
-    "question": "Before 2019, what mechanism or result might explain: RoBERTa improves BERT with more data and dynamic masking.",
-    "yearTo": 2018,
-    "requiredTerms": ["roberta", "dynamic", "masking"],
-    "goldStatement": "RoBERTa improves BERT with more data and dynamic masking."
+    "question": "Before 2015, what mechanism or result might explain: Batch normalization normalizes layer inputs over mini-batches to stabilize and accelerate deep network training.",
+    "yearTo": 2014,
+    "requiredTerms": ["batch", "normalization", "covariate"],
+    "goldStatement": "Batch normalization normalizes layer inputs over mini-batches to stabilize and accelerate deep network training.",
+    "verified": false,
+    "source": {
+      "doi": "10.48550/arXiv.1502.03167",
+      "title": "Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift",
+      "year": 2015,
+      "url": "https://doi.org/10.48550/arXiv.1502.03167"
+    }
   },
   {
     "id": "red-13",
-    "question": "Before 2020, what mechanism or result might explain: GPT-3 shows few-shot learning emerges at scale.",
-    "yearTo": 2019,
-    "requiredTerms": ["gpt-3", "few-shot", "scale"],
-    "goldStatement": "GPT-3 shows few-shot learning emerges at scale."
+    "question": "Before 2014, what mechanism or result might explain: Soft attention lets the decoder align to relevant encoder states, improving neural machine translation.",
+    "yearTo": 2013,
+    "requiredTerms": ["attention", "alignment", "translation"],
+    "goldStatement": "Soft attention lets the decoder align to relevant encoder states, improving neural machine translation.",
+    "verified": false,
+    "source": {
+      "doi": "10.48550/arXiv.1409.0473",
+      "title": "Neural Machine Translation by Jointly Learning to Align and Translate",
+      "year": 2014,
+      "url": "https://doi.org/10.48550/arXiv.1409.0473"
+    }
   },
   {
     "id": "red-14",
-    "question": "Before 2015, what mechanism or result might explain: Residual connections ease training of very deep networks.",
+    "question": "Before 2015, what mechanism or result might explain: Knowledge distillation trains a smaller student network to match a teacher's softened output distribution.",
     "yearTo": 2014,
-    "requiredTerms": ["resnet", "residual", "skip"],
-    "goldStatement": "Residual connections ease training of very deep networks."
+    "requiredTerms": ["distillation", "student", "teacher"],
+    "goldStatement": "Knowledge distillation trains a smaller student network to match a teacher's softened output distribution.",
+    "verified": false,
+    "source": {
+      "doi": "10.48550/arXiv.1503.02531",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "year": 2015,
+      "url": "https://doi.org/10.48550/arXiv.1503.02531"
+    }
   }
 ]

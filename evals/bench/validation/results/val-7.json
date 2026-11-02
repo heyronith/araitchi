@@ -1,24 +1,13 @@
 {
-  "experimentId": "E-bench-7",
-  "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "experimentId": "E-bench-val-7",
+  "lockHash": "b966b46c138b4dab944794f77c087a45186b63042fae939fea3d9581f336951d",
   "runs": [
     {
-      "seed": 1,
+      "seed": 71,
       "metrics": {
-        "score": 0.1
-      }
-    },
-    {
-      "seed": 2,
-      "metrics": {
-        "score": 0.15
-      }
-    },
-    {
-      "seed": 3,
-      "metrics": {
-        "score": 0.12
+        "final_loss": 0.11
       }
     }
-  ]
+  ],
+  "notes": "Only 1 of 3 required runs present → verdict engine returns inconclusive (missing runs)."
 }
