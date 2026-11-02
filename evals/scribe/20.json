@@ -1,0 +1,13 @@
+{
+  "user": "Remember: exclusion if apnea AHI>15.",
+  "reply": "Note exclusion AHI>15.",
+  "expected": {
+    "records": [
+      {
+        "type": "note",
+        "titleTerms": ["AHI"]
+      }
+    ]
+  },
+  "existing": []
+}

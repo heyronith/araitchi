@@ -48,6 +48,8 @@ import {
   setCouncilConfig,
 } from "@/lib/server/project/settings";
 import { assertLocalOrigin } from "@/lib/server/security";
+import { runScribe } from "@/lib/server/memory/scribe";
+import type { ScribeOutput } from "@/lib/server/memory/scribe-schema";
 
 export const runtime = "nodejs";
 
@@ -133,7 +135,20 @@ export async function POST(request: Request) {
   }
 
   const assistantId = nanoid();
-  const ctx = buildProjectSystemContext(projectPath);
+  const lastUserText =
+    typeof lastUser.content === "string" && lastUser.content
+      ? lastUser.content
+      : (lastUser.parts ?? [])
+          .map((p) =>
+            p && typeof p === "object" && "text" in p
+              ? String((p as { text?: string }).text ?? "")
+              : "",
+          )
+          .join("\n");
+  const ctx = await buildProjectSystemContext(projectPath, {
+    userMessage: lastUserText,
+    chatId,
+  });
 
   if (mode === "council") {
     return handleCouncil({
@@ -142,10 +157,18 @@ export async function POST(request: Request) {
       chatId,
       assistantId,
       lastUserId: lastUser.id,
+      lastUserText,
       uiMessages: uiMessages as UIMessage[],
       allowOverBudget: Boolean(allowOverBudget),
       abortSignal: request.signal,
       projectSystem: ctx.systemText,
+      contextMeta: {
+        pinnedCount: ctx.pinnedCount,
+        relevantCount: ctx.relevantCount,
+        totalTokens: ctx.totalTokens,
+        items: ctx.items,
+        vectorUsed: ctx.vectorUsed,
+      },
       toggles,
       toolApprovals: parsed.data.toolApprovals,
     });
@@ -236,6 +259,36 @@ export async function POST(request: Request) {
         parts.push(...toolPartsSolo);
         parts.push({ type: "text", text });
 
+        let mockOutput: ScribeOutput | null = null;
+        if (process.env.ARAITCHI_MOCK_SCRIBE) {
+          try {
+            mockOutput = JSON.parse(
+              process.env.ARAITCHI_MOCK_SCRIBE,
+            ) as ScribeOutput;
+          } catch {
+            mockOutput = null;
+          }
+        }
+        // Scribe runs after the reply stream finishes; does not delay tokens.
+        const scribeSummary = await runScribe({
+          projectPath,
+          chatId,
+          messageId: assistantId,
+          userText: lastUserText,
+          replyText: text,
+          sourceModel: modelId,
+          apiKey,
+          mockOutput,
+        }).catch(() => null);
+
+        if (scribeSummary) {
+          parts.push({
+            type: "data-scribe",
+            id: scribeSummary.batchId,
+            data: scribeSummary,
+          });
+        }
+
         updateMessage(assistantId, {
           parts,
           modelId,
@@ -243,6 +296,7 @@ export async function POST(request: Request) {
             inputTokens: usage?.inputTokens,
             outputTokens: usage?.outputTokens,
             cost,
+            scribeCost: scribeSummary?.costUsd ?? undefined,
           },
         });
         persistSessionTranscript(chatId);
@@ -273,7 +327,12 @@ export async function POST(request: Request) {
             cost,
           },
           projectContext: {
+            brief: true,
             pinnedCount: ctx.pinnedCount,
+            relevantCount: ctx.relevantCount,
+            totalTokens: ctx.totalTokens,
+            items: ctx.items,
+            vectorUsed: ctx.vectorUsed,
           },
         };
       },
@@ -337,10 +396,18 @@ async function handleCouncil(input: {
   chatId: string;
   assistantId: string;
   lastUserId: string;
+  lastUserText: string;
   uiMessages: UIMessage[];
   allowOverBudget: boolean;
   abortSignal: AbortSignal;
   projectSystem: string;
+  contextMeta: {
+    pinnedCount: number;
+    relevantCount: number;
+    totalTokens: number;
+    items: unknown[];
+    vectorUsed: boolean;
+  };
   toggles: ToolToggles;
   toolApprovals?: Record<string, boolean>;
 }) {
@@ -505,11 +572,49 @@ async function handleCouncil(input: {
         }
         parts.push({ type: "data-council-summary", data: result.summary });
 
+        let mockOutput: ScribeOutput | null = null;
+        if (process.env.ARAITCHI_MOCK_SCRIBE) {
+          try {
+            mockOutput = JSON.parse(
+              process.env.ARAITCHI_MOCK_SCRIBE,
+            ) as ScribeOutput;
+          } catch {
+            mockOutput = null;
+          }
+        }
+        const scribeSummary = await runScribe({
+          projectPath: input.projectPath,
+          chatId: input.chatId,
+          messageId: input.assistantId,
+          userText: input.lastUserText,
+          replyText: finalText,
+          sourceModel: config.synthesizer,
+          apiKey: input.apiKey,
+          councilAnalysisJson: result.analysis
+            ? JSON.stringify(result.analysis)
+            : null,
+          mockOutput,
+        }).catch(() => null);
+
+        if (scribeSummary) {
+          parts.push({
+            type: "data-scribe",
+            id: scribeSummary.batchId,
+            data: scribeSummary,
+          });
+          writer.write({
+            type: "data-scribe",
+            id: scribeSummary.batchId,
+            data: scribeSummary,
+          });
+        }
+
         updateMessage(input.assistantId, {
           parts,
           modelId: "council",
           usage: {
             cost: result.summary.totalCost,
+            scribeCost: scribeSummary?.costUsd ?? undefined,
           },
         });
         persistSessionTranscript(input.chatId);

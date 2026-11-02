@@ -50,6 +50,7 @@ describe("tool settings", () => {
       documents: false,
       repo: false,
       mcp: false,
+      memory: true,
     });
     expect(getMaxSteps(p)).toBe(DEFAULT_MAX_STEPS);
   });
@@ -97,6 +98,7 @@ describe("buildBrokerTools", () => {
         documents: true,
         repo: false,
         mcp: false,
+        memory: false,
       },
     });
     expect(built.registered).toContain("read_document");
@@ -139,6 +141,7 @@ describe("buildBrokerTools", () => {
         documents: false,
         repo: false,
         mcp: true,
+        memory: false,
       },
       mcpServers: [server],
     });

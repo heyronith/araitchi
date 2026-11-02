@@ -2,13 +2,13 @@ import "server-only";
 
 import { writeFileSync } from "node:fs";
 import path from "node:path";
-import { isNull } from "drizzle-orm";
+import { eq, isNull } from "drizzle-orm";
 
 import { resolveActiveBranch, type StoredMessage } from "@/lib/chat/branches";
 
 import { getNotebookDb } from "./db";
 import { researchDir } from "./init";
-import { records } from "./schema";
+import { records, sessionSummaries } from "./schema";
 import type { MemoryRecord, RecordType } from "./types";
 
 const TYPE_ORDER: RecordType[] = [
@@ -38,6 +38,7 @@ function rowToRecord(row: typeof records.$inferSelect): MemoryRecord {
     sourceChatId: row.sourceChatId,
     sourceMessageId: row.sourceMessageId,
     tags,
+    createdBy: (row.createdBy as MemoryRecord["createdBy"]) || "user",
     createdAt: row.createdAt,
     updatedAt: row.updatedAt,
     deletedAt: row.deletedAt,
@@ -208,6 +209,15 @@ export function writeSessionTranscript(
   const filePath = path.join(researchDir(projectPath), "sessions", fileName);
 
   const lines = [`# ${chat.title}`, "", `_chat: ${chat.id}_`, ""];
+
+  const summaryRow = getNotebookDb(projectPath)
+    .select()
+    .from(sessionSummaries)
+    .where(eq(sessionSummaries.chatId, chat.id))
+    .get();
+  if (summaryRow?.summary) {
+    lines.push("## Session summary", "", summaryRow.summary, "");
+  }
 
   for (const m of branch) {
     const when = new Date(m.createdAt).toISOString();

@@ -22,6 +22,7 @@ export const toolTogglesSchema = z.object({
   documents: z.boolean().optional(),
   repo: z.boolean().optional(),
   mcp: z.boolean().optional(),
+  memory: z.boolean().optional(),
 });
 
 export const chatRequestSchema = z

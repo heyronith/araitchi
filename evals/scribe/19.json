@@ -1,0 +1,13 @@
+{
+  "user": "Question remains: sex differences in clearance?",
+  "reply": "Still open on sex differences.",
+  "expected": {
+    "records": [
+      {
+        "type": "question",
+        "titleTerms": ["sex"]
+      }
+    ]
+  },
+  "existing": []
+}

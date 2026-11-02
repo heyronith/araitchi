@@ -1,0 +1,13 @@
+{
+  "user": "Note: IRB approved protocol #42.",
+  "reply": "Logged IRB #42.",
+  "expected": {
+    "records": [
+      {
+        "type": "note",
+        "titleTerms": ["IRB"]
+      }
+    ]
+  },
+  "existing": []
+}

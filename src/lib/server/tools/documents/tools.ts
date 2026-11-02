@@ -81,9 +81,32 @@ export function createDocumentTools(): RegisteredTool[] {
       }
 
       if (args.query) {
-        const chunks = scoreChunks(doc.pages ?? doc.text, args.query, {
-          topK: 5,
-        });
+        // Prefer hybrid ranking when document chunks are indexed; fall back
+        // to keyword scoring so read_document still works offline / unindexed.
+        let chunks: { page?: number; text: string; score: number }[] = [];
+        try {
+          const { hybridSearch } = await import("@/lib/server/memory/search");
+          const { hits } = await hybridSearch(ctx.projectPath, {
+            query: args.query,
+            types: ["doc_chunk"],
+            limit: 8,
+          });
+          const mine = hits.filter((h) => h.ownerId === args.id);
+          if (mine.length) {
+            chunks = mine.map((h) => ({
+              text: h.text,
+              score: h.score,
+              page: undefined,
+            }));
+          }
+        } catch {
+          // ignore — keyword fallback below
+        }
+        if (!chunks.length) {
+          chunks = scoreChunks(doc.pages ?? doc.text, args.query, {
+            topK: 5,
+          });
+        }
         if (!chunks.length) {
           return {
             ok: true,

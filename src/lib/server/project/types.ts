@@ -31,6 +31,8 @@ export type QuestionStatus = "open" | "answered";
 export type RecordStatus =
   HypothesisStatus | ExperimentStatus | QuestionStatus | null;
 
+export type CreatedBy = "user" | "scribe";
+
 export type MemoryRecord = {
   id: string;
   type: RecordType;
@@ -42,6 +44,7 @@ export type MemoryRecord = {
   sourceChatId: string | null;
   sourceMessageId: string | null;
   tags: string[];
+  createdBy: CreatedBy;
   createdAt: number;
   updatedAt: number;
   deletedAt: number | null;

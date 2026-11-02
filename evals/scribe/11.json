@@ -1,0 +1,13 @@
+{
+  "user": "Decision: drop diary arm to reduce burden.",
+  "reply": "Dropped diaries; actigraphy only.",
+  "expected": {
+    "records": [
+      {
+        "type": "decision",
+        "titleTerms": ["diary"]
+      }
+    ]
+  },
+  "existing": []
+}

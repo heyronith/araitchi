@@ -1,0 +1,13 @@
+{
+  "user": "Open question: does caffeine blunt the sleep-debt effect?",
+  "reply": "Good question — still open.",
+  "expected": {
+    "records": [
+      {
+        "type": "question",
+        "titleTerms": ["caffeine", "sleep"]
+      }
+    ]
+  },
+  "existing": []
+}

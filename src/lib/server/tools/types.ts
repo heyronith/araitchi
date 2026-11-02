@@ -43,4 +43,5 @@ export type ToolToggles = {
   documents: boolean;
   repo: boolean;
   mcp: boolean;
+  memory: boolean;
 };

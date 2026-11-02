@@ -1,0 +1,14 @@
+{
+  "user": "We are now testing the blue-light hypothesis with filters.",
+  "reply": "Status → testing with amber filters.",
+  "expected": {
+    "records": [
+      {
+        "type": "hypothesis",
+        "titleTerms": ["blue"],
+        "status": "testing"
+      }
+    ]
+  },
+  "existing": []
+}

@@ -1,0 +1,13 @@
+{
+  "user": "See also arXiv:2301.12345 on circadian models.",
+  "reply": "Reference arXiv:2301.12345 added.",
+  "expected": {
+    "records": [
+      {
+        "type": "paper",
+        "titleTerms": ["2301"]
+      }
+    ]
+  },
+  "existing": []
+}

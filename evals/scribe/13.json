@@ -1,0 +1,13 @@
+{
+  "user": "Why did latency improve — placebo?",
+  "reply": "Open: placebo vs filter mechanism.",
+  "expected": {
+    "records": [
+      {
+        "type": "question",
+        "titleTerms": ["placebo"]
+      }
+    ]
+  },
+  "existing": []
+}

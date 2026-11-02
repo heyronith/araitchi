@@ -44,6 +44,7 @@ const putSchema = z.object({
       documents: z.boolean().optional(),
       repo: z.boolean().optional(),
       mcp: z.boolean().optional(),
+      memory: z.boolean().optional(),
     })
     .optional(),
   maxSteps: z.number().int().min(1).max(20).optional(),

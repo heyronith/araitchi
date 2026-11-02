@@ -3,7 +3,11 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   // Required for native better-sqlite3. Disables cacheComponents (incompatible
   // with route segment `runtime = "nodejs"`).
-  serverExternalPackages: ["better-sqlite3"],
+  serverExternalPackages: [
+    "better-sqlite3",
+    "@huggingface/transformers",
+    "onnxruntime-node",
+  ],
   turbopack: {
     rules: {
       "*.css": {

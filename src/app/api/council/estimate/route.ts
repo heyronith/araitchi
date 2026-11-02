@@ -53,7 +53,7 @@ export async function POST(request: Request) {
     });
   }
 
-  const ctx = buildProjectSystemContext(projectPath);
+  const ctx = await buildProjectSystemContext(projectPath);
   const contextChars =
     parsed.data.contextChars ??
     ctx.systemText.length + (parsed.data.messagesText?.length ?? 0);

@@ -22,7 +22,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | T4 Council engine | ✅ | `34b03ae` |
 | T5 Tool broker & research tools | ✅ | `de170ec` |
 | T5b Chat UX polish | ✅ | `d4ff206` |
-| T6 Scribe & context | ⏳ | |
+| T6 Scribe & context | ✅ | (this commit) |
 | T7 Convene gate & merge modes | ⏳ | |
 | T8 Validation loop | ⏳ | |
 | T9 Eval harness & v0.1 | ⏳ | |
@@ -30,8 +30,9 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 ## Known issues / follow-ups
 
 - Auto mode remains disabled until Task 7.
-- Automatic memory scribe is Task 6; memory is manual only.
-- Embeddings (classifier / retrieval) land in Task 6; document `read_document` uses keyword chunk scoring for now.
+- Default embedding model is Qwen3-Embedding-0.6B ONNX (~0.6 GB, downloaded once into `<dataDir>/models/`). Low-memory machines can switch to MiniLM in Settings → Memory (triggers re-index). If Qwen3 fails to load, the app falls back to EmbeddingGemma-300M, then keyword/FTS-only search.
+- Scribe quality eval (`pnpm eval:scribe`) is manual and needs a real OpenRouter key; not run in CI.
+- Optional real-embedding Vitest (`ARAITCHI_REAL_EMBEDDINGS=1`) is skipped in CI.
 - Web search uses OpenRouter server tools and may be region-limited; unavailable regions show a notice instead of failing the chat.
 - Playwright covers solo papers + sources save, council tool cards, repo open, toggles/MCP warning; PDF upload and MCP deny flows are covered in Vitest (`documents`, `mcp-approval`) more than full UI e2e.
 - Optional GitHub remote repo tools need a `github_token` secret and are minimal (log / read file).

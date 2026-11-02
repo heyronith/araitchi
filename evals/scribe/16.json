@@ -1,0 +1,14 @@
+{
+  "user": "Hypothesis: protein before bed improves sleep quality.",
+  "reply": "Proposed protein-before-bed → better sleep quality.",
+  "expected": {
+    "records": [
+      {
+        "type": "hypothesis",
+        "titleTerms": ["protein", "sleep"],
+        "status": "proposed"
+      }
+    ]
+  },
+  "existing": []
+}

@@ -19,13 +19,15 @@
     "check:secrets:selftest": "bash scripts/check-secrets-selftest.sh",
     "db:generate:project": "drizzle-kit generate --config=drizzle.project.config.ts",
     "smoke:openrouter": "node scripts/smoke-openrouter.mjs",
-    "smoke:papers": "node scripts/smoke-papers.mjs"
+    "smoke:papers": "node scripts/smoke-papers.mjs",
+    "eval:scribe": "node scripts/eval-scribe.mjs"
   },
   "dependencies": {
     "@ai-sdk/react": "^4.0.163",
     "@assistant-ui/react": "^0.15.32",
     "@assistant-ui/react-ai-sdk": "^1.4.21",
     "@assistant-ui/react-markdown": "^0.14.24",
+    "@huggingface/transformers": "^4.3.2",
     "@modelcontextprotocol/sdk": "^1.32.2",
     "@openrouter/ai-sdk-provider": "^3.1.0",
     "ai": "^7.0.159",
@@ -40,6 +42,7 @@
     "nanoid": "^6.0.2",
     "next": "16.4.3",
     "next-themes": "^0.4.6",
+    "onnxruntime-node": "^1.31.1",
     "radix-ui": "^1.8.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",

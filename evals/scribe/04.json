@@ -1,0 +1,13 @@
+{
+  "user": "Paper: Walker 2017 Why We Sleep — cites adenosine.",
+  "reply": "Noted Walker 2017 on adenosine and sleep pressure.",
+  "expected": {
+    "records": [
+      {
+        "type": "paper",
+        "titleTerms": ["Walker"]
+      }
+    ]
+  },
+  "existing": []
+}

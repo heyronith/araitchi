@@ -1,0 +1,14 @@
+{
+  "user": "Plan experiment: casein vs placebo shake at 21:00.",
+  "reply": "Experiment planned: casein vs placebo.",
+  "expected": {
+    "records": [
+      {
+        "type": "experiment",
+        "titleTerms": ["casein"],
+        "status": "planned"
+      }
+    ]
+  },
+  "existing": []
+}

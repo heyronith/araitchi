@@ -1,0 +1,13 @@
+{
+  "user": "We decided to use actigraphy instead of diaries.",
+  "reply": "Decision locked: actigraphy for objective sleep.",
+  "expected": {
+    "records": [
+      {
+        "type": "decision",
+        "titleTerms": ["actigraphy"]
+      }
+    ]
+  },
+  "existing": []
+}

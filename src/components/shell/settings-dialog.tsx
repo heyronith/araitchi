@@ -15,8 +15,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CouncilSettings } from "@/components/shell/council-settings";
+import { MemorySettings } from "@/components/shell/memory-settings";
 import { ToolsSettings } from "@/components/shell/tools-settings";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+type SettingsTab = "keys" | "models" | "council" | "tools" | "memory";
 
 type SecretStatus = { name: string; set: boolean };
 
@@ -67,7 +70,7 @@ type SettingsDialogProps = {
   onOpenChange: (open: boolean) => void;
   statuses: SecretStatus[];
   onStatusesChange: (statuses: SecretStatus[]) => void;
-  initialTab?: "keys" | "models" | "council" | "tools";
+  initialTab?: SettingsTab;
 };
 
 async function fetchSecretStatuses(): Promise<SecretStatus[]> {
@@ -94,9 +97,7 @@ export function SettingsDialog({
   const [modelOptions, setModelOptions] = React.useState<
     Array<{ id: string; name: string }>
   >([]);
-  const [tab, setTab] = React.useState<"keys" | "models" | "council" | "tools">(
-    initialTab,
-  );
+  const [tab, setTab] = React.useState<SettingsTab>(initialTab);
 
   const isSet = (name: string) =>
     statuses.find((s) => s.name === name)?.set ?? false;
@@ -198,17 +199,13 @@ export function SettingsDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <Tabs
-          value={tab}
-          onValueChange={(v) =>
-            setTab(v as "keys" | "models" | "council" | "tools")
-          }
-        >
+        <Tabs value={tab} onValueChange={(v) => setTab(v as SettingsTab)}>
           <TabsList>
             <TabsTrigger value="keys">Keys</TabsTrigger>
             <TabsTrigger value="models">Models</TabsTrigger>
             <TabsTrigger value="council">Council</TabsTrigger>
             <TabsTrigger value="tools">Tools</TabsTrigger>
+            <TabsTrigger value="memory">Memory</TabsTrigger>
           </TabsList>
 
           <TabsContent value="keys" className="mt-4 space-y-5">
@@ -341,6 +338,10 @@ export function SettingsDialog({
 
           <TabsContent value="tools" className="mt-4">
             <ToolsSettings />
+          </TabsContent>
+
+          <TabsContent value="memory" className="mt-4">
+            <MemorySettings />
           </TabsContent>
         </Tabs>
       </DialogContent>

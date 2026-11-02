@@ -1,0 +1,14 @@
+{
+  "user": "Experiment done: filters reduced latency by 12 min.",
+  "reply": "Results: −12 min sleep latency with filters.",
+  "expected": {
+    "records": [
+      {
+        "type": "experiment",
+        "titleTerms": ["filter", "latency"],
+        "status": "done"
+      }
+    ]
+  },
+  "existing": []
+}

@@ -6,7 +6,12 @@ import { nanoid } from "nanoid";
 import { getNotebookDb, getNotebookSqlite } from "./db";
 import { exportMemoryMd } from "./exporters";
 import { records } from "./schema";
-import type { MemoryRecord, RecordStatus, RecordType } from "./types";
+import type {
+  CreatedBy,
+  MemoryRecord,
+  RecordStatus,
+  RecordType,
+} from "./types";
 
 function rowToRecord(row: typeof records.$inferSelect): MemoryRecord {
   let tags: string[] = [];
@@ -26,6 +31,7 @@ function rowToRecord(row: typeof records.$inferSelect): MemoryRecord {
     sourceChatId: row.sourceChatId,
     sourceMessageId: row.sourceMessageId,
     tags,
+    createdBy: (row.createdBy as CreatedBy) || "user",
     createdAt: row.createdAt,
     updatedAt: row.updatedAt,
     deletedAt: row.deletedAt,
@@ -119,6 +125,7 @@ export function createRecord(
     sourceChatId?: string | null;
     sourceMessageId?: string | null;
     tags?: string[];
+    createdBy?: CreatedBy;
     id?: string;
   },
 ): MemoryRecord {
@@ -137,12 +144,17 @@ export function createRecord(
       sourceChatId: input.sourceChatId ?? null,
       sourceMessageId: input.sourceMessageId ?? null,
       tags: JSON.stringify(input.tags ?? []),
+      createdBy: input.createdBy ?? "user",
       createdAt: now,
       updatedAt: now,
       deletedAt: null,
     })
     .run();
   exportMemoryMd(projectPath);
+  // Fire-and-forget index update (safe if embedder unavailable).
+  void import("@/lib/server/memory/index")
+    .then((m) => m.indexRecord(projectPath, id))
+    .catch(() => undefined);
   return getRecord(projectPath, id)!;
 }
 
@@ -175,6 +187,9 @@ export function updateRecord(
     .where(eq(records.id, id))
     .run();
   exportMemoryMd(projectPath);
+  void import("@/lib/server/memory/index")
+    .then((m) => m.indexRecord(projectPath, id))
+    .catch(() => undefined);
   return getRecord(projectPath, id);
 }
 

@@ -1,0 +1,14 @@
+{
+  "user": "Our hypothesis is that sleep debt increases error rates.",
+  "reply": "Yes — sleep debt raises errors via attention lapses.",
+  "expected": {
+    "records": [
+      {
+        "type": "hypothesis",
+        "titleTerms": ["sleep", "error"],
+        "status": "proposed"
+      }
+    ]
+  },
+  "existing": []
+}

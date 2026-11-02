@@ -1,0 +1,14 @@
+{
+  "user": "Hypothesis: blue light after 9pm delays melatonin.",
+  "reply": "Proposed: evening blue light delays melatonin onset.",
+  "expected": {
+    "records": [
+      {
+        "type": "hypothesis",
+        "titleTerms": ["blue", "melatonin"],
+        "status": "proposed"
+      }
+    ]
+  },
+  "existing": []
+}

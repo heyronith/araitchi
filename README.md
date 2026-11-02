@@ -2,7 +2,7 @@
 
 Araitchi is a local-first, self-hosted AI research workspace. It runs as a Next.js app on your machine; you bring your own OpenRouter API key. A team of models from different labs will help with literature review, hypotheses, and experiment design — each research project is a folder on disk.
 
-**Status:** pre-alpha, Task 5 of 9 complete (tool broker & research tools).
+**Status:** pre-alpha, Task 6 of 9 complete (scribe, semantic memory, context assembly).
 
 ## Requirements
 
@@ -65,6 +65,7 @@ Open **Settings → Tools** to choose what models may use. Toggles are per proje
 | Documents | Read PDFs / text you add to the project library |
 | Repo | Read-only git/repo tools (needs the `git` binary on PATH; refuses `.env` and similar) |
 | MCP | Tools from MCP servers you add |
+| Memory | Search notebook / hypotheses / library (default on) |
 
 - **Optional keys** (Settings → Keys): OpenAlex, CORE, Semantic Scholar, and a GitHub token (read-only). Paper search works without them, with lower rate limits.
 - **Contact email** (`contact_email`): sent to Crossref / OpenAlex polite pools and required for Unpaywall. It is not a secret.
@@ -76,6 +77,20 @@ Manual paper-API smoke (hits real services, no LLM, not CI):
 
 ```bash
 pnpm smoke:papers "graph neural networks for molecules"
+```
+
+### Memory & scribe
+
+After each assistant reply, a **scribe** model extracts durable research facts (hypotheses, experiments, decisions, papers, questions, notes) into the project notebook. You’ll see a compact **Memory:** line under the reply (with Undo). Settings → **Memory**:
+
+- Turn the scribe **off**, require Accept/Dismiss review, or pick a cheaper scribe model (default = council synthesizer).
+- Choose the local embedding model. The quality default (~0.6 GB ONNX) downloads once into the app data `models/` folder with a progress notice, then works offline. MiniLM is available for low-memory machines (switching re-indexes).
+- If the embedding download fails, search falls back to keyword (FTS) only.
+
+The composer shows a **Context** indicator (brief · pinned · relevant). Models receive a shared context package and can call memory tools when the Memory toggle is on.
+
+```bash
+pnpm eval:scribe   # manual quality table vs OpenRouter (not CI)
 ```
 
 ### Manual smoke (not CI)

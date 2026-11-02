@@ -42,7 +42,7 @@ export function AppShell() {
   const searchParams = useSearchParams();
   const [settingsOpen, setSettingsOpen] = React.useState(false);
   const [settingsTab, setSettingsTab] = React.useState<
-    "keys" | "models" | "council" | "tools"
+    "keys" | "models" | "council" | "tools" | "memory"
   >("keys");
   const [chatMode, setChatMode] = React.useState<ChatMode>("solo");
 
@@ -153,7 +153,7 @@ export function AppShell() {
   }, [searchParams, router, refreshSecrets]);
 
   const openSettings = (
-    tab: "keys" | "models" | "council" | "tools" = "keys",
+    tab: "keys" | "models" | "council" | "tools" | "memory" = "keys",
   ) => {
     setSettingsTab(tab);
     void fetchSecretStatuses()

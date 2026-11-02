@@ -1,0 +1,14 @@
+{
+  "user": "Lets run an experiment: 7 vs 5 hours sleep for 2 weeks.",
+  "reply": "Plan: two-arm sleep restriction study, n=20.",
+  "expected": {
+    "records": [
+      {
+        "type": "experiment",
+        "titleTerms": ["sleep"],
+        "status": "planned"
+      }
+    ]
+  },
+  "existing": []
+}

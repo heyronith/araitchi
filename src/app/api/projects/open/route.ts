@@ -38,6 +38,10 @@ export async function POST(request: Request) {
     }
     target = assertExistingDirectory(target);
     const project = openProject(target, { name: parsed.data.name });
+    // Background memory index backfill after upgrade / first open.
+    void import("@/lib/server/memory/index")
+      .then((m) => m.startBackfillIfNeeded(project.path))
+      .catch(() => undefined);
     return Response.json({
       project,
       repoDetected: Boolean(detectRepoPath(target)),

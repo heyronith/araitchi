@@ -9,6 +9,7 @@ export type StoredMessage = {
     inputTokens?: number;
     outputTokens?: number;
     cost?: number;
+    scribeCost?: number;
   } | null;
   createdAt: number;
 };

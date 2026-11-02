@@ -1,0 +1,13 @@
+{
+  "user": "We chose n=40 for power 0.8.",
+  "reply": "Decision: n=40 powered at 0.8.",
+  "expected": {
+    "records": [
+      {
+        "type": "decision",
+        "titleTerms": ["n=40", "power"]
+      }
+    ]
+  },
+  "existing": []
+}

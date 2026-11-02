@@ -216,7 +216,7 @@ describe("session transcript", () => {
 });
 
 describe("brief + pinned context caps", () => {
-  it("respects approximate token caps", () => {
+  it("respects approximate token caps", async () => {
     expect(approxTokens("abcd")).toBe(1);
     const truncated = truncateToTokens("x".repeat(100), 5);
     expect(approxTokens(truncated)).toBeLessThanOrEqual(6);
@@ -232,7 +232,7 @@ describe("brief + pinned context caps", () => {
       pinned: true,
       source: "user",
     });
-    const ctx = buildProjectSystemContext(root);
+    const ctx = await buildProjectSystemContext(root);
     expect(ctx.systemText).toContain("UNIQUE_BRIEF_MARKER");
     expect(ctx.pinnedCount).toBe(1);
     expect(ctx.briefTokens).toBeLessThanOrEqual(2000);

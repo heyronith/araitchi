@@ -18,8 +18,9 @@ src/components/chat/          solo + council chat UI
 src/lib/server/               server-only modules
 src/lib/server/project/       project open/init, lock, notebook db, records, exporters
 src/lib/server/council/       estimate, presets, anonymize, analysis, pipeline
-src/lib/server/tools/         broker, cache, rate-limit, provenance, papers/, documents/, repo/, mcp/
-src/lib/server/prompts/       council-member.md, council-synthesizer.md, tools-policy.md
+src/lib/server/tools/         broker, cache, rate-limit, provenance, papers/, documents/, repo/, mcp/, memory/
+src/lib/server/memory/        embedder (worker), index, hybrid search, scribe, session summaries, settings
+src/lib/server/prompts/       council-member.md, council-synthesizer.md, tools-policy.md, scribe.md
 src/lib/chat/                 shared validation + branch tree helpers
 drizzle/                      app DB migrations
 drizzle/project/              per-project notebook.db migrations
@@ -48,10 +49,15 @@ docs/                         architecture + task briefs + STATUS
 ### Notebook tables
 
 - `chats` / `messages` — branched chat tree
-- `records` — memory items + FTS5
-- `project_settings` — per-project key/value (`chat.mode`, `council.*`, `tools.*`)
+- `records` — memory items + FTS5 (`created_by` = `user|scribe`)
+- `embeddings` — float32 vectors per owner (`record|session_summary|doc_chunk|paper`); model id stored per row; never mix models in one search
+- `session_summaries` — rolling ≤300-word chat summaries
+- `scribe_batches` / `scribe_suggestions` — undo snapshots + optional review queue
+- `project_settings` — per-project key/value (`chat.mode`, `council.*`, `tools.*`, `scribe.*`, `memory.*`, `context.memoryTokens`)
 - `tool_calls` — provenance per call (tool, args, status, cached, duration, sources)
 - `tool_cache` — cached read-tool results keyed by tool + args hash
+
+**Scale:** brute-force cosine in JS is fine up to ~50k chunks per project; beyond that, plan a proper ANN index.
 
 ## Council pipeline
 
@@ -75,14 +81,29 @@ Persisted as one assistant message (`modelId: "council"`) whose parts hold membe
 ## Chat flow (solo)
 
 1. Client posts to `POST /api/chat` with `chatId` + `modelId`
-2. Server scopes to current project notebook, prepends brief + pinned, streams `streamText`
-3. Usage/cost on the assistant message; session markdown under `sessions/`
+2. Server builds a **context package** once (`buildProjectSystemContext`): brief → pinned → active hypotheses → hybrid top-K for the user message (budget `context.memoryTokens`, default 6k), shared by solo and every council member
+3. Streams `streamText` (tools optional, including memory tools when the Memory toggle is on)
+4. After the reply finishes (does not delay tokens), the **scribe** extracts durable records asynchronously; UI shows a Memory line + optional Undo; cost logged as `scribeCost`
+5. Session transcripts under `sessions/` include the rolling summary when present
+
+## Embeddings & hybrid search
+
+- Transformers.js + `onnxruntime-node` on the **server only**, in a `worker_threads` worker (`embedder-worker.mjs`). Default model: `onnx-community/Qwen3-Embedding-0.6B-ONNX` (q8, instruction-aware queries). Light alt: `Xenova/all-MiniLM-L6-v2`. Fallback: `onnx-community/embeddinggemma-300m-ONNX`.
+- Weights download once into `<dataDir>/models/` (not git). Tests/CI use `FakeEmbedder` (`ARAITCHI_FAKE_EMBEDDINGS=1` / Vitest).
+- Hybrid ranking: FTS5 BM25 + vector cosine via reciprocal-rank fusion, with small pinned/recent boosts. `read_document` prefers hybrid when chunks are indexed.
+- Backfill on project open; **Rebuild memory index** in the Memory panel.
+
+## Scribe
+
+- Model: `scribe.model` or the council synthesizer. `scribe.enabled` (default on), `scribe.requireReview` (default off).
+- Prompt: `prompts/scribe.md`. Zod-validated JSON (`create`/`update`, max 5 each) with one repair retry. Near-duplicate creates (cosine ≥ 0.90) become updates. Never deletes; hypothesis status from chat only `proposed → testing`.
+- Settings + progress: `GET/PATCH /api/memory/config`; undo/accept: `POST /api/memory/scribe`.
 
 ## Tool broker
 
 All model-callable tools go through `ToolBroker` (`src/lib/server/tools/broker.ts`), one instance per request.
 
-- **Registry:** tools are `RegisteredTool`s (name, zod input schema, `kind` read/write/spend, provider, `ttlSec`, handler). `registerEnabledTools` registers papers / documents / repo / MCP tools according to per-project toggles (`tools.*` in `project_settings`); `getAiSdkTools` exposes them to `streamText`. Max tool steps per reply is configurable.
+- **Registry:** tools are `RegisteredTool`s (name, zod input schema, `kind` read/write/spend, provider, `ttlSec`, handler). `registerEnabledTools` registers papers / documents / repo / MCP / **memory** tools according to per-project toggles (`tools.*` in `project_settings`); `getAiSdkTools` exposes them to `streamText`. Max tool steps per reply is configurable. Memory tools (default on): `search_memory`, `get_record`, `list_hypotheses`, `list_experiments`, `search_library`.
 - **Cache:** read tools with `ttlSec > 0` are cached in `tool_cache` by `tool + hash(args)`.
 - **Dedupe:** identical in-flight calls (same tool + args hash) share one promise.
 - **Rate limit:** per-provider token buckets (`rate-limit.ts`); calls wait or abort with the request signal. Each call also has a timeout.

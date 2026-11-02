@@ -55,6 +55,18 @@ export default defineConfig({
         ARAITCHI_OPENREVIEW_BASE_URL: `http://127.0.0.1:${mockPort}/mock/openreview`,
         ARAITCHI_CROSSREF_BASE_URL: `http://127.0.0.1:${mockPort}/mock/crossref`,
         ARAITCHI_UNPAYWALL_BASE_URL: `http://127.0.0.1:${mockPort}/mock/unpaywall`,
+        ARAITCHI_FAKE_EMBEDDINGS: "1",
+        ARAITCHI_MOCK_SCRIBE: JSON.stringify({
+          create: [
+            {
+              type: "hypothesis",
+              title: "X causes Y",
+              body: "Because Z — durable research fact from chat.",
+              status: "proposed",
+            },
+          ],
+          update: [],
+        }),
         NEXT_TELEMETRY_DISABLED: "1",
         PORT: "3000",
       },

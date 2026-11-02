@@ -1,4 +1,5 @@
 import {
+  blob,
   integer,
   real,
   sqliteTable,
@@ -43,9 +44,61 @@ export const records = sqliteTable("records", {
   sourceChatId: text("source_chat_id"),
   sourceMessageId: text("source_message_id"),
   tags: text("tags").notNull().default("[]"),
+  /** Who created the record: user action or automatic scribe. */
+  createdBy: text("created_by").notNull().default("user"),
   createdAt: integer("created_at").notNull(),
   updatedAt: integer("updated_at").notNull(),
   deletedAt: integer("deleted_at"),
+});
+
+export const embeddings = sqliteTable(
+  "embeddings",
+  {
+    id: text("id").primaryKey(),
+    ownerType: text("owner_type").notNull(),
+    ownerId: text("owner_id").notNull(),
+    chunkIdx: integer("chunk_idx").notNull().default(0),
+    textHash: text("text_hash").notNull(),
+    model: text("model").notNull(),
+    /** float32 little-endian binary */
+    vector: blob("vector", { mode: "buffer" }).notNull(),
+    updatedAt: integer("updated_at").notNull(),
+  },
+  (t) => [
+    uniqueIndex("embeddings_owner_chunk_model").on(
+      t.ownerType,
+      t.ownerId,
+      t.chunkIdx,
+      t.model,
+    ),
+  ],
+);
+
+export const sessionSummaries = sqliteTable("session_summaries", {
+  chatId: text("chat_id").primaryKey(),
+  summary: text("summary").notNull(),
+  messageCount: integer("message_count").notNull().default(0),
+  updatedAt: integer("updated_at").notNull(),
+});
+
+export const scribeBatches = sqliteTable("scribe_batches", {
+  id: text("id").primaryKey(),
+  chatId: text("chat_id").notNull(),
+  messageId: text("message_id").notNull(),
+  /** JSON snapshot of creates/updates for undo */
+  payload: text("payload").notNull(),
+  costUsd: real("cost_usd"),
+  createdAt: integer("created_at").notNull(),
+  undoneAt: integer("undone_at"),
+});
+
+export const scribeSuggestions = sqliteTable("scribe_suggestions", {
+  id: text("id").primaryKey(),
+  batchId: text("batch_id").notNull(),
+  action: text("action").notNull(),
+  payload: text("payload").notNull(),
+  status: text("status").notNull().default("pending"),
+  createdAt: integer("created_at").notNull(),
 });
 
 export const toolCache = sqliteTable(

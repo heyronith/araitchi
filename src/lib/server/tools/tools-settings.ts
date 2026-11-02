@@ -14,6 +14,7 @@ export const DEFAULT_TOOL_TOGGLES: ToolToggles = {
   documents: false,
   repo: false,
   mcp: false,
+  memory: true,
 };
 
 export const DEFAULT_MAX_STEPS = 8;

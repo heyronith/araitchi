@@ -1,0 +1,13 @@
+{
+  "user": "Fact: average caffeine half-life ~5h in adults.",
+  "reply": "Note half-life ≈5h.",
+  "expected": {
+    "records": [
+      {
+        "type": "note",
+        "titleTerms": ["half-life", "caffeine"]
+      }
+    ]
+  },
+  "existing": []
+}

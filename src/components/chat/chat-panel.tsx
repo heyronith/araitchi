@@ -37,6 +37,15 @@ import {
   type ThinkingPhase,
 } from "@/components/chat/thinking-status";
 import { ToolCard } from "@/components/chat/tool-card";
+import {
+  ContextIndicator,
+  type ContextItem,
+} from "@/components/chat/context-indicator";
+import {
+  MemoryLine,
+  type ScribeSummaryData,
+} from "@/components/chat/memory-line";
+import { ScribeSuggestions } from "@/components/chat/scribe-suggestions";
 import type { ChatMode } from "@/components/shell/mode-switch";
 import {
   AlertDialog,
@@ -58,7 +67,9 @@ type ChatPanelProps = {
   chatId: string;
   hasKey: boolean;
   mode: ChatMode;
-  onOpenSettings: (tab?: "keys" | "models" | "council" | "tools") => void;
+  onOpenSettings: (
+    tab?: "keys" | "models" | "council" | "tools" | "memory",
+  ) => void;
   onChatUpdated?: () => void;
   onMemorySaved?: () => void;
 };
@@ -69,6 +80,7 @@ type ToolToggleState = {
   documents: boolean;
   repo: boolean;
   mcp: boolean;
+  memory: boolean;
 };
 
 const TOOL_TOGGLE_LABELS: { key: keyof ToolToggleState; label: string }[] = [
@@ -77,6 +89,7 @@ const TOOL_TOGGLE_LABELS: { key: keyof ToolToggleState; label: string }[] = [
   { key: "documents", label: "Documents" },
   { key: "repo", label: "Repo" },
   { key: "mcp", label: "MCP" },
+  { key: "memory", label: "Memory" },
 ];
 
 const DEFAULT_TOGGLES: ToolToggleState = {
@@ -85,11 +98,17 @@ const DEFAULT_TOGGLES: ToolToggleState = {
   documents: false,
   repo: false,
   mcp: false,
+  memory: true,
 };
 
 type MessageMeta = {
   modelId?: string;
-  usage?: { inputTokens?: number; outputTokens?: number; cost?: number };
+  usage?: {
+    inputTokens?: number;
+    outputTokens?: number;
+    cost?: number;
+    scribeCost?: number;
+  };
 };
 
 function storedToUi(messages: StoredMessage[]): UIMessage[] {
@@ -208,6 +227,15 @@ function parseCouncilFromParts(parts: UIMessage["parts"]): {
   };
 }
 
+function extractScribe(parts: UIMessage["parts"]): ScribeSummaryData | null {
+  for (const p of parts) {
+    if (p.type === "data-scribe" && "data" in p) {
+      return p.data as ScribeSummaryData;
+    }
+  }
+  return null;
+}
+
 function resolvePhase(input: {
   toolCalls: ToolCallView[];
   council: ReturnType<typeof parseCouncilFromParts> | null;
@@ -250,6 +278,10 @@ export function ChatPanel({
   const [editText, setEditText] = React.useState("");
   const [showScrollBtn, setShowScrollBtn] = React.useState(false);
   const [pinnedCount, setPinnedCount] = React.useState(0);
+  const [relevantCount, setRelevantCount] = React.useState(0);
+  const [contextTokens, setContextTokens] = React.useState(0);
+  const [contextItems, setContextItems] = React.useState<ContextItem[]>([]);
+  const [vectorUsed, setVectorUsed] = React.useState(true);
   const [saveOpen, setSaveOpen] = React.useState(false);
   const [saveBody, setSaveBody] = React.useState("");
   const [saveSource, setSaveSource] = React.useState("user");
@@ -313,15 +345,28 @@ export function ChatPanel({
     onFinish: () => {
       onChatUpdated?.();
       void (async () => {
-        const res = await fetch(`/api/chats/${chatId}`);
-        if (!res.ok) return;
-        const data = (await res.json()) as {
-          messages: StoredMessage[];
-          activeBranch: StoredMessage[];
-        };
-        setAllStored(data.messages);
-        setMessages(storedToUi(data.activeBranch));
-        setActiveLeafId(data.activeBranch.at(-1)?.id ?? null);
+        // Scribe may finish just after the stream; poll briefly for data-scribe.
+        for (let i = 0; i < 8; i++) {
+          const res = await fetch(`/api/chats/${chatId}`);
+          if (!res.ok) return;
+          const data = (await res.json()) as {
+            messages: StoredMessage[];
+            activeLeafId?: string | null;
+          };
+          setAllStored(data.messages);
+          setMessages(storedToUi(data.messages));
+          if (data.activeLeafId) setActiveLeafId(data.activeLeafId);
+          const hasScribe = data.messages.some((m) =>
+            (m.parts as { type?: string }[]).some(
+              (p) => p.type === "data-scribe",
+            ),
+          );
+          if (hasScribe || i === 7) {
+            onMemorySaved?.();
+            break;
+          }
+          await new Promise((r) => setTimeout(r, 250));
+        }
       })();
     },
     onError: (err) => {
@@ -427,16 +472,37 @@ export function ChatPanel({
 
   React.useEffect(() => {
     let cancelled = false;
-    void (async () => {
-      const res = await fetch("/api/projects/context");
-      if (!res.ok || cancelled) return;
-      const data = (await res.json()) as { pinnedCount: number };
-      if (!cancelled) setPinnedCount(data.pinnedCount);
-    })();
+    const lastUser = [...messages].reverse().find((m) => m.role === "user");
+    const qText = lastUser
+      ? extractText(lastUser).slice(0, 300)
+      : input.slice(0, 300);
+    const handle = window.setTimeout(() => {
+      void (async () => {
+        const q = encodeURIComponent(qText);
+        const res = await fetch(
+          `/api/projects/context?chatId=${encodeURIComponent(chatId)}&q=${q}`,
+        );
+        if (!res.ok || cancelled) return;
+        const data = (await res.json()) as {
+          pinnedCount: number;
+          relevantCount?: number;
+          totalTokens?: number;
+          items?: ContextItem[];
+          vectorUsed?: boolean;
+        };
+        if (cancelled) return;
+        setPinnedCount(data.pinnedCount);
+        setRelevantCount(data.relevantCount ?? 0);
+        setContextTokens(data.totalTokens ?? 0);
+        setContextItems(data.items ?? []);
+        setVectorUsed(data.vectorUsed !== false);
+      })();
+    }, 300);
     return () => {
       cancelled = true;
+      window.clearTimeout(handle);
     };
-  }, [chatId, onMemorySaved]);
+  }, [chatId, onMemorySaved, messages, input]);
 
   const refreshEstimate = React.useCallback(async () => {
     if (mode !== "council") {
@@ -734,6 +800,18 @@ export function ChatPanel({
                   </div>
                 ) : null}
 
+                {message.role === "assistant"
+                  ? (() => {
+                      const scribe = extractScribe(message.parts);
+                      return scribe ? (
+                        <MemoryLine
+                          data={scribe}
+                          onUndone={() => onMemorySaved?.()}
+                        />
+                      ) : null;
+                    })()
+                  : null}
+
                 <div
                   className={cn(
                     "text-muted-foreground flex flex-wrap items-center gap-1 text-xs transition-opacity",
@@ -837,7 +915,11 @@ export function ChatPanel({
                           ? `${meta.usage?.inputTokens ?? 0}→${meta.usage?.outputTokens ?? 0} tok`
                           : null,
                         typeof meta.usage?.cost === "number"
-                          ? `$${meta.usage.cost.toFixed(4)}`
+                          ? `$${meta.usage.cost.toFixed(4)}${
+                              typeof meta.usage.scribeCost === "number"
+                                ? ` + memory $${meta.usage.scribeCost.toFixed(4)}`
+                                : ""
+                            }`
                           : null,
                       ]
                         .filter(Boolean)
@@ -907,9 +989,22 @@ export function ChatPanel({
           </div>
         ) : (
           <div className="mx-auto w-full max-w-3xl space-y-2">
-            <p className="text-muted-foreground text-xs">
-              Using project brief + {pinnedCount} pinned
-            </p>
+            <ContextIndicator
+              pinnedCount={pinnedCount}
+              relevantCount={relevantCount}
+              totalTokens={contextTokens}
+              items={contextItems}
+              vectorUsed={vectorUsed}
+            />
+            <ScribeSuggestions
+              key={
+                [...messages]
+                  .reverse()
+                  .map((m) => extractScribe(m.parts)?.batchId)
+                  .find(Boolean) ?? "none"
+              }
+              onChanged={() => onMemorySaved?.()}
+            />
             {mode === "council" ? (
               <div className="flex flex-wrap items-center gap-2 text-xs">
                 <button

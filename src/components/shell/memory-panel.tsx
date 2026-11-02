@@ -30,6 +30,7 @@ export type MemoryRecordDto = {
   pinned: boolean;
   source: string;
   tags: string[];
+  createdBy?: "user" | "scribe";
   createdAt: number;
   updatedAt: number;
   sourceChatId: string | null;
@@ -255,15 +256,55 @@ export function MemoryPanel({
     >
       <div className="flex h-14 items-center justify-between gap-2 border-b px-3">
         <span className="text-sm font-medium">Memory</span>
-        <Button
-          type="button"
-          size="icon-sm"
-          variant="ghost"
-          aria-label="Collapse memory panel"
-          onClick={onToggle}
-        >
-          <PanelRight className="size-4" />
-        </Button>
+        <div className="flex items-center gap-1">
+          <Button
+            type="button"
+            size="sm"
+            variant="outline"
+            className="h-7 text-xs"
+            data-testid="rebuild-memory-index"
+            onClick={() => {
+              void fetch("/api/memory/config", {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ rebuild: true }),
+              }).then(async (res) => {
+                if (!res.ok) {
+                  toast.error("Rebuild failed");
+                  return;
+                }
+                toast.success("Rebuilding memory index…");
+                for (let i = 0; i < 40; i++) {
+                  await new Promise((r) => setTimeout(r, 250));
+                  const st = await fetch("/api/memory/config");
+                  if (!st.ok) break;
+                  const json = (await st.json()) as {
+                    index: {
+                      phase: string;
+                      done: number;
+                      total: number;
+                    } | null;
+                  };
+                  if (json.index?.phase === "done" || !json.index) {
+                    toast.success("Memory index ready");
+                    break;
+                  }
+                }
+              });
+            }}
+          >
+            Rebuild index
+          </Button>
+          <Button
+            type="button"
+            size="icon-sm"
+            variant="ghost"
+            aria-label="Collapse memory panel"
+            onClick={onToggle}
+          >
+            <PanelRight className="size-4" />
+          </Button>
+        </div>
       </div>
 
       <Tabs
@@ -399,6 +440,15 @@ export function MemoryPanel({
                           {r.status ? (
                             <Badge variant="secondary" className="text-[10px]">
                               {r.status}
+                            </Badge>
+                          ) : null}
+                          {r.createdBy === "scribe" ? (
+                            <Badge
+                              variant="secondary"
+                              className="text-[10px]"
+                              data-testid="scribe-badge"
+                            >
+                              Added by scribe
                             </Badge>
                           ) : null}
                           <Badge variant="outline" className="text-[10px]">
