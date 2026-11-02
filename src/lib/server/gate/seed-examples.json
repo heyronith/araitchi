@@ -1,2277 +1,2550 @@
 [
   {
     "id": "seed-hypothesis_generation-0",
-    "text": "Propose 2 hypotheses for why OpenAlex coverage",
+    "text": "Propose three rival hypotheses for why our model overfits on small datasets",
     "taskType": "hypothesis_generation",
     "stakes": "high",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-1",
-    "text": "What could explain semantic similarity thresholds? Generate testable hypotheses",
+    "text": "Generate testable hypotheses linking sleep debt to generalization error",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-2",
-    "text": "Brainstorm competing hypotheses about council synthesizer cost",
+    "text": "What could explain the semantic similarity threshold we observed? List distinct hypotheses",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-3",
-    "text": "Why might overfitting on small datasets? Suggest research hypotheses with predictions",
+    "text": "Brainstorm competing hypotheses about council synthesizer cost spikes",
     "taskType": "hypothesis_generation",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-4",
-    "text": "Generate distinct hypotheses linking sleep debt to generalization",
+    "text": "Hypothesis set: why does batch size change calibration unexpectedly?",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
-    "needsEvidence": true
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-5",
-    "text": "Propose 4 hypotheses for why transformer attention",
+    "text": "Come up with rival explanations for attention head collapse mid-training",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-6",
-    "text": "What could explain sleep deprivation? Generate testable hypotheses",
+    "text": "Hypothesis brainstorm for caffeine half-life measurement bias",
     "taskType": "hypothesis_generation",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-7",
-    "text": "Brainstorm competing hypotheses about graph neural nets for molecules",
+    "text": "Offer distinct mechanisms that could cause retrieval to prefer older papers",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-8",
-    "text": "Why might IRB protocol? Suggest research hypotheses with predictions",
+    "text": "Why might hybrid RRF under-rank pinned memory? Propose hypotheses",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
-    "needsEvidence": true
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-9",
-    "text": "Generate distinct hypotheses linking sleep debt to generalization",
+    "text": "Generate hypotheses for intermittent tool-call latency in the broker",
     "taskType": "hypothesis_generation",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-10",
-    "text": "Propose 3 hypotheses for why novelty of our loss",
+    "text": "Rival accounts of why freezing layers improves sample efficiency",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-11",
-    "text": "What could explain actigraphy vs diaries? Generate testable hypotheses",
+    "text": "What hypotheses explain weekend drops in OpenRouter throughput?",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-12",
-    "text": "Brainstorm competing hypotheses about sex differences in clearance",
+    "text": "Propose hypotheses linking tokenizer choice to hallucination rate",
     "taskType": "hypothesis_generation",
     "stakes": "high",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-13",
-    "text": "Why might AHI exclusion criteria? Suggest research hypotheses with predictions",
+    "text": "Distinct explanations for why probe agreement is high but answers are wrong",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-14",
-    "text": "Generate distinct hypotheses linking sleep debt to generalization",
+    "text": "Hypothesis generation: causes of FTS5 false negatives on hyphenated terms",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-15",
-    "text": "Propose 2 hypotheses for why blue light melatonin",
+    "text": "Why does embedding rebuild flip nearest neighbors? Competing hypotheses",
     "taskType": "hypothesis_generation",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-16",
-    "text": "What could explain protein synthesis overnight? Generate testable hypotheses",
+    "text": "List mechanisms that could make insertion sort win under n=32",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
-    "needsEvidence": true
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-17",
-    "text": "Brainstorm competing hypotheses about dropout rate 0.5",
+    "text": "Hypotheses for intermittent WAL lock contention in notebook.db",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-18",
-    "text": "Why might learning rate warm-up? Suggest research hypotheses with predictions",
+    "text": "Why might scribe invent tags? Generate competing hypotheses",
     "taskType": "hypothesis_generation",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-19",
-    "text": "Generate distinct hypotheses linking sleep debt to generalization",
+    "text": "Propose hypotheses about temperature vs. disagreement diversity in council",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-20",
-    "text": "Propose 4 hypotheses for why OpenAlex coverage",
+    "text": "Rival explanations for why DOI dedupe still shows near-duplicates",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
-    "needsEvidence": true
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-21",
-    "text": "What could explain semantic similarity thresholds? Generate testable hypotheses",
+    "text": "Hypothesis set for rising false-positive rate in paper title match",
     "taskType": "hypothesis_generation",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-22",
-    "text": "Brainstorm competing hypotheses about council synthesizer cost",
+    "text": "What could cause context package to omit recent hypotheses?",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-23",
-    "text": "Why might overfitting on small datasets? Suggest research hypotheses with predictions",
+    "text": "Generate hypotheses linking GPU thermal throttle to eval variance",
     "taskType": "hypothesis_generation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-hypothesis_generation-24",
-    "text": "Generate distinct hypotheses linking sleep debt to generalization",
+    "text": "Distinct hypotheses: why Auto routes chit-chat to probe sometimes",
     "taskType": "hypothesis_generation",
     "stakes": "high",
-    "needsEvidence": true
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-25",
+    "text": "Propose mechanisms for sudden cost inflation on flash models",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-26",
+    "text": "Hypotheses explaining asymmetric member timeouts across labs",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-hypothesis_generation-27",
+    "text": "Why does MiniLM disagree with Qwen3 neighbors? Rival accounts",
+    "taskType": "hypothesis_generation",
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-0",
-    "text": "Design an experiment to test whether sex differences in clearance",
+    "text": "Design an A/B experiment comparing hybrid search vs FTS-only retrieval",
     "taskType": "experiment_design",
     "stakes": "high",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-1",
-    "text": "Propose a protocol with controls for AHI exclusion criteria",
+    "text": "Propose a protocol to measure probe agreement threshold ROC on 40 fixtures",
     "taskType": "experiment_design",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-2",
-    "text": "How should we experimentally validate casein before bed?",
+    "text": "Experiment plan: ablation of pinned boosts in reciprocal-rank fusion",
     "taskType": "experiment_design",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-3",
-    "text": "Draft an A/B study measuring blue light melatonin",
+    "text": "Design a controlled study of batch size vs calibration error",
     "taskType": "experiment_design",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-4",
-    "text": "Experiment plan: success/failure criteria for protein synthesis overnight",
+    "text": "Protocol for comparing insertion vs merge sort under n≤32 with fixed seeds",
     "taskType": "experiment_design",
-    "stakes": "medium",
-    "needsEvidence": true
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-5",
-    "text": "Design an experiment to test whether dropout rate 0.5",
+    "text": "Design repeats+seeds for measuring tool-broker cache hit latency",
     "taskType": "experiment_design",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-6",
-    "text": "Propose a protocol with controls for learning rate warm-up",
+    "text": "Experiment: does requiring citations reduce unsupported claims?",
     "taskType": "experiment_design",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-7",
-    "text": "How should we experimentally validate citation graph density?",
+    "text": "Propose baselines and success criteria for a literature-union merge study",
     "taskType": "experiment_design",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-8",
-    "text": "Draft an A/B study measuring OpenAlex coverage",
+    "text": "Design an experiment to test whether /evidence improves factual accuracy",
     "taskType": "experiment_design",
-    "stakes": "medium",
-    "needsEvidence": true
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-9",
-    "text": "Experiment plan: success/failure criteria for semantic similarity thresholds",
+    "text": "Protocol comparing FakeEmbedder vs MiniLM on gate kNN accuracy",
     "taskType": "experiment_design",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-10",
-    "text": "Design an experiment to test whether council synthesizer cost",
+    "text": "Experiment design for council member count vs synthesis quality",
     "taskType": "experiment_design",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-11",
-    "text": "Propose a protocol with controls for overfitting on small datasets",
+    "text": "Plan a within-subject study of Auto vs forced Solo on chit-chat latency",
     "taskType": "experiment_design",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-12",
-    "text": "How should we experimentally validate caffeine half-life?",
+    "text": "Design runs to measure schema-validation failure rate on results.json",
     "taskType": "experiment_design",
     "stakes": "high",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-13",
-    "text": "Draft an A/B study measuring transformer attention",
+    "text": "Protocol: warm vs cold start for Transformers.js embedder load time",
     "taskType": "experiment_design",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-14",
-    "text": "Experiment plan: success/failure criteria for sleep deprivation",
+    "text": "Experiment comparing DOI-first vs title-first paper dedupe precision",
     "taskType": "experiment_design",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-15",
-    "text": "Design an experiment to test whether graph neural nets for molecules",
+    "text": "Design a preregistered test of temperature 0 vs 0.7 on hypothesis diversity",
     "taskType": "experiment_design",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-16",
-    "text": "Propose a protocol with controls for IRB protocol",
+    "text": "Propose controls for measuring scribe near-duplicate merge rate",
     "taskType": "experiment_design",
-    "stakes": "medium",
-    "needsEvidence": true
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-17",
-    "text": "How should we experimentally validate batch norm vs layer norm?",
+    "text": "Experiment: does Always-council list change routing cost meaningfully?",
     "taskType": "experiment_design",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-18",
-    "text": "Draft an A/B study measuring novelty of our loss",
+    "text": "Design ablation removing Memory tools from evidence mode",
     "taskType": "experiment_design",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-19",
-    "text": "Experiment plan: success/failure criteria for actigraphy vs diaries",
+    "text": "Protocol for multi-seed evaluation of improves_over predictions",
     "taskType": "experiment_design",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-20",
-    "text": "Design an experiment to test whether sex differences in clearance",
+    "text": "Experiment plan: lock-hash mismatch injection → inconclusive rate",
     "taskType": "experiment_design",
-    "stakes": "medium",
-    "needsEvidence": true
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-21",
-    "text": "Propose a protocol with controls for AHI exclusion criteria",
+    "text": "Design a study of interpretation notes raising false concern flags",
     "taskType": "experiment_design",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-22",
-    "text": "How should we experimentally validate casein before bed?",
+    "text": "Propose dataset splits for ranking merge-mode prompt variants",
     "taskType": "experiment_design",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-23",
-    "text": "Draft an A/B study measuring blue light melatonin",
+    "text": "Experiment comparing mean vs median aggregate on noisy latency metrics",
     "taskType": "experiment_design",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-experiment_design-24",
-    "text": "Experiment plan: success/failure criteria for protein synthesis overnight",
+    "text": "Design replication with new seeds for a supported sorting hypothesis",
     "taskType": "experiment_design",
     "stakes": "high",
-    "needsEvidence": true
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-25",
+    "text": "Protocol to test 2 MB results.json size limit enforcement",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-26",
+    "text": "Experiment: pre-lock commits flagged as inconclusive — verify detector",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-experiment_design-27",
+    "text": "Design comparison of schema-strict vs lenient results parsing",
+    "taskType": "experiment_design",
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-literature_review-0",
-    "text": "Survey recent papers on sex differences in clearance",
+    "text": "Survey recent papers on hybrid retrieval with reciprocal rank fusion",
     "taskType": "literature_review",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-1",
-    "text": "Literature review: what is known about AHI exclusion criteria?",
+    "text": "Literature review: novelty check for Auto routing in research assistants",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-2",
-    "text": "Is casein before bed novel compared to prior work?",
+    "text": "What prior work covers preregistration lock hashes for local experiments?",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-3",
-    "text": "Find and compare key papers about blue light melatonin",
+    "text": "Review papers on embedding-based claim agreement for multi-model probes",
     "taskType": "literature_review",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-4",
-    "text": "Novelty check for our approach to protein synthesis overnight",
+    "text": "Survey citation practices for evidence-only answering with tools",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-5",
-    "text": "Survey recent papers on dropout rate 0.5",
+    "text": "Novelty check: task-specific synthesizer prompts for research councils",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-6",
-    "text": "Literature review: what is known about learning rate warm-up?",
+    "text": "Literature on small-n sorting algorithm crossover points",
     "taskType": "literature_review",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-7",
-    "text": "Is citation graph density novel compared to prior work?",
+    "text": "Review work on Transformers.js ONNX embedding models for local apps",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-8",
-    "text": "Find and compare key papers about OpenAlex coverage",
+    "text": "Survey papers about disagreement analysis in multi-agent LLM setups",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-9",
-    "text": "Novelty check for our approach to semantic similarity thresholds",
+    "text": "What does prior literature say about FTS5 + vector hybrid search?",
     "taskType": "literature_review",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-10",
-    "text": "Survey recent papers on council synthesizer cost",
+    "text": "Review studies of scribe-like memory extraction from chat transcripts",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-11",
-    "text": "Literature review: what is known about overfitting on small datasets?",
+    "text": "Literature review on deterministic verdict engines for ML experiments",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-12",
-    "text": "Is caffeine half-life novel compared to prior work?",
+    "text": "Novelty check against OpenAlex-powered paper search assistants",
     "taskType": "literature_review",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-13",
-    "text": "Find and compare key papers about transformer attention",
+    "text": "Survey threat-to-validity taxonomies for LLM-assisted science",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-14",
-    "text": "Novelty check for our approach to sleep deprivation",
+    "text": "Review papers on kNN text classification with embedding models",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-15",
-    "text": "Survey recent papers on graph neural nets for molecules",
+    "text": "Literature on user corrections feeding back into classifiers",
     "taskType": "literature_review",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-16",
-    "text": "Literature review: what is known about IRB protocol?",
+    "text": "Survey replication criteria for software microbenchmarks",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-17",
-    "text": "Is batch norm vs layer norm novel compared to prior work?",
+    "text": "What papers cover results.json style experiment contracts?",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-18",
-    "text": "Find and compare key papers about novelty of our loss",
+    "text": "Review work on budget-aware multi-model orchestration",
     "taskType": "literature_review",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-19",
-    "text": "Novelty check for our approach to actigraphy vs diaries",
+    "text": "Literature review: caffeine pharmacokinetics measurement methods",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-20",
-    "text": "Survey recent papers on sex differences in clearance",
+    "text": "Survey of open-source research notebook + chat systems",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-21",
-    "text": "Literature review: what is known about AHI exclusion criteria?",
+    "text": "Novelty check for gate chips that expose routing rationale",
     "taskType": "literature_review",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-22",
-    "text": "Is casein before bed novel compared to prior work?",
+    "text": "Review papers on improving_over metrics with minImprovementPct",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-23",
-    "text": "Find and compare key papers about blue light melatonin",
+    "text": "Literature on untrusted tool_result wrappers for agent safety",
     "taskType": "literature_review",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-literature_review-24",
-    "text": "Novelty check for our approach to protein synthesis overnight",
+    "text": "Survey semantic scholar + arXiv multi-provider paper merge strategies",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-25",
+    "text": "Review studies of always-council task type taxonomies",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-26",
+    "text": "What prior art exists for Already-tested memory sections?",
+    "taskType": "literature_review",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-literature_review-27",
+    "text": "Literature review of local-first AI research workspace designs",
     "taskType": "literature_review",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-critique-0",
-    "text": "Critique this plan: citation graph density",
+    "text": "Critique this protocol: only one seed and no declared baseline",
     "taskType": "critique",
     "stakes": "high",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-critique-1",
-    "text": "What are the weaknesses in OpenAlex coverage?",
+    "text": "Find weaknesses in our gate kNN threshold choice of 0.55",
     "taskType": "critique",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-2",
-    "text": "Peer-review style critique of semantic similarity thresholds",
+    "text": "Critique the council synthesizer prompt for confirmation bias",
     "taskType": "critique",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-3",
-    "text": "Find methodological flaws in council synthesizer cost",
+    "text": "What are the threats to validity in this sorting microbenchmark?",
     "taskType": "critique",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-4",
-    "text": "Red-team our claim that overfitting on small datasets",
+    "text": "Critique relying on probe agreement as proof of factual truth",
     "taskType": "critique",
-    "stakes": "medium",
-    "needsEvidence": true
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-critique-5",
-    "text": "Critique this plan: caffeine half-life",
+    "text": "Identify flaws in treating FakeEmbedder scores as production signal",
     "taskType": "critique",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-6",
-    "text": "What are the weaknesses in transformer attention?",
+    "text": "Critique our Always-council list for over-routing cheap chats",
     "taskType": "critique",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-7",
-    "text": "Peer-review style critique of sleep deprivation",
+    "text": "Weaknesses of SHA-256 lock that omits dataset version pins",
     "taskType": "critique",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-8",
-    "text": "Find methodological flaws in graph neural nets for molecules",
+    "text": "Critique the 2 MB results.json cap for large metric dumps",
     "taskType": "critique",
-    "stakes": "medium",
-    "needsEvidence": true
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-critique-9",
-    "text": "Red-team our claim that IRB protocol",
+    "text": "Find issues with mean aggregate under heavy-tailed latencies",
     "taskType": "critique",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-10",
-    "text": "Critique this plan: batch norm vs layer norm",
+    "text": "Critique interpretation notes that cannot change verdicts — too rigid?",
     "taskType": "critique",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-11",
-    "text": "What are the weaknesses in novelty of our loss?",
+    "text": "What is wrong with auto-updating hypothesis status from chat scribe?",
     "taskType": "critique",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-12",
-    "text": "Peer-review style critique of actigraphy vs diaries",
+    "text": "Critique DOI-only dedupe when many preprints lack DOIs",
     "taskType": "critique",
     "stakes": "high",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-critique-13",
-    "text": "Find methodological flaws in sex differences in clearance",
+    "text": "Identify failure modes of slash-command overrides in Auto mode",
     "taskType": "critique",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-14",
-    "text": "Red-team our claim that AHI exclusion criteria",
+    "text": "Critique storing corrections as kNN seeds without review",
     "taskType": "critique",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-15",
-    "text": "Critique this plan: casein before bed",
+    "text": "Weaknesses of reusing probe answers as council members",
     "taskType": "critique",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-16",
-    "text": "What are the weaknesses in blue light melatonin?",
+    "text": "Critique our evidence prompt saying never guess — may under-answer",
     "taskType": "critique",
-    "stakes": "medium",
-    "needsEvidence": true
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-critique-17",
-    "text": "Peer-review style critique of protein synthesis overnight",
+    "text": "Find problems in requiring exact lockHash match after rebase",
     "taskType": "critique",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-18",
-    "text": "Find methodological flaws in dropout rate 0.5",
+    "text": "Critique Timeline filters that hide inconclusive experiments",
     "taskType": "critique",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-19",
-    "text": "Red-team our claim that learning rate warm-up",
+    "text": "What confounds exist when Cursor implements experiments unsupervised?",
     "taskType": "critique",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-20",
-    "text": "Critique this plan: citation graph density",
+    "text": "Critique replication rule of ≥2 passes without independent datasets",
     "taskType": "critique",
-    "stakes": "medium",
-    "needsEvidence": true
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-critique-21",
-    "text": "What are the weaknesses in OpenAlex coverage?",
+    "text": "Identify blind spots in merge-mode paper union ranking",
     "taskType": "critique",
     "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-22",
-    "text": "Peer-review style critique of semantic similarity thresholds",
+    "text": "Critique max tool steps default for deep literature digs",
     "taskType": "critique",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-23",
-    "text": "Find methodological flaws in council synthesizer cost",
+    "text": "Weaknesses of origin-guard only protecting some API routes",
     "taskType": "critique",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": false
   },
   {
     "id": "seed-critique-24",
-    "text": "Red-team our claim that overfitting on small datasets",
+    "text": "Critique cost footer relying solely on OpenRouter usage.include",
     "taskType": "critique",
     "stakes": "high",
-    "needsEvidence": true
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-25",
+    "text": "Find issues with nested araitchi checkout breaking e2e reuse",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-26",
+    "text": "Critique default probe pair picking for lab diversity",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-critique-27",
+    "text": "What is weak about difficulty-baseline eval comparisons?",
+    "taskType": "critique",
+    "stakes": "high",
+    "needsEvidence": false
   },
   {
     "id": "seed-results_interpretation-0",
-    "text": "Interpret these results: dropout rate 0.5",
+    "text": "Interpret these runs: mean latency dropped 12% but p99 rose 40%",
     "taskType": "results_interpretation",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-1",
-    "text": "What do these metrics mean for learning rate warm-up?",
+    "text": "Results show supported on accuracy but refuted on cost — what next?",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-2",
-    "text": "Do the findings support citation graph density?",
+    "text": "Interpret lockHash mismatch with otherwise perfect metrics",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-3",
-    "text": "Explain the surprising result: OpenAlex coverage",
+    "text": "Our sorting experiment is inconclusive for missing seeds — reasons?",
     "taskType": "results_interpretation",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-4",
-    "text": "How should we read the ablation on semantic similarity thresholds?",
+    "text": "Interpret high probe agreement with contradictory key claims",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-5",
-    "text": "Interpret these results: council synthesizer cost",
+    "text": "Results: improves_over baseline by 3% vs minImprovementPct 5%",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-6",
-    "text": "What do these metrics mean for overfitting on small datasets?",
+    "text": "Interpret between-comparator near the low bound across runs",
     "taskType": "results_interpretation",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-7",
-    "text": "Do the findings support caffeine half-life?",
+    "text": "Why might schema validation fail after a Cursor schema drift?",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-8",
-    "text": "Explain the surprising result: transformer attention",
+    "text": "Interpret replicated status with one failing intermediate version",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-9",
-    "text": "How should we read the ablation on sleep deprivation?",
+    "text": "Results: FTS recall up, vector recall flat",
     "taskType": "results_interpretation",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-10",
-    "text": "Interpret these results: graph neural nets for molecules",
+    "text": "Interpret concern flag about data leakage next to supported verdict",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-11",
-    "text": "What do these metrics mean for IRB protocol?",
+    "text": "What do overnight WAL errors imply for our notebook stability claim?",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-12",
-    "text": "Do the findings support batch norm vs layer norm?",
+    "text": "Interpret Auto routing accuracy 84% vs 85% target",
     "taskType": "results_interpretation",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-13",
-    "text": "Explain the surprising result: novelty of our loss",
+    "text": "Results: all_runs pass but any_run would have failed earlier — meaning?",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-14",
-    "text": "How should we read the ablation on actigraphy vs diaries?",
+    "text": "Interpret median better than mean for noisy tool latency",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-15",
-    "text": "Interpret these results: sex differences in clearance",
+    "text": "Why are pre-lock commits appearing in the experiment git log?",
     "taskType": "results_interpretation",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-16",
-    "text": "What do these metrics mean for AHI exclusion criteria?",
+    "text": "Interpret user override from refuted to supported — trust implications",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-17",
-    "text": "Do the findings support casein before bed?",
+    "text": "Results show env.python differs across runs — threats?",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-18",
-    "text": "Explain the surprising result: blue light melatonin",
+    "text": "Interpret DOI merge reducing papers from 40 to 22 — information loss?",
     "taskType": "results_interpretation",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-19",
-    "text": "How should we read the ablation on protein synthesis overnight?",
+    "text": "What does Already-tested section suggest for the next hypothesis chat?",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-20",
-    "text": "Interpret these results: dropout rate 0.5",
+    "text": "Interpret council disagreement on effect size with shared citations",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-21",
-    "text": "What do these metrics mean for learning rate warm-up?",
+    "text": "Results: 3/5 predictions pass — overall verdict should be?",
     "taskType": "results_interpretation",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-22",
-    "text": "Do the findings support citation graph density?",
+    "text": "Interpret rising scribe invent-rate after prompt change",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-23",
-    "text": "Explain the surprising result: OpenAlex coverage",
+    "text": "Why does check-results mark too-few-runs inconclusive here?",
     "taskType": "results_interpretation",
-    "stakes": "medium",
+    "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-results_interpretation-24",
-    "text": "How should we read the ablation on semantic similarity thresholds?",
+    "text": "Interpret flash model cost spike coinciding with region failover",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-25",
+    "text": "Results interpretation for caffeine half-life CI overlapping baseline",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-26",
+    "text": "Interpret Timeline clustering of refuted experiments last week",
+    "taskType": "results_interpretation",
+    "stakes": "high",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-results_interpretation-27",
+    "text": "What next steps after two replications both support the claim?",
     "taskType": "results_interpretation",
     "stakes": "high",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-0",
-    "text": "What is the DOI of semantic similarity thresholds?",
+    "text": "What is the DOI of the original transformer paper Attention Is All You Need?",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-1",
-    "text": "Define council synthesizer cost",
+    "text": "Look up the arXiv id for BERT: Pre-training of Deep Bidirectional Transformers",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-2",
-    "text": "What does paper overfitting on small datasets say about X?",
+    "text": "What does paper 10.48550/arXiv.1706.03762 say about multi-head attention?",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-3",
-    "text": "Citation for the original caffeine half-life paper",
+    "text": "Define reciprocal rank fusion in one cited sentence",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-4",
-    "text": "arxiv id for transformer attention",
+    "text": "What is the license of better-sqlite3?",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-5",
-    "text": "Who proposed sleep deprivation and when?",
+    "text": "Find the OpenRouter docs page for usage.include cost accounting",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-6",
-    "text": "What is the DOI of graph neural nets for molecules?",
+    "text": "What year was SQLite FTS5 introduced?",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-7",
-    "text": "Define IRB protocol",
+    "text": "Cite the canonical reference for cosine similarity on embeddings",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-8",
-    "text": "What does paper batch norm vs layer norm say about X?",
+    "text": "What is the default port documented for Araitchi local binding?",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-9",
-    "text": "Citation for the original novelty of our loss paper",
+    "text": "Look up Crossref API rate-limit guidance for polite pools",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-10",
-    "text": "arxiv id for actigraphy vs diaries",
+    "text": "What does Unpaywall require for contact email?",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-11",
-    "text": "Who proposed sex differences in clearance and when?",
+    "text": "Find the DOI or arXiv for Retrieval-Augmented Generation seminal work",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-12",
-    "text": "What is the DOI of AHI exclusion criteria?",
+    "text": "What is ONNX Runtime Node package name used here?",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-13",
-    "text": "Define casein before bed",
+    "text": "Cite Transformers.js documentation for pipeline embeddings",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-14",
-    "text": "What does paper blue light melatonin say about X?",
+    "text": "What is the SHA-256 output length in hex characters?",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-15",
-    "text": "Citation for the original protein synthesis overnight paper",
+    "text": "Look up Playwright workers default when fullyParallel is false",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-16",
-    "text": "arxiv id for dropout rate 0.5",
+    "text": "Define preregistration as used in experimental psychology — cite",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-17",
-    "text": "Who proposed learning rate warm-up and when?",
+    "text": "What does Zod z.enum documentation say about invalid values?",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-18",
-    "text": "What is the DOI of citation graph density?",
+    "text": "Find Semantic Scholar API authentication requirements",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-19",
-    "text": "Define OpenAlex coverage",
+    "text": "What is the MIT license short notice text length roughly?",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-20",
-    "text": "What does paper semantic similarity thresholds say about X?",
+    "text": "Look up OpenAlex works endpoint filter for DOI",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-21",
-    "text": "Citation for the original council synthesizer cost paper",
+    "text": "Cite the Node.js crypto.createHash api for sha256",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-22",
-    "text": "arxiv id for overfitting on small datasets",
+    "text": "What arXiv category is cs.LG?",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-23",
-    "text": "Who proposed caffeine half-life and when?",
+    "text": "Find DBLP API base URL from our mocks or docs",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-factual_lookup-24",
-    "text": "What is the DOI of transformer attention?",
+    "text": "What is the JSON Schema draft commonly used for results contracts?",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-25",
+    "text": "Look up git commit message conventions for experiment ids",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-26",
+    "text": "Define BM25 briefly with a citable source",
+    "taskType": "factual_lookup",
+    "stakes": "low",
+    "needsEvidence": true
+  },
+  {
+    "id": "seed-factual_lookup-27",
+    "text": "What does Next.js runtime = nodejs mean for route handlers?",
     "taskType": "factual_lookup",
     "stakes": "low",
     "needsEvidence": true
   },
   {
     "id": "seed-chat-0",
-    "text": "hi",
+    "text": "hi there friend",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-1",
-    "text": "thanks!",
+    "text": "hey — just checking in briefly",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-2",
-    "text": "hello there",
+    "text": "hello — ready when you are",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-3",
-    "text": "ok got it",
+    "text": "thanks a bunch!",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-4",
-    "text": "good morning",
+    "text": "thx for the earlier tip",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-5",
-    "text": "how's it going?",
+    "text": "hola from the lab",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-6",
-    "text": "hi",
+    "text": "ok that works for me",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-7",
-    "text": "thanks!",
+    "text": "okay, please continue",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-8",
-    "text": "hello there",
+    "text": "good morning team",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-9",
-    "text": "ok got it",
+    "text": "good evening from here",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-10",
-    "text": "good morning",
+    "text": "cheers for now",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-11",
-    "text": "how's it going?",
+    "text": "Appreciate the quick reply",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-12",
-    "text": "hi",
+    "text": "nm just checking connectivity",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-13",
-    "text": "thanks!",
+    "text": "all good on my side today",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-14",
-    "text": "hello there",
+    "text": "quick ping only",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-15",
-    "text": "ok got it",
+    "text": "how goes it?",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-16",
-    "text": "good morning",
+    "text": "sup with the project?",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-17",
-    "text": "how's it going?",
+    "text": "hey Araitchi workspace",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-18",
-    "text": "hi",
+    "text": "hello hello again",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-19",
-    "text": "thanks!",
+    "text": "thanks once more",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-20",
-    "text": "hello there",
+    "text": "got it, much obliged",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-21",
-    "text": "ok got it",
+    "text": "cool beans",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-22",
-    "text": "good morning",
+    "text": "nice one",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-23",
-    "text": "how's it going?",
+    "text": "roger, standing by",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-chat-24",
-    "text": "hi",
+    "text": "will do shortly",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-25",
+    "text": "standing by for next step",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-26",
+    "text": "ready when you are",
+    "taskType": "chat",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-chat-27",
+    "text": "hi again from scratch",
     "taskType": "chat",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-0",
-    "text": "Reformat this as markdown bullets: AHI exclusion criteria",
+    "text": "Reformat this note as a markdown bullet list",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-1",
-    "text": "Convert to a table: casein before bed",
+    "text": "Turn the protocol into a numbered checklist",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-2",
-    "text": "Make this APA style: blue light melatonin",
+    "text": "Convert these metrics into a markdown table",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-3",
-    "text": "Pretty-print this JSON: protein synthesis overnight",
+    "text": "Pretty-print this JSON with two-space indent",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-4",
-    "text": "Turn into a numbered list: dropout rate 0.5",
+    "text": "Rewrite as GitHub-flavored markdown headings",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-5",
-    "text": "Reformat this as markdown bullets: learning rate warm-up",
+    "text": "Format the predictions as CSV columns",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-6",
-    "text": "Convert to a table: citation graph density",
+    "text": "Make this APA-ish citation list consistent",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-7",
-    "text": "Make this APA style: OpenAlex coverage",
+    "text": "Wrap long lines in the instructions.md cleanly",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-8",
-    "text": "Pretty-print this JSON: semantic similarity thresholds",
+    "text": "Convert the Timeline filters into a definition list",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-9",
-    "text": "Turn into a numbered list: council synthesizer cost",
+    "text": "Format error reasons as bold lead-ins + plain detail",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-10",
-    "text": "Reformat this as markdown bullets: overfitting on small datasets",
+    "text": "Turn this YAML-ish config into valid JSON",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-11",
-    "text": "Convert to a table: caffeine half-life",
+    "text": "Reformat the disagreement analysis as nested bullets",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-12",
-    "text": "Make this APA style: transformer attention",
+    "text": "Make a compact one-line status badge text",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-13",
-    "text": "Pretty-print this JSON: sleep deprivation",
+    "text": "Format seeds as a comma-separated inline list",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-14",
-    "text": "Turn into a numbered list: graph neural nets for molecules",
+    "text": "Convert the report outline into markdown sections",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-15",
-    "text": "Reformat this as markdown bullets: IRB protocol",
+    "text": "Normalize whitespace in this pasted DOI list",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-16",
-    "text": "Convert to a table: batch norm vs layer norm",
+    "text": "Format comparator symbols as code spans",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-17",
-    "text": "Make this APA style: novelty of our loss",
+    "text": "Turn these commit SHAs into a short markdown list",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-18",
-    "text": "Pretty-print this JSON: actigraphy vs diaries",
+    "text": "Reformat the Already-tested blurb as a callout",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-19",
-    "text": "Turn into a numbered list: sex differences in clearance",
+    "text": "Make the results contract fields a markdown table",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-20",
-    "text": "Reformat this as markdown bullets: AHI exclusion criteria",
+    "text": "Format hypothesis statuses as a legend",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-21",
-    "text": "Convert to a table: casein before bed",
+    "text": "Convert camelCase keys to snake_case in this sample",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-22",
-    "text": "Make this APA style: blue light melatonin",
+    "text": "Pretty markdown for the Cursor instructions preamble",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-23",
-    "text": "Pretty-print this JSON: protein synthesis overnight",
+    "text": "Format latency numbers with ms units consistently",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-formatting-24",
-    "text": "Turn into a numbered list: dropout rate 0.5",
+    "text": "Turn the override reason into a blockquote",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-25",
+    "text": "Reformat tags as inline code chips text",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-26",
+    "text": "Make a checklist from the protocol steps",
+    "taskType": "formatting",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-formatting-27",
+    "text": "Format the lock hash as a monospace truncated preview",
     "taskType": "formatting",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-0",
-    "text": "Summarize this abstract: blue light melatonin",
+    "text": "Summarize this brief.md in three sentences",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-1",
-    "text": "TL;DR of the following paragraph: protein synthesis overnight",
+    "text": "TL;DR the last council final answer",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-2",
-    "text": "Condense this note to 3 sentences: dropout rate 0.5",
+    "text": "Condense the experiment protocol to five bullets",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-3",
-    "text": "One-paragraph summary of learning rate warm-up",
+    "text": "Summarize the gate Why? reason for a non-expert",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-4",
-    "text": "Brief synopsis: citation graph density",
+    "text": "Short summary of the results.json schema fields",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-5",
-    "text": "Summarize this abstract: OpenAlex coverage",
+    "text": "TL;DR this literature review paragraph",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-6",
-    "text": "TL;DR of the following paragraph: semantic similarity thresholds",
+    "text": "Summarize the verdict evidence per prediction",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-7",
-    "text": "Condense this note to 3 sentences: council synthesizer cost",
+    "text": "Condense the interpretation note threats section",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-8",
-    "text": "One-paragraph summary of overfitting on small datasets",
+    "text": "One-paragraph summary of the Timeline event",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-9",
-    "text": "Brief synopsis: caffeine half-life",
+    "text": "Summarize memory.md changes since yesterday",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-10",
-    "text": "Summarize this abstract: transformer attention",
+    "text": "TL;DR the Cursor instructions for this experiment",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-11",
-    "text": "TL;DR of the following paragraph: sleep deprivation",
+    "text": "Brief summary of lock vs draft differences",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-12",
-    "text": "Condense this note to 3 sentences: graph neural nets for molecules",
+    "text": "Summarize the replication request changes",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-13",
-    "text": "One-paragraph summary of IRB protocol",
+    "text": "Condense the tool broker rate-limit section",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-14",
-    "text": "Brief synopsis: batch norm vs layer norm",
+    "text": "TL;DR hybrid search ranking formula",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-15",
-    "text": "Summarize this abstract: novelty of our loss",
+    "text": "Summarize OpenRouter cost footer meaning",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-16",
-    "text": "TL;DR of the following paragraph: actigraphy vs diaries",
+    "text": "Short summary of Auto routing layers",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-17",
-    "text": "Condense this note to 3 sentences: sex differences in clearance",
+    "text": "Condense the preregistration lock rationale",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-18",
-    "text": "One-paragraph summary of AHI exclusion criteria",
+    "text": "Summarize why the app never executes experiment code",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-19",
-    "text": "Brief synopsis: casein before bed",
+    "text": "TL;DR hypothesis status transition rules",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-20",
-    "text": "Summarize this abstract: blue light melatonin",
+    "text": "Summarize inconclusive reasons taxonomy",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-21",
-    "text": "TL;DR of the following paragraph: protein synthesis overnight",
+    "text": "Brief summary of seed uniqueness requirements",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-22",
-    "text": "Condense this note to 3 sentences: dropout rate 0.5",
+    "text": "Condense the Playwright temp-git e2e approach",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-23",
-    "text": "One-paragraph summary of learning rate warm-up",
+    "text": "TL;DR Settings → Routing knobs",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-summarize_single-24",
-    "text": "Brief synopsis: citation graph density",
+    "text": "Summarize paper provider merge/dedupe policy",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-25",
+    "text": "Short summary of scribe near-duplicate handling",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-26",
+    "text": "Summarize the 2 MB results size limit purpose",
+    "taskType": "summarize_single",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-summarize_single-27",
+    "text": "TL;DR Already-tested context package section",
     "taskType": "summarize_single",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-0",
-    "text": "what changed in the repo?",
+    "text": "What changed in the last few commits on main?",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-1",
-    "text": "git status of our project",
+    "text": "Please run a conceptual git status summary",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-2",
-    "text": "show recent commits",
+    "text": "Show recent commits on this research branch",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-3",
-    "text": "what files did we modify today?",
+    "text": "What files were modified since yesterday evening?",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-4",
-    "text": "diff since last commit",
+    "text": "Repo status: any uncommitted changes lingering?",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-5",
-    "text": "what changed in the repo?",
+    "text": "Diff since the last experiment lock commit hash",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-6",
-    "text": "git status of our project",
+    "text": "What changed after exp(E-12) landed in git?",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-7",
-    "text": "show recent commits",
+    "text": "List recent commits mentioning results.json path",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-8",
-    "text": "what files did we modify today?",
+    "text": "Repo status focused on the experiments/ folder",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-9",
-    "text": "diff since last commit",
+    "text": "What changed in .research/ — anything unexpected there?",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-10",
-    "text": "what changed in the repo?",
+    "text": "Summarize git log --oneline for the last ten",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-11",
-    "text": "git status of our project",
+    "text": "Which files differ from origin/main right now?",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-12",
-    "text": "show recent commits",
+    "text": "Recent commits whose message contains E- ids",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-13",
-    "text": "what files did we modify today?",
+    "text": "What changed in src/lib/server/gate this week?",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-14",
-    "text": "diff since last commit",
+    "text": "Repo status after rebase — any conflicts left?",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-15",
-    "text": "what changed in the repo?",
+    "text": "Did HEAD move since we locked the experiment?",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-16",
-    "text": "git status of our project",
+    "text": "What changed in drizzle/project migrations lately?",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-17",
-    "text": "show recent commits",
+    "text": "Show last commit touching seed-examples.json",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-18",
-    "text": "what files did we modify today?",
+    "text": "git status style check for a clean working tree",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-19",
-    "text": "diff since last commit",
+    "text": "What changed between lock time and check-results?",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-20",
-    "text": "what changed in the repo?",
+    "text": "Recent commits in the temp e2e git fixture repo",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-21",
-    "text": "git status of our project",
+    "text": "Diff the results.schema.json vs results.json keys",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-22",
-    "text": "show recent commits",
+    "text": "Repo status: is experiments/E-1/ tracked yet?",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-23",
-    "text": "what files did we modify today?",
+    "text": "What changed in package.json scripts recently?",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-repo_status-24",
-    "text": "diff since last commit",
+    "text": "Show commits dated after the locked_at timestamp",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-25",
+    "text": "git log skim for instructions.md generation",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-26",
+    "text": "What changed when we bumped experiment version?",
+    "taskType": "repo_status",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-repo_status-27",
+    "text": "Repo status checklist before requesting replication",
     "taskType": "repo_status",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-0",
-    "text": "Fix this TypeScript error: protein synthesis overnight",
+    "text": "Help me write a TypeScript zod schema for predictions",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-1",
-    "text": "How do I implement dropout rate 0.5 in Python?",
+    "text": "How do I compute median in plain JS for aggregates?",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-2",
-    "text": "Refactor this function: learning rate warm-up",
+    "text": "Fix this SHA-256 canonical JSON stringify approach",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-3",
-    "text": "Why does this code throw citation graph density?",
+    "text": "Code help: drizzle sqliteTable for experiments",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-4",
-    "text": "Write a unit test for OpenAlex coverage",
+    "text": "Show a Playwright pattern for temp git repos",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-5",
-    "text": "Fix this TypeScript error: semantic similarity thresholds",
+    "text": "How to stream a gate chip data part in AI SDK?",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-6",
-    "text": "How do I implement council synthesizer cost in Python?",
+    "text": "TypeScript helper for improves_over with minImprovementPct",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-7",
-    "text": "Refactor this function: overfitting on small datasets",
+    "text": "Debug why better-sqlite3 migration 0005 is not applied",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-8",
-    "text": "Why does this code throw caffeine half-life?",
+    "text": "Code: read a file under size limit with fs.stat",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-9",
-    "text": "Write a unit test for transformer attention",
+    "text": "Help parsing git log --format for experiment id",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-10",
-    "text": "Fix this TypeScript error: sleep deprivation",
+    "text": "Implement between comparator with inclusive bounds",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-11",
-    "text": "How do I implement graph neural nets for molecules in Python?",
+    "text": "How to version an immutable locked experiment row?",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-12",
-    "text": "Refactor this function: IRB protocol",
+    "text": "Code help for Next.js route runtime nodejs",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-13",
-    "text": "Why does this code throw batch norm vs layer norm?",
+    "text": "Write a Vitest table test for all comparators",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-14",
-    "text": "Write a unit test for novelty of our loss",
+    "text": "How to regenerate Cursor instructions markdown?",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-15",
-    "text": "Fix this TypeScript error: actigraphy vs diaries",
+    "text": "Fix React state race on mode refresh generation",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-16",
-    "text": "How do I implement sex differences in clearance in Python?",
+    "text": "Code: append Already-tested section to system prompt",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-17",
-    "text": "Refactor this function: AHI exclusion criteria",
+    "text": "Help with JSON Schema draft for results contract",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-18",
-    "text": "Why does this code throw casein before bed?",
+    "text": "Implement all_runs vs any_run prediction aggregates",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-19",
-    "text": "Write a unit test for blue light melatonin",
+    "text": "TypeScript type for ExperimentStatus union",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-20",
-    "text": "Fix this TypeScript error: protein synthesis overnight",
+    "text": "How to call read-only repo tools without executing?",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-21",
-    "text": "How do I implement dropout rate 0.5 in Python?",
+    "text": "Code help: nanoid vs E-n sequential experiment ids",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-22",
-    "text": "Refactor this function: learning rate warm-up",
+    "text": "Fix prettier issues in a large chat route file",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-23",
-    "text": "Why does this code throw citation graph density?",
+    "text": "Write a function to detect pre-lock commit dates",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-code_help-24",
-    "text": "Write a unit test for OpenAlex coverage",
+    "text": "Help mocking OpenRouter for results_interpretation",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-25",
+    "text": "Code: update hypothesis status only via validation loop",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-26",
+    "text": "Implement override verdict with required reason",
+    "taskType": "code_help",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-code_help-27",
+    "text": "How to export report.md into .research/experiments?",
     "taskType": "code_help",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-0",
-    "text": "Schedule next week's research tasks for semantic similarity thresholds",
+    "text": "Schedule a review of locked experiments this Friday",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-1",
-    "text": "Make a checklist for submitting council synthesizer cost",
+    "text": "Add a checklist item to run eval:gate before release",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-2",
-    "text": "Organize our meeting agenda about overfitting on small datasets",
+    "text": "Plan the Task 9 eval harness milestones",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-3",
-    "text": "Project milestones for caffeine half-life",
+    "text": "Admin: rotate OpenRouter key reminder",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-4",
-    "text": "Admin: rename the workstream for transformer attention",
+    "text": "Organize Timeline filters for next demo",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-5",
-    "text": "Schedule next week's research tasks for sleep deprivation",
+    "text": "Plan backlog: ANN index when embeddings exceed 50k",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-6",
-    "text": "Make a checklist for submitting graph neural nets for molecules",
+    "text": "Schedule replication requests for two supported claims",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-7",
-    "text": "Organize our meeting agenda about IRB protocol",
+    "text": "Admin note: bump knnThreshold after owner eval paste",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-8",
-    "text": "Project milestones for batch norm vs layer norm",
+    "text": "Plan docs pass for validation loop screenshots",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-9",
-    "text": "Admin: rename the workstream for novelty of our loss",
+    "text": "Checklist: CI green on ubuntu and windows",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-10",
-    "text": "Schedule next week's research tasks for actigraphy vs diaries",
+    "text": "Plan a dry-run of Cursor experiment instructions",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-11",
-    "text": "Make a checklist for submitting sex differences in clearance",
+    "text": "Admin: archive inconclusive experiments older than 90d",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-12",
-    "text": "Organize our meeting agenda about AHI exclusion criteria",
+    "text": "Schedule memory index rebuild after model switch",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-13",
-    "text": "Project milestones for casein before bed",
+    "text": "Plan owner manual check for sorting hypothesis",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-14",
-    "text": "Admin: rename the workstream for blue light melatonin",
+    "text": "Organize seed uniqueness audit quarterly",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-15",
-    "text": "Schedule next week's research tasks for protein synthesis overnight",
+    "text": "Admin reminder: never commit nested araitchi/",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-16",
-    "text": "Make a checklist for submitting dropout rate 0.5",
+    "text": "Plan budget cap review for council presets",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-17",
-    "text": "Organize our meeting agenda about learning rate warm-up",
+    "text": "Checklist before locking predictions",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-18",
-    "text": "Project milestones for citation graph density",
+    "text": "Schedule pairing on verdict engine edge cases",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-19",
-    "text": "Admin: rename the workstream for OpenAlex coverage",
+    "text": "Admin: update STATUS after T8 lands",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-20",
-    "text": "Schedule next week's research tasks for semantic similarity thresholds",
+    "text": "Plan migration of draft experiments to v2 schema",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-21",
-    "text": "Make a checklist for submitting council synthesizer cost",
+    "text": "Organize tags for Already-tested items",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-22",
-    "text": "Organize our meeting agenda about overfitting on small datasets",
+    "text": "Admin: verify FS root for e2e temp projects",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-23",
-    "text": "Project milestones for caffeine half-life",
+    "text": "Plan a demo script for Timeline click-through",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-planning_admin-24",
-    "text": "Admin: rename the workstream for transformer attention",
+    "text": "Checklist: override reason required in UI",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-25",
+    "text": "Schedule probe threshold ROC revisit",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-26",
+    "text": "Admin note: document 2 MB results limit in README",
+    "taskType": "planning_admin",
+    "stakes": "low",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-planning_admin-27",
+    "text": "Plan handoff notes for Task 9 owner",
     "taskType": "planning_admin",
     "stakes": "low",
     "needsEvidence": false
   },
   {
     "id": "seed-other-0",
-    "text": "Should we pivot or stay the course on IRB protocol?",
+    "text": "Is overfitting on small data a methods or theory issue? Pick one.",
     "taskType": "other",
     "stakes": "medium",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-other-1",
-    "text": "I'm unsure whether batch norm vs layer norm — what would you do?",
+    "text": "Should we prefer latency or accuracy for the gate classifier?",
     "taskType": "other",
     "stakes": "medium",
     "needsEvidence": false
   },
   {
     "id": "seed-other-2",
-    "text": "Ambiguous: compare options around novelty of our loss",
+    "text": "Open-ended: what should Araitchi optimize next?",
     "taskType": "other",
     "stakes": "medium",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-other-3",
-    "text": "Help me think through tradeoffs of actigraphy vs diaries",
+    "text": "Ambiguous ask: fix the thing with the models",
     "taskType": "other",
     "stakes": "medium",
     "needsEvidence": false
   },
   {
     "id": "seed-other-4",
-    "text": "Not sure if this is a methods or theory question: sex differences in clearance",
+    "text": "Not sure if this is a bug or a feature — thoughts?",
     "taskType": "other",
     "stakes": "medium",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-other-5",
-    "text": "Should we pivot or stay the course on AHI exclusion criteria?",
+    "text": "Rough idea: maybe unify Solo and Auto somehow?",
     "taskType": "other",
     "stakes": "medium",
     "needsEvidence": false
   },
   {
     "id": "seed-other-6",
-    "text": "I'm unsure whether casein before bed — what would you do?",
+    "text": "Unclear request about the purple theme bias",
     "taskType": "other",
     "stakes": "medium",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-other-7",
-    "text": "Ambiguous: compare options around blue light melatonin",
+    "text": "General musing on local-first vs hosted research tools",
     "taskType": "other",
     "stakes": "medium",
     "needsEvidence": false
   },
   {
     "id": "seed-other-8",
-    "text": "Help me think through tradeoffs of protein synthesis overnight",
+    "text": "Half-formed question about seeds and thresholds",
     "taskType": "other",
     "stakes": "medium",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-other-9",
-    "text": "Not sure if this is a methods or theory question: dropout rate 0.5",
+    "text": "Speculate on whether council is worth the cost today",
     "taskType": "other",
     "stakes": "medium",
     "needsEvidence": false
   },
   {
     "id": "seed-other-10",
-    "text": "Should we pivot or stay the course on learning rate warm-up?",
+    "text": "Vague: improve the UX somehow",
     "taskType": "other",
     "stakes": "medium",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-other-11",
-    "text": "I'm unsure whether citation graph density — what would you do?",
+    "text": "Either explain transformers or design an experiment — your call",
     "taskType": "other",
     "stakes": "medium",
     "needsEvidence": false
   },
   {
     "id": "seed-other-12",
-    "text": "Ambiguous: compare options around OpenAlex coverage",
+    "text": "Not classified easily: meta commentary on the taxonomy",
     "taskType": "other",
     "stakes": "medium",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-other-13",
-    "text": "Help me think through tradeoffs of semantic similarity thresholds",
+    "text": "Open question: do we need more task types?",
     "taskType": "other",
     "stakes": "medium",
     "needsEvidence": false
   },
   {
     "id": "seed-other-14",
-    "text": "Not sure if this is a methods or theory question: council synthesizer cost",
+    "text": "Ambiguous: check the thing in the repo or the paper",
     "taskType": "other",
     "stakes": "medium",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-other-15",
-    "text": "Should we pivot or stay the course on overfitting on small datasets?",
+    "text": "Philosophy of locking predictions before runs",
     "taskType": "other",
     "stakes": "medium",
     "needsEvidence": false
   },
   {
     "id": "seed-other-16",
-    "text": "I'm unsure whether caffeine half-life — what would you do?",
+    "text": "Riff on why the app must not execute experiment code",
     "taskType": "other",
     "stakes": "medium",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-other-17",
-    "text": "Ambiguous: compare options around transformer attention",
+    "text": "Unscoped: make research faster",
     "taskType": "other",
     "stakes": "medium",
     "needsEvidence": false
   },
   {
     "id": "seed-other-18",
-    "text": "Help me think through tradeoffs of sleep deprivation",
+    "text": "Borderline chat/other: tell me a research joke then analyze it",
     "taskType": "other",
     "stakes": "medium",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-other-19",
-    "text": "Not sure if this is a methods or theory question: graph neural nets for molecules",
+    "text": "Fuzzy ask comparing two unnamed approaches",
     "taskType": "other",
     "stakes": "medium",
     "needsEvidence": false
   },
   {
     "id": "seed-other-20",
-    "text": "Should we pivot or stay the course on IRB protocol?",
+    "text": "Should interpretation be allowed to flip verdicts someday?",
     "taskType": "other",
     "stakes": "medium",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-other-21",
-    "text": "I'm unsure whether batch norm vs layer norm — what would you do?",
+    "text": "Open-ended product direction for Timeline",
     "taskType": "other",
     "stakes": "medium",
     "needsEvidence": false
   },
   {
     "id": "seed-other-22",
-    "text": "Ambiguous: compare options around novelty of our loss",
+    "text": "Not sure: probe or council for this weird question?",
     "taskType": "other",
     "stakes": "medium",
-    "needsEvidence": true
+    "needsEvidence": false
   },
   {
     "id": "seed-other-23",
-    "text": "Help me think through tradeoffs of actigraphy vs diaries",
+    "text": "Vague infrastructure feeling: something feels slow",
     "taskType": "other",
     "stakes": "medium",
     "needsEvidence": false
   },
   {
     "id": "seed-other-24",
-    "text": "Not sure if this is a methods or theory question: sex differences in clearance",
+    "text": "Miscellaneous: color of the gate chip",
     "taskType": "other",
     "stakes": "medium",
-    "needsEvidence": true
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-25",
+    "text": "Unclear ownership: who updates memory.md verdicts?",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-26",
+    "text": "Broad: reinvent how we store experiments",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
+  },
+  {
+    "id": "seed-other-27",
+    "text": "Catch-all oddball about cats and cosine similarity",
+    "taskType": "other",
+    "stakes": "medium",
+    "needsEvidence": false
   }
 ]

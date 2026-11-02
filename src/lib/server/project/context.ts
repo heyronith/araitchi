@@ -4,6 +4,7 @@ import { readBrief } from "./init";
 import { listPinnedRecords, listRecords } from "./records";
 import type { MemoryRecord } from "./types";
 
+import { formatAlreadyTestedSection } from "@/lib/server/experiments/already-tested";
 import { hybridSearch } from "@/lib/server/memory/search";
 import { getMemorySettings } from "@/lib/server/memory/settings";
 import { getSessionSummary } from "@/lib/server/memory/session-summary";
@@ -162,6 +163,24 @@ export async function buildProjectSystemContext(
   }
   if (hypLines.length) {
     parts.push("## Active hypotheses", ...hypLines, "");
+  }
+
+  // 3b. Already tested (refuted / inconclusive / supported)
+  const already = formatAlreadyTestedSection(projectPath);
+  if (already) {
+    const t = approxTokens(already);
+    if (used + t <= budget) {
+      parts.push(already);
+      used += t;
+      items.push({
+        refId: "already-tested",
+        kind: "record",
+        ownerId: "already-tested",
+        title: "Already tested",
+        snippet: already.slice(0, 200),
+        tokens: t,
+      });
+    }
   }
 
   // 4. Hybrid relevant

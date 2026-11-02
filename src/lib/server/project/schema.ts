@@ -162,3 +162,40 @@ export const gateCorrections = sqliteTable("gate_corrections", {
   decisionId: text("decision_id"),
   createdAt: integer("created_at").notNull(),
 });
+
+/** Validation-loop experiments (preregistered predictions + deterministic verdicts). */
+export const experiments = sqliteTable("experiments", {
+  id: text("id").primaryKey(),
+  familyId: text("family_id").notNull(),
+  version: integer("version").notNull().default(1),
+  hypothesisIds: text("hypothesis_ids").notNull().default("[]"),
+  title: text("title").notNull(),
+  objective: text("objective").notNull(),
+  protocol: text("protocol").notNull(),
+  baselines: text("baselines").notNull().default(""),
+  dataset: text("dataset").notNull().default(""),
+  requiredRuns: integer("required_runs").notNull().default(1),
+  seeds: text("seeds").notNull().default("[]"),
+  environmentNotes: text("environment_notes").notNull().default(""),
+  predictions: text("predictions").notNull().default("[]"),
+  resultsPath: text("results_path").notNull(),
+  resultsSchema: text("results_schema").notNull(),
+  status: text("status").notNull().default("draft"),
+  lockedAt: integer("locked_at"),
+  lockHash: text("lock_hash"),
+  lockRepoHead: text("lock_repo_head"),
+  verdict: text("verdict"),
+  verdictEvidence: text("verdict_evidence"),
+  interpretation: text("interpretation"),
+  interpretationConcern: integer("interpretation_concern", {
+    mode: "boolean",
+  })
+    .notNull()
+    .default(false),
+  overrideVerdict: text("override_verdict"),
+  overrideReason: text("override_reason"),
+  overrideAt: integer("override_at"),
+  replicationOf: text("replication_of"),
+  createdAt: integer("created_at").notNull(),
+  updatedAt: integer("updated_at").notNull(),
+});

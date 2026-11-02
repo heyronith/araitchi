@@ -22,6 +22,7 @@ src/lib/server/tools/         broker, cache, rate-limit, provenance, papers/, do
 src/lib/server/memory/        embedder (worker), index, hybrid search, scribe, session summaries, settings
 src/lib/server/gate/          Auto convene gate: rules, kNN, LLM classify, probe, merge, decisions
 src/lib/gate/                 shared taxonomy (client + server)
+src/lib/server/experiments/   validation loop: lock, instructions, deterministic verdict, timeline
 src/lib/server/prompts/       council-*, tools-policy, scribe, evidence, merge/*
 src/lib/chat/                 shared validation + branch tree helpers
 drizzle/                      app DB migrations
@@ -60,8 +61,23 @@ docs/                         architecture + task briefs + STATUS
 - `tool_cache` — cached read-tool results keyed by tool + args hash
 - `gate_decisions` — Auto routing log (layer, taskType, action, costs, probe agreement, corrections)
 - `gate_corrections` — user overrides fed back into project kNN seeds
+- `experiments` — preregistered validation-loop experiments (predictions, lock hash, verdict evidence, versions)
 
 **Scale:** brute-force cosine in JS is fine up to ~50k chunks per project; beyond that, plan a proper ANN index.
+
+## Validation loop
+
+Hypotheses are tested via **locked predictions**, not chat argument:
+
+1. **Design** — structured draft (zod) from a hypothesis / prompt; editable prediction rows
+2. **Lock** — SHA-256 over canonical objective + protocol + predictions + results contract (+ repo HEAD); status `awaiting_run`; immutable thereafter (edits create version n+1 draft)
+3. **Cursor instructions** — markdown + `results.schema.json` under `.research/experiments/<id>/` (never executed by Araitchi)
+4. **Check results** — read-only git/fs: validate `results.json` (≤2 MB), require matching `lockHash` and enough runs, evaluate each prediction in code (comparators + aggregates)
+5. **Verdict** — `supported` / `refuted` / `inconclusive` (schema/lock/runs problems); optional LLM interpretation note **cannot** change the verdict (may set a concern flag); user override requires a written reason
+6. Linked hypothesis statuses update only via this loop or explicit user edit (scribe still limited to `proposed → testing`)
+7. Context package includes **Already tested** for supported/refuted/inconclusive hypotheses; Memory → **Timeline** lists the arc; `report.md` written per experiment
+
+Replication: new seeds/version in the same family; `replicated` when ≥2 independent passing locked runs exist.
 
 ## Convene gate (Auto mode)
 

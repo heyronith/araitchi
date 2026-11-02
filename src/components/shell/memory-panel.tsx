@@ -5,6 +5,7 @@ import * as React from "react";
 import { toast } from "sonner";
 
 import { Markdown } from "@/components/chat/markdown";
+import { ExperimentDesigner } from "@/components/shell/experiment-designer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -39,6 +40,7 @@ export type MemoryRecordDto = {
 
 const TABS = [
   { id: "brief", label: "Brief" },
+  { id: "timeline", label: "Timeline" },
   { id: "hypothesis", label: "Hypotheses" },
   { id: "experiment", label: "Experiments" },
   { id: "decision", label: "Decisions" },
@@ -91,6 +93,22 @@ export function MemoryPanel({
     tags: "",
     pinned: false,
   });
+  const [timeline, setTimeline] = React.useState<
+    {
+      id: string;
+      at: number;
+      kind: string;
+      title: string;
+      status: string | null;
+      detail?: string;
+      experimentId?: string;
+    }[]
+  >([]);
+  const [timelineFilter, setTimelineFilter] = React.useState("all");
+  const [designerOpen, setDesignerOpen] = React.useState(false);
+  const [designHyp, setDesignHyp] = React.useState<MemoryRecordDto | null>(
+    null,
+  );
 
   const loadBrief = React.useCallback(async () => {
     const res = await fetch("/api/projects/brief");
@@ -101,7 +119,7 @@ export function MemoryPanel({
   }, []);
 
   const loadRecords = React.useCallback(async () => {
-    if (tab === "brief") return;
+    if (tab === "brief" || tab === "timeline") return;
     const params = new URLSearchParams({ type: tab });
     if (query.trim()) params.set("q", query.trim());
     if (statusFilter !== "all") params.set("status", statusFilter);
@@ -111,12 +129,24 @@ export function MemoryPanel({
     setRecords(data.records);
   }, [tab, query, statusFilter]);
 
+  const loadTimeline = React.useCallback(async () => {
+    const params = new URLSearchParams();
+    if (timelineFilter !== "all") params.set("status", timelineFilter);
+    const res = await fetch(`/api/timeline?${params}`);
+    if (!res.ok) return;
+    const data = (await res.json()) as {
+      events: typeof timeline;
+    };
+    setTimeline(data.events);
+  }, [timelineFilter]);
+
   React.useEffect(() => {
     if (collapsed) return;
     // eslint-disable-next-line react-hooks/set-state-in-effect -- panel fetch
     if (tab === "brief") void loadBrief();
+    else if (tab === "timeline") void loadTimeline();
     else void loadRecords();
-  }, [collapsed, tab, loadBrief, loadRecords, refreshKey]);
+  }, [collapsed, tab, loadBrief, loadRecords, loadTimeline, refreshKey]);
 
   React.useEffect(() => {
     if (!briefDirty || tab !== "brief") return;
@@ -369,123 +399,208 @@ export function MemoryPanel({
           )}
         </TabsContent>
 
-        {TABS.filter((t) => t.id !== "brief").map((t) => (
-          <TabsContent
-            key={t.id}
-            value={t.id}
-            className="mt-0 flex min-h-0 flex-1 flex-col p-3"
+        <TabsContent
+          value="timeline"
+          className="mt-0 flex min-h-0 flex-1 flex-col p-3"
+        >
+          <select
+            className="border-input bg-background mb-2 h-8 rounded-md border px-2 text-xs"
+            value={timelineFilter}
+            onChange={(e) => setTimelineFilter(e.target.value)}
+            aria-label="Filter timeline by status"
+            data-testid="timeline-status-filter"
           >
-            <div className="mb-2 flex gap-2">
-              <div className="relative min-w-0 flex-1">
-                <Search className="text-muted-foreground absolute top-2.5 left-2 size-3.5" />
-                <Input
-                  className="h-8 pl-7"
-                  placeholder="Search…"
-                  value={tab === t.id ? query : ""}
-                  onChange={(e) => setQuery(e.target.value)}
-                  aria-label={`Search ${t.label}`}
-                />
-              </div>
-              <Button
-                type="button"
-                size="icon-sm"
-                variant="outline"
-                aria-label={`Add ${t.label}`}
-                onClick={openCreate}
-              >
-                <Plus className="size-3.5" />
-              </Button>
-            </div>
-            {STATUS_OPTIONS[t.id] ? (
-              <select
-                className="border-input bg-background mb-2 h-8 rounded-md border px-2 text-xs"
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                aria-label="Filter by status"
-              >
-                <option value="all">All statuses</option>
-                {STATUS_OPTIONS[t.id]!.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
+            <option value="all">All statuses</option>
+            {[
+              "draft",
+              "locked",
+              "awaiting_run",
+              "supported",
+              "refuted",
+              "inconclusive",
+              "replicated",
+            ].map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
+          </select>
+          <ScrollArea className="min-h-0 flex-1">
+            {timeline.length === 0 ? (
+              <p className="text-muted-foreground px-1 py-6 text-center text-xs">
+                Hypotheses, experiments, and verdicts appear here over time.
+              </p>
+            ) : (
+              <ul className="space-y-2" data-testid="timeline-list">
+                {timeline.map((ev) => (
+                  <li
+                    key={ev.id}
+                    className="rounded-md border p-2 text-xs"
+                    data-testid="timeline-event"
+                  >
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-medium">{ev.title}</span>
+                      {ev.status ? (
+                        <Badge
+                          variant="secondary"
+                          className="text-[10px]"
+                          data-testid="timeline-verdict"
+                        >
+                          {ev.status}
+                        </Badge>
+                      ) : null}
+                    </div>
+                    <p className="text-muted-foreground mt-1">
+                      {ev.kind}
+                      {ev.detail ? ` · ${ev.detail}` : ""}
+                    </p>
+                    <p className="text-muted-foreground">
+                      {new Date(ev.at).toLocaleString()}
+                    </p>
+                  </li>
                 ))}
-              </select>
-            ) : null}
-            <ScrollArea className="min-h-0 flex-1">
-              {records.length === 0 ? (
-                <p className="text-muted-foreground px-1 py-6 text-center text-xs">
-                  {EMPTY[t.id]}
-                </p>
-              ) : (
-                <ul className="space-y-2">
-                  {records.map((r) => (
-                    <li
-                      key={r.id}
-                      className="hover:bg-muted/50 group rounded-md border p-2"
-                    >
-                      <button
-                        type="button"
-                        className="w-full text-left"
-                        onClick={() => openEdit(r)}
-                      >
-                        <div className="flex items-start gap-1">
-                          <span className="min-w-0 flex-1 text-sm font-medium">
-                            {r.title}
-                          </span>
-                          {r.pinned ? (
-                            <Pin className="text-muted-foreground size-3 shrink-0" />
-                          ) : null}
-                        </div>
-                        <div className="mt-1 flex flex-wrap gap-1">
-                          {r.status ? (
-                            <Badge variant="secondary" className="text-[10px]">
-                              {r.status}
-                            </Badge>
-                          ) : null}
-                          {r.createdBy === "scribe" ? (
-                            <Badge
-                              variant="secondary"
-                              className="text-[10px]"
-                              data-testid="scribe-badge"
-                            >
-                              Added by scribe
-                            </Badge>
-                          ) : null}
-                          <Badge variant="outline" className="text-[10px]">
-                            {r.source === "user" ? "You" : r.source}
-                          </Badge>
-                          <span className="text-muted-foreground text-[10px]">
-                            {new Date(r.updatedAt).toLocaleDateString()}
-                          </span>
-                        </div>
-                      </button>
-                      <div className="mt-1 flex gap-1 opacity-0 group-hover:opacity-100">
-                        <Button
-                          type="button"
-                          size="icon-xs"
-                          variant="ghost"
-                          aria-label="Pin"
-                          onClick={() => void togglePin(r)}
-                        >
-                          <Pin className="size-3" />
-                        </Button>
-                        <Button
-                          type="button"
-                          size="icon-xs"
-                          variant="ghost"
-                          aria-label="Delete"
-                          onClick={() => void deleteRecord(r)}
-                        >
-                          <Trash2 className="size-3" />
-                        </Button>
-                      </div>
-                    </li>
+              </ul>
+            )}
+          </ScrollArea>
+        </TabsContent>
+
+        {TABS.filter((t) => t.id !== "brief" && t.id !== "timeline").map(
+          (t) => (
+            <TabsContent
+              key={t.id}
+              value={t.id}
+              className="mt-0 flex min-h-0 flex-1 flex-col p-3"
+            >
+              <div className="mb-2 flex gap-2">
+                <div className="relative min-w-0 flex-1">
+                  <Search className="text-muted-foreground absolute top-2.5 left-2 size-3.5" />
+                  <Input
+                    className="h-8 pl-7"
+                    placeholder="Search…"
+                    value={tab === t.id ? query : ""}
+                    onChange={(e) => setQuery(e.target.value)}
+                    aria-label={`Search ${t.label}`}
+                  />
+                </div>
+                <Button
+                  type="button"
+                  size="icon-sm"
+                  variant="outline"
+                  aria-label={`Add ${t.label}`}
+                  onClick={openCreate}
+                >
+                  <Plus className="size-3.5" />
+                </Button>
+              </div>
+              {STATUS_OPTIONS[t.id] ? (
+                <select
+                  className="border-input bg-background mb-2 h-8 rounded-md border px-2 text-xs"
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  aria-label="Filter by status"
+                >
+                  <option value="all">All statuses</option>
+                  {STATUS_OPTIONS[t.id]!.map((s) => (
+                    <option key={s} value={s}>
+                      {s}
+                    </option>
                   ))}
-                </ul>
-              )}
-            </ScrollArea>
-          </TabsContent>
-        ))}
+                </select>
+              ) : null}
+              <ScrollArea className="min-h-0 flex-1">
+                {records.length === 0 ? (
+                  <p className="text-muted-foreground px-1 py-6 text-center text-xs">
+                    {EMPTY[t.id]}
+                  </p>
+                ) : (
+                  <ul className="space-y-2">
+                    {records.map((r) => (
+                      <li
+                        key={r.id}
+                        className="hover:bg-muted/50 group rounded-md border p-2"
+                      >
+                        <button
+                          type="button"
+                          className="w-full text-left"
+                          onClick={() => openEdit(r)}
+                        >
+                          <div className="flex items-start gap-1">
+                            <span className="min-w-0 flex-1 text-sm font-medium">
+                              {r.title}
+                            </span>
+                            {r.pinned ? (
+                              <Pin className="text-muted-foreground size-3 shrink-0" />
+                            ) : null}
+                          </div>
+                          <div className="mt-1 flex flex-wrap gap-1">
+                            {r.status ? (
+                              <Badge
+                                variant="secondary"
+                                className="text-[10px]"
+                              >
+                                {r.status}
+                              </Badge>
+                            ) : null}
+                            {r.createdBy === "scribe" ? (
+                              <Badge
+                                variant="secondary"
+                                className="text-[10px]"
+                                data-testid="scribe-badge"
+                              >
+                                Added by scribe
+                              </Badge>
+                            ) : null}
+                            <Badge variant="outline" className="text-[10px]">
+                              {r.source === "user" ? "You" : r.source}
+                            </Badge>
+                            <span className="text-muted-foreground text-[10px]">
+                              {new Date(r.updatedAt).toLocaleDateString()}
+                            </span>
+                          </div>
+                        </button>
+                        <div className="mt-1 flex flex-wrap gap-1 opacity-100">
+                          {t.id === "hypothesis" ? (
+                            <Button
+                              type="button"
+                              size="sm"
+                              variant="outline"
+                              className="h-7 text-xs"
+                              data-testid="design-experiment"
+                              onClick={() => {
+                                setDesignHyp(r);
+                                setDesignerOpen(true);
+                              }}
+                            >
+                              Design experiment
+                            </Button>
+                          ) : null}
+                          <Button
+                            type="button"
+                            size="icon-xs"
+                            variant="ghost"
+                            aria-label="Pin"
+                            onClick={() => void togglePin(r)}
+                          >
+                            <Pin className="size-3" />
+                          </Button>
+                          <Button
+                            type="button"
+                            size="icon-xs"
+                            variant="ghost"
+                            aria-label="Delete"
+                            onClick={() => void deleteRecord(r)}
+                          >
+                            <Trash2 className="size-3" />
+                          </Button>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </ScrollArea>
+            </TabsContent>
+          ),
+        )}
       </Tabs>
 
       <Dialog open={editorOpen} onOpenChange={setEditorOpen}>
@@ -568,6 +683,17 @@ export function MemoryPanel({
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <ExperimentDesigner
+        open={designerOpen}
+        onOpenChange={setDesignerOpen}
+        hypothesisId={designHyp?.id}
+        hypothesisTitle={designHyp?.title}
+        onChanged={() => {
+          void loadRecords();
+          void loadTimeline();
+        }}
+      />
     </aside>
   );
 }

@@ -2,7 +2,7 @@
 
 Araitchi is a local-first, self-hosted AI research workspace. It runs as a Next.js app on your machine; you bring your own OpenRouter API key. A team of models from different labs will help with literature review, hypotheses, and experiment design — each research project is a folder on disk.
 
-**Status:** pre-alpha, Task 7 of 9 complete (Auto convene gate + task-specific merging).
+**Status:** pre-alpha, Task 8 of 9 complete (validation loop + research timeline).
 
 ## Requirements
 
@@ -55,6 +55,10 @@ Configure thresholds and models under **Settings → Routing** (routing log incl
 pnpm eval:gate [models…]
 pnpm eval:probe [modelA modelB]
 ```
+
+### Validation loop
+
+Hypotheses become **preregistered experiments**: design → edit predictions → **Lock predictions** (SHA-256 lock; immutable). Araitchi writes Cursor instructions under `.research/experiments/<id>/` telling the agent to implement under `experiments/<id>/`, write `results.json` matching the contract (`experimentId`, `lockHash`, seeded `runs[].metrics`), and commit `exp(<id>): …` — **the app never runs your code**. **Check results** scores predictions deterministically (`supported` / `refuted` / `inconclusive`); an interpretation note may raise concerns but cannot flip the verdict. Override only with a written reason. Memory → **Timeline** shows the arc; related chats get an **Already tested** context section so refuted ideas are not re-proposed blindly.
 
 **Council** (forced or from Auto) still sends your message to **3–10 models in parallel**, then a synthesizer merges with a **task-specific** prompt (literature union, distinct hypotheses, experiment protocols, critique severity, evidence-grounded results).
 
