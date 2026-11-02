@@ -1,5 +1,6 @@
 import "server-only";
 
+import { loadDefaults } from "@/lib/server/defaults";
 import {
   getProjectSetting,
   setProjectSetting,
@@ -24,16 +25,26 @@ export type GateSettings = {
   budgetBehaviour: "block" | "warn" | "allow";
 };
 
+function gateDefaultsFromConfig(): Pick<
+  GateSettings,
+  "classifierModel" | "probeModels"
+> {
+  const d = loadDefaults();
+  return {
+    classifierModel: d.classifierModel,
+    probeModels: d.probeModels,
+  };
+}
+
 /**
- * Quality-first defaults. Classifier uses a "latest" alias (override after
- * `pnpm eval:gate`). Probe pair uses concrete catalog ids so local mock /
- * e2e stays reliable; replace with eval winners in Settings → Routing.
+ * Quality-first defaults from config/defaults.json (override after eval:gate /
+ * eval:probe). Probe pair may be latest aliases; Settings → Routing can pin
+ * concrete catalog ids for local mock / e2e.
  */
 export const DEFAULT_GATE_SETTINGS: GateSettings = {
   knnThreshold: 0.55,
   probeAgreementThreshold: 0.72,
-  classifierModel: "~openai/gpt-oss-latest",
-  probeModels: ["anthropic/claude-3.5-haiku", "google/gemini-2.0-flash"],
+  ...gateDefaultsFromConfig(),
   alwaysCouncil: [...ALWAYS_COUNCIL] as TaskType[],
   knnK: 7,
   budgetBehaviour: "block",

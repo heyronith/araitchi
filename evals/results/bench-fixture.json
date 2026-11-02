@@ -1,0 +1,112 @@
+{
+  "generatedAt": "2026-11-01T12:00:00.000Z",
+  "options": {
+    "sets": ["1", "2"],
+    "configs": ["A", "C"],
+    "limit": 5,
+    "repeats": 1,
+    "budgetCapUsd": 0.5,
+    "dryRun": true
+  },
+  "items": [
+    {
+      "set": "1",
+      "config": "A",
+      "itemId": "v-0",
+      "correct": true,
+      "score": 1,
+      "costUsd": 0.012,
+      "latencyMs": 820
+    },
+    {
+      "set": "1",
+      "config": "A",
+      "itemId": "v-1",
+      "correct": true,
+      "score": 1,
+      "costUsd": 0.011,
+      "latencyMs": 790
+    },
+    {
+      "set": "1",
+      "config": "C",
+      "itemId": "v-0",
+      "correct": true,
+      "score": 1,
+      "costUsd": 0.028,
+      "latencyMs": 2100,
+      "gateAction": "council"
+    },
+    {
+      "set": "1",
+      "config": "C",
+      "itemId": "v-1",
+      "correct": false,
+      "score": 0,
+      "costUsd": 0.031,
+      "latencyMs": 2400,
+      "gateAction": "solo"
+    },
+    {
+      "set": "2",
+      "config": "A",
+      "itemId": "lit-0",
+      "correct": true,
+      "score": 0.8,
+      "costUsd": 0.02,
+      "latencyMs": 1500
+    },
+    {
+      "set": "2",
+      "config": "C",
+      "itemId": "lit-0",
+      "correct": true,
+      "score": 0.85,
+      "costUsd": 0.04,
+      "latencyMs": 3200,
+      "gateAction": "council"
+    }
+  ],
+  "tables": {
+    "1:A": {
+      "meanScore": 1.0,
+      "ciLow": 1.0,
+      "ciHigh": 1.0,
+      "meanCost": 0.0115,
+      "costPerCorrect": 0.0115,
+      "meanLatencyMs": 805,
+      "n": 2
+    },
+    "1:C": {
+      "meanScore": 0.5,
+      "ciLow": 0.0,
+      "ciHigh": 1.0,
+      "meanCost": 0.0295,
+      "costPerCorrect": 0.059,
+      "meanLatencyMs": 2250,
+      "n": 2
+    },
+    "2:A": {
+      "meanScore": 0.8,
+      "ciLow": 0.8,
+      "ciHigh": 0.8,
+      "meanCost": 0.02,
+      "costPerCorrect": 0.02,
+      "meanLatencyMs": 1500,
+      "n": 1
+    },
+    "2:C": {
+      "meanScore": 0.85,
+      "ciLow": 0.85,
+      "ciHigh": 0.85,
+      "meanCost": 0.04,
+      "costPerCorrect": 0.04,
+      "meanLatencyMs": 3200,
+      "n": 1
+    }
+  },
+  "findings": [
+    "Fixture sample for Settings → Evaluations (dry-run style).",
+    "Strongest solo (A) scored higher than Adaptive (C) on this tiny fixture slice."
+  ]
+}

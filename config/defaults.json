@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "notes": "Quality-first defaults using OpenRouter latest aliases where possible. Owner updates after pnpm eval:* / pnpm bench. See docs/MODEL_DEFAULTS.md.",
+  "scribeModel": "~openai/gpt-oss-latest",
+  "classifierModel": "~openai/gpt-oss-latest",
+  "strongestSoloModel": "~anthropic/claude-opus-latest",
+  "probeModels": [
+    "~anthropic/claude-haiku-latest",
+    "~google/gemini-flash-latest"
+  ],
+  "council": {
+    "balancedLabs": ["anthropic", "openai", "google", "meta-llama"],
+    "budgetLabs": ["google", "meta-llama", "qwen", "deepseek"],
+    "memberCountBalanced": 3,
+    "memberCountBudget": 3
+  },
+  "embeddingModel": "onnx-community/Qwen3-Embedding-0.6B-ONNX",
+  "embeddingModelLight": "Xenova/all-MiniLM-L6-v2",
+  "bench": {
+    "budgetCapUsd": 0.5,
+    "repeats": 3,
+    "rediscoverySimilarityThreshold": 0.72
+  }
+}

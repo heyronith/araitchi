@@ -1,0 +1,24 @@
+{
+  "experimentId": "E-bench-0",
+  "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "runs": [
+    {
+      "seed": 1,
+      "metrics": {
+        "score": 0.9
+      }
+    },
+    {
+      "seed": 2,
+      "metrics": {
+        "score": 0.85
+      }
+    },
+    {
+      "seed": 3,
+      "metrics": {
+        "score": 0.88
+      }
+    }
+  ]
+}

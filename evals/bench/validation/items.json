@@ -1,0 +1,182 @@
+[
+  {
+    "id": "val-0",
+    "hypothesis": "Bench hypothesis 0: metric score high",
+    "expectedVerdict": "supported",
+    "resultsFile": "evals/bench/validation/results/val-0.json",
+    "predictions": [
+      {
+        "id": "p1",
+        "metric": "score",
+        "comparator": ">",
+        "value": 0.5,
+        "aggregate": "mean"
+      }
+    ],
+    "requiredRuns": 3,
+    "seeds": [1, 2, 3],
+    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  {
+    "id": "val-1",
+    "hypothesis": "Bench hypothesis 1: metric score low",
+    "expectedVerdict": "refuted",
+    "resultsFile": "evals/bench/validation/results/val-1.json",
+    "predictions": [
+      {
+        "id": "p1",
+        "metric": "score",
+        "comparator": "<",
+        "value": 0.5,
+        "aggregate": "mean"
+      }
+    ],
+    "requiredRuns": 3,
+    "seeds": [1, 2, 3],
+    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  {
+    "id": "val-2",
+    "hypothesis": "Bench hypothesis 2: metric score high",
+    "expectedVerdict": "supported",
+    "resultsFile": "evals/bench/validation/results/val-2.json",
+    "predictions": [
+      {
+        "id": "p1",
+        "metric": "score",
+        "comparator": ">",
+        "value": 0.5,
+        "aggregate": "mean"
+      }
+    ],
+    "requiredRuns": 3,
+    "seeds": [1, 2, 3],
+    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  {
+    "id": "val-3",
+    "hypothesis": "Bench hypothesis 3: metric score low",
+    "expectedVerdict": "refuted",
+    "resultsFile": "evals/bench/validation/results/val-3.json",
+    "predictions": [
+      {
+        "id": "p1",
+        "metric": "score",
+        "comparator": "<",
+        "value": 0.5,
+        "aggregate": "mean"
+      }
+    ],
+    "requiredRuns": 3,
+    "seeds": [1, 2, 3],
+    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  {
+    "id": "val-4",
+    "hypothesis": "Bench hypothesis 4: metric score high",
+    "expectedVerdict": "supported",
+    "resultsFile": "evals/bench/validation/results/val-4.json",
+    "predictions": [
+      {
+        "id": "p1",
+        "metric": "score",
+        "comparator": ">",
+        "value": 0.5,
+        "aggregate": "mean"
+      }
+    ],
+    "requiredRuns": 3,
+    "seeds": [1, 2, 3],
+    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  {
+    "id": "val-5",
+    "hypothesis": "Bench hypothesis 5: metric score low",
+    "expectedVerdict": "refuted",
+    "resultsFile": "evals/bench/validation/results/val-5.json",
+    "predictions": [
+      {
+        "id": "p1",
+        "metric": "score",
+        "comparator": "<",
+        "value": 0.5,
+        "aggregate": "mean"
+      }
+    ],
+    "requiredRuns": 3,
+    "seeds": [1, 2, 3],
+    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  {
+    "id": "val-6",
+    "hypothesis": "Bench hypothesis 6: metric score high",
+    "expectedVerdict": "supported",
+    "resultsFile": "evals/bench/validation/results/val-6.json",
+    "predictions": [
+      {
+        "id": "p1",
+        "metric": "score",
+        "comparator": ">",
+        "value": 0.5,
+        "aggregate": "mean"
+      }
+    ],
+    "requiredRuns": 3,
+    "seeds": [1, 2, 3],
+    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  {
+    "id": "val-7",
+    "hypothesis": "Bench hypothesis 7: metric score low",
+    "expectedVerdict": "refuted",
+    "resultsFile": "evals/bench/validation/results/val-7.json",
+    "predictions": [
+      {
+        "id": "p1",
+        "metric": "score",
+        "comparator": "<",
+        "value": 0.5,
+        "aggregate": "mean"
+      }
+    ],
+    "requiredRuns": 3,
+    "seeds": [1, 2, 3],
+    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  {
+    "id": "val-8",
+    "hypothesis": "Bench hypothesis 8: metric score high",
+    "expectedVerdict": "supported",
+    "resultsFile": "evals/bench/validation/results/val-8.json",
+    "predictions": [
+      {
+        "id": "p1",
+        "metric": "score",
+        "comparator": ">",
+        "value": 0.5,
+        "aggregate": "mean"
+      }
+    ],
+    "requiredRuns": 3,
+    "seeds": [1, 2, 3],
+    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  {
+    "id": "val-9",
+    "hypothesis": "Bench hypothesis 9: metric score low",
+    "expectedVerdict": "refuted",
+    "resultsFile": "evals/bench/validation/results/val-9.json",
+    "predictions": [
+      {
+        "id": "p1",
+        "metric": "score",
+        "comparator": "<",
+        "value": 0.5,
+        "aggregate": "mean"
+      }
+    ],
+    "requiredRuns": 3,
+    "seeds": [1, 2, 3],
+    "lockHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+]

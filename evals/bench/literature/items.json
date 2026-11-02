@@ -1,0 +1,392 @@
+[
+  {
+    "id": "lit-0",
+    "question": "Survey key papers on topic 0: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-1",
+    "question": "Survey key papers on topic 1: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-2",
+    "question": "Survey key papers on topic 2: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-3",
+    "question": "Survey key papers on topic 3: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-4",
+    "question": "Survey key papers on topic 4: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-5",
+    "question": "Survey key papers on topic 0: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-6",
+    "question": "Survey key papers on topic 1: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-7",
+    "question": "Survey key papers on topic 2: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-8",
+    "question": "Survey key papers on topic 3: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-9",
+    "question": "Survey key papers on topic 4: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-10",
+    "question": "Survey key papers on topic 0: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-11",
+    "question": "Survey key papers on topic 1: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-12",
+    "question": "Survey key papers on topic 2: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-13",
+    "question": "Survey key papers on topic 3: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-14",
+    "question": "Survey key papers on topic 4: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-15",
+    "question": "Survey key papers on topic 0: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-16",
+    "question": "Survey key papers on topic 1: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-17",
+    "question": "Survey key papers on topic 2: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-18",
+    "question": "Survey key papers on topic 3: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-19",
+    "question": "Survey key papers on topic 4: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-20",
+    "question": "Survey key papers on topic 0: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-21",
+    "question": "Survey key papers on topic 1: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-22",
+    "question": "Survey key papers on topic 2: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-23",
+    "question": "Survey key papers on topic 3: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-24",
+    "question": "Survey key papers on topic 4: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-25",
+    "question": "Survey key papers on topic 0: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-26",
+    "question": "Survey key papers on topic 1: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-27",
+    "question": "Survey key papers on topic 2: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-28",
+    "question": "Survey key papers on topic 3: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": ["10.48550/arXiv.1706.03762", "10.48550/arXiv.1810.04805"],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  },
+  {
+    "id": "lit-29",
+    "question": "Survey key papers on topic 4: transformers and pretraining. List DOIs/arXiv of foundational works.",
+    "goldDois": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762"
+    ],
+    "resolvable": [
+      "10.48550/arXiv.1706.03762",
+      "10.48550/arXiv.1810.04805",
+      "1706.03762",
+      "1810.04805"
+    ]
+  }
+]

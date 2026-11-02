@@ -1,3 +1,4 @@
+import { loadDefaults } from "@/lib/server/defaults";
 import { labFromModelId } from "@/lib/server/models-utils";
 
 /**
@@ -81,35 +82,48 @@ function bestPerLab(
   return out;
 }
 
-/** Balanced: strongest general model from each of 3 different major labs. */
+/** Balanced: strongest general model from each of N different major labs. */
 export function resolveBalancedPreset(catalog: CatalogModel[]): {
   members: string[];
   synthesizer: string;
 } {
+  const defaults = loadDefaults();
+  const preferredLabs = defaults.council.balancedLabs;
+  const memberCount = defaults.council.memberCountBalanced;
   const pool = catalog.filter(isGeneralChatModel);
   const scored = [...pool].sort((a, b) => strengthScore(b) - strengthScore(a));
 
-  // Prefer major labs ordered by their best model's strength.
+  // Prefer configured labs ordered by their best model's strength.
   const labBest = new Map<string, CatalogModel>();
   for (const m of scored) {
     if (!labBest.has(m.lab)) labBest.set(m.lab, m);
   }
+  const preferredSet = new Set(preferredLabs);
   const rankedLabs = [...labBest.entries()]
-    .filter(([lab]) => MAJOR_LABS.includes(lab as (typeof MAJOR_LABS)[number]))
-    .sort((a, b) => strengthScore(b[1]) - strengthScore(a[1]))
-    .slice(0, 3)
+    .filter(
+      ([lab]) =>
+        preferredSet.has(lab) ||
+        MAJOR_LABS.includes(lab as (typeof MAJOR_LABS)[number]),
+    )
+    .sort((a, b) => {
+      const aPref = preferredSet.has(a[0]) ? 1 : 0;
+      const bPref = preferredSet.has(b[0]) ? 1 : 0;
+      if (aPref !== bPref) return bPref - aPref;
+      return strengthScore(b[1]) - strengthScore(a[1]);
+    })
+    .slice(0, memberCount)
     .map(([, m]) => m);
 
-  // Fallback: any top-3 distinct labs
+  // Fallback: any top distinct labs
   let members = rankedLabs;
-  if (members.length < 3) {
+  if (members.length < memberCount) {
     members = [];
     const seen = new Set<string>();
     for (const m of scored) {
       if (seen.has(m.lab)) continue;
       seen.add(m.lab);
       members.push(m);
-      if (members.length >= 3) break;
+      if (members.length >= memberCount) break;
     }
   }
 
@@ -129,10 +143,18 @@ export function resolveBudgetPreset(catalog: CatalogModel[]): {
   members: string[];
   synthesizer: string;
 } {
+  const defaults = loadDefaults();
+  const preferredLabs = new Set(defaults.council.budgetLabs);
+  const memberCount = defaults.council.memberCountBudget;
   const pool = catalog
     .filter(isGeneralChatModel)
     .filter((m) => (m.contextLength ?? 0) >= 64_000)
-    .filter((m) => OPEN_WEIGHT_LABS.has(m.lab) || /free|:free$/i.test(m.id));
+    .filter(
+      (m) =>
+        preferredLabs.has(m.lab) ||
+        OPEN_WEIGHT_LABS.has(m.lab) ||
+        /free|:free$/i.test(m.id),
+    );
 
   const byLab = new Map<string, CatalogModel[]>();
   for (const m of pool) {
@@ -148,12 +170,17 @@ export function resolveBudgetPreset(catalog: CatalogModel[]): {
     if (sorted[0]) cheapestPerLab.push(sorted[0]);
   }
 
-  // Prefer stronger among cheap open-weight, still one per lab.
-  cheapestPerLab.sort((a, b) => strengthScore(b) - strengthScore(a));
-  const members = cheapestPerLab.slice(0, 3);
+  // Prefer configured budget labs, then stronger among cheap open-weight.
+  cheapestPerLab.sort((a, b) => {
+    const aPref = preferredLabs.has(a.lab) ? 1 : 0;
+    const bPref = preferredLabs.has(b.lab) ? 1 : 0;
+    if (aPref !== bPref) return bPref - aPref;
+    return strengthScore(b) - strengthScore(a);
+  });
+  const members = cheapestPerLab.slice(0, memberCount);
 
-  // Fallback if open-weight pool thin: cheapest 3 distinct labs overall ≥64k
-  if (members.length < 3) {
+  // Fallback if open-weight pool thin: cheapest distinct labs overall ≥64k
+  if (members.length < memberCount) {
     const broad = catalog
       .filter(isGeneralChatModel)
       .filter((m) => (m.contextLength ?? 0) >= 64_000)
@@ -163,7 +190,7 @@ export function resolveBudgetPreset(catalog: CatalogModel[]): {
       if (seen.has(m.lab)) continue;
       seen.add(m.lab);
       members.push(m);
-      if (members.length >= 3) break;
+      if (members.length >= memberCount) break;
     }
   }
 

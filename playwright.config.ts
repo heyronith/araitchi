@@ -58,6 +58,7 @@ export default defineConfig({
         ARAITCHI_CROSSREF_BASE_URL: `http://127.0.0.1:${mockPort}/mock/crossref`,
         ARAITCHI_UNPAYWALL_BASE_URL: `http://127.0.0.1:${mockPort}/mock/unpaywall`,
         ARAITCHI_FAKE_EMBEDDINGS: "1",
+        ARAITCHI_ONBOARDING_COMPLETE: "1",
         ARAITCHI_MOCK_SCRIBE: JSON.stringify({
           create: [
             {

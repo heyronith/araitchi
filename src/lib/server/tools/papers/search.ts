@@ -1,5 +1,7 @@
 import "server-only";
 
+import { getBenchContext } from "@/lib/server/bench/context";
+
 import { mergePapers, normalizeArxivId, normalizeDoi, rrfRank } from "./merge";
 import {
   fetchOpenAlexLinks,
@@ -37,6 +39,15 @@ export type SearchPapersInput = {
   signal?: AbortSignal;
 };
 
+/** Merge caller yearTo with an optional bench ceiling (never later than bench). */
+export function resolveBenchYearTo(
+  inputYearTo: number | undefined,
+  benchYearTo: number | undefined,
+): number | undefined {
+  if (benchYearTo == null) return inputYearTo;
+  return Math.min(inputYearTo ?? benchYearTo, benchYearTo);
+}
+
 function filterYears(
   papers: Paper[],
   yearFrom?: number,
@@ -72,11 +83,14 @@ export async function searchPapers(
   const q = input.query.trim();
   if (!q) return { papers: [], providers: [] };
 
+  // Bench rediscovery: enforce yearTo ceiling even if the model omits it.
+  const yearTo = resolveBenchYearTo(input.yearTo, getBenchContext()?.yearTo);
+
   const common = {
     limit,
     signal: input.signal,
     yearFrom: input.yearFrom,
-    yearTo: input.yearTo,
+    yearTo,
     mailto,
   };
 
@@ -99,7 +113,7 @@ export async function searchPapers(
   const filtered = filterYears(
     ranked.length ? ranked : mergedAll,
     input.yearFrom,
-    input.yearTo,
+    yearTo,
   );
   return { papers: filtered.slice(0, limit), providers };
 }

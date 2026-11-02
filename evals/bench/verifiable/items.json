@@ -1,0 +1,292 @@
+[
+  {
+    "id": "v-doi-0",
+    "type": "doi",
+    "question": "What is the DOI for Attention Is All You Need DOI?",
+    "expected": "10.48550/arXiv.1706.03762",
+    "checker": "doi"
+  },
+  {
+    "id": "v-doi-1",
+    "type": "doi",
+    "question": "What is the DOI for BERT DOI?",
+    "expected": "10.48550/arXiv.1810.04805",
+    "checker": "doi"
+  },
+  {
+    "id": "v-doi-2",
+    "type": "doi",
+    "question": "What is the DOI for GPT-3 DOI?",
+    "expected": "10.48550/arXiv.2005.14165",
+    "checker": "doi"
+  },
+  {
+    "id": "v-doi-3",
+    "type": "doi",
+    "question": "What is the DOI for RoBERTa DOI?",
+    "expected": "10.48550/arXiv.1907.11692",
+    "checker": "doi"
+  },
+  {
+    "id": "v-doi-4",
+    "type": "doi",
+    "question": "What is the DOI for T5 DOI?",
+    "expected": "10.48550/arXiv.1910.10683",
+    "checker": "doi"
+  },
+  {
+    "id": "v-doi-5",
+    "type": "doi",
+    "question": "What is the DOI for Attention Is All You Need DOI?",
+    "expected": "10.48550/arXiv.1706.03762",
+    "checker": "doi"
+  },
+  {
+    "id": "v-doi-6",
+    "type": "doi",
+    "question": "What is the DOI for BERT DOI?",
+    "expected": "10.48550/arXiv.1810.04805",
+    "checker": "doi"
+  },
+  {
+    "id": "v-doi-7",
+    "type": "doi",
+    "question": "What is the DOI for GPT-3 DOI?",
+    "expected": "10.48550/arXiv.2005.14165",
+    "checker": "doi"
+  },
+  {
+    "id": "v-doi-8",
+    "type": "doi",
+    "question": "What is the DOI for RoBERTa DOI?",
+    "expected": "10.48550/arXiv.1907.11692",
+    "checker": "doi"
+  },
+  {
+    "id": "v-doi-9",
+    "type": "doi",
+    "question": "What is the DOI for T5 DOI?",
+    "expected": "10.48550/arXiv.1910.10683",
+    "checker": "doi"
+  },
+  {
+    "id": "v-num-0",
+    "type": "numeric",
+    "question": "What is 10 + 20?",
+    "expected": 30,
+    "tolerance": 0,
+    "checker": "numeric"
+  },
+  {
+    "id": "v-num-1",
+    "type": "numeric",
+    "question": "What is 11 + 21?",
+    "expected": 32,
+    "tolerance": 0,
+    "checker": "numeric"
+  },
+  {
+    "id": "v-num-2",
+    "type": "numeric",
+    "question": "What is 12 + 22?",
+    "expected": 34,
+    "tolerance": 0,
+    "checker": "numeric"
+  },
+  {
+    "id": "v-num-3",
+    "type": "numeric",
+    "question": "What is 13 + 23?",
+    "expected": 36,
+    "tolerance": 0,
+    "checker": "numeric"
+  },
+  {
+    "id": "v-num-4",
+    "type": "numeric",
+    "question": "What is 14 + 24?",
+    "expected": 38,
+    "tolerance": 0,
+    "checker": "numeric"
+  },
+  {
+    "id": "v-num-5",
+    "type": "numeric",
+    "question": "What is 15 + 25?",
+    "expected": 40,
+    "tolerance": 0,
+    "checker": "numeric"
+  },
+  {
+    "id": "v-num-6",
+    "type": "numeric",
+    "question": "What is 16 + 26?",
+    "expected": 42,
+    "tolerance": 0,
+    "checker": "numeric"
+  },
+  {
+    "id": "v-num-7",
+    "type": "numeric",
+    "question": "What is 17 + 27?",
+    "expected": 44,
+    "tolerance": 0,
+    "checker": "numeric"
+  },
+  {
+    "id": "v-num-8",
+    "type": "numeric",
+    "question": "What is 18 + 28?",
+    "expected": 46,
+    "tolerance": 0,
+    "checker": "numeric"
+  },
+  {
+    "id": "v-num-9",
+    "type": "numeric",
+    "question": "What is 19 + 29?",
+    "expected": 48,
+    "tolerance": 0,
+    "checker": "numeric"
+  },
+  {
+    "id": "v-ent-0",
+    "type": "entity",
+    "question": "Name the concept: transformer (reply with that exact term).",
+    "expected": "transformer",
+    "checker": "exact"
+  },
+  {
+    "id": "v-ent-1",
+    "type": "entity",
+    "question": "Name the concept: attention (reply with that exact term).",
+    "expected": "attention",
+    "checker": "exact"
+  },
+  {
+    "id": "v-ent-2",
+    "type": "entity",
+    "question": "Name the concept: BERT (reply with that exact term).",
+    "expected": "BERT",
+    "checker": "exact"
+  },
+  {
+    "id": "v-ent-3",
+    "type": "entity",
+    "question": "Name the concept: RoBERTa (reply with that exact term).",
+    "expected": "RoBERTa",
+    "checker": "exact"
+  },
+  {
+    "id": "v-ent-4",
+    "type": "entity",
+    "question": "Name the concept: T5 (reply with that exact term).",
+    "expected": "T5",
+    "checker": "exact"
+  },
+  {
+    "id": "v-ent-5",
+    "type": "entity",
+    "question": "Name the concept: GPT-3 (reply with that exact term).",
+    "expected": "GPT-3",
+    "checker": "exact"
+  },
+  {
+    "id": "v-ent-6",
+    "type": "entity",
+    "question": "Name the concept: ResNet (reply with that exact term).",
+    "expected": "ResNet",
+    "checker": "exact"
+  },
+  {
+    "id": "v-ent-7",
+    "type": "entity",
+    "question": "Name the concept: Adam (reply with that exact term).",
+    "expected": "Adam",
+    "checker": "exact"
+  },
+  {
+    "id": "v-ent-8",
+    "type": "entity",
+    "question": "Name the concept: dropout (reply with that exact term).",
+    "expected": "dropout",
+    "checker": "exact"
+  },
+  {
+    "id": "v-ent-9",
+    "type": "entity",
+    "question": "Name the concept: batch normalization (reply with that exact term).",
+    "expected": "batch normalization",
+    "checker": "exact"
+  },
+  {
+    "id": "v-date-0",
+    "type": "date",
+    "question": "What is the ISO date for Jan 1 2015?",
+    "expected": "2015-01-01",
+    "checker": "date"
+  },
+  {
+    "id": "v-date-1",
+    "type": "date",
+    "question": "What is the ISO date for Jan 1 2016?",
+    "expected": "2016-01-01",
+    "checker": "date"
+  },
+  {
+    "id": "v-date-2",
+    "type": "date",
+    "question": "What is the ISO date for Jan 1 2017?",
+    "expected": "2017-01-01",
+    "checker": "date"
+  },
+  {
+    "id": "v-date-3",
+    "type": "date",
+    "question": "What is the ISO date for Jan 1 2018?",
+    "expected": "2018-01-01",
+    "checker": "date"
+  },
+  {
+    "id": "v-date-4",
+    "type": "date",
+    "question": "What is the ISO date for Jan 1 2019?",
+    "expected": "2019-01-01",
+    "checker": "date"
+  },
+  {
+    "id": "v-date-5",
+    "type": "date",
+    "question": "What is the ISO date for Jan 1 2020?",
+    "expected": "2020-01-01",
+    "checker": "date"
+  },
+  {
+    "id": "v-date-6",
+    "type": "date",
+    "question": "What is the ISO date for Jan 1 2021?",
+    "expected": "2021-01-01",
+    "checker": "date"
+  },
+  {
+    "id": "v-date-7",
+    "type": "date",
+    "question": "What is the ISO date for Jan 1 2022?",
+    "expected": "2022-01-01",
+    "checker": "date"
+  },
+  {
+    "id": "v-date-8",
+    "type": "date",
+    "question": "What is the ISO date for Jan 1 2023?",
+    "expected": "2023-01-01",
+    "checker": "date"
+  },
+  {
+    "id": "v-date-9",
+    "type": "date",
+    "question": "What is the ISO date for Jan 1 2024?",
+    "expected": "2024-01-01",
+    "checker": "date"
+  }
+]

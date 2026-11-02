@@ -1,0 +1,107 @@
+[
+  {
+    "id": "red-0",
+    "question": "Before 2017, what mechanism or result might explain: Multi-head self-attention enables parallel sequence transduction without recurrence.",
+    "yearTo": 2016,
+    "requiredTerms": ["attention", "transformer", "multi-head"],
+    "goldStatement": "Multi-head self-attention enables parallel sequence transduction without recurrence."
+  },
+  {
+    "id": "red-1",
+    "question": "Before 2018, what mechanism or result might explain: BERT pretrains deep bidirectional representations with masked language modeling.",
+    "yearTo": 2017,
+    "requiredTerms": ["bert", "bidirectional", "masked"],
+    "goldStatement": "BERT pretrains deep bidirectional representations with masked language modeling."
+  },
+  {
+    "id": "red-2",
+    "question": "Before 2019, what mechanism or result might explain: RoBERTa improves BERT with more data and dynamic masking.",
+    "yearTo": 2018,
+    "requiredTerms": ["roberta", "dynamic", "masking"],
+    "goldStatement": "RoBERTa improves BERT with more data and dynamic masking."
+  },
+  {
+    "id": "red-3",
+    "question": "Before 2020, what mechanism or result might explain: GPT-3 shows few-shot learning emerges at scale.",
+    "yearTo": 2019,
+    "requiredTerms": ["gpt-3", "few-shot", "scale"],
+    "goldStatement": "GPT-3 shows few-shot learning emerges at scale."
+  },
+  {
+    "id": "red-4",
+    "question": "Before 2015, what mechanism or result might explain: Residual connections ease training of very deep networks.",
+    "yearTo": 2014,
+    "requiredTerms": ["resnet", "residual", "skip"],
+    "goldStatement": "Residual connections ease training of very deep networks."
+  },
+  {
+    "id": "red-5",
+    "question": "Before 2017, what mechanism or result might explain: Multi-head self-attention enables parallel sequence transduction without recurrence.",
+    "yearTo": 2016,
+    "requiredTerms": ["attention", "transformer", "multi-head"],
+    "goldStatement": "Multi-head self-attention enables parallel sequence transduction without recurrence."
+  },
+  {
+    "id": "red-6",
+    "question": "Before 2018, what mechanism or result might explain: BERT pretrains deep bidirectional representations with masked language modeling.",
+    "yearTo": 2017,
+    "requiredTerms": ["bert", "bidirectional", "masked"],
+    "goldStatement": "BERT pretrains deep bidirectional representations with masked language modeling."
+  },
+  {
+    "id": "red-7",
+    "question": "Before 2019, what mechanism or result might explain: RoBERTa improves BERT with more data and dynamic masking.",
+    "yearTo": 2018,
+    "requiredTerms": ["roberta", "dynamic", "masking"],
+    "goldStatement": "RoBERTa improves BERT with more data and dynamic masking."
+  },
+  {
+    "id": "red-8",
+    "question": "Before 2020, what mechanism or result might explain: GPT-3 shows few-shot learning emerges at scale.",
+    "yearTo": 2019,
+    "requiredTerms": ["gpt-3", "few-shot", "scale"],
+    "goldStatement": "GPT-3 shows few-shot learning emerges at scale."
+  },
+  {
+    "id": "red-9",
+    "question": "Before 2015, what mechanism or result might explain: Residual connections ease training of very deep networks.",
+    "yearTo": 2014,
+    "requiredTerms": ["resnet", "residual", "skip"],
+    "goldStatement": "Residual connections ease training of very deep networks."
+  },
+  {
+    "id": "red-10",
+    "question": "Before 2017, what mechanism or result might explain: Multi-head self-attention enables parallel sequence transduction without recurrence.",
+    "yearTo": 2016,
+    "requiredTerms": ["attention", "transformer", "multi-head"],
+    "goldStatement": "Multi-head self-attention enables parallel sequence transduction without recurrence."
+  },
+  {
+    "id": "red-11",
+    "question": "Before 2018, what mechanism or result might explain: BERT pretrains deep bidirectional representations with masked language modeling.",
+    "yearTo": 2017,
+    "requiredTerms": ["bert", "bidirectional", "masked"],
+    "goldStatement": "BERT pretrains deep bidirectional representations with masked language modeling."
+  },
+  {
+    "id": "red-12",
+    "question": "Before 2019, what mechanism or result might explain: RoBERTa improves BERT with more data and dynamic masking.",
+    "yearTo": 2018,
+    "requiredTerms": ["roberta", "dynamic", "masking"],
+    "goldStatement": "RoBERTa improves BERT with more data and dynamic masking."
+  },
+  {
+    "id": "red-13",
+    "question": "Before 2020, what mechanism or result might explain: GPT-3 shows few-shot learning emerges at scale.",
+    "yearTo": 2019,
+    "requiredTerms": ["gpt-3", "few-shot", "scale"],
+    "goldStatement": "GPT-3 shows few-shot learning emerges at scale."
+  },
+  {
+    "id": "red-14",
+    "question": "Before 2015, what mechanism or result might explain: Residual connections ease training of very deep networks.",
+    "yearTo": 2014,
+    "requiredTerms": ["resnet", "residual", "skip"],
+    "goldStatement": "Residual connections ease training of very deep networks."
+  }
+]

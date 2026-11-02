@@ -2,24 +2,35 @@
 
 Araitchi is a local-first, self-hosted AI research workspace. It runs as a Next.js app on your machine; you bring your own OpenRouter API key. A team of models from different labs will help with literature review, hypotheses, and experiment design — each research project is a folder on disk.
 
-**Status:** pre-alpha, Task 8 of 9 complete (validation loop + research timeline).
+**Status:** v0.1.0
+
+![Chat — Auto mode](docs/screenshots/chat-auto.png)
+![Council reply](docs/screenshots/council.png)
+![Memory & timeline](docs/screenshots/memory-timeline.png)
+![Validation loop](docs/screenshots/validation-loop.png)
+
+> Screenshot assets are placeholders until captured for the release.
 
 ## Requirements
 
 - Node.js 22 LTS (see `.nvmrc`)
 - [pnpm](https://pnpm.io) via Corepack (`corepack enable`)
+- `git` on PATH (repo tools + install scripts)
 
 ## Quick start
 
 ```bash
-corepack enable
-pnpm install
-pnpm dev
+./scripts/install.sh   # macOS/Linux — or: .\scripts\install.ps1 on Windows
+pnpm start             # http://127.0.0.1:3000
 ```
 
-Open [http://127.0.0.1:3000](http://127.0.0.1:3000).
+Manual equivalent:
 
-`dev` and `start` bind to **127.0.0.1 only** (not `0.0.0.0`) because the app stores API keys on disk. Binding to localhost prevents other devices on your network from reaching those endpoints.
+```bash
+corepack enable && pnpm install && pnpm build && pnpm start
+```
+
+`dev` and `start` bind to **127.0.0.1 only** (not `0.0.0.0`) because the app stores API keys on disk.
 
 ### Connect OpenRouter
 
@@ -39,7 +50,8 @@ A **project** is any folder on disk. Opening one creates `<folder>/.research/` (
 | `notebook.db` | Per-project SQLite (chats, messages, memory records) |
 | `memory.md` | Readable export of records (regenerated on change) |
 | `sessions/` | Markdown transcripts of chat branches |
-| `library/` | Reserved for papers (later) |
+| `library/` | Papers / documents |
+| `experiments/` | Validation-loop Cursor instructions + metadata |
 
 You may **commit `.research/` to git** or add it to `.gitignore` — your choice. Araitchi never writes into your repo except for that `.research/` directory at the project root.
 
@@ -55,6 +67,8 @@ Configure thresholds and models under **Settings → Routing** (routing log incl
 pnpm eval:gate [models…]
 pnpm eval:probe [modelA modelB]
 ```
+
+Model defaults live in `config/defaults.json` — see [docs/MODEL_DEFAULTS.md](docs/MODEL_DEFAULTS.md).
 
 ### Validation loop
 
@@ -113,6 +127,18 @@ OPENROUTER_API_KEY=sk-or-... pnpm smoke:openrouter
 
 Lists models, sends a tiny prompt to a cheap model, prints reply + cost.
 
+## Docs
+
+| Doc | Contents |
+| --- | --- |
+| [docs/USER_GUIDE.md](docs/USER_GUIDE.md) | Everyday use: projects, modes, council, tools, memory, validation, costs, privacy |
+| [SECURITY.md](SECURITY.md) | Threat model and how to report issues |
+| [CHANGELOG.md](CHANGELOG.md) | Release history |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Stack and internals |
+| [docs/MODEL_DEFAULTS.md](docs/MODEL_DEFAULTS.md) | How `config/defaults.json` is chosen |
+| [docs/LICENCE_EXCEPTIONS.md](docs/LICENCE_EXCEPTIONS.md) | Runtime licence policy / exceptions |
+| [docs/STATUS.md](docs/STATUS.md) | Task progress and known issues |
+
 ## Scripts
 
 | Script | Description |
@@ -128,6 +154,8 @@ Lists models, sends a tiny prompt to a cheap model, prints reply + cost.
 | `pnpm check:secrets:selftest` | Asserts the leak checker detects a planted string |
 | `pnpm smoke:openrouter` | Live OpenRouter smoke (manual) |
 | `pnpm smoke:papers "<query>"` | Live paper-provider smoke (manual) |
+| `pnpm eval:scribe` / `eval:gate` / `eval:probe` | Manual quality evals (need OpenRouter key) |
+| `pnpm bench` | Adaptive vs solo/council benchmark (manual, costly) |
 | `pnpm db:generate` / `pnpm db:migrate` | App DB Drizzle migrations |
 | `pnpm db:generate:project` | Project notebook migrations |
 
@@ -154,6 +182,7 @@ Contents include `app.db` (settings, secrets, recent projects), `master.key`, an
 - Folder browser (`/api/fs/list`) is restricted to your home directory (override with `ARAITCHI_FS_ROOT` in tests). Paste-a-path can open absolute directories anywhere after confirmation.
 - Secret values are never returned to the browser — only boolean “set / not set” status.
 - Optional: point tests at a mock with `ARAITCHI_OPENROUTER_BASE_URL`.
+- Full threat model: [SECURITY.md](SECURITY.md).
 
 ## Reset
 

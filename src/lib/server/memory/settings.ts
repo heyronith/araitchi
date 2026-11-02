@@ -1,5 +1,6 @@
 import "server-only";
 
+import { loadDefaults } from "@/lib/server/defaults";
 import {
   getCouncilConfig,
   getProjectSetting,
@@ -22,6 +23,18 @@ export type MemorySettings = {
   lastScribeCostUsd: number | null;
 };
 
+function defaultEmbeddingModel(): EmbeddingModelId {
+  const id = loadDefaults().embeddingModel;
+  if (
+    id === LIGHT_EMBEDDING_MODEL ||
+    id === DEFAULT_EMBEDDING_MODEL ||
+    id === "onnx-community/embeddinggemma-300m-ONNX"
+  ) {
+    return id as EmbeddingModelId;
+  }
+  return DEFAULT_EMBEDDING_MODEL;
+}
+
 const DEFAULTS: MemorySettings = {
   embeddingModel: DEFAULT_EMBEDDING_MODEL,
   scribeEnabled: true,
@@ -35,7 +48,7 @@ export function getMemorySettings(projectPath: string): MemorySettings {
   const embeddingModel = getProjectSetting<string>(
     projectPath,
     "memory.embeddingModel",
-    DEFAULT_EMBEDDING_MODEL,
+    defaultEmbeddingModel(),
   );
   const scribeEnabled = getProjectSetting<boolean>(
     projectPath,
@@ -66,9 +79,10 @@ export function getMemorySettings(projectPath: string): MemorySettings {
     embeddingModel:
       embeddingModel === LIGHT_EMBEDDING_MODEL ||
       embeddingModel === "fake" ||
-      embeddingModel === DEFAULT_EMBEDDING_MODEL
+      embeddingModel === DEFAULT_EMBEDDING_MODEL ||
+      embeddingModel === defaultEmbeddingModel()
         ? (embeddingModel as MemorySettings["embeddingModel"])
-        : DEFAULT_EMBEDDING_MODEL,
+        : defaultEmbeddingModel(),
     scribeEnabled: Boolean(scribeEnabled),
     scribeRequireReview: Boolean(scribeRequireReview),
     scribeModel: scribeModel || null,
@@ -128,5 +142,5 @@ export function resolveScribeModelId(projectPath: string): string {
   } catch {
     // ignore
   }
-  return "openai/gpt-4o-mini";
+  return loadDefaults().scribeModel;
 }

@@ -4,6 +4,7 @@ import { sql } from "drizzle-orm";
 
 import { getAppDb } from "./db/client";
 import { modelsCache } from "./db/schema";
+import { loadDefaults } from "./defaults";
 import {
   mapOpenRouterModel,
   pickDefaultModelId,
@@ -181,7 +182,9 @@ export function setFavouriteModelIds(ids: string[]): void {
 }
 
 export function getDefaultModelId(): string | null {
-  return getSetting<string | null>("default_model_id", null);
+  const stored = getSetting<string | null>("default_model_id", null);
+  if (stored?.trim()) return stored.trim();
+  return loadDefaults().strongestSoloModel;
 }
 
 export function setDefaultModelId(id: string): void {

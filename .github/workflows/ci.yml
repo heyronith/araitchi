@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -47,6 +47,9 @@ jobs:
         env:
           NEXT_TELEMETRY_DISABLED: "1"
 
+      - name: Bench dry-run
+        run: pnpm bench --dry-run --sets 1 --configs A --limit 2 --repeats 1
+
       - name: Secret leak check
         run: pnpm check:secrets
         shell: bash
@@ -64,3 +67,40 @@ jobs:
         run: pnpm test:e2e
         env:
           NEXT_TELEMETRY_DISABLED: "1"
+
+  fresh-install:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Fresh install via scripts/install.sh
+        run: bash scripts/install.sh
+
+      - name: Start server and hit /api/health
+        run: |
+          set -euo pipefail
+          node scripts/start.mjs --no-open &
+          SERVER_PID=$!
+          cleanup() { kill "$SERVER_PID" 2>/dev/null || true; wait "$SERVER_PID" 2>/dev/null || true; }
+          trap cleanup EXIT
+
+          for i in $(seq 1 90); do
+            if curl -sf http://127.0.0.1:3000/api/health | grep -q '"ok"[[:space:]]*:[[:space:]]*true'; then
+              echo "Health check passed"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "Health check timed out after 90s" >&2
+          exit 1

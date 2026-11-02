@@ -7,6 +7,7 @@ export type EmbeddingModelId =
   | "onnx-community/embeddinggemma-300m-ONNX"
   | "fake";
 
+// Prefer config/defaults.json when available (loaded lazily by settings).
 export const DEFAULT_EMBEDDING_MODEL: EmbeddingModelId =
   "onnx-community/Qwen3-Embedding-0.6B-ONNX";
 

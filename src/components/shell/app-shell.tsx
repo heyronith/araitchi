@@ -12,6 +12,7 @@ import {
   type ProjectListItem,
 } from "@/components/shell/app-sidebar";
 import { MemoryPanel } from "@/components/shell/memory-panel";
+import { OnboardingWizard } from "@/components/shell/onboarding-wizard";
 import { OpenFolderDialog } from "@/components/shell/open-folder-dialog";
 import {
   SettingsDialog,
@@ -42,9 +43,10 @@ export function AppShell() {
   const searchParams = useSearchParams();
   const [settingsOpen, setSettingsOpen] = React.useState(false);
   const [settingsTab, setSettingsTab] = React.useState<
-    "keys" | "models" | "council" | "tools" | "memory" | "routing"
+    "keys" | "models" | "council" | "tools" | "memory" | "routing" | "evals"
   >("keys");
   const [chatMode, setChatMode] = React.useState<ChatMode>("auto");
+  const [onboardingOpen, setOnboardingOpen] = React.useState(false);
 
   const [mobileNavOpen, setMobileNavOpen] = React.useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false);
@@ -131,6 +133,13 @@ export function AppShell() {
         }
       });
     });
+    void fetch("/api/onboarding")
+      .then(async (res) => {
+        if (!res.ok) return;
+        const data = (await res.json()) as { isComplete: boolean };
+        if (!data.isComplete) setOnboardingOpen(true);
+      })
+      .catch(() => undefined);
   }, [refreshSecrets, refreshChats, refreshProjects, refreshMode]);
 
   React.useEffect(() => {
@@ -161,7 +170,13 @@ export function AppShell() {
 
   const openSettings = (
     tab:
-      "keys" | "models" | "council" | "tools" | "memory" | "routing" = "keys",
+      | "keys"
+      | "models"
+      | "council"
+      | "tools"
+      | "memory"
+      | "routing"
+      | "evals" = "keys",
   ) => {
     setSettingsTab(tab);
     void fetchSecretStatuses()
@@ -333,6 +348,20 @@ export function AppShell() {
         statuses={secretStatuses}
         onStatusesChange={setSecretStatuses}
         initialTab={settingsTab}
+      />
+
+      <OnboardingWizard
+        open={onboardingOpen}
+        onComplete={() => setOnboardingOpen(false)}
+        onOpenProject={() => {
+          setFolderMode("open");
+          setFolderOpen(true);
+        }}
+        onNewProject={() => {
+          setFolderMode("new");
+          setFolderOpen(true);
+        }}
+        onOpenSettingsTools={() => openSettings("tools")}
       />
     </div>
   );

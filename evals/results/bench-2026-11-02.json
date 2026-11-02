@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-11-02T05:02:55.164Z",
+  "options": {
+    "sets": ["1"],
+    "configs": ["A"],
+    "limit": 2,
+    "repeats": 1,
+    "budgetCapUsd": 0.5,
+    "dryRun": true
+  },
+  "items": [
+    {
+      "set": "1",
+      "config": "A",
+      "itemId": "v-doi-0",
+      "correct": false,
+      "score": 0,
+      "costUsd": 0.01,
+      "latencyMs": 0,
+      "borderline": false,
+      "detail": ""
+    },
+    {
+      "set": "1",
+      "config": "A",
+      "itemId": "v-doi-1",
+      "correct": false,
+      "score": 0,
+      "costUsd": 0.01,
+      "latencyMs": 0,
+      "borderline": false,
+      "detail": ""
+    }
+  ],
+  "tables": {
+    "1:A": {
+      "meanScore": 0,
+      "ciLow": 0,
+      "ciHigh": 0,
+      "meanCost": 0.01,
+      "costPerCorrect": null,
+      "meanLatencyMs": 0,
+      "n": 2
+    }
+  },
+  "findings": [
+    "Dry-run used fixture-backed mock replies (no OpenRouter calls)."
+  ]
+}

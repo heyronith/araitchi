@@ -1,5 +1,6 @@
 import "server-only";
 
+import { loadDefaults } from "@/lib/server/defaults";
 import { requireOpenRouterApiKey } from "@/lib/server/openrouter";
 import { getSetting } from "@/lib/server/settings";
 import { getCouncilConfig } from "@/lib/server/project/settings";
@@ -29,8 +30,9 @@ function pickModel(projectPath: string): string {
   const council = getCouncilConfig(projectPath);
   if (council.synthesizer) return council.synthesizer;
   return (
-    getSetting<string>("default_model", "openai/gpt-4o-mini") ||
-    "openai/gpt-4o-mini"
+    getSetting<string>("default_model", "") ||
+    getSetting<string>("default_model_id", "") ||
+    loadDefaults().strongestSoloModel
   );
 }
 
