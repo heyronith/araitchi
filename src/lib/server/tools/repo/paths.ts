@@ -45,6 +45,7 @@ export function denyReasonForRelativePath(rel: string): string | null {
 export function assertSafeRepoPath(
   repoRoot: string,
   relativePath: string,
+  opts?: { maxBytes?: number },
 ): PathResult {
   if (!relativePath || relativePath.includes("\0")) {
     return { ok: false, error: "Invalid path" };
@@ -81,11 +82,15 @@ export function assertSafeRepoPath(
   const realDeny = denyReasonForRelativePath(path.relative(rootReal, real));
   if (realDeny) return { ok: false, error: realDeny };
 
+  const maxBytes = opts?.maxBytes ?? MAX_REPO_FILE_BYTES;
   try {
     const st = statSync(real);
     if (!st.isFile()) return { ok: false, error: "Not a regular file" };
-    if (st.size > MAX_REPO_FILE_BYTES) {
-      return { ok: false, error: "File is larger than 1 MB" };
+    if (st.size > maxBytes) {
+      return {
+        ok: false,
+        error: `File is larger than ${maxBytes} bytes`,
+      };
     }
   } catch {
     return { ok: false, error: "File not found" };

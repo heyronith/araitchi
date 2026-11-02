@@ -7,6 +7,7 @@ import { researchDir } from "@/lib/server/project/init";
 import { exportMemoryMd } from "@/lib/server/project/exporters";
 
 import { generateCursorInstructions } from "./instructions";
+import { isSafeExperimentId } from "./results-path";
 import type { ExperimentRow, Verdict } from "./types";
 import { effectiveVerdict } from "./verdict";
 
@@ -14,7 +15,17 @@ export function experimentResearchDir(
   projectPath: string,
   experimentId: string,
 ): string {
-  return path.join(researchDir(projectPath), "experiments", experimentId);
+  if (!isSafeExperimentId(experimentId)) {
+    throw new Error("Invalid experiment id for research path");
+  }
+  const research = researchDir(projectPath);
+  const dir = path.join(research, "experiments", experimentId);
+  // Confine writes under .research/experiments/<id>/
+  const rel = path.relative(path.join(research, "experiments"), dir);
+  if (rel.startsWith("..") || path.isAbsolute(rel)) {
+    throw new Error("Experiment research path escapes .research/experiments");
+  }
+  return dir;
 }
 
 export function writeExperimentArtifacts(

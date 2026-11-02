@@ -31,6 +31,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 
 - Auto mode is the default. Owner should run `pnpm eval:gate` / `pnpm eval:probe` with a real OpenRouter key and paste tables into `evals/results/` (placeholders committed).
 - Validation loop never executes experiment code — Cursor (or you) must write `experiments/<id>/results.json` and commit; Araitchi only reads and scores.
+- **Resolved (T8b):** experiment `resultsPath` is confined to relative `experiments/<id>/*.json` and read only via repo path-safety (no absolute/`..` escapes).
 - Default embedding model is Qwen3-Embedding-0.6B ONNX (~0.6 GB, downloaded once into `<dataDir>/models/`). Low-memory machines can switch to MiniLM in Settings → Memory (triggers re-index). If Qwen3 fails to load, the app falls back to EmbeddingGemma-300M, then keyword/FTS-only search.
 - Scribe quality eval (`pnpm eval:scribe`) is manual and needs a real OpenRouter key; not run in CI.
 - Optional real-embedding Vitest (`ARAITCHI_REAL_EMBEDDINGS=1`) is skipped in CI.

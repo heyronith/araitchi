@@ -1,10 +1,15 @@
-import { existsSync, readFileSync, statSync } from "node:fs";
-import path from "node:path";
+import { readFileSync } from "node:fs";
 
 import { execGit } from "@/lib/server/tools/repo/git";
+import { assertSafeRepoPath } from "@/lib/server/tools/repo/paths";
 import { detectRepoPath } from "@/lib/server/tools/repo/tools";
 
 import { evaluatePrediction, expectedDescription } from "./predictions";
+import {
+  schemaIssuesForEvidence,
+  truncatePathForEvidence,
+  validateResultsPath,
+} from "./results-path";
 import {
   RESULTS_MAX_BYTES,
   resultsFileSchema,
@@ -18,7 +23,7 @@ import {
 export type CheckResultsInput = {
   projectPath: string;
   experiment: ExperimentRow;
-  /** Injected results for unit tests (skips git/fs). */
+  /** Injected results for unit tests (skips git/fs). Path is still validated. */
   injectedResults?: {
     raw: string;
     commitSha?: string | null;
@@ -40,7 +45,7 @@ function inconclusive(
     verdict: "inconclusive",
     evidence: {
       commitSha: partial.commitSha ?? null,
-      filePath: partial.filePath ?? "",
+      filePath: truncatePathForEvidence(partial.filePath ?? ""),
       reasons,
       predictions: partial.predictions ?? [],
       preLockCommits: partial.preLockCommits ?? [],
@@ -54,7 +59,6 @@ function inconclusive(
 async function findExperimentCommits(
   repoPath: string,
   experimentId: string,
-  afterSec: number | null,
 ): Promise<{ sha: string; dateSec: number; message: string }[]> {
   const args = [
     "log",
@@ -62,9 +66,6 @@ async function findExperimentCommits(
     `--grep=${experimentId}`,
     "--format=%H%x09%ct%x09%s",
   ];
-  if (afterSec != null) {
-    args.push(`--after=${afterSec}`);
-  }
   const res = await execGit(repoPath, args);
   if (!res.ok) return [];
   return res.stdout
@@ -84,19 +85,29 @@ async function findExperimentCommits(
 
 /**
  * Deterministic verdict from results.json. Never calls an LLM.
+ * Reads only via Task 5 assertSafeRepoPath (no absolute / escaped paths).
  */
 export async function checkExperimentResults(
   input: CheckResultsInput,
 ): Promise<CheckResultsOutput> {
   const exp = input.experiment;
-  const filePath = exp.resultsPath;
   const requiredRuns = exp.requiredRuns;
+
+  const pathCheck = validateResultsPath(exp.id, exp.resultsPath);
+  if (!pathCheck.ok) {
+    return inconclusive(["unsafe results path", pathCheck.error], {
+      filePath: truncatePathForEvidence(exp.resultsPath ?? ""),
+      requiredRuns,
+    });
+  }
+  const filePath = pathCheck.path;
 
   let raw: string;
   let commitSha: string | null = null;
   let commits: { sha: string; dateSec: number; message: string }[] = [];
 
   if (input.injectedResults) {
+    // Tests may inject bytes, but never bypass path validation above.
     raw = input.injectedResults.raw;
     commitSha = input.injectedResults.commitSha ?? null;
     commits = input.injectedResults.commits ?? [];
@@ -110,7 +121,7 @@ export async function checkExperimentResults(
     }
 
     const afterSec = exp.lockedAt ? Math.floor(exp.lockedAt / 1000) : null;
-    commits = await findExperimentCommits(repoPath, exp.id, null);
+    commits = await findExperimentCommits(repoPath, exp.id);
     const preLock = commits.filter(
       (c) => afterSec != null && c.dateSec < afterSec,
     );
@@ -118,49 +129,43 @@ export async function checkExperimentResults(
       (c) => afterSec == null || c.dateSec >= afterSec,
     );
 
-    const abs = path.isAbsolute(filePath)
-      ? filePath
-      : path.join(repoPath, filePath);
-
-    if (!existsSync(abs)) {
-      return inconclusive(
-        [
-          `Results file not found at ${filePath}`,
-          postLock.length
-            ? `Found ${postLock.length} post-lock commit(s) mentioning ${exp.id}`
-            : `No post-lock commits mentioning ${exp.id}`,
-        ],
-        {
-          filePath,
-          requiredRuns,
-          preLockCommits: preLock.map((c) => c.sha),
-          commitSha: postLock[0]?.sha ?? null,
-        },
-      );
+    const safe = assertSafeRepoPath(repoPath, filePath, {
+      maxBytes: RESULTS_MAX_BYTES,
+    });
+    if (!safe.ok) {
+      if (safe.error === "File not found") {
+        return inconclusive(
+          [
+            `Results file not found at ${truncatePathForEvidence(filePath)}`,
+            postLock.length
+              ? `Found ${postLock.length} post-lock commit(s) mentioning ${exp.id}`
+              : `No post-lock commits mentioning ${exp.id}`,
+          ],
+          {
+            filePath,
+            requiredRuns,
+            preLockCommits: preLock.map((c) => c.sha),
+            commitSha: postLock[0]?.sha ?? null,
+          },
+        );
+      }
+      return inconclusive(["unsafe results path", safe.error], {
+        filePath,
+        requiredRuns,
+        preLockCommits: preLock.map((c) => c.sha),
+      });
     }
 
-    const st = statSync(abs);
-    if (st.size > RESULTS_MAX_BYTES) {
-      return inconclusive(
-        [
-          `Results file exceeds ${RESULTS_MAX_BYTES} byte limit (${st.size} bytes)`,
-        ],
-        { filePath, requiredRuns },
-      );
-    }
-
-    raw = readFileSync(abs, "utf8");
+    raw = readFileSync(safe.abs, "utf8");
     const head = await execGit(repoPath, ["rev-parse", "HEAD"]);
     commitSha = head.ok ? head.stdout.trim() : (postLock[0]?.sha ?? null);
-
-    if (preLock.length) {
-      // Flag but continue — may still be inconclusive for other reasons
-    }
   }
 
   if (Buffer.byteLength(raw, "utf8") > RESULTS_MAX_BYTES) {
     return inconclusive(
-      [`Results payload exceeds ${RESULTS_MAX_BYTES} byte limit`],
+      [
+        `Results payload exceeds ${RESULTS_MAX_BYTES} byte limit (${Buffer.byteLength(raw, "utf8")} bytes)`,
+      ],
       { filePath, requiredRuns, commitSha },
     );
   }
@@ -180,10 +185,7 @@ export async function checkExperimentResults(
   if (!parsed.success) {
     return inconclusive(
       [
-        `Results schema validation failed: ${parsed.error.issues
-          .slice(0, 3)
-          .map((i) => i.message)
-          .join("; ")}`,
+        `Results schema validation failed: ${schemaIssuesForEvidence(parsed.error.issues)}`,
       ],
       { filePath, requiredRuns, commitSha },
     );
@@ -279,7 +281,7 @@ export async function checkExperimentResults(
     verdict,
     evidence: {
       commitSha,
-      filePath,
+      filePath: truncatePathForEvidence(filePath),
       reasons,
       predictions: predictionEvals,
       preLockCommits,

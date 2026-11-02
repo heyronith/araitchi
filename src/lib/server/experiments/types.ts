@@ -76,6 +76,31 @@ export const VERDICTS = [
 ] as const;
 export type Verdict = (typeof VERDICTS)[number];
 
+/** Relative POSIX path under experiments/<id>/; full check needs experiment id. */
+export const resultsPathDraftSchema = z
+  .string()
+  .max(400)
+  .optional()
+  .refine(
+    (p) => {
+      if (p == null || p.trim() === "") return true;
+      const s = p.trim();
+      if (
+        s.startsWith("/") ||
+        s.startsWith("\\") ||
+        /^[A-Za-z]:[\\/]/.test(s)
+      ) {
+        return false;
+      }
+      if (s.includes("..") || !s.toLowerCase().endsWith(".json")) return false;
+      return true;
+    },
+    {
+      message:
+        "resultsPath must be a relative .json path without '..' (under experiments/<id>/)",
+    },
+  );
+
 export const experimentDraftSchema = z.object({
   title: z.string().min(1).max(300),
   objective: z.string().min(1).max(8000),
@@ -86,7 +111,7 @@ export const experimentDraftSchema = z.object({
   seeds: z.array(z.number().int()).min(1).max(100),
   environmentNotes: z.string().max(4000).default(""),
   predictions: z.array(predictionSpecSchema).min(1).max(40),
-  resultsPath: z.string().min(1).max(400).optional(),
+  resultsPath: resultsPathDraftSchema,
 });
 
 export type ExperimentDraft = z.infer<typeof experimentDraftSchema>;

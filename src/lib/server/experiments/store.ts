@@ -5,6 +5,7 @@ import { desc, eq } from "drizzle-orm";
 import { getNotebookDb } from "@/lib/server/project/db";
 import { experiments } from "@/lib/server/project/schema";
 
+import { defaultResultsPath, validateResultsPath } from "./results-path";
 import { defaultResultsSchema } from "./schema-default";
 import {
   predictionSpecSchema,
@@ -118,8 +119,11 @@ export function createExperiment(
 ): ExperimentRow {
   const id = input.id ?? nextExperimentId(projectPath);
   const now = Date.now();
-  const resultsPath =
-    input.resultsPath?.trim() || `experiments/${id}/results.json`;
+  const pathCheck = validateResultsPath(id, input.resultsPath);
+  if (!pathCheck.ok) {
+    throw new Error(pathCheck.error);
+  }
+  const resultsPath = pathCheck.path || defaultResultsPath(id);
   const schema = defaultResultsSchema(id);
   getNotebookDb(projectPath)
     .insert(experiments)
@@ -170,6 +174,12 @@ export function updateDraftExperiment(
   }
   const predictions = (patch.predictions ??
     existing.predictions) as PredictionSpec[];
+  let resultsPath = existing.resultsPath;
+  if (patch.resultsPath !== undefined) {
+    const pathCheck = validateResultsPath(id, patch.resultsPath);
+    if (!pathCheck.ok) throw new Error(pathCheck.error);
+    resultsPath = pathCheck.path;
+  }
   const now = Date.now();
   getNotebookDb(projectPath)
     .update(experiments)
@@ -186,7 +196,7 @@ export function updateDraftExperiment(
       hypothesisIds: JSON.stringify(
         patch.hypothesisIds ?? existing.hypothesisIds,
       ),
-      resultsPath: patch.resultsPath ?? existing.resultsPath,
+      resultsPath,
       updatedAt: now,
     })
     .where(eq(experiments.id, id))
