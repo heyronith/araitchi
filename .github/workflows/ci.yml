@@ -83,6 +83,8 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: 22
+          # install.sh enables corepack + pnpm; do not cache via packageManager yet
+          package-manager-cache: false
 
       - name: Fresh install via scripts/install.sh
         run: bash scripts/install.sh
