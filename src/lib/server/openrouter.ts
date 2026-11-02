@@ -103,9 +103,9 @@ export function createOpenRouterClient(apiKey: string) {
 }
 
 export async function requireOpenRouterApiKey(): Promise<string | null> {
-  const stored = await getSecret("openrouter_api_key");
-  if (stored?.trim()) return stored.trim();
-  // CLI / bench: allow OPENROUTER_API_KEY or .env.local without writing secrets.
+  // Explicit env wins (CLI / bench / live checks). A stale UI secret — e.g. the
+  // Playwright fake `sk-or-v1-fake-e2e-key` left in the app data dir — must not
+  // shadow OPENROUTER_API_KEY when the owner exports a real key.
   const fromEnv = process.env.OPENROUTER_API_KEY?.trim();
   if (fromEnv) return fromEnv;
   try {
@@ -121,6 +121,8 @@ export async function requireOpenRouterApiKey(): Promise<string | null> {
   } catch {
     // ignore
   }
+  const stored = await getSecret("openrouter_api_key");
+  if (stored?.trim()) return stored.trim();
   return null;
 }
 

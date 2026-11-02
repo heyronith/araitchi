@@ -21,7 +21,7 @@ const evalDir = path.join(root, "evals/gate");
 const seedPath = path.join(root, "src/lib/server/gate/seed-examples.json");
 
 const DEFAULT_MODELS = [
-  "~openai/gpt-oss-latest",
+  "openai/gpt-oss-20b",
   "~google/gemini-flash-latest",
   "~anthropic/claude-haiku-latest",
 ];
@@ -240,7 +240,12 @@ async function main() {
       const lat = [];
       let costSum = 0;
       let costN = 0;
+      let iEx = 0;
+      console.error(`[gate] kNN+LLM ${model} (0/${examples.length})`);
       for (const ex of examples) {
+        iEx++;
+        if (iEx % 20 === 0 || iEx === examples.length)
+          console.error(`[gate] kNN+LLM ${model} (${iEx}/${examples.length})`);
         const knn = knnPredict(ex.text, seeds);
         if (knn.confidence >= 0.55) {
           preds.push(knn.taskType);
@@ -272,7 +277,12 @@ async function main() {
     for (const model of MODELS.slice(0, 1)) {
       const preds = [];
       const lat = [];
+      let iEx = 0;
+      console.error(`[gate] LLM-only ${model} (0/${examples.length})`);
       for (const ex of examples) {
+        iEx++;
+        if (iEx % 20 === 0 || iEx === examples.length)
+          console.error(`[gate] LLM-only ${model} (${iEx}/${examples.length})`);
         try {
           const r = await llmClassify(apiKey, model, ex.text);
           preds.push(r.taskType);
@@ -305,6 +315,19 @@ async function main() {
     lines.push(
       `| ${r.name} | ${(r.accuracy * 100).toFixed(1)}% | ${(r.alwaysCouncilRecall * 100).toFixed(1)}% | ${r.latencyMs}ms | ${r.cost == null ? "—" : "$" + r.cost.toFixed(4)} |`,
     );
+  }
+  lines.push("");
+  lines.push("### Per-class F1 (best accuracy row)");
+  const best = [...rows].sort((a, b) => b.accuracy - a.accuracy)[0];
+  if (best?.f1) {
+    lines.push("");
+    lines.push("| Class | F1 |");
+    lines.push("| --- | ---: |");
+    for (const [lab, v] of Object.entries(best.f1).sort()) {
+      lines.push(`| ${lab} | ${(v * 100).toFixed(1)}% |`);
+    }
+    lines.push("");
+    lines.push(`Best method for F1 table: ${best.name}`);
   }
   lines.push("");
   lines.push(

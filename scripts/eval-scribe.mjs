@@ -16,7 +16,7 @@ const fixturesDir = path.join(root, "evals/scribe");
 
 const DEFAULT_MODELS = [
   "~openai/gpt-latest",
-  "~openai/gpt-oss-latest",
+  "openai/gpt-oss-20b",
   "~google/gemini-flash-latest",
 ];
 const MODELS =

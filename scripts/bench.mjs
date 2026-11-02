@@ -109,9 +109,20 @@ const forward = [
   ...(budget != null ? ["--budget", String(budget)] : []),
 ];
 
-const result = spawnSync("pnpm", ["exec", "tsx", runner, ...forward], {
-  cwd: root,
-  stdio: "inherit",
-  shell: process.platform === "win32",
-});
+const result = spawnSync(
+  "pnpm",
+  [
+    "exec",
+    "tsx",
+    "--import",
+    path.join(root, "scripts/register-server-only.mjs"),
+    runner,
+    ...forward,
+  ],
+  {
+    cwd: root,
+    stdio: "inherit",
+    shell: process.platform === "win32",
+  },
+);
 process.exit(result.status ?? 1);

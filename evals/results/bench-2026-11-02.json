@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-02T05:51:40.200Z",
+  "generatedAt": "2026-11-02T08:29:42.230Z",
   "options": {
     "sets": ["1"],
-    "configs": ["A"],
+    "configs": ["A", "C"],
     "limit": 2,
     "repeats": 1,
-    "budgetCapUsd": 0.5,
-    "dryRun": true,
-    "yes": false
+    "budgetCapUsd": 0.2,
+    "dryRun": false,
+    "yes": true
   },
   "items": [
     {
@@ -16,8 +16,8 @@
       "itemId": "ver-0",
       "correct": false,
       "score": 0,
-      "costUsd": 0.01,
-      "latencyMs": 1,
+      "costUsd": 0.0263,
+      "latencyMs": 6701,
       "borderline": false,
       "detail": "",
       "excludedFromHeadline": false
@@ -26,27 +26,63 @@
       "set": "1",
       "config": "A",
       "itemId": "ver-1",
-      "correct": true,
-      "score": 1,
-      "costUsd": 0.01,
-      "latencyMs": 0,
+      "correct": false,
+      "score": 0,
+      "costUsd": 0.02626,
+      "latencyMs": 6883,
       "borderline": false,
       "detail": "",
+      "excludedFromHeadline": false
+    },
+    {
+      "set": "1",
+      "config": "C",
+      "itemId": "ver-0",
+      "correct": false,
+      "score": 0,
+      "costUsd": 0.051244000000000005,
+      "latencyMs": 16303,
+      "borderline": false,
+      "detail": "",
+      "gateAction": "retrieve_evidence",
+      "excludedFromHeadline": false
+    },
+    {
+      "set": "1",
+      "config": "C",
+      "itemId": "ver-1",
+      "correct": false,
+      "score": 0,
+      "costUsd": 0.051932,
+      "latencyMs": 24487,
+      "borderline": false,
+      "detail": "",
+      "gateAction": "retrieve_evidence",
       "excludedFromHeadline": false
     }
   ],
   "tables": {
     "1:A": {
-      "meanScore": 0.5,
+      "meanScore": 0,
       "ciLow": 0,
-      "ciHigh": 1,
-      "meanCost": 0.01,
-      "costPerCorrect": 0.02,
-      "meanLatencyMs": 0.5,
+      "ciHigh": 0,
+      "meanCost": 0.026279999999999998,
+      "costPerCorrect": null,
+      "meanLatencyMs": 6792,
+      "n": 2
+    },
+    "1:C": {
+      "meanScore": 0,
+      "ciLow": 0,
+      "ciHigh": 0,
+      "meanCost": 0.051588,
+      "costPerCorrect": null,
+      "meanLatencyMs": 20395,
       "n": 2
     }
   },
   "findings": [
-    "Dry-run used fixture-backed mock replies (no OpenRouter calls)."
+    "Adaptive (C) matched or beat strongest solo (A) on verifiable questions in this dry/real run.",
+    "Live run used budget-capped real pipelines."
   ]
 }
