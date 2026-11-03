@@ -8,6 +8,7 @@ import {
   MoreHorizontal,
   PanelLeft,
   Pencil,
+  Search,
   Trash2,
 } from "lucide-react";
 import * as React from "react";
@@ -91,6 +92,42 @@ export function AppSidebar({
   const [renameId, setRenameId] = React.useState<string | null>(null);
   const [renameValue, setRenameValue] = React.useState("");
   const [deleteId, setDeleteId] = React.useState<string | null>(null);
+  const [chatQuery, setChatQuery] = React.useState("");
+  const [searchHits, setSearchHits] = React.useState<
+    {
+      chatId: string;
+      messageId: string;
+      snippet: string;
+      createdAt: number;
+    }[]
+  >([]);
+  const [searching, setSearching] = React.useState(false);
+
+  React.useEffect(() => {
+    if (collapsed || !chatQuery.trim()) {
+      setSearchHits([]);
+      return;
+    }
+    const q = chatQuery.trim();
+    const handle = window.setTimeout(() => {
+      setSearching(true);
+      void fetch(`/api/chats/search?q=${encodeURIComponent(q)}&limit=12`)
+        .then(async (res) => {
+          if (!res.ok) return;
+          const data = (await res.json()) as {
+            hits: {
+              chatId: string;
+              messageId: string;
+              snippet: string;
+              createdAt: number;
+            }[];
+          };
+          setSearchHits(data.hits);
+        })
+        .finally(() => setSearching(false));
+    }, 300);
+    return () => window.clearTimeout(handle);
+  }, [chatQuery, collapsed]);
 
   return (
     <aside
@@ -251,6 +288,50 @@ export function AppSidebar({
               <h2 className="text-muted-foreground mb-2 px-1 text-xs font-medium tracking-wide uppercase">
                 Chats
               </h2>
+            ) : null}
+            {!collapsed ? (
+              <div className="relative mb-2" data-testid="sidebar-chat-search">
+                <Search className="text-muted-foreground absolute top-2.5 left-2 size-3.5" />
+                <Input
+                  className="h-8 pl-7 text-xs"
+                  placeholder="Search chats…"
+                  value={chatQuery}
+                  onChange={(e) => setChatQuery(e.target.value)}
+                  aria-label="Search past chats"
+                />
+              </div>
+            ) : null}
+            {!collapsed && chatQuery.trim() ? (
+              <ul className="mb-2 space-y-0.5">
+                {searching ? (
+                  <li className="text-muted-foreground px-1 text-xs">
+                    Searching…
+                  </li>
+                ) : searchHits.length === 0 ? (
+                  <li className="text-muted-foreground px-1 text-xs">
+                    No matches.
+                  </li>
+                ) : (
+                  searchHits.map((hit) => (
+                    <li key={`${hit.chatId}-${hit.messageId}`}>
+                      <button
+                        type="button"
+                        className="hover:bg-sidebar-accent w-full rounded-md px-2 py-1.5 text-left text-xs"
+                        onClick={() => {
+                          onSelectChat(hit.chatId);
+                          setChatQuery("");
+                          setSearchHits([]);
+                        }}
+                      >
+                        <span className="line-clamp-2">{hit.snippet}</span>
+                        <span className="text-muted-foreground block text-[10px]">
+                          {new Date(hit.createdAt).toLocaleString()}
+                        </span>
+                      </button>
+                    </li>
+                  ))
+                )}
+              </ul>
             ) : null}
             {!collapsed ? (
               chats.length === 0 ? (

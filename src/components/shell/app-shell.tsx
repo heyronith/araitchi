@@ -43,7 +43,14 @@ export function AppShell() {
   const searchParams = useSearchParams();
   const [settingsOpen, setSettingsOpen] = React.useState(false);
   const [settingsTab, setSettingsTab] = React.useState<
-    "keys" | "models" | "council" | "tools" | "memory" | "routing" | "evals"
+    | "keys"
+    | "models"
+    | "council"
+    | "tools"
+    | "memory"
+    | "instructions"
+    | "routing"
+    | "evals"
   >("keys");
   const [chatMode, setChatMode] = React.useState<ChatMode>("auto");
   const [onboardingOpen, setOnboardingOpen] = React.useState(false);
@@ -175,6 +182,7 @@ export function AppShell() {
       | "council"
       | "tools"
       | "memory"
+      | "instructions"
       | "routing"
       | "evals" = "keys",
   ) => {

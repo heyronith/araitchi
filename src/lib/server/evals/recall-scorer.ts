@@ -3,6 +3,12 @@
  */
 export type RecallMatchMode = "exact" | "semantic";
 
+export type RecallQuestionKind =
+  | "static"
+  | "changed_later"
+  | "oldest"
+  | "distractor_resistance";
+
 export function normalizeRecallText(text: string): string {
   return text
     .toLowerCase()
@@ -34,6 +40,9 @@ export type RecallQuestion = {
   query: string;
   expected: string;
   match?: RecallMatchMode;
+  kind: RecallQuestionKind;
+  /** For changed_later: older values that must NOT win. */
+  superseded?: string[];
 };
 
 export type RecallFixture = {
@@ -50,7 +59,14 @@ export type RecallFixture = {
   questions: RecallQuestion[];
 };
 
-/** Build the long-horizon fixture (60 sessions, 100+ facts, 100 questions). */
+/**
+ * Build long-horizon fixture:
+ * - 60 sessions
+ * - static facts (never updated)
+ * - changing keys updated across sessions (latest must win)
+ * - oldest-session static facts
+ * - distractors + resistance questions
+ */
 export function buildLongProjectFixture(): RecallFixture {
   const sessions = Array.from({ length: 60 }, (_, i) => ({
     id: `s${i + 1}`,
@@ -65,36 +81,54 @@ export function buildLongProjectFixture(): RecallFixture {
     "lab_temperature",
     "model_version",
     "deadline",
-  ];
+  ] as const;
 
-  for (let i = 0; i < 100; i++) {
+  // Static facts spread across sessions (unique keys, never updated)
+  for (let i = 0; i < 40; i++) {
     const session = (i % 60) + 1;
-    const key = changingKeys[i % changingKeys.length]!;
-    const revision = Math.floor(i / changingKeys.length) + 1;
     facts.push({
-      key: `${key}-r${revision}`,
+      key: `static-${i}`,
       session,
-      type: i % 7 === 0 ? "hypothesis" : i % 11 === 0 ? "decision" : "note",
-      title: `${key} revision ${revision}`,
-      body: `Fact ${key} value is ${1000 + i + revision * 7} at session ${session}.`,
+      type: i % 5 === 0 ? "hypothesis" : "note",
+      title: `Static fact ${i}`,
+      body: `STATIC-TOKEN-${i} holds for protocol alpha-${i}.`,
       distractor: false,
     });
   }
 
-  for (let k = 0; k < changingKeys.length; k++) {
-    const key = changingKeys[k]!;
-    for (let rev = 1; rev <= 4; rev++) {
-      const session = Math.min(60, 10 + rev * 12 + k);
+  // Oldest-session anchors (sessions 1–5)
+  for (let i = 0; i < 15; i++) {
+    const session = (i % 5) + 1;
+    facts.push({
+      key: `oldest-${i}`,
+      session,
+      type: "note",
+      title: `Early notebook ${i}`,
+      body: `OLDEST-TOKEN-${i} recorded in week zero session ${session}.`,
+      distractor: false,
+    });
+  }
+
+  // Changing facts: same key rewritten across later sessions
+  const changeHistory: Record<string, string[]> = {};
+  for (const key of changingKeys) {
+    changeHistory[key] = [];
+    for (let rev = 1; rev <= 6; rev++) {
+      const session = Math.min(60, 8 + rev * 8 + changingKeys.indexOf(key));
+      const body = `LATEST-${key}-R${rev} value=${100 + rev * 11}-${key}.`;
+      changeHistory[key]!.push(body);
       facts.push({
         key,
         session,
         type: "note",
-        title: `${key} (v${rev})`,
-        body: `Latest ${key} is VALUE-${rev}-${k}-${session}.`,
+        title: `${key.replace(/_/g, " ")} (current)`,
+        body,
+        distractor: false,
       });
     }
   }
 
+  // Distractors
   for (let d = 0; d < 30; d++) {
     facts.push({
       key: `distractor-${d}`,
@@ -106,52 +140,67 @@ export function buildLongProjectFixture(): RecallFixture {
     });
   }
 
-  const latestByKey = new Map<string, string>();
-  const sortedFacts = [...facts]
-    .filter((f) => !f.distractor)
-    .sort((a, b) => a.session - b.session);
-  for (const f of sortedFacts) {
-    if (!f.key.startsWith("distractor")) {
-      latestByKey.set(f.key.split("-r")[0] ?? f.key, f.body);
-    }
-  }
-  for (const key of changingKeys) {
-    const revFacts = facts
-      .filter((f) => f.key === key)
-      .sort((a, b) => b.session - a.session);
-    if (revFacts[0]) latestByKey.set(key, revFacts[0].body);
-  }
-
-  const maxSessionByKey = new Map<string, number>();
-  for (const f of facts) {
-    if (f.distractor) continue;
-    maxSessionByKey.set(
-      f.key,
-      Math.max(maxSessionByKey.get(f.key) ?? 0, f.session),
-    );
-  }
-
   const questions: RecallQuestion[] = [];
   let qi = 0;
+
+  // changed_later: ask for latest; superseded must not appear as the answer
   for (const key of changingKeys) {
-    const expected = latestByKey.get(key) ?? "";
+    const hist = changeHistory[key]!;
+    const expected = hist[hist.length - 1]!;
+    const superseded = hist.slice(0, -1);
     questions.push({
       id: `q-${++qi}`,
+      kind: "changed_later",
       query: `What is the latest ${key.replace(/_/g, " ")}?`,
       expected,
+      superseded,
+      match: "semantic",
+    });
+  }
+  // Extra changed_later variants
+  for (const key of changingKeys) {
+    const hist = changeHistory[key]!;
+    const expected = hist[hist.length - 1]!;
+    questions.push({
+      id: `q-${++qi}`,
+      kind: "changed_later",
+      query: `Report the current ${key.replace(/_/g, " ")} value used in the project.`,
+      expected,
+      superseded: hist.slice(0, -1),
       match: "semantic",
     });
   }
 
-  for (let i = 0; i < 100 - changingKeys.length; i++) {
-    const candidates = sortedFacts.filter(
-      (f) => maxSessionByKey.get(f.key) === f.session,
-    );
-    const f = candidates[i % candidates.length]!;
+  // static
+  for (let i = 0; i < 40; i++) {
     questions.push({
       id: `q-${++qi}`,
-      query: `Recall: ${f.title}`,
-      expected: f.body,
+      kind: "static",
+      query: `What does static fact ${i} say?`,
+      expected: `STATIC-TOKEN-${i}`,
+      match: "semantic",
+    });
+  }
+
+  // oldest
+  for (let i = 0; i < 15; i++) {
+    questions.push({
+      id: `q-${++qi}`,
+      kind: "oldest",
+      query: `Recall early notebook ${i} from the first week.`,
+      expected: `OLDEST-TOKEN-${i}`,
+      match: "semantic",
+    });
+  }
+
+  // distractor resistance: ask by exact title amid distractor-filled notebook
+  for (let i = 0; i < 35; i++) {
+    const si = i % 40;
+    questions.push({
+      id: `q-${++qi}`,
+      kind: "distractor_resistance",
+      query: `Look up notebook entry titled "Static fact ${si}" and quote its body token.`,
+      expected: `STATIC-TOKEN-${si}`,
       match: "semantic",
     });
   }
@@ -162,4 +211,30 @@ export function buildLongProjectFixture(): RecallFixture {
     facts,
     questions: questions.slice(0, 100),
   };
+}
+
+export function summarizeRecallByKind(
+  results: { kind: RecallQuestionKind; ok: boolean }[],
+): Record<RecallQuestionKind, { n: number; correct: number; pct: number }> {
+  const kinds: RecallQuestionKind[] = [
+    "static",
+    "changed_later",
+    "oldest",
+    "distractor_resistance",
+  ];
+  const out = {} as Record<
+    RecallQuestionKind,
+    { n: number; correct: number; pct: number }
+  >;
+  for (const k of kinds) {
+    const rows = results.filter((r) => r.kind === k);
+    const correct = rows.filter((r) => r.ok).length;
+    const n = rows.length;
+    out[k] = {
+      n,
+      correct,
+      pct: n ? Math.round((correct / n) * 1000) / 10 : 0,
+    };
+  }
+  return out;
 }

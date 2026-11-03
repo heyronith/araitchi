@@ -2,108 +2,117 @@
 
 Mode: **gold**
 Questions: 100
-Correct: 97
-Accuracy: **97%** (target ≥ 90% gold)
+Correct: 99
+Accuracy: **99%** (target ≥ 90% gold)
 
-| id | result | query |
-| --- | --- | --- |
-| q-1 | pass | What is the latest primary metric? |
-| q-2 | pass | What is the latest sample size? |
-| q-3 | pass | What is the latest lab temperature? |
-| q-4 | pass | What is the latest model version? |
-| q-5 | pass | What is the latest deadline? |
-| q-6 | pass | Recall: primary_metric revision 1 |
-| q-7 | pass | Recall: primary_metric revision 13 |
-| q-8 | pass | Recall: sample_size revision 1 |
-| q-9 | pass | Recall: sample_size revision 13 |
-| q-10 | pass | Recall: lab_temperature revision 1 |
-| q-11 | pass | Recall: lab_temperature revision 13 |
-| q-12 | pass | Recall: model_version revision 1 |
-| q-13 | pass | Recall: model_version revision 13 |
-| q-14 | pass | Recall: deadline revision 1 |
-| q-15 | pass | Recall: deadline revision 13 |
-| q-16 | pass | Recall: primary_metric revision 2 |
-| q-17 | pass | Recall: primary_metric revision 14 |
-| q-18 | pass | Recall: sample_size revision 2 |
-| q-19 | pass | Recall: sample_size revision 14 |
-| q-20 | pass | Recall: lab_temperature revision 2 |
-| q-21 | pass | Recall: lab_temperature revision 14 |
-| q-22 | pass | Recall: model_version revision 2 |
-| q-23 | pass | Recall: model_version revision 14 |
-| q-24 | pass | Recall: deadline revision 2 |
-| q-25 | pass | Recall: deadline revision 14 |
-| q-26 | pass | Recall: primary_metric revision 3 |
-| q-27 | pass | Recall: primary_metric revision 15 |
-| q-28 | pass | Recall: sample_size revision 3 |
-| q-29 | pass | Recall: sample_size revision 15 |
-| q-30 | pass | Recall: lab_temperature revision 3 |
-| q-31 | pass | Recall: lab_temperature revision 15 |
-| q-32 | pass | Recall: model_version revision 3 |
-| q-33 | pass | Recall: model_version revision 15 |
-| q-34 | pass | Recall: deadline revision 3 |
-| q-35 | pass | Recall: deadline revision 15 |
-| q-36 | pass | Recall: primary_metric revision 4 |
-| q-37 | pass | Recall: primary_metric revision 16 |
-| q-38 | pass | Recall: sample_size revision 4 |
-| q-39 | pass | Recall: sample_size revision 16 |
-| q-40 | pass | Recall: lab_temperature revision 4 |
-| q-41 | pass | Recall: lab_temperature revision 16 |
-| q-42 | pass | Recall: model_version revision 4 |
-| q-43 | pass | Recall: model_version revision 16 |
-| q-44 | pass | Recall: deadline revision 4 |
-| q-45 | pass | Recall: deadline revision 16 |
-| q-46 | pass | Recall: primary_metric revision 5 |
-| q-47 | pass | Recall: primary_metric revision 17 |
-| q-48 | pass | Recall: sample_size revision 5 |
-| q-49 | pass | Recall: sample_size revision 17 |
-| q-50 | pass | Recall: lab_temperature revision 5 |
-| q-51 | pass | Recall: lab_temperature revision 17 |
-| q-52 | pass | Recall: model_version revision 5 |
-| q-53 | pass | Recall: model_version revision 17 |
-| q-54 | pass | Recall: deadline revision 5 |
-| q-55 | pass | Recall: deadline revision 17 |
-| q-56 | pass | Recall: primary_metric revision 6 |
-| q-57 | pass | Recall: primary_metric revision 18 |
-| q-58 | pass | Recall: sample_size revision 6 |
-| q-59 | pass | Recall: sample_size revision 18 |
-| q-60 | pass | Recall: lab_temperature revision 6 |
-| q-61 | pass | Recall: lab_temperature revision 18 |
-| q-62 | pass | Recall: model_version revision 6 |
-| q-63 | pass | Recall: model_version revision 18 |
-| q-64 | pass | Recall: deadline revision 6 |
-| q-65 | pass | Recall: deadline revision 18 |
-| q-66 | pass | Recall: primary_metric revision 7 |
-| q-67 | pass | Recall: primary_metric revision 19 |
-| q-68 | pass | Recall: sample_size revision 7 |
-| q-69 | pass | Recall: sample_size revision 19 |
-| q-70 | pass | Recall: lab_temperature revision 7 |
-| q-71 | pass | Recall: lab_temperature revision 19 |
-| q-72 | pass | Recall: model_version revision 7 |
-| q-73 | pass | Recall: model_version revision 19 |
-| q-74 | pass | Recall: deadline revision 7 |
-| q-75 | fail | Recall: deadline revision 19 |
-| q-76 | pass | Recall: primary_metric revision 8 |
-| q-77 | pass | Recall: primary_metric revision 20 |
-| q-78 | pass | Recall: sample_size revision 8 |
-| q-79 | pass | Recall: sample_size revision 20 |
-| q-80 | pass | Recall: lab_temperature revision 8 |
-| q-81 | pass | Recall: lab_temperature revision 20 |
-| q-82 | pass | Recall: model_version revision 8 |
-| q-83 | pass | Recall: model_version revision 20 |
-| q-84 | pass | Recall: deadline revision 8 |
-| q-85 | pass | Recall: deadline revision 20 |
-| q-86 | pass | Recall: primary_metric revision 9 |
-| q-87 | pass | Recall: sample_size revision 9 |
-| q-88 | pass | Recall: lab_temperature revision 9 |
-| q-89 | fail | Recall: model_version revision 9 |
-| q-90 | pass | Recall: deadline revision 9 |
-| q-91 | pass | Recall: primary_metric revision 10 |
-| q-92 | pass | Recall: sample_size revision 10 |
-| q-93 | pass | Recall: lab_temperature revision 10 |
-| q-94 | pass | Recall: model_version revision 10 |
-| q-95 | pass | Recall: deadline revision 10 |
-| q-96 | fail | Recall: primary_metric revision 11 |
-| q-97 | pass | Recall: sample_size revision 11 |
-| q-98 | pass | Recall: lab_temperature revision 11 |
-| q-99 | pass | Recall: model_version revision 11 |
-| q-100 | pass | Recall: deadline revision 11 |
+## Accuracy by question type
+
+| Kind | N | Correct | Accuracy |
+| --- | ---: | ---: | ---: |
+| static | 40 | 40 | 100% |
+| changed_later | 10 | 10 | 100% |
+| oldest | 15 | 15 | 100% |
+| distractor_resistance | 35 | 34 | 97.1% |
+
+| id | kind | result | query |
+| --- | --- | --- | --- |
+| q-1 | changed_later | pass | What is the latest primary metric? |
+| q-2 | changed_later | pass | What is the latest sample size? |
+| q-3 | changed_later | pass | What is the latest lab temperature? |
+| q-4 | changed_later | pass | What is the latest model version? |
+| q-5 | changed_later | pass | What is the latest deadline? |
+| q-6 | changed_later | pass | Report the current primary metric value used in  |
+| q-7 | changed_later | pass | Report the current sample size value used in the |
+| q-8 | changed_later | pass | Report the current lab temperature value used in |
+| q-9 | changed_later | pass | Report the current model version value used in t |
+| q-10 | changed_later | pass | Report the current deadline value used in the pr |
+| q-11 | static | pass | What does static fact 0 say? |
+| q-12 | static | pass | What does static fact 1 say? |
+| q-13 | static | pass | What does static fact 2 say? |
+| q-14 | static | pass | What does static fact 3 say? |
+| q-15 | static | pass | What does static fact 4 say? |
+| q-16 | static | pass | What does static fact 5 say? |
+| q-17 | static | pass | What does static fact 6 say? |
+| q-18 | static | pass | What does static fact 7 say? |
+| q-19 | static | pass | What does static fact 8 say? |
+| q-20 | static | pass | What does static fact 9 say? |
+| q-21 | static | pass | What does static fact 10 say? |
+| q-22 | static | pass | What does static fact 11 say? |
+| q-23 | static | pass | What does static fact 12 say? |
+| q-24 | static | pass | What does static fact 13 say? |
+| q-25 | static | pass | What does static fact 14 say? |
+| q-26 | static | pass | What does static fact 15 say? |
+| q-27 | static | pass | What does static fact 16 say? |
+| q-28 | static | pass | What does static fact 17 say? |
+| q-29 | static | pass | What does static fact 18 say? |
+| q-30 | static | pass | What does static fact 19 say? |
+| q-31 | static | pass | What does static fact 20 say? |
+| q-32 | static | pass | What does static fact 21 say? |
+| q-33 | static | pass | What does static fact 22 say? |
+| q-34 | static | pass | What does static fact 23 say? |
+| q-35 | static | pass | What does static fact 24 say? |
+| q-36 | static | pass | What does static fact 25 say? |
+| q-37 | static | pass | What does static fact 26 say? |
+| q-38 | static | pass | What does static fact 27 say? |
+| q-39 | static | pass | What does static fact 28 say? |
+| q-40 | static | pass | What does static fact 29 say? |
+| q-41 | static | pass | What does static fact 30 say? |
+| q-42 | static | pass | What does static fact 31 say? |
+| q-43 | static | pass | What does static fact 32 say? |
+| q-44 | static | pass | What does static fact 33 say? |
+| q-45 | static | pass | What does static fact 34 say? |
+| q-46 | static | pass | What does static fact 35 say? |
+| q-47 | static | pass | What does static fact 36 say? |
+| q-48 | static | pass | What does static fact 37 say? |
+| q-49 | static | pass | What does static fact 38 say? |
+| q-50 | static | pass | What does static fact 39 say? |
+| q-51 | oldest | pass | Recall early notebook 0 from the first week. |
+| q-52 | oldest | pass | Recall early notebook 1 from the first week. |
+| q-53 | oldest | pass | Recall early notebook 2 from the first week. |
+| q-54 | oldest | pass | Recall early notebook 3 from the first week. |
+| q-55 | oldest | pass | Recall early notebook 4 from the first week. |
+| q-56 | oldest | pass | Recall early notebook 5 from the first week. |
+| q-57 | oldest | pass | Recall early notebook 6 from the first week. |
+| q-58 | oldest | pass | Recall early notebook 7 from the first week. |
+| q-59 | oldest | pass | Recall early notebook 8 from the first week. |
+| q-60 | oldest | pass | Recall early notebook 9 from the first week. |
+| q-61 | oldest | pass | Recall early notebook 10 from the first week. |
+| q-62 | oldest | pass | Recall early notebook 11 from the first week. |
+| q-63 | oldest | pass | Recall early notebook 12 from the first week. |
+| q-64 | oldest | pass | Recall early notebook 13 from the first week. |
+| q-65 | oldest | pass | Recall early notebook 14 from the first week. |
+| q-66 | distractor_resistance | pass | Look up notebook entry titled "Static fact 0" an |
+| q-67 | distractor_resistance | pass | Look up notebook entry titled "Static fact 1" an |
+| q-68 | distractor_resistance | pass | Look up notebook entry titled "Static fact 2" an |
+| q-69 | distractor_resistance | pass | Look up notebook entry titled "Static fact 3" an |
+| q-70 | distractor_resistance | pass | Look up notebook entry titled "Static fact 4" an |
+| q-71 | distractor_resistance | pass | Look up notebook entry titled "Static fact 5" an |
+| q-72 | distractor_resistance | pass | Look up notebook entry titled "Static fact 6" an |
+| q-73 | distractor_resistance | pass | Look up notebook entry titled "Static fact 7" an |
+| q-74 | distractor_resistance | pass | Look up notebook entry titled "Static fact 8" an |
+| q-75 | distractor_resistance | pass | Look up notebook entry titled "Static fact 9" an |
+| q-76 | distractor_resistance | pass | Look up notebook entry titled "Static fact 10" a |
+| q-77 | distractor_resistance | pass | Look up notebook entry titled "Static fact 11" a |
+| q-78 | distractor_resistance | pass | Look up notebook entry titled "Static fact 12" a |
+| q-79 | distractor_resistance | pass | Look up notebook entry titled "Static fact 13" a |
+| q-80 | distractor_resistance | pass | Look up notebook entry titled "Static fact 14" a |
+| q-81 | distractor_resistance | pass | Look up notebook entry titled "Static fact 15" a |
+| q-82 | distractor_resistance | pass | Look up notebook entry titled "Static fact 16" a |
+| q-83 | distractor_resistance | pass | Look up notebook entry titled "Static fact 17" a |
+| q-84 | distractor_resistance | pass | Look up notebook entry titled "Static fact 18" a |
+| q-85 | distractor_resistance | pass | Look up notebook entry titled "Static fact 19" a |
+| q-86 | distractor_resistance | pass | Look up notebook entry titled "Static fact 20" a |
+| q-87 | distractor_resistance | pass | Look up notebook entry titled "Static fact 21" a |
+| q-88 | distractor_resistance | pass | Look up notebook entry titled "Static fact 22" a |
+| q-89 | distractor_resistance | pass | Look up notebook entry titled "Static fact 23" a |
+| q-90 | distractor_resistance | pass | Look up notebook entry titled "Static fact 24" a |
+| q-91 | distractor_resistance | pass | Look up notebook entry titled "Static fact 25" a |
+| q-92 | distractor_resistance | pass | Look up notebook entry titled "Static fact 26" a |
+| q-93 | distractor_resistance | pass | Look up notebook entry titled "Static fact 27" a |
+| q-94 | distractor_resistance | fail | Look up notebook entry titled "Static fact 28" a |
+| q-95 | distractor_resistance | pass | Look up notebook entry titled "Static fact 29" a |
+| q-96 | distractor_resistance | pass | Look up notebook entry titled "Static fact 30" a |
+| q-97 | distractor_resistance | pass | Look up notebook entry titled "Static fact 31" a |
+| q-98 | distractor_resistance | pass | Look up notebook entry titled "Static fact 32" a |
+| q-99 | distractor_resistance | pass | Look up notebook entry titled "Static fact 33" a |
+| q-100 | distractor_resistance | pass | Look up notebook entry titled "Static fact 34" a |

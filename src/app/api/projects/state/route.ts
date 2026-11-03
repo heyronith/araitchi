@@ -4,6 +4,7 @@ import {
   acceptStateProposal,
   dismissStateProposal,
   getStateHistoryEntry,
+  listPendingStateProposals,
   listStateHistory,
   readStateMd,
   rebuildStateMd,
@@ -33,6 +34,7 @@ export async function GET(request: Request) {
   return Response.json({
     content: readStateMd(projectPath),
     history: listStateHistory(projectPath, 10),
+    proposals: listPendingStateProposals(projectPath),
   });
 }
 

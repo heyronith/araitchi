@@ -5,7 +5,10 @@ import * as React from "react";
 import { toast } from "sonner";
 
 import { Markdown } from "@/components/chat/markdown";
+import { AgentsSuggestions } from "@/components/chat/agents-suggestions";
 import { ExperimentDesigner } from "@/components/shell/experiment-designer";
+import { ProjectIndexProgress } from "@/components/shell/project-index-progress";
+import { StatePanel } from "@/components/shell/state-panel";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -39,6 +42,7 @@ export type MemoryRecordDto = {
 };
 
 const TABS = [
+  { id: "state", label: "State" },
   { id: "brief", label: "Brief" },
   { id: "timeline", label: "Timeline" },
   { id: "hypothesis", label: "Hypotheses" },
@@ -77,7 +81,7 @@ export function MemoryPanel({
   className,
   refreshKey = 0,
 }: MemoryPanelProps) {
-  const [tab, setTab] = React.useState<string>("brief");
+  const [tab, setTab] = React.useState<string>("state");
   const [brief, setBrief] = React.useState("");
   const [briefDirty, setBriefDirty] = React.useState(false);
   const [preview, setPreview] = React.useState(false);
@@ -119,7 +123,7 @@ export function MemoryPanel({
   }, []);
 
   const loadRecords = React.useCallback(async () => {
-    if (tab === "brief" || tab === "timeline") return;
+    if (tab === "brief" || tab === "timeline" || tab === "state") return;
     const params = new URLSearchParams({ type: tab });
     if (query.trim()) params.set("q", query.trim());
     if (statusFilter !== "all") params.set("status", statusFilter);
@@ -145,6 +149,9 @@ export function MemoryPanel({
     // eslint-disable-next-line react-hooks/set-state-in-effect -- panel fetch
     if (tab === "brief") void loadBrief();
     else if (tab === "timeline") void loadTimeline();
+    else if (tab === "state") {
+      /* StatePanel loads itself */
+    }
     else void loadRecords();
   }, [collapsed, tab, loadBrief, loadRecords, loadTimeline, refreshKey]);
 
@@ -284,7 +291,8 @@ export function MemoryPanel({
         className,
       )}
     >
-      <div className="flex h-14 items-center justify-between gap-2 border-b px-3">
+      <div className="flex flex-col gap-1 border-b px-3 py-2">
+        <div className="flex h-8 items-center justify-between gap-2">
         <span className="text-sm font-medium">Memory</span>
         <div className="flex items-center gap-1">
           <Button
@@ -335,6 +343,9 @@ export function MemoryPanel({
             <PanelRight className="size-4" />
           </Button>
         </div>
+        </div>
+        <ProjectIndexProgress compact className="px-0.5" />
+        <AgentsSuggestions onChanged={() => undefined} />
       </div>
 
       <Tabs
@@ -351,6 +362,13 @@ export function MemoryPanel({
             ))}
           </TabsList>
         </div>
+
+        <TabsContent
+          value="state"
+          className="mt-0 flex min-h-0 flex-1 flex-col"
+        >
+          <StatePanel active={tab === "state"} />
+        </TabsContent>
 
         <TabsContent
           value="brief"
@@ -464,7 +482,9 @@ export function MemoryPanel({
           </ScrollArea>
         </TabsContent>
 
-        {TABS.filter((t) => t.id !== "brief" && t.id !== "timeline").map(
+        {TABS.filter(
+          (t) => t.id !== "brief" && t.id !== "timeline" && t.id !== "state",
+        ).map(
           (t) => (
             <TabsContent
               key={t.id}

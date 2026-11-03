@@ -36,5 +36,7 @@ export async function GET(request: Request) {
     hasBrief: true,
     items: ctx.items,
     vectorUsed: ctx.vectorUsed,
+    layerIds: ctx.layerIds,
+    handoffNote: ctx.handoffNote,
   });
 }

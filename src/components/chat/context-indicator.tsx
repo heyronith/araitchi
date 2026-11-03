@@ -19,6 +19,8 @@ type ContextIndicatorProps = {
   totalTokens: number;
   items: ContextItem[];
   vectorUsed?: boolean;
+  layerIds?: string[];
+  handoffNote?: string | null;
   className?: string;
   onOpenRef?: (ownerId: string) => void;
 };
@@ -29,6 +31,8 @@ export function ContextIndicator({
   totalTokens,
   items,
   vectorUsed = true,
+  layerIds = [],
+  handoffNote = null,
   className,
   onOpenRef,
 }: ContextIndicatorProps) {
@@ -50,12 +54,22 @@ export function ContextIndicator({
         Context: brief · {pinnedCount} pinned · {relevantCount} relevant (
         {tokensLabel} tokens)
         {!vectorUsed ? " · keyword only" : ""}
+        {layerIds.length ? ` · layers: ${layerIds.join(", ")}` : ""}
+        {handoffNote ? ` · ${handoffNote}` : ""}
       </button>
       {open ? (
         <ul
           className="bg-muted/40 mt-1 max-h-40 space-y-1 overflow-auto rounded-md border p-2"
           data-testid="context-indicator-details"
         >
+          {handoffNote ? (
+            <li className="text-foreground font-medium">{handoffNote}</li>
+          ) : null}
+          {layerIds.length ? (
+            <li className="text-muted-foreground">
+              Instruction layers: {layerIds.join(", ")}
+            </li>
+          ) : null}
           {items.map((it) => (
             <li key={`${it.refId}-${it.ownerId}`}>
               <button

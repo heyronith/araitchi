@@ -37,6 +37,7 @@ import {
   type ThinkingPhase,
 } from "@/components/chat/thinking-status";
 import { ToolCard } from "@/components/chat/tool-card";
+import { AgentsSuggestions } from "@/components/chat/agents-suggestions";
 import {
   ContextIndicator,
   type ContextItem,
@@ -45,6 +46,7 @@ import {
   MemoryLine,
   type ScribeSummaryData,
 } from "@/components/chat/memory-line";
+import { ReadCompleteness } from "@/components/chat/read-completeness";
 import { ScribeSuggestions } from "@/components/chat/scribe-suggestions";
 import { GateChip, type GateChipData } from "@/components/chat/gate-chip";
 import type { ChatMode } from "@/components/shell/mode-switch";
@@ -69,7 +71,14 @@ type ChatPanelProps = {
   hasKey: boolean;
   mode: ChatMode;
   onOpenSettings: (
-    tab?: "keys" | "models" | "council" | "tools" | "memory" | "routing",
+    tab?:
+      | "keys"
+      | "models"
+      | "council"
+      | "tools"
+      | "memory"
+      | "instructions"
+      | "routing",
   ) => void;
   onChatUpdated?: () => void;
   onMemorySaved?: () => void;
@@ -292,6 +301,8 @@ export function ChatPanel({
   const [contextTokens, setContextTokens] = React.useState(0);
   const [contextItems, setContextItems] = React.useState<ContextItem[]>([]);
   const [vectorUsed, setVectorUsed] = React.useState(true);
+  const [layerIds, setLayerIds] = React.useState<string[]>([]);
+  const [handoffNote, setHandoffNote] = React.useState<string | null>(null);
   const [saveOpen, setSaveOpen] = React.useState(false);
   const [saveBody, setSaveBody] = React.useState("");
   const [saveSource, setSaveSource] = React.useState("user");
@@ -499,6 +510,8 @@ export function ChatPanel({
           totalTokens?: number;
           items?: ContextItem[];
           vectorUsed?: boolean;
+          layerIds?: string[];
+          handoffNote?: string | null;
         };
         if (cancelled) return;
         setPinnedCount(data.pinnedCount);
@@ -506,6 +519,8 @@ export function ChatPanel({
         setContextTokens(data.totalTokens ?? 0);
         setContextItems(data.items ?? []);
         setVectorUsed(data.vectorUsed !== false);
+        setLayerIds(data.layerIds ?? []);
+        setHandoffNote(data.handoffNote ?? null);
       })();
     }, 300);
     return () => {
@@ -679,6 +694,9 @@ export function ChatPanel({
                     }[],
                   )
                 : [];
+            const hasReadTool = toolCalls.some((c) =>
+              c.tool.toLowerCase().includes("read_file"),
+            );
             const isLast = messageIndex === messages.length - 1;
             const isActiveStream =
               isStreaming && isLast && message.role === "assistant" && !error;
@@ -805,8 +823,15 @@ export function ChatPanel({
                 )}
 
                 {toolCalls.length > 0 && !isStreaming ? (
-                  <div className="w-full">
+                  <div className="w-full space-y-1">
                     <SourcesSection calls={toolCalls} />
+                    {message.role === "assistant" ? (
+                      <ReadCompleteness
+                        chatId={chatId}
+                        messageId={message.id}
+                        hasReadTool={hasReadTool}
+                      />
+                    ) : null}
                   </div>
                 ) : null}
 
@@ -1024,7 +1049,10 @@ export function ChatPanel({
               totalTokens={contextTokens}
               items={contextItems}
               vectorUsed={vectorUsed}
+              layerIds={layerIds}
+              handoffNote={handoffNote}
             />
+            <AgentsSuggestions onChanged={() => onMemorySaved?.()} />
             <ScribeSuggestions
               key={
                 [...messages]

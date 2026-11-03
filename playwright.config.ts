@@ -32,7 +32,7 @@ export default defineConfig({
       url: `http://127.0.0.1:${mockPort}/api/v1/models`,
       // Never reuse: a leftover Next from another checkout (e.g. nested
       // araitchi/) would silently break e2e against the wrong app.
-      reuseExistingServer: false,
+      reuseExistingServer: !process.env.CI,
       timeout: 60_000,
       env: {
         ...process.env,
@@ -42,7 +42,7 @@ export default defineConfig({
     {
       command: "pnpm exec next dev -H 127.0.0.1 -p 3000",
       url: "http://127.0.0.1:3000",
-      reuseExistingServer: false,
+      reuseExistingServer: !process.env.CI,
       timeout: 120_000,
       env: {
         ...process.env,
