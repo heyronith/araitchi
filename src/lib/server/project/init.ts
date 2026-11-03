@@ -51,7 +51,9 @@ export function ensureResearchStructure(
     writeFileSync(agentsPath, PROJECT_AGENTS_TEMPLATE, "utf8");
   }
 
-  const researchIgnore = path.join(root, ".researchignore");
+  // Template lives under .research/ only — never write a root .researchignore.
+  // Users may still create a root .researchignore; ignore.ts honours both.
+  const researchIgnore = path.join(research, ".researchignore");
   if (!existsSync(researchIgnore)) {
     writeFileSync(researchIgnore, RESEARCHIGNORE_TEMPLATE, "utf8");
   }

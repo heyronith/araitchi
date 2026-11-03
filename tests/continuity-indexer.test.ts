@@ -66,7 +66,7 @@ describe("chunking", () => {
 });
 
 describe("ignore rules", () => {
-  it("honours .researchignore", () => {
+  it("honours root .researchignore when present", () => {
     const p = tempProject();
     writeFileSync(path.join(p, ".researchignore"), "secret/\n");
     mkdirSync(path.join(p, "secret"));

@@ -236,19 +236,40 @@ export function MemorySettings() {
           onChange={(e) => {
             const file = e.target.files?.[0];
             if (!file) return;
-            const form = new FormData();
-            form.set("file", file);
-            void fetch("/api/memory/backup", { method: "POST", body: form })
-              .then(async (res) => {
+            const input = e.target;
+            void (async () => {
+              async function post(confirm: boolean) {
+                const form = new FormData();
+                form.set("file", file!);
+                if (confirm) form.set("confirmNotebookReplace", "1");
+                return fetch("/api/memory/backup", {
+                  method: "POST",
+                  body: form,
+                });
+              }
+              try {
+                let res = await post(false);
+                if (res.status === 409) {
+                  const data = (await res.json()) as { message?: string };
+                  const ok = window.confirm(
+                    data.message ??
+                      "This backup would replace notebook.db. A pre-import backup will be taken. Continue?",
+                  );
+                  if (!ok) return;
+                  res = await post(true);
+                }
                 if (!res.ok) {
-                  toast.error("Import failed");
+                  const err = (await res.json().catch(() => null)) as {
+                    error?: string;
+                  } | null;
+                  toast.error(err?.error ?? "Import failed");
                   return;
                 }
                 toast.success("Backup imported");
-              })
-              .finally(() => {
-                e.target.value = "";
-              });
+              } finally {
+                input.value = "";
+              }
+            })();
           }}
         />
       </div>

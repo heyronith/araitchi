@@ -26,7 +26,7 @@ export async function GET(request: Request) {
     zipPath: result.zipPath,
     fileCount: result.fileCount,
     bytes: result.bytes,
-    note: "Import overwrites notebook.db when present in the archive.",
+    note: "Import asks for confirmation before replacing notebook.db; a pre-import backup is taken automatically.",
   });
 }
 
@@ -35,6 +35,7 @@ const postSchema = z.discriminatedUnion("action", [
   z.object({
     action: z.literal("import"),
     zipPath: z.string().min(1),
+    confirmNotebookReplace: z.boolean().optional(),
   }),
 ]);
 
@@ -55,6 +56,9 @@ export async function POST(request: Request) {
     if (!(file instanceof File)) {
       return Response.json({ error: "Missing file" }, { status: 400 });
     }
+    const confirm =
+      form.get("confirmNotebookReplace") === "1" ||
+      form.get("confirmNotebookReplace") === "true";
     const tmp = path.join(
       p,
       ".research",
@@ -64,8 +68,28 @@ export async function POST(request: Request) {
     const { mkdirSync, writeFileSync } = await import("node:fs");
     mkdirSync(path.dirname(tmp), { recursive: true });
     writeFileSync(tmp, Buffer.from(await file.arrayBuffer()));
-    const result = await importResearchZip(p, tmp);
-    return Response.json({ ok: true, ...result });
+    try {
+      const result = await importResearchZip(p, tmp, {
+        confirmNotebookReplace: confirm,
+      });
+      if (result.status === "needs_confirm") {
+        return Response.json(
+          {
+            ok: false,
+            needsConfirm: true,
+            reason: result.reason,
+            message: result.message,
+          },
+          { status: 409 },
+        );
+      }
+      return Response.json({ ok: true, ...result });
+    } catch (err) {
+      return Response.json(
+        { error: err instanceof Error ? err.message : "Import failed" },
+        { status: 400 },
+      );
+    }
   }
 
   let body: unknown;
@@ -93,6 +117,26 @@ export async function POST(request: Request) {
     ? parsed.data.zipPath
     : path.join(p, parsed.data.zipPath);
 
-  const result = await importResearchZip(p, resolved);
-  return Response.json({ ok: true, ...result });
+  try {
+    const result = await importResearchZip(p, resolved, {
+      confirmNotebookReplace: parsed.data.confirmNotebookReplace === true,
+    });
+    if (result.status === "needs_confirm") {
+      return Response.json(
+        {
+          ok: false,
+          needsConfirm: true,
+          reason: result.reason,
+          message: result.message,
+        },
+        { status: 409 },
+      );
+    }
+    return Response.json({ ok: true, ...result });
+  } catch (err) {
+    return Response.json(
+      { error: err instanceof Error ? err.message : "Import failed" },
+      { status: 400 },
+    );
+  }
 }

@@ -127,7 +127,12 @@ describe("research backup", () => {
 
     const dest = mkdtempSync(path.join(tmpdir(), "araitchi-import-"));
     ensureResearchStructure(dest, { name: "import-test" });
-    const imported = await importResearchZip(dest, zipPath);
+    const imported = await importResearchZip(dest, zipPath, {
+      skipPreBackup: true,
+      confirmNotebookReplace: true,
+    });
+    expect(imported.status).toBe("ok");
+    if (imported.status !== "ok") throw new Error("expected ok");
     expect(imported.extracted).toBeGreaterThan(0);
 
     const destResearch = researchDir(dest);
