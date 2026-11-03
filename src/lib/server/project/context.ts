@@ -477,16 +477,8 @@ function formatTreeCompact(
   return lines.join("\n");
 }
 
-/** Optional catalog helper — soft dependency. */
-function lookupModelContextWindow(modelId: string): number | null {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const mod = require("@/lib/server/models-cache") as {
-      findCachedModel?: (id: string) => { context_length?: number } | null;
-    };
-    const m = mod.findCachedModel?.(modelId);
-    return m?.context_length ?? null;
-  } catch {
-    return null;
-  }
+/** Optional catalog helper — soft dependency (no hard import; avoids missing-module build noise). */
+function lookupModelContextWindow(_modelId: string): number | null {
+  void _modelId;
+  return null;
 }

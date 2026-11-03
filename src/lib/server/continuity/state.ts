@@ -265,6 +265,21 @@ export function writeStateSection(
   return readStateMd(projectPath);
 }
 
+export function listPendingStateProposals(projectPath: string) {
+  return getNotebookDb(projectPath)
+    .select({
+      id: stateProposals.id,
+      section: stateProposals.section,
+      content: stateProposals.content,
+      evidenceQuote: stateProposals.evidenceQuote,
+      createdAt: stateProposals.createdAt,
+    })
+    .from(stateProposals)
+    .where(eq(stateProposals.status, "pending"))
+    .orderBy(desc(stateProposals.createdAt))
+    .all();
+}
+
 export function listStateHistory(
   projectPath: string,
   limit = 20,

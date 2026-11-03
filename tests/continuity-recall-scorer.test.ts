@@ -1,8 +1,10 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  buildLongProjectFixture,
   normalizeRecallText,
   scoreRecallAnswer,
+  summarizeRecallByKind,
 } from "@/lib/server/evals/recall-scorer";
 
 describe("recall scorer", () => {
@@ -11,11 +13,12 @@ describe("recall scorer", () => {
   });
 
   it("scores semantic includes", () => {
-    const ctx = "Relevant memory\n- Note: Latest primary_metric is VALUE-4-0-58.";
+    const ctx =
+      "Relevant memory\n- Note: LATEST-primary_metric-R6 value=166-primary_metric.";
     expect(
       scoreRecallAnswer(
         ctx,
-        "Latest primary_metric is VALUE-4-0-58.",
+        "LATEST-primary_metric-R6 value=166-primary_metric.",
         "semantic",
       ),
     ).toBe(true);
@@ -26,11 +29,24 @@ describe("recall scorer", () => {
     expect(scoreRecallAnswer("alpha beta", "alpha", "exact")).toBe(false);
   });
 
-  it("uses token overlap for partial semantic match", () => {
-    const retrieved =
-      "The experiment used sample size VALUE-2-1-34 across three cohorts.";
-    expect(
-      scoreRecallAnswer(retrieved, "sample size VALUE-2-1-34", "semantic"),
-    ).toBe(true);
+  it("fixture includes all question kinds", () => {
+    const f = buildLongProjectFixture();
+    const kinds = new Set(f.questions.map((q) => q.kind));
+    expect(kinds.has("static")).toBe(true);
+    expect(kinds.has("changed_later")).toBe(true);
+    expect(kinds.has("oldest")).toBe(true);
+    expect(kinds.has("distractor_resistance")).toBe(true);
+    const changed = f.questions.filter((q) => q.kind === "changed_later");
+    expect(changed.every((q) => (q.superseded?.length ?? 0) > 0)).toBe(true);
+  });
+
+  it("summarizes by kind", () => {
+    const s = summarizeRecallByKind([
+      { kind: "static", ok: true },
+      { kind: "static", ok: false },
+      { kind: "changed_later", ok: true },
+    ]);
+    expect(s.static.pct).toBe(50);
+    expect(s.changed_later.pct).toBe(100);
   });
 });

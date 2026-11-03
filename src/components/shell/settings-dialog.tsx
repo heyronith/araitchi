@@ -16,13 +16,21 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CouncilSettings } from "@/components/shell/council-settings";
 import { EvaluationsPanel } from "@/components/shell/evaluations-panel";
+import { InstructionsSettings } from "@/components/shell/instructions-settings";
 import { MemorySettings } from "@/components/shell/memory-settings";
 import { RoutingSettings } from "@/components/shell/routing-settings";
 import { ToolsSettings } from "@/components/shell/tools-settings";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 type SettingsTab =
-  "keys" | "models" | "council" | "tools" | "memory" | "routing" | "evals";
+  | "keys"
+  | "models"
+  | "council"
+  | "tools"
+  | "memory"
+  | "instructions"
+  | "routing"
+  | "evals";
 
 type SecretStatus = { name: string; set: boolean };
 
@@ -212,6 +220,7 @@ export function SettingsDialog({
             <TabsTrigger value="council">Council</TabsTrigger>
             <TabsTrigger value="tools">Tools</TabsTrigger>
             <TabsTrigger value="memory">Memory</TabsTrigger>
+            <TabsTrigger value="instructions">Instructions</TabsTrigger>
             <TabsTrigger value="routing">Routing</TabsTrigger>
             <TabsTrigger value="evals">Evaluations</TabsTrigger>
           </TabsList>
@@ -360,6 +369,10 @@ export function SettingsDialog({
 
           <TabsContent value="memory" className="mt-4">
             <MemorySettings />
+          </TabsContent>
+
+          <TabsContent value="instructions" className="mt-4">
+            <InstructionsSettings />
           </TabsContent>
 
           <TabsContent value="routing" className="mt-4">

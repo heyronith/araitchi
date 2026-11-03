@@ -181,8 +181,12 @@ export async function hybridSearch(
         pinned: rec.pinned,
       };
       if (rec.pinned) boost += 0.05;
-      const ageDays = (Date.now() - rec.updatedAt) / 86_400_000;
-      if (ageDays < 7) boost += 0.02;
+      // Prefer newest records so superseded facts lose to later updates.
+      const ageDays = Math.max(0, (Date.now() - rec.updatedAt) / 86_400_000);
+      boost += 0.12 / (1 + ageDays);
+      if (ageDays < 1) boost += 0.08;
+      else if (ageDays < 7) boost += 0.04;
+      meta = { ...meta, updatedAt: rec.updatedAt };
     } else if (!vecMap.has(id) && !text) {
       continue;
     }

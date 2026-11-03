@@ -3,6 +3,8 @@
 import * as React from "react";
 import { toast } from "sonner";
 
+import { ProjectIndexProgress } from "@/components/shell/project-index-progress";
+import { TidyMemoryDialog } from "@/components/shell/tidy-memory-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -24,6 +26,8 @@ export function MemorySettings() {
     reason?: string;
     model?: string;
   } | null>(null);
+  const [tidyOpen, setTidyOpen] = React.useState(false);
+  const importRef = React.useRef<HTMLInputElement>(null);
 
   const load = React.useCallback(async () => {
     const res = await fetch("/api/memory/config");
@@ -71,6 +75,7 @@ export function MemorySettings() {
 
   return (
     <div className="space-y-4" data-testid="memory-settings">
+      <ProjectIndexProgress />
       {embedder?.state === "downloading" ? (
         <p className="text-sm" data-testid="embedder-download-progress">
           Preparing local memory model… {Math.round(embedder.progress ?? 0)}%
@@ -181,6 +186,74 @@ export function MemorySettings() {
       >
         Rebuild memory index
       </Button>
+
+      <div className="flex flex-wrap gap-2 border-t pt-4">
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => setTidyOpen(true)}
+        >
+          Tidy memory
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          data-testid="backup-export"
+          onClick={() =>
+            void fetch("/api/memory/backup", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ action: "export" }),
+            }).then(async (res) => {
+              if (!res.ok) {
+                toast.error("Export failed");
+                return;
+              }
+              const data = (await res.json()) as { zipPath?: string };
+              toast.success(
+                data.zipPath
+                  ? `Backup saved: ${data.zipPath.split("/").pop()}`
+                  : "Backup exported",
+              );
+            })
+          }
+        >
+          Export backup
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => importRef.current?.click()}
+        >
+          Import backup…
+        </Button>
+        <input
+          ref={importRef}
+          type="file"
+          accept=".zip,application/zip"
+          className="hidden"
+          data-testid="backup-import"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (!file) return;
+            const form = new FormData();
+            form.set("file", file);
+            void fetch("/api/memory/backup", { method: "POST", body: form })
+              .then(async (res) => {
+                if (!res.ok) {
+                  toast.error("Import failed");
+                  return;
+                }
+                toast.success("Backup imported");
+              })
+              .finally(() => {
+                e.target.value = "";
+              });
+          }}
+        />
+      </div>
+
+      <TidyMemoryDialog open={tidyOpen} onOpenChange={setTidyOpen} />
     </div>
   );
 }

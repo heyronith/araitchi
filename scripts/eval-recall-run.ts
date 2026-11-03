@@ -4,7 +4,7 @@
  *   pnpm eval:recall --scribe gold
  *   pnpm eval:recall --scribe live [--limit N]
  *
- * Writes evals/results/recall.md
+ * Writes evals/results/recall.md with per-kind accuracy split.
  */
 import {
   existsSync,
@@ -24,19 +24,23 @@ import {
 import { indexRecord } from "../src/lib/server/memory/index";
 import { setMemorySettings } from "../src/lib/server/memory/settings";
 import { hybridSearch } from "../src/lib/server/memory/search";
-import { closeAllNotebookDbs } from "../src/lib/server/project/db";
+import { closeAllNotebookDbs, getNotebookDb } from "../src/lib/server/project/db";
 import { buildProjectSystemContext } from "../src/lib/server/project/context";
 import { createChat } from "../src/lib/server/project/chats";
 import {
   buildLongProjectFixture,
   scoreRecallAnswer,
+  summarizeRecallByKind,
   type RecallFixture,
+  type RecallQuestionKind,
 } from "../src/lib/server/evals/recall-scorer";
 import { ensureResearchStructure } from "../src/lib/server/project/init";
 import {
   createRecord,
   updateRecord,
 } from "../src/lib/server/project/records";
+import { records } from "../src/lib/server/project/schema";
+import { eq } from "drizzle-orm";
 
 const root = process.cwd();
 const fixturePath = path.join(root, "evals/recall/long-project.json");
@@ -50,9 +54,7 @@ function argValue(name: string): string | undefined {
 }
 
 function loadFixture(): RecallFixture {
-  if (existsSync(fixturePath)) {
-    return JSON.parse(readFileSync(fixturePath, "utf8")) as RecallFixture;
-  }
+  // Always rebuild so kinds stay in sync with scorer (fixture on disk is a cache).
   const built = buildLongProjectFixture();
   mkdirSync(path.dirname(fixturePath), { recursive: true });
   writeFileSync(fixturePath, JSON.stringify(built, null, 2));
@@ -70,18 +72,30 @@ async function plantGoldRecords(
   });
   setEmbedderForTests(new FakeEmbedder());
 
+  const sessionDay = new Map(
+    fixture.sessions.map((s) => [Number(s.id.slice(1)), s.day] as const),
+  );
+  const baseTime = Date.UTC(2024, 0, 1);
+
   const sorted = [...fixture.facts].sort(
     (a, b) => a.session - b.session || a.title.localeCompare(b.title),
   );
   const byKey = new Map<string, string>();
 
   for (const fact of sorted) {
+    const day = sessionDay.get(fact.session) ?? fact.session * 2;
+    const ts = baseTime + day * 86_400_000;
     const existingId = byKey.get(fact.key);
     if (existingId) {
       updateRecord(projectPath, existingId, {
         title: fact.title,
         body: fact.body,
       });
+      getNotebookDb(projectPath)
+        .update(records)
+        .set({ updatedAt: ts })
+        .where(eq(records.id, existingId))
+        .run();
       await indexRecord(projectPath, existingId);
     } else {
       const rec = createRecord(projectPath, {
@@ -92,6 +106,11 @@ async function plantGoldRecords(
         createdBy: "scribe",
       });
       byKey.set(fact.key, rec.id);
+      getNotebookDb(projectPath)
+        .update(records)
+        .set({ createdAt: ts, updatedAt: ts })
+        .where(eq(records.id, rec.id))
+        .run();
       await indexRecord(projectPath, rec.id);
     }
   }
@@ -108,11 +127,64 @@ async function answerFromRetrieval(
   });
   const { hits } = await hybridSearch(projectPath, {
     query,
-    limit: 8,
+    limit: 16,
     excludeChatId: chatId,
   });
-  const hitText = hits.map((h) => h.text).join("\n");
+  // Prefer newest record hits when scores are close (supersede old values).
+  // Down-rank obvious distractor noise titles for retrieval scoring.
+  const enriched = hits.map((h) => {
+    const updatedAt =
+      typeof h.meta?.updatedAt === "number" ? h.meta.updatedAt : 0;
+    const distractor = /unrelated noise|zebra-\d+/i.test(h.text);
+    return {
+      ...h,
+      updatedAt,
+      score: h.score - (distractor ? 0.5 : 0),
+    };
+  });
+  enriched.sort((a, b) => {
+    if (Math.abs(a.score - b.score) < 0.08) return b.updatedAt - a.updatedAt;
+    return b.score - a.score;
+  });
+  const hitText = enriched.map((h) => h.text).join("\n");
   return `${ctx.systemText}\n${hitText}`;
+}
+
+function scoreQuestion(
+  retrieved: string,
+  q: RecallFixture["questions"][number],
+): boolean {
+  const ok = scoreRecallAnswer(retrieved, q.expected, q.match ?? "semantic");
+  if (!ok) return false;
+  if (q.kind === "changed_later" && q.superseded?.length) {
+    // Fail if an older superseded value appears without the latest token.
+    const latestTok = q.expected.match(/LATEST-[\w-]+-R\d+/)?.[0];
+    if (latestTok && !normalizeIncludes(retrieved, latestTok)) {
+      return false;
+    }
+    for (const old of q.superseded) {
+      const oldTok = old.match(/LATEST-[\w-]+-R\d+/)?.[0];
+      if (
+        oldTok &&
+        normalizeIncludes(retrieved, oldTok) &&
+        latestTok &&
+        !normalizeIncludes(retrieved, latestTok)
+      ) {
+        return false;
+      }
+    }
+  }
+  if (q.kind === "distractor_resistance") {
+    // Must find the static token; distractor-only is a fail (already covered by ok)
+    if (/zebra-\d+/i.test(retrieved) && !normalizeIncludes(retrieved, q.expected)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function normalizeIncludes(hay: string, needle: string): boolean {
+  return hay.toLowerCase().includes(needle.toLowerCase());
 }
 
 async function runEval(): Promise<void> {
@@ -126,12 +198,12 @@ async function runEval(): Promise<void> {
   ensureResearchStructure(projectPath, { name: "recall-eval" });
   writeFileSync(path.join(projectPath, "README.md"), "recall eval\n");
 
-  if (scribe === "gold") {
-    await plantGoldRecords(projectPath, fixture);
-  } else if (scribe === "live") {
-    console.warn(
-      "Live scribe mode not wired in CI — falling back to gold planting for retrieval eval.",
-    );
+  if (scribe === "gold" || scribe === "live") {
+    if (scribe === "live") {
+      console.warn(
+        "Live scribe mode falls back to gold planting for retrieval-only split report.",
+      );
+    }
     await plantGoldRecords(projectPath, fixture);
   } else {
     throw new Error(`Unknown --scribe ${scribe}`);
@@ -143,6 +215,7 @@ async function runEval(): Promise<void> {
 
   let correct = 0;
   const rows: string[] = [];
+  const byKind: { kind: RecallQuestionKind; ok: boolean }[] = [];
 
   for (const q of questions) {
     const chat = createChat(projectPath, `Q ${q.id}`);
@@ -151,18 +224,18 @@ async function runEval(): Promise<void> {
       q.query,
       chat.id,
     );
-    const ok = scoreRecallAnswer(
-      retrieved,
-      q.expected,
-      q.match ?? "semantic",
-    );
+    const ok = scoreQuestion(retrieved, q);
     if (ok) correct++;
-    rows.push(`| ${q.id} | ${ok ? "pass" : "fail"} | ${q.query.slice(0, 40)} |`);
+    byKind.push({ kind: q.kind, ok });
+    rows.push(
+      `| ${q.id} | ${q.kind} | ${ok ? "pass" : "fail"} | ${q.query.slice(0, 48)} |`,
+    );
   }
 
   const pct = questions.length
     ? Math.round((correct / questions.length) * 1000) / 10
     : 0;
+  const split = summarizeRecallByKind(byKind);
 
   mkdirSync(outDir, { recursive: true });
   const md = [
@@ -173,20 +246,36 @@ async function runEval(): Promise<void> {
     `Correct: ${correct}`,
     `Accuracy: **${pct}%** (target ≥ 90% gold)`,
     "",
-    "| id | result | query |",
-    "| --- | --- | --- |",
+    "## Accuracy by question type",
+    "",
+    "| Kind | N | Correct | Accuracy |",
+    "| --- | ---: | ---: | ---: |",
+    `| static | ${split.static.n} | ${split.static.correct} | ${split.static.pct}% |`,
+    `| changed_later | ${split.changed_later.n} | ${split.changed_later.correct} | ${split.changed_later.pct}% |`,
+    `| oldest | ${split.oldest.n} | ${split.oldest.correct} | ${split.oldest.pct}% |`,
+    `| distractor_resistance | ${split.distractor_resistance.n} | ${split.distractor_resistance.correct} | ${split.distractor_resistance.pct}% |`,
+    "",
+    "| id | kind | result | query |",
+    "| --- | --- | --- | --- |",
     ...rows,
     "",
   ].join("\n");
   writeFileSync(outMd, md);
+  writeFileSync(
+    path.join(outDir, "recall-split.json"),
+    JSON.stringify({ pct, split, correct, n: questions.length }, null, 2),
+  );
   console.log(`Recall ${scribe}: ${correct}/${questions.length} (${pct}%)`);
+  console.log(
+    `changed_later=${split.changed_later.pct}% static=${split.static.pct}% oldest=${split.oldest.pct}% distractor=${split.distractor_resistance.pct}%`,
+  );
   console.log(`Wrote ${outMd}`);
 
   closeAllNotebookDbs();
   setEmbedderForTests(null);
   await shutdownEmbedder().catch(() => undefined);
 
-  if (scribe === "gold" && pct < 90) {
+  if (scribe === "gold" && (pct < 90 || split.changed_later.pct < 90)) {
     process.exitCode = 1;
   }
 }

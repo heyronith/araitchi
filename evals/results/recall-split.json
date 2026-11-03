@@ -1,0 +1,27 @@
+{
+  "pct": 99,
+  "split": {
+    "static": {
+      "n": 40,
+      "correct": 40,
+      "pct": 100
+    },
+    "changed_later": {
+      "n": 10,
+      "correct": 10,
+      "pct": 100
+    },
+    "oldest": {
+      "n": 15,
+      "correct": 15,
+      "pct": 100
+    },
+    "distractor_resistance": {
+      "n": 35,
+      "correct": 34,
+      "pct": 97.1
+    }
+  },
+  "correct": 99,
+  "n": 100
+}
