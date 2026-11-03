@@ -104,11 +104,14 @@ export function AppSidebar({
   const [searching, setSearching] = React.useState(false);
 
   React.useEffect(() => {
-    if (collapsed || !chatQuery.trim()) {
-      setSearchHits([]);
-      return;
-    }
     const q = chatQuery.trim();
+    if (collapsed || !q) {
+      const clear = window.setTimeout(() => {
+        setSearchHits([]);
+        setSearching(false);
+      }, 0);
+      return () => window.clearTimeout(clear);
+    }
     const handle = window.setTimeout(() => {
       setSearching(true);
       void fetch(`/api/chats/search?q=${encodeURIComponent(q)}&limit=12`)

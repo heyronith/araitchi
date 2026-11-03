@@ -67,7 +67,8 @@ export function StatePanel({ active }: StatePanelProps) {
 
   React.useEffect(() => {
     if (!active) return;
-    void load();
+    const boot = window.setTimeout(() => void load(), 0);
+    return () => window.clearTimeout(boot);
   }, [active, load]);
 
   async function saveSection(section: (typeof EDIT_SECTIONS)[number]) {

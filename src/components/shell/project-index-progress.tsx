@@ -27,9 +27,12 @@ export function ProjectIndexProgress({ compact, className }: Props) {
   }, []);
 
   React.useEffect(() => {
-    void load();
+    const boot = window.setTimeout(() => void load(), 0);
     const t = window.setInterval(() => void load(), 2000);
-    return () => window.clearInterval(t);
+    return () => {
+      window.clearTimeout(boot);
+      window.clearInterval(t);
+    };
   }, [load]);
 
   const p = progress ?? {

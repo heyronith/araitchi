@@ -46,17 +46,15 @@ export function InstructionsSettings() {
     if (rRes.ok) {
       const r = (await rRes.json()) as { roles: Record<string, RoleData> };
       setRoles(r.roles);
+      const cur = r.roles[activeRole];
+      setRoleDraft(cur?.override ?? cur?.default ?? "");
     }
-  }, []);
+  }, [activeRole]);
 
   React.useEffect(() => {
-    void load();
+    const boot = window.setTimeout(() => void load(), 0);
+    return () => window.clearTimeout(boot);
   }, [load]);
-
-  React.useEffect(() => {
-    const rd = roles[activeRole];
-    setRoleDraft(rd?.override ?? rd?.default ?? "");
-  }, [activeRole, roles]);
 
   async function saveGlobal() {
     const res = await fetch("/api/settings/instructions", {
@@ -166,7 +164,12 @@ export function InstructionsSettings() {
         <select
           className="border-input bg-background h-9 w-full rounded-md border px-2 text-sm"
           value={activeRole}
-          onChange={(e) => setActiveRole(e.target.value)}
+          onChange={(e) => {
+            const id = e.target.value;
+            setActiveRole(id);
+            const rd = roles[id];
+            setRoleDraft(rd?.override ?? rd?.default ?? "");
+          }}
           aria-label="Select role"
         >
           {ROLES.map((r) => (
