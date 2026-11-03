@@ -20,6 +20,7 @@ src/lib/server/project/       project open/init, lock, notebook db, records, exp
 src/lib/server/council/       estimate, presets, anonymize, analysis, pipeline
 src/lib/server/tools/         broker, cache, rate-limit, provenance, papers/, documents/, repo/, mcp/, memory/
 src/lib/server/memory/        embedder (worker), index, hybrid search, scribe, session summaries, settings
+src/lib/server/continuity/    STATE.md, instruction layers, project indexer/watcher, read tracker, tidy, backup, chat search
 src/lib/server/gate/          Auto convene gate: rules, kNN, LLM classify, probe, merge, decisions
 src/lib/gate/                 shared taxonomy (client + server)
 src/lib/server/experiments/   validation loop: lock, instructions, deterministic verdict, timeline
@@ -53,7 +54,7 @@ docs/                         architecture + task briefs + STATUS
 
 - `chats` / `messages` — branched chat tree
 - `records` — memory items + FTS5 (`created_by` = `user|scribe`)
-- `embeddings` — float32 vectors per owner (`record|session_summary|doc_chunk|paper`); model id stored per row; never mix models in one search
+- `embeddings` — float32 vectors per owner (`record|session_summary|doc_chunk|paper|project_chunk|message_chunk`); model id stored per row; never mix models in one search
 - `session_summaries` — rolling ≤300-word chat summaries
 - `scribe_batches` / `scribe_suggestions` — undo snapshots + optional review queue
 - `project_settings` — per-project key/value (`chat.mode`, `council.*`, `tools.*`, `scribe.*`, `memory.*`, `context.memoryTokens`)
@@ -62,6 +63,16 @@ docs/                         architecture + task briefs + STATUS
 - `gate_decisions` — Auto routing log (layer, taskType, action, costs, probe agreement, corrections)
 - `gate_corrections` — user overrides fed back into project kNN seeds
 - `experiments` — preregistered validation-loop experiments (predictions, lock hash, verdict evidence, versions)
+- `state_history` / `state_proposals` — `.research/STATE.md` versions + narrative proposals (T12)
+- `project_files` / `project_file_chunks` — whole-folder index + FTS (T12)
+- `activity` — unified tool/search/verdict/scribe feed (T12)
+- `message_chunks` — chat search index (T12)
+- `read_tracker` — per-reply file page completeness (T12)
+- `instruction_suggestions` — proposed `.research/AGENTS.md` edits (T12)
+
+### Continuity context package (T12)
+
+Order: **instruction layers** (global → `.research/AGENTS.md` → low-trust repo conventions → role) → **STATE.md** (~1.5k tokens) → brief → handoff summary → chat summary → pinned → project map → hypotheses / already-tested → recent activity → hybrid relevant memory/files. Budget = `min(setting, ~25% model window)`.
 
 **Scale:** brute-force cosine in JS is fine up to ~50k chunks per project; beyond that, plan a proper ANN index.
 
@@ -114,8 +125,8 @@ Persisted as one assistant message (`modelId: "council"`) whose parts hold membe
 ## Chat flow (solo)
 
 1. Client posts to `POST /api/chat` with `chatId` + `modelId`
-2. Server builds a **context package** once (`buildProjectSystemContext`): brief → pinned → active hypotheses → hybrid top-K for the user message (budget `context.memoryTokens`, default 6k), shared by solo and every council member
-3. Streams `streamText` (tools optional, including memory tools when the Memory toggle is on)
+2. Server builds a **context package** once (`buildProjectSystemContext`): instructions → STATE.md → brief → handoff/summary → pinned → project map → hypotheses / already-tested → activity → hybrid top-K (budget `min(setting, ~25% window)`), shared by solo and every council member
+3. Streams `streamText` (tools optional: memory + **project_tree / search_project / read_file / search_activity / search_chats**)
 4. After the reply finishes (does not delay tokens), the **scribe** extracts durable records asynchronously; UI shows a Memory line + optional Undo; cost logged as `scribeCost`
 5. Session transcripts under `sessions/` include the rolling summary when present
 
@@ -136,7 +147,7 @@ Persisted as one assistant message (`modelId: "council"`) whose parts hold membe
 
 All model-callable tools go through `ToolBroker` (`src/lib/server/tools/broker.ts`), one instance per request.
 
-- **Registry:** tools are `RegisteredTool`s (name, zod input schema, `kind` read/write/spend, provider, `ttlSec`, handler). `registerEnabledTools` registers papers / documents / repo / MCP / **memory** tools according to per-project toggles (`tools.*` in `project_settings`); `getAiSdkTools` exposes them to `streamText`. Max tool steps per reply is configurable. Memory tools (default on): `search_memory`, `get_record`, `list_hypotheses`, `list_experiments`, `search_library`.
+- **Registry:** tools are `RegisteredTool`s (name, zod input schema, `kind` read/write/spend, provider, `ttlSec`, handler). `registerEnabledTools` registers papers / documents / repo / MCP / **memory** tools according to per-project toggles (`tools.*` in `project_settings`); project continuity tools (`project_tree`, `search_project`, `read_file`, `search_activity`) register always-on. `getAiSdkTools` exposes them to `streamText`. Memory tools (default on): `search_memory`, `get_record`, `list_hypotheses`, `list_experiments`, `search_library`.
 - **Cache:** read tools with `ttlSec > 0` are cached in `tool_cache` by `tool + hash(args)`.
 - **Dedupe:** identical in-flight calls (same tool + args hash) share one promise.
 - **Rate limit:** per-provider token buckets (`rate-limit.ts`); calls wait or abort with the request signal. Each call also has a timeout.

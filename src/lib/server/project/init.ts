@@ -5,7 +5,13 @@ import path from "node:path";
 import { nanoid } from "nanoid";
 
 import { detectRepoPath } from "./detect-repo";
-import { BRIEF_TEMPLATE, RESEARCH_GITIGNORE } from "./templates";
+import {
+  BRIEF_TEMPLATE,
+  PROJECT_AGENTS_TEMPLATE,
+  RESEARCH_GITIGNORE,
+  RESEARCHIGNORE_TEMPLATE,
+  STATE_TEMPLATE,
+} from "./templates";
 import type { ProjectJson } from "./types";
 
 export function researchDir(projectPath: string): string {
@@ -23,6 +29,7 @@ export function ensureResearchStructure(
   mkdirSync(research, { recursive: true });
   mkdirSync(path.join(research, "library"), { recursive: true });
   mkdirSync(path.join(research, "sessions"), { recursive: true });
+  mkdirSync(path.join(research, "backups"), { recursive: true });
 
   const gitignorePath = path.join(research, ".gitignore");
   if (!existsSync(gitignorePath)) {
@@ -32,6 +39,21 @@ export function ensureResearchStructure(
   const briefPath = path.join(research, "brief.md");
   if (!existsSync(briefPath)) {
     writeFileSync(briefPath, BRIEF_TEMPLATE, "utf8");
+  }
+
+  const statePath = path.join(research, "STATE.md");
+  if (!existsSync(statePath)) {
+    writeFileSync(statePath, STATE_TEMPLATE, "utf8");
+  }
+
+  const agentsPath = path.join(research, "AGENTS.md");
+  if (!existsSync(agentsPath)) {
+    writeFileSync(agentsPath, PROJECT_AGENTS_TEMPLATE, "utf8");
+  }
+
+  const researchIgnore = path.join(root, ".researchignore");
+  if (!existsSync(researchIgnore)) {
+    writeFileSync(researchIgnore, RESEARCHIGNORE_TEMPLATE, "utf8");
   }
 
   const memoryPath = path.join(research, "memory.md");

@@ -145,15 +145,31 @@ describe("buildBrokerTools", () => {
       },
       mcpServers: [server],
     });
-    expect(built.registered).toEqual(["mcp_mock_delete_all"]);
+    expect(built.registered).toEqual([
+      "project_tree",
+      "search_project",
+      "read_file",
+      "search_activity",
+      "mcp_mock_delete_all",
+    ]);
 
-    // Not exposed to the model by default, exposed when asked.
-    expect(Object.keys(broker.getAiSdkTools({ modelId: "m/x" }))).toEqual([]);
+    // Project read tools are always registered; MCP write tools need approval.
+    expect(Object.keys(broker.getAiSdkTools({ modelId: "m/x" })).sort()).toEqual(
+      ["project_tree", "read_file", "search_activity", "search_project"].sort(),
+    );
     expect(
       Object.keys(
         broker.getAiSdkTools({ modelId: "m/x", includeNonRead: true }),
-      ),
-    ).toEqual(["mcp_mock_delete_all"]);
+      ).sort(),
+    ).toEqual(
+      [
+        "mcp_mock_delete_all",
+        "project_tree",
+        "read_file",
+        "search_activity",
+        "search_project",
+      ].sort(),
+    );
 
     const denied = await broker.call(
       "mcp_mock_delete_all",

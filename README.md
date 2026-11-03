@@ -47,6 +47,9 @@ A **project** is any folder on disk. Opening one creates `<folder>/.research/` (
 | --- | --- |
 | `project.json` | id, name, schemaVersion, optional `repoPath` |
 | `brief.md` | Goal / constraints / definitions (editable in the Memory panel) |
+| `STATE.md` | Living project state (goal, status, hypotheses, decisions, tested, questions, next steps) |
+| `AGENTS.md` | Project instructions (domain, methods, rigor, citations) |
+| `.researchignore` | Glob patterns that must never reach a model (plus secrets denylist) |
 | `notebook.db` | Per-project SQLite (chats, messages, memory records) |
 | `memory.md` | Readable export of records (regenerated on change) |
 | `sessions/` | Markdown transcripts of chat branches |
@@ -115,7 +118,9 @@ After each assistant reply, a **scribe** model extracts durable research facts (
 - Choose the local embedding model. The quality default (~0.6 GB ONNX) downloads once into the app data `models/` folder with a progress notice, then works offline. MiniLM is available for low-memory machines (switching re-indexes).
 - If the embedding download fails, search falls back to keyword (FTS) only.
 
-The composer shows a **Context** indicator (brief · pinned · relevant). Models receive a shared context package and can call memory tools when the Memory toggle is on.
+The composer shows a **Context** indicator (instruction layers · STATE.md · brief · pinned · relevant). Models receive a shared context package and can call memory + project tools (`project_tree`, `search_project`, `read_file`, `search_chats`, `search_activity`) when enabled. **Tidy memory** merges near-duplicates (never deletes); **Backup** exports `.research/` to a timestamped zip under `.research/backups/`. Optional: commit `.research/` to git.
+
+Long-horizon recall: `pnpm eval:recall --scribe gold` (target ≥90%).
 
 ```bash
 pnpm eval:scribe   # manual quality table vs OpenRouter (not CI)

@@ -1,0 +1,2089 @@
+{
+  "version": 1,
+  "sessions": [
+    {
+      "id": "s1",
+      "day": 0,
+      "title": "Session 1"
+    },
+    {
+      "id": "s2",
+      "day": 2,
+      "title": "Session 2"
+    },
+    {
+      "id": "s3",
+      "day": 4,
+      "title": "Session 3"
+    },
+    {
+      "id": "s4",
+      "day": 6,
+      "title": "Session 4"
+    },
+    {
+      "id": "s5",
+      "day": 8,
+      "title": "Session 5"
+    },
+    {
+      "id": "s6",
+      "day": 10,
+      "title": "Session 6"
+    },
+    {
+      "id": "s7",
+      "day": 12,
+      "title": "Session 7"
+    },
+    {
+      "id": "s8",
+      "day": 14,
+      "title": "Session 8"
+    },
+    {
+      "id": "s9",
+      "day": 16,
+      "title": "Session 9"
+    },
+    {
+      "id": "s10",
+      "day": 18,
+      "title": "Session 10"
+    },
+    {
+      "id": "s11",
+      "day": 20,
+      "title": "Session 11"
+    },
+    {
+      "id": "s12",
+      "day": 22,
+      "title": "Session 12"
+    },
+    {
+      "id": "s13",
+      "day": 24,
+      "title": "Session 13"
+    },
+    {
+      "id": "s14",
+      "day": 26,
+      "title": "Session 14"
+    },
+    {
+      "id": "s15",
+      "day": 28,
+      "title": "Session 15"
+    },
+    {
+      "id": "s16",
+      "day": 30,
+      "title": "Session 16"
+    },
+    {
+      "id": "s17",
+      "day": 32,
+      "title": "Session 17"
+    },
+    {
+      "id": "s18",
+      "day": 34,
+      "title": "Session 18"
+    },
+    {
+      "id": "s19",
+      "day": 36,
+      "title": "Session 19"
+    },
+    {
+      "id": "s20",
+      "day": 38,
+      "title": "Session 20"
+    },
+    {
+      "id": "s21",
+      "day": 40,
+      "title": "Session 21"
+    },
+    {
+      "id": "s22",
+      "day": 42,
+      "title": "Session 22"
+    },
+    {
+      "id": "s23",
+      "day": 44,
+      "title": "Session 23"
+    },
+    {
+      "id": "s24",
+      "day": 46,
+      "title": "Session 24"
+    },
+    {
+      "id": "s25",
+      "day": 48,
+      "title": "Session 25"
+    },
+    {
+      "id": "s26",
+      "day": 50,
+      "title": "Session 26"
+    },
+    {
+      "id": "s27",
+      "day": 52,
+      "title": "Session 27"
+    },
+    {
+      "id": "s28",
+      "day": 54,
+      "title": "Session 28"
+    },
+    {
+      "id": "s29",
+      "day": 56,
+      "title": "Session 29"
+    },
+    {
+      "id": "s30",
+      "day": 58,
+      "title": "Session 30"
+    },
+    {
+      "id": "s31",
+      "day": 60,
+      "title": "Session 31"
+    },
+    {
+      "id": "s32",
+      "day": 62,
+      "title": "Session 32"
+    },
+    {
+      "id": "s33",
+      "day": 64,
+      "title": "Session 33"
+    },
+    {
+      "id": "s34",
+      "day": 66,
+      "title": "Session 34"
+    },
+    {
+      "id": "s35",
+      "day": 68,
+      "title": "Session 35"
+    },
+    {
+      "id": "s36",
+      "day": 70,
+      "title": "Session 36"
+    },
+    {
+      "id": "s37",
+      "day": 72,
+      "title": "Session 37"
+    },
+    {
+      "id": "s38",
+      "day": 74,
+      "title": "Session 38"
+    },
+    {
+      "id": "s39",
+      "day": 76,
+      "title": "Session 39"
+    },
+    {
+      "id": "s40",
+      "day": 78,
+      "title": "Session 40"
+    },
+    {
+      "id": "s41",
+      "day": 80,
+      "title": "Session 41"
+    },
+    {
+      "id": "s42",
+      "day": 82,
+      "title": "Session 42"
+    },
+    {
+      "id": "s43",
+      "day": 84,
+      "title": "Session 43"
+    },
+    {
+      "id": "s44",
+      "day": 86,
+      "title": "Session 44"
+    },
+    {
+      "id": "s45",
+      "day": 88,
+      "title": "Session 45"
+    },
+    {
+      "id": "s46",
+      "day": 90,
+      "title": "Session 46"
+    },
+    {
+      "id": "s47",
+      "day": 92,
+      "title": "Session 47"
+    },
+    {
+      "id": "s48",
+      "day": 94,
+      "title": "Session 48"
+    },
+    {
+      "id": "s49",
+      "day": 96,
+      "title": "Session 49"
+    },
+    {
+      "id": "s50",
+      "day": 98,
+      "title": "Session 50"
+    },
+    {
+      "id": "s51",
+      "day": 100,
+      "title": "Session 51"
+    },
+    {
+      "id": "s52",
+      "day": 102,
+      "title": "Session 52"
+    },
+    {
+      "id": "s53",
+      "day": 104,
+      "title": "Session 53"
+    },
+    {
+      "id": "s54",
+      "day": 106,
+      "title": "Session 54"
+    },
+    {
+      "id": "s55",
+      "day": 108,
+      "title": "Session 55"
+    },
+    {
+      "id": "s56",
+      "day": 110,
+      "title": "Session 56"
+    },
+    {
+      "id": "s57",
+      "day": 112,
+      "title": "Session 57"
+    },
+    {
+      "id": "s58",
+      "day": 114,
+      "title": "Session 58"
+    },
+    {
+      "id": "s59",
+      "day": 116,
+      "title": "Session 59"
+    },
+    {
+      "id": "s60",
+      "day": 118,
+      "title": "Session 60"
+    }
+  ],
+  "facts": [
+    {
+      "key": "primary_metric-r1",
+      "session": 1,
+      "type": "hypothesis",
+      "title": "primary_metric revision 1",
+      "body": "Fact primary_metric value is 1007 at session 1.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r1",
+      "session": 2,
+      "type": "note",
+      "title": "sample_size revision 1",
+      "body": "Fact sample_size value is 1008 at session 2.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r1",
+      "session": 3,
+      "type": "note",
+      "title": "lab_temperature revision 1",
+      "body": "Fact lab_temperature value is 1009 at session 3.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r1",
+      "session": 4,
+      "type": "note",
+      "title": "model_version revision 1",
+      "body": "Fact model_version value is 1010 at session 4.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r1",
+      "session": 5,
+      "type": "note",
+      "title": "deadline revision 1",
+      "body": "Fact deadline value is 1011 at session 5.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r2",
+      "session": 6,
+      "type": "note",
+      "title": "primary_metric revision 2",
+      "body": "Fact primary_metric value is 1019 at session 6.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r2",
+      "session": 7,
+      "type": "note",
+      "title": "sample_size revision 2",
+      "body": "Fact sample_size value is 1020 at session 7.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r2",
+      "session": 8,
+      "type": "hypothesis",
+      "title": "lab_temperature revision 2",
+      "body": "Fact lab_temperature value is 1021 at session 8.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r2",
+      "session": 9,
+      "type": "note",
+      "title": "model_version revision 2",
+      "body": "Fact model_version value is 1022 at session 9.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r2",
+      "session": 10,
+      "type": "note",
+      "title": "deadline revision 2",
+      "body": "Fact deadline value is 1023 at session 10.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r3",
+      "session": 11,
+      "type": "note",
+      "title": "primary_metric revision 3",
+      "body": "Fact primary_metric value is 1031 at session 11.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r3",
+      "session": 12,
+      "type": "decision",
+      "title": "sample_size revision 3",
+      "body": "Fact sample_size value is 1032 at session 12.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r3",
+      "session": 13,
+      "type": "note",
+      "title": "lab_temperature revision 3",
+      "body": "Fact lab_temperature value is 1033 at session 13.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r3",
+      "session": 14,
+      "type": "note",
+      "title": "model_version revision 3",
+      "body": "Fact model_version value is 1034 at session 14.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r3",
+      "session": 15,
+      "type": "hypothesis",
+      "title": "deadline revision 3",
+      "body": "Fact deadline value is 1035 at session 15.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r4",
+      "session": 16,
+      "type": "note",
+      "title": "primary_metric revision 4",
+      "body": "Fact primary_metric value is 1043 at session 16.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r4",
+      "session": 17,
+      "type": "note",
+      "title": "sample_size revision 4",
+      "body": "Fact sample_size value is 1044 at session 17.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r4",
+      "session": 18,
+      "type": "note",
+      "title": "lab_temperature revision 4",
+      "body": "Fact lab_temperature value is 1045 at session 18.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r4",
+      "session": 19,
+      "type": "note",
+      "title": "model_version revision 4",
+      "body": "Fact model_version value is 1046 at session 19.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r4",
+      "session": 20,
+      "type": "note",
+      "title": "deadline revision 4",
+      "body": "Fact deadline value is 1047 at session 20.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r5",
+      "session": 21,
+      "type": "note",
+      "title": "primary_metric revision 5",
+      "body": "Fact primary_metric value is 1055 at session 21.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r5",
+      "session": 22,
+      "type": "hypothesis",
+      "title": "sample_size revision 5",
+      "body": "Fact sample_size value is 1056 at session 22.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r5",
+      "session": 23,
+      "type": "decision",
+      "title": "lab_temperature revision 5",
+      "body": "Fact lab_temperature value is 1057 at session 23.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r5",
+      "session": 24,
+      "type": "note",
+      "title": "model_version revision 5",
+      "body": "Fact model_version value is 1058 at session 24.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r5",
+      "session": 25,
+      "type": "note",
+      "title": "deadline revision 5",
+      "body": "Fact deadline value is 1059 at session 25.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r6",
+      "session": 26,
+      "type": "note",
+      "title": "primary_metric revision 6",
+      "body": "Fact primary_metric value is 1067 at session 26.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r6",
+      "session": 27,
+      "type": "note",
+      "title": "sample_size revision 6",
+      "body": "Fact sample_size value is 1068 at session 27.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r6",
+      "session": 28,
+      "type": "note",
+      "title": "lab_temperature revision 6",
+      "body": "Fact lab_temperature value is 1069 at session 28.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r6",
+      "session": 29,
+      "type": "hypothesis",
+      "title": "model_version revision 6",
+      "body": "Fact model_version value is 1070 at session 29.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r6",
+      "session": 30,
+      "type": "note",
+      "title": "deadline revision 6",
+      "body": "Fact deadline value is 1071 at session 30.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r7",
+      "session": 31,
+      "type": "note",
+      "title": "primary_metric revision 7",
+      "body": "Fact primary_metric value is 1079 at session 31.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r7",
+      "session": 32,
+      "type": "note",
+      "title": "sample_size revision 7",
+      "body": "Fact sample_size value is 1080 at session 32.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r7",
+      "session": 33,
+      "type": "note",
+      "title": "lab_temperature revision 7",
+      "body": "Fact lab_temperature value is 1081 at session 33.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r7",
+      "session": 34,
+      "type": "decision",
+      "title": "model_version revision 7",
+      "body": "Fact model_version value is 1082 at session 34.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r7",
+      "session": 35,
+      "type": "note",
+      "title": "deadline revision 7",
+      "body": "Fact deadline value is 1083 at session 35.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r8",
+      "session": 36,
+      "type": "hypothesis",
+      "title": "primary_metric revision 8",
+      "body": "Fact primary_metric value is 1091 at session 36.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r8",
+      "session": 37,
+      "type": "note",
+      "title": "sample_size revision 8",
+      "body": "Fact sample_size value is 1092 at session 37.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r8",
+      "session": 38,
+      "type": "note",
+      "title": "lab_temperature revision 8",
+      "body": "Fact lab_temperature value is 1093 at session 38.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r8",
+      "session": 39,
+      "type": "note",
+      "title": "model_version revision 8",
+      "body": "Fact model_version value is 1094 at session 39.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r8",
+      "session": 40,
+      "type": "note",
+      "title": "deadline revision 8",
+      "body": "Fact deadline value is 1095 at session 40.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r9",
+      "session": 41,
+      "type": "note",
+      "title": "primary_metric revision 9",
+      "body": "Fact primary_metric value is 1103 at session 41.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r9",
+      "session": 42,
+      "type": "note",
+      "title": "sample_size revision 9",
+      "body": "Fact sample_size value is 1104 at session 42.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r9",
+      "session": 43,
+      "type": "hypothesis",
+      "title": "lab_temperature revision 9",
+      "body": "Fact lab_temperature value is 1105 at session 43.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r9",
+      "session": 44,
+      "type": "note",
+      "title": "model_version revision 9",
+      "body": "Fact model_version value is 1106 at session 44.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r9",
+      "session": 45,
+      "type": "decision",
+      "title": "deadline revision 9",
+      "body": "Fact deadline value is 1107 at session 45.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r10",
+      "session": 46,
+      "type": "note",
+      "title": "primary_metric revision 10",
+      "body": "Fact primary_metric value is 1115 at session 46.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r10",
+      "session": 47,
+      "type": "note",
+      "title": "sample_size revision 10",
+      "body": "Fact sample_size value is 1116 at session 47.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r10",
+      "session": 48,
+      "type": "note",
+      "title": "lab_temperature revision 10",
+      "body": "Fact lab_temperature value is 1117 at session 48.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r10",
+      "session": 49,
+      "type": "note",
+      "title": "model_version revision 10",
+      "body": "Fact model_version value is 1118 at session 49.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r10",
+      "session": 50,
+      "type": "hypothesis",
+      "title": "deadline revision 10",
+      "body": "Fact deadline value is 1119 at session 50.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r11",
+      "session": 51,
+      "type": "note",
+      "title": "primary_metric revision 11",
+      "body": "Fact primary_metric value is 1127 at session 51.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r11",
+      "session": 52,
+      "type": "note",
+      "title": "sample_size revision 11",
+      "body": "Fact sample_size value is 1128 at session 52.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r11",
+      "session": 53,
+      "type": "note",
+      "title": "lab_temperature revision 11",
+      "body": "Fact lab_temperature value is 1129 at session 53.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r11",
+      "session": 54,
+      "type": "note",
+      "title": "model_version revision 11",
+      "body": "Fact model_version value is 1130 at session 54.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r11",
+      "session": 55,
+      "type": "note",
+      "title": "deadline revision 11",
+      "body": "Fact deadline value is 1131 at session 55.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r12",
+      "session": 56,
+      "type": "decision",
+      "title": "primary_metric revision 12",
+      "body": "Fact primary_metric value is 1139 at session 56.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r12",
+      "session": 57,
+      "type": "hypothesis",
+      "title": "sample_size revision 12",
+      "body": "Fact sample_size value is 1140 at session 57.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r12",
+      "session": 58,
+      "type": "note",
+      "title": "lab_temperature revision 12",
+      "body": "Fact lab_temperature value is 1141 at session 58.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r12",
+      "session": 59,
+      "type": "note",
+      "title": "model_version revision 12",
+      "body": "Fact model_version value is 1142 at session 59.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r12",
+      "session": 60,
+      "type": "note",
+      "title": "deadline revision 12",
+      "body": "Fact deadline value is 1143 at session 60.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r13",
+      "session": 1,
+      "type": "note",
+      "title": "primary_metric revision 13",
+      "body": "Fact primary_metric value is 1151 at session 1.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r13",
+      "session": 2,
+      "type": "note",
+      "title": "sample_size revision 13",
+      "body": "Fact sample_size value is 1152 at session 2.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r13",
+      "session": 3,
+      "type": "note",
+      "title": "lab_temperature revision 13",
+      "body": "Fact lab_temperature value is 1153 at session 3.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r13",
+      "session": 4,
+      "type": "hypothesis",
+      "title": "model_version revision 13",
+      "body": "Fact model_version value is 1154 at session 4.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r13",
+      "session": 5,
+      "type": "note",
+      "title": "deadline revision 13",
+      "body": "Fact deadline value is 1155 at session 5.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r14",
+      "session": 6,
+      "type": "note",
+      "title": "primary_metric revision 14",
+      "body": "Fact primary_metric value is 1163 at session 6.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r14",
+      "session": 7,
+      "type": "decision",
+      "title": "sample_size revision 14",
+      "body": "Fact sample_size value is 1164 at session 7.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r14",
+      "session": 8,
+      "type": "note",
+      "title": "lab_temperature revision 14",
+      "body": "Fact lab_temperature value is 1165 at session 8.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r14",
+      "session": 9,
+      "type": "note",
+      "title": "model_version revision 14",
+      "body": "Fact model_version value is 1166 at session 9.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r14",
+      "session": 10,
+      "type": "note",
+      "title": "deadline revision 14",
+      "body": "Fact deadline value is 1167 at session 10.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r15",
+      "session": 11,
+      "type": "hypothesis",
+      "title": "primary_metric revision 15",
+      "body": "Fact primary_metric value is 1175 at session 11.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r15",
+      "session": 12,
+      "type": "note",
+      "title": "sample_size revision 15",
+      "body": "Fact sample_size value is 1176 at session 12.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r15",
+      "session": 13,
+      "type": "note",
+      "title": "lab_temperature revision 15",
+      "body": "Fact lab_temperature value is 1177 at session 13.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r15",
+      "session": 14,
+      "type": "note",
+      "title": "model_version revision 15",
+      "body": "Fact model_version value is 1178 at session 14.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r15",
+      "session": 15,
+      "type": "note",
+      "title": "deadline revision 15",
+      "body": "Fact deadline value is 1179 at session 15.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r16",
+      "session": 16,
+      "type": "note",
+      "title": "primary_metric revision 16",
+      "body": "Fact primary_metric value is 1187 at session 16.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r16",
+      "session": 17,
+      "type": "note",
+      "title": "sample_size revision 16",
+      "body": "Fact sample_size value is 1188 at session 17.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r16",
+      "session": 18,
+      "type": "hypothesis",
+      "title": "lab_temperature revision 16",
+      "body": "Fact lab_temperature value is 1189 at session 18.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r16",
+      "session": 19,
+      "type": "note",
+      "title": "model_version revision 16",
+      "body": "Fact model_version value is 1190 at session 19.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r16",
+      "session": 20,
+      "type": "note",
+      "title": "deadline revision 16",
+      "body": "Fact deadline value is 1191 at session 20.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r17",
+      "session": 21,
+      "type": "note",
+      "title": "primary_metric revision 17",
+      "body": "Fact primary_metric value is 1199 at session 21.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r17",
+      "session": 22,
+      "type": "note",
+      "title": "sample_size revision 17",
+      "body": "Fact sample_size value is 1200 at session 22.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r17",
+      "session": 23,
+      "type": "note",
+      "title": "lab_temperature revision 17",
+      "body": "Fact lab_temperature value is 1201 at session 23.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r17",
+      "session": 24,
+      "type": "note",
+      "title": "model_version revision 17",
+      "body": "Fact model_version value is 1202 at session 24.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r17",
+      "session": 25,
+      "type": "hypothesis",
+      "title": "deadline revision 17",
+      "body": "Fact deadline value is 1203 at session 25.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r18",
+      "session": 26,
+      "type": "note",
+      "title": "primary_metric revision 18",
+      "body": "Fact primary_metric value is 1211 at session 26.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r18",
+      "session": 27,
+      "type": "note",
+      "title": "sample_size revision 18",
+      "body": "Fact sample_size value is 1212 at session 27.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r18",
+      "session": 28,
+      "type": "note",
+      "title": "lab_temperature revision 18",
+      "body": "Fact lab_temperature value is 1213 at session 28.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r18",
+      "session": 29,
+      "type": "decision",
+      "title": "model_version revision 18",
+      "body": "Fact model_version value is 1214 at session 29.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r18",
+      "session": 30,
+      "type": "note",
+      "title": "deadline revision 18",
+      "body": "Fact deadline value is 1215 at session 30.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r19",
+      "session": 31,
+      "type": "note",
+      "title": "primary_metric revision 19",
+      "body": "Fact primary_metric value is 1223 at session 31.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r19",
+      "session": 32,
+      "type": "hypothesis",
+      "title": "sample_size revision 19",
+      "body": "Fact sample_size value is 1224 at session 32.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r19",
+      "session": 33,
+      "type": "note",
+      "title": "lab_temperature revision 19",
+      "body": "Fact lab_temperature value is 1225 at session 33.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r19",
+      "session": 34,
+      "type": "note",
+      "title": "model_version revision 19",
+      "body": "Fact model_version value is 1226 at session 34.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r19",
+      "session": 35,
+      "type": "note",
+      "title": "deadline revision 19",
+      "body": "Fact deadline value is 1227 at session 35.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric-r20",
+      "session": 36,
+      "type": "note",
+      "title": "primary_metric revision 20",
+      "body": "Fact primary_metric value is 1235 at session 36.",
+      "distractor": false
+    },
+    {
+      "key": "sample_size-r20",
+      "session": 37,
+      "type": "note",
+      "title": "sample_size revision 20",
+      "body": "Fact sample_size value is 1236 at session 37.",
+      "distractor": false
+    },
+    {
+      "key": "lab_temperature-r20",
+      "session": 38,
+      "type": "note",
+      "title": "lab_temperature revision 20",
+      "body": "Fact lab_temperature value is 1237 at session 38.",
+      "distractor": false
+    },
+    {
+      "key": "model_version-r20",
+      "session": 39,
+      "type": "hypothesis",
+      "title": "model_version revision 20",
+      "body": "Fact model_version value is 1238 at session 39.",
+      "distractor": false
+    },
+    {
+      "key": "deadline-r20",
+      "session": 40,
+      "type": "decision",
+      "title": "deadline revision 20",
+      "body": "Fact deadline value is 1239 at session 40.",
+      "distractor": false
+    },
+    {
+      "key": "primary_metric",
+      "session": 22,
+      "type": "note",
+      "title": "primary_metric (v1)",
+      "body": "Latest primary_metric is VALUE-1-0-22."
+    },
+    {
+      "key": "primary_metric",
+      "session": 34,
+      "type": "note",
+      "title": "primary_metric (v2)",
+      "body": "Latest primary_metric is VALUE-2-0-34."
+    },
+    {
+      "key": "primary_metric",
+      "session": 46,
+      "type": "note",
+      "title": "primary_metric (v3)",
+      "body": "Latest primary_metric is VALUE-3-0-46."
+    },
+    {
+      "key": "primary_metric",
+      "session": 58,
+      "type": "note",
+      "title": "primary_metric (v4)",
+      "body": "Latest primary_metric is VALUE-4-0-58."
+    },
+    {
+      "key": "sample_size",
+      "session": 23,
+      "type": "note",
+      "title": "sample_size (v1)",
+      "body": "Latest sample_size is VALUE-1-1-23."
+    },
+    {
+      "key": "sample_size",
+      "session": 35,
+      "type": "note",
+      "title": "sample_size (v2)",
+      "body": "Latest sample_size is VALUE-2-1-35."
+    },
+    {
+      "key": "sample_size",
+      "session": 47,
+      "type": "note",
+      "title": "sample_size (v3)",
+      "body": "Latest sample_size is VALUE-3-1-47."
+    },
+    {
+      "key": "sample_size",
+      "session": 59,
+      "type": "note",
+      "title": "sample_size (v4)",
+      "body": "Latest sample_size is VALUE-4-1-59."
+    },
+    {
+      "key": "lab_temperature",
+      "session": 24,
+      "type": "note",
+      "title": "lab_temperature (v1)",
+      "body": "Latest lab_temperature is VALUE-1-2-24."
+    },
+    {
+      "key": "lab_temperature",
+      "session": 36,
+      "type": "note",
+      "title": "lab_temperature (v2)",
+      "body": "Latest lab_temperature is VALUE-2-2-36."
+    },
+    {
+      "key": "lab_temperature",
+      "session": 48,
+      "type": "note",
+      "title": "lab_temperature (v3)",
+      "body": "Latest lab_temperature is VALUE-3-2-48."
+    },
+    {
+      "key": "lab_temperature",
+      "session": 60,
+      "type": "note",
+      "title": "lab_temperature (v4)",
+      "body": "Latest lab_temperature is VALUE-4-2-60."
+    },
+    {
+      "key": "model_version",
+      "session": 25,
+      "type": "note",
+      "title": "model_version (v1)",
+      "body": "Latest model_version is VALUE-1-3-25."
+    },
+    {
+      "key": "model_version",
+      "session": 37,
+      "type": "note",
+      "title": "model_version (v2)",
+      "body": "Latest model_version is VALUE-2-3-37."
+    },
+    {
+      "key": "model_version",
+      "session": 49,
+      "type": "note",
+      "title": "model_version (v3)",
+      "body": "Latest model_version is VALUE-3-3-49."
+    },
+    {
+      "key": "model_version",
+      "session": 60,
+      "type": "note",
+      "title": "model_version (v4)",
+      "body": "Latest model_version is VALUE-4-3-60."
+    },
+    {
+      "key": "deadline",
+      "session": 26,
+      "type": "note",
+      "title": "deadline (v1)",
+      "body": "Latest deadline is VALUE-1-4-26."
+    },
+    {
+      "key": "deadline",
+      "session": 38,
+      "type": "note",
+      "title": "deadline (v2)",
+      "body": "Latest deadline is VALUE-2-4-38."
+    },
+    {
+      "key": "deadline",
+      "session": 50,
+      "type": "note",
+      "title": "deadline (v3)",
+      "body": "Latest deadline is VALUE-3-4-50."
+    },
+    {
+      "key": "deadline",
+      "session": 60,
+      "type": "note",
+      "title": "deadline (v4)",
+      "body": "Latest deadline is VALUE-4-4-60."
+    },
+    {
+      "key": "distractor-0",
+      "session": 1,
+      "type": "note",
+      "title": "Unrelated noise 0",
+      "body": "Random distractor about unrelated topic zebra-0 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-1",
+      "session": 2,
+      "type": "note",
+      "title": "Unrelated noise 1",
+      "body": "Random distractor about unrelated topic zebra-1 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-2",
+      "session": 3,
+      "type": "note",
+      "title": "Unrelated noise 2",
+      "body": "Random distractor about unrelated topic zebra-2 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-3",
+      "session": 4,
+      "type": "note",
+      "title": "Unrelated noise 3",
+      "body": "Random distractor about unrelated topic zebra-3 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-4",
+      "session": 5,
+      "type": "note",
+      "title": "Unrelated noise 4",
+      "body": "Random distractor about unrelated topic zebra-4 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-5",
+      "session": 6,
+      "type": "note",
+      "title": "Unrelated noise 5",
+      "body": "Random distractor about unrelated topic zebra-5 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-6",
+      "session": 7,
+      "type": "note",
+      "title": "Unrelated noise 6",
+      "body": "Random distractor about unrelated topic zebra-6 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-7",
+      "session": 8,
+      "type": "note",
+      "title": "Unrelated noise 7",
+      "body": "Random distractor about unrelated topic zebra-7 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-8",
+      "session": 9,
+      "type": "note",
+      "title": "Unrelated noise 8",
+      "body": "Random distractor about unrelated topic zebra-8 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-9",
+      "session": 10,
+      "type": "note",
+      "title": "Unrelated noise 9",
+      "body": "Random distractor about unrelated topic zebra-9 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-10",
+      "session": 11,
+      "type": "note",
+      "title": "Unrelated noise 10",
+      "body": "Random distractor about unrelated topic zebra-10 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-11",
+      "session": 12,
+      "type": "note",
+      "title": "Unrelated noise 11",
+      "body": "Random distractor about unrelated topic zebra-11 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-12",
+      "session": 13,
+      "type": "note",
+      "title": "Unrelated noise 12",
+      "body": "Random distractor about unrelated topic zebra-12 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-13",
+      "session": 14,
+      "type": "note",
+      "title": "Unrelated noise 13",
+      "body": "Random distractor about unrelated topic zebra-13 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-14",
+      "session": 15,
+      "type": "note",
+      "title": "Unrelated noise 14",
+      "body": "Random distractor about unrelated topic zebra-14 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-15",
+      "session": 16,
+      "type": "note",
+      "title": "Unrelated noise 15",
+      "body": "Random distractor about unrelated topic zebra-15 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-16",
+      "session": 17,
+      "type": "note",
+      "title": "Unrelated noise 16",
+      "body": "Random distractor about unrelated topic zebra-16 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-17",
+      "session": 18,
+      "type": "note",
+      "title": "Unrelated noise 17",
+      "body": "Random distractor about unrelated topic zebra-17 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-18",
+      "session": 19,
+      "type": "note",
+      "title": "Unrelated noise 18",
+      "body": "Random distractor about unrelated topic zebra-18 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-19",
+      "session": 20,
+      "type": "note",
+      "title": "Unrelated noise 19",
+      "body": "Random distractor about unrelated topic zebra-19 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-20",
+      "session": 21,
+      "type": "note",
+      "title": "Unrelated noise 20",
+      "body": "Random distractor about unrelated topic zebra-20 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-21",
+      "session": 22,
+      "type": "note",
+      "title": "Unrelated noise 21",
+      "body": "Random distractor about unrelated topic zebra-21 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-22",
+      "session": 23,
+      "type": "note",
+      "title": "Unrelated noise 22",
+      "body": "Random distractor about unrelated topic zebra-22 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-23",
+      "session": 24,
+      "type": "note",
+      "title": "Unrelated noise 23",
+      "body": "Random distractor about unrelated topic zebra-23 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-24",
+      "session": 25,
+      "type": "note",
+      "title": "Unrelated noise 24",
+      "body": "Random distractor about unrelated topic zebra-24 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-25",
+      "session": 26,
+      "type": "note",
+      "title": "Unrelated noise 25",
+      "body": "Random distractor about unrelated topic zebra-25 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-26",
+      "session": 27,
+      "type": "note",
+      "title": "Unrelated noise 26",
+      "body": "Random distractor about unrelated topic zebra-26 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-27",
+      "session": 28,
+      "type": "note",
+      "title": "Unrelated noise 27",
+      "body": "Random distractor about unrelated topic zebra-27 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-28",
+      "session": 29,
+      "type": "note",
+      "title": "Unrelated noise 28",
+      "body": "Random distractor about unrelated topic zebra-28 not relevant.",
+      "distractor": true
+    },
+    {
+      "key": "distractor-29",
+      "session": 30,
+      "type": "note",
+      "title": "Unrelated noise 29",
+      "body": "Random distractor about unrelated topic zebra-29 not relevant.",
+      "distractor": true
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-1",
+      "query": "What is the latest primary metric?",
+      "expected": "Latest primary_metric is VALUE-4-0-58.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-2",
+      "query": "What is the latest sample size?",
+      "expected": "Latest sample_size is VALUE-4-1-59.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-3",
+      "query": "What is the latest lab temperature?",
+      "expected": "Latest lab_temperature is VALUE-4-2-60.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-4",
+      "query": "What is the latest model version?",
+      "expected": "Latest model_version is VALUE-4-3-60.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-5",
+      "query": "What is the latest deadline?",
+      "expected": "Latest deadline is VALUE-4-4-60.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-6",
+      "query": "Recall: primary_metric revision 1",
+      "expected": "Fact primary_metric value is 1007 at session 1.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-7",
+      "query": "Recall: primary_metric revision 13",
+      "expected": "Fact primary_metric value is 1151 at session 1.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-8",
+      "query": "Recall: sample_size revision 1",
+      "expected": "Fact sample_size value is 1008 at session 2.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-9",
+      "query": "Recall: sample_size revision 13",
+      "expected": "Fact sample_size value is 1152 at session 2.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-10",
+      "query": "Recall: lab_temperature revision 1",
+      "expected": "Fact lab_temperature value is 1009 at session 3.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-11",
+      "query": "Recall: lab_temperature revision 13",
+      "expected": "Fact lab_temperature value is 1153 at session 3.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-12",
+      "query": "Recall: model_version revision 1",
+      "expected": "Fact model_version value is 1010 at session 4.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-13",
+      "query": "Recall: model_version revision 13",
+      "expected": "Fact model_version value is 1154 at session 4.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-14",
+      "query": "Recall: deadline revision 1",
+      "expected": "Fact deadline value is 1011 at session 5.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-15",
+      "query": "Recall: deadline revision 13",
+      "expected": "Fact deadline value is 1155 at session 5.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-16",
+      "query": "Recall: primary_metric revision 2",
+      "expected": "Fact primary_metric value is 1019 at session 6.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-17",
+      "query": "Recall: primary_metric revision 14",
+      "expected": "Fact primary_metric value is 1163 at session 6.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-18",
+      "query": "Recall: sample_size revision 2",
+      "expected": "Fact sample_size value is 1020 at session 7.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-19",
+      "query": "Recall: sample_size revision 14",
+      "expected": "Fact sample_size value is 1164 at session 7.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-20",
+      "query": "Recall: lab_temperature revision 2",
+      "expected": "Fact lab_temperature value is 1021 at session 8.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-21",
+      "query": "Recall: lab_temperature revision 14",
+      "expected": "Fact lab_temperature value is 1165 at session 8.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-22",
+      "query": "Recall: model_version revision 2",
+      "expected": "Fact model_version value is 1022 at session 9.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-23",
+      "query": "Recall: model_version revision 14",
+      "expected": "Fact model_version value is 1166 at session 9.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-24",
+      "query": "Recall: deadline revision 2",
+      "expected": "Fact deadline value is 1023 at session 10.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-25",
+      "query": "Recall: deadline revision 14",
+      "expected": "Fact deadline value is 1167 at session 10.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-26",
+      "query": "Recall: primary_metric revision 3",
+      "expected": "Fact primary_metric value is 1031 at session 11.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-27",
+      "query": "Recall: primary_metric revision 15",
+      "expected": "Fact primary_metric value is 1175 at session 11.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-28",
+      "query": "Recall: sample_size revision 3",
+      "expected": "Fact sample_size value is 1032 at session 12.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-29",
+      "query": "Recall: sample_size revision 15",
+      "expected": "Fact sample_size value is 1176 at session 12.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-30",
+      "query": "Recall: lab_temperature revision 3",
+      "expected": "Fact lab_temperature value is 1033 at session 13.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-31",
+      "query": "Recall: lab_temperature revision 15",
+      "expected": "Fact lab_temperature value is 1177 at session 13.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-32",
+      "query": "Recall: model_version revision 3",
+      "expected": "Fact model_version value is 1034 at session 14.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-33",
+      "query": "Recall: model_version revision 15",
+      "expected": "Fact model_version value is 1178 at session 14.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-34",
+      "query": "Recall: deadline revision 3",
+      "expected": "Fact deadline value is 1035 at session 15.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-35",
+      "query": "Recall: deadline revision 15",
+      "expected": "Fact deadline value is 1179 at session 15.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-36",
+      "query": "Recall: primary_metric revision 4",
+      "expected": "Fact primary_metric value is 1043 at session 16.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-37",
+      "query": "Recall: primary_metric revision 16",
+      "expected": "Fact primary_metric value is 1187 at session 16.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-38",
+      "query": "Recall: sample_size revision 4",
+      "expected": "Fact sample_size value is 1044 at session 17.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-39",
+      "query": "Recall: sample_size revision 16",
+      "expected": "Fact sample_size value is 1188 at session 17.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-40",
+      "query": "Recall: lab_temperature revision 4",
+      "expected": "Fact lab_temperature value is 1045 at session 18.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-41",
+      "query": "Recall: lab_temperature revision 16",
+      "expected": "Fact lab_temperature value is 1189 at session 18.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-42",
+      "query": "Recall: model_version revision 4",
+      "expected": "Fact model_version value is 1046 at session 19.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-43",
+      "query": "Recall: model_version revision 16",
+      "expected": "Fact model_version value is 1190 at session 19.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-44",
+      "query": "Recall: deadline revision 4",
+      "expected": "Fact deadline value is 1047 at session 20.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-45",
+      "query": "Recall: deadline revision 16",
+      "expected": "Fact deadline value is 1191 at session 20.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-46",
+      "query": "Recall: primary_metric revision 5",
+      "expected": "Fact primary_metric value is 1055 at session 21.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-47",
+      "query": "Recall: primary_metric revision 17",
+      "expected": "Fact primary_metric value is 1199 at session 21.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-48",
+      "query": "Recall: sample_size revision 5",
+      "expected": "Fact sample_size value is 1056 at session 22.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-49",
+      "query": "Recall: sample_size revision 17",
+      "expected": "Fact sample_size value is 1200 at session 22.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-50",
+      "query": "Recall: lab_temperature revision 5",
+      "expected": "Fact lab_temperature value is 1057 at session 23.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-51",
+      "query": "Recall: lab_temperature revision 17",
+      "expected": "Fact lab_temperature value is 1201 at session 23.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-52",
+      "query": "Recall: model_version revision 5",
+      "expected": "Fact model_version value is 1058 at session 24.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-53",
+      "query": "Recall: model_version revision 17",
+      "expected": "Fact model_version value is 1202 at session 24.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-54",
+      "query": "Recall: deadline revision 5",
+      "expected": "Fact deadline value is 1059 at session 25.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-55",
+      "query": "Recall: deadline revision 17",
+      "expected": "Fact deadline value is 1203 at session 25.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-56",
+      "query": "Recall: primary_metric revision 6",
+      "expected": "Fact primary_metric value is 1067 at session 26.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-57",
+      "query": "Recall: primary_metric revision 18",
+      "expected": "Fact primary_metric value is 1211 at session 26.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-58",
+      "query": "Recall: sample_size revision 6",
+      "expected": "Fact sample_size value is 1068 at session 27.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-59",
+      "query": "Recall: sample_size revision 18",
+      "expected": "Fact sample_size value is 1212 at session 27.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-60",
+      "query": "Recall: lab_temperature revision 6",
+      "expected": "Fact lab_temperature value is 1069 at session 28.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-61",
+      "query": "Recall: lab_temperature revision 18",
+      "expected": "Fact lab_temperature value is 1213 at session 28.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-62",
+      "query": "Recall: model_version revision 6",
+      "expected": "Fact model_version value is 1070 at session 29.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-63",
+      "query": "Recall: model_version revision 18",
+      "expected": "Fact model_version value is 1214 at session 29.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-64",
+      "query": "Recall: deadline revision 6",
+      "expected": "Fact deadline value is 1071 at session 30.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-65",
+      "query": "Recall: deadline revision 18",
+      "expected": "Fact deadline value is 1215 at session 30.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-66",
+      "query": "Recall: primary_metric revision 7",
+      "expected": "Fact primary_metric value is 1079 at session 31.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-67",
+      "query": "Recall: primary_metric revision 19",
+      "expected": "Fact primary_metric value is 1223 at session 31.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-68",
+      "query": "Recall: sample_size revision 7",
+      "expected": "Fact sample_size value is 1080 at session 32.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-69",
+      "query": "Recall: sample_size revision 19",
+      "expected": "Fact sample_size value is 1224 at session 32.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-70",
+      "query": "Recall: lab_temperature revision 7",
+      "expected": "Fact lab_temperature value is 1081 at session 33.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-71",
+      "query": "Recall: lab_temperature revision 19",
+      "expected": "Fact lab_temperature value is 1225 at session 33.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-72",
+      "query": "Recall: model_version revision 7",
+      "expected": "Fact model_version value is 1082 at session 34.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-73",
+      "query": "Recall: model_version revision 19",
+      "expected": "Fact model_version value is 1226 at session 34.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-74",
+      "query": "Recall: deadline revision 7",
+      "expected": "Fact deadline value is 1083 at session 35.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-75",
+      "query": "Recall: deadline revision 19",
+      "expected": "Fact deadline value is 1227 at session 35.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-76",
+      "query": "Recall: primary_metric revision 8",
+      "expected": "Fact primary_metric value is 1091 at session 36.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-77",
+      "query": "Recall: primary_metric revision 20",
+      "expected": "Fact primary_metric value is 1235 at session 36.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-78",
+      "query": "Recall: sample_size revision 8",
+      "expected": "Fact sample_size value is 1092 at session 37.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-79",
+      "query": "Recall: sample_size revision 20",
+      "expected": "Fact sample_size value is 1236 at session 37.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-80",
+      "query": "Recall: lab_temperature revision 8",
+      "expected": "Fact lab_temperature value is 1093 at session 38.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-81",
+      "query": "Recall: lab_temperature revision 20",
+      "expected": "Fact lab_temperature value is 1237 at session 38.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-82",
+      "query": "Recall: model_version revision 8",
+      "expected": "Fact model_version value is 1094 at session 39.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-83",
+      "query": "Recall: model_version revision 20",
+      "expected": "Fact model_version value is 1238 at session 39.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-84",
+      "query": "Recall: deadline revision 8",
+      "expected": "Fact deadline value is 1095 at session 40.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-85",
+      "query": "Recall: deadline revision 20",
+      "expected": "Fact deadline value is 1239 at session 40.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-86",
+      "query": "Recall: primary_metric revision 9",
+      "expected": "Fact primary_metric value is 1103 at session 41.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-87",
+      "query": "Recall: sample_size revision 9",
+      "expected": "Fact sample_size value is 1104 at session 42.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-88",
+      "query": "Recall: lab_temperature revision 9",
+      "expected": "Fact lab_temperature value is 1105 at session 43.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-89",
+      "query": "Recall: model_version revision 9",
+      "expected": "Fact model_version value is 1106 at session 44.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-90",
+      "query": "Recall: deadline revision 9",
+      "expected": "Fact deadline value is 1107 at session 45.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-91",
+      "query": "Recall: primary_metric revision 10",
+      "expected": "Fact primary_metric value is 1115 at session 46.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-92",
+      "query": "Recall: sample_size revision 10",
+      "expected": "Fact sample_size value is 1116 at session 47.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-93",
+      "query": "Recall: lab_temperature revision 10",
+      "expected": "Fact lab_temperature value is 1117 at session 48.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-94",
+      "query": "Recall: model_version revision 10",
+      "expected": "Fact model_version value is 1118 at session 49.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-95",
+      "query": "Recall: deadline revision 10",
+      "expected": "Fact deadline value is 1119 at session 50.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-96",
+      "query": "Recall: primary_metric revision 11",
+      "expected": "Fact primary_metric value is 1127 at session 51.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-97",
+      "query": "Recall: sample_size revision 11",
+      "expected": "Fact sample_size value is 1128 at session 52.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-98",
+      "query": "Recall: lab_temperature revision 11",
+      "expected": "Fact lab_temperature value is 1129 at session 53.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-99",
+      "query": "Recall: model_version revision 11",
+      "expected": "Fact model_version value is 1130 at session 54.",
+      "match": "semantic"
+    },
+    {
+      "id": "q-100",
+      "query": "Recall: deadline revision 11",
+      "expected": "Fact deadline value is 1131 at session 55.",
+      "match": "semantic"
+    }
+  ]
+}
