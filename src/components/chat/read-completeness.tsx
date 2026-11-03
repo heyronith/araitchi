@@ -46,10 +46,7 @@ export function ReadCompleteness({
   if (!hasReadTool || !files || Object.keys(files).length === 0) return null;
 
   return (
-    <div
-      className="flex flex-wrap gap-1.5"
-      data-testid="read-completeness"
-    >
+    <div className="flex flex-wrap gap-1.5" data-testid="read-completeness">
       {Object.entries(files).map(([path, info]) => (
         <Badge
           key={path}

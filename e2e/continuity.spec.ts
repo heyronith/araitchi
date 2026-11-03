@@ -64,9 +64,9 @@ test.describe("T12 continuity", () => {
 
     await page.getByRole("button", { name: "Open settings" }).click();
     await page.getByRole("tab", { name: /^Memory$/i }).click();
-    await expect(page.getByTestId("project-index-progress").first()).toBeVisible(
-      { timeout: 20_000 },
-    );
+    await expect(
+      page.getByTestId("project-index-progress").first(),
+    ).toBeVisible({ timeout: 20_000 });
     await page.getByRole("tab", { name: /Instructions/i }).click();
     await expect(page.getByTestId("instructions-settings")).toBeVisible();
     const editor = page.getByTestId("project-agents-editor");
@@ -117,6 +117,7 @@ test.describe("T12 continuity", () => {
     await expect(page.getByTestId("backup-export")).toBeVisible({
       timeout: 10_000,
     });
+    await expect(page.getByTestId("backup-import")).toBeVisible();
     await page.getByRole("button", { name: /Tidy memory/i }).click();
     await expect(page.getByTestId("tidy-memory-dialog")).toBeVisible();
     await page.keyboard.press("Escape");

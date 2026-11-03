@@ -130,10 +130,7 @@ export function StatePanel({ active }: StatePanelProps) {
   }
 
   return (
-    <div
-      className="flex min-h-0 flex-1 flex-col p-3"
-      data-testid="state-panel"
-    >
+    <div className="flex min-h-0 flex-1 flex-col p-3" data-testid="state-panel">
       <div className="mb-2 flex flex-wrap gap-2">
         <Button
           type="button"
@@ -197,9 +194,7 @@ export function StatePanel({ active }: StatePanelProps) {
                   variant="ghost"
                   className="h-7"
                   data-testid="state-dismiss-proposal"
-                  onClick={() =>
-                    void proposalAction(p.id, "dismissProposal")
-                  }
+                  onClick={() => void proposalAction(p.id, "dismissProposal")}
                 >
                   Dismiss
                 </Button>

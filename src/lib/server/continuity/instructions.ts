@@ -242,7 +242,10 @@ export function buildInstructionLayers(
 /** Strip any attempt by low-trust text to authorise tools (defense in depth). */
 export function sanitizeLowTrustInstructions(text: string): string {
   return text
-    .replace(/\b(always\s+allow|auto-?approve|skip\s+approval|grant\s+tool)\b/gi, "[redacted]")
+    .replace(
+      /\b(always\s+allow|auto-?approve|skip\s+approval|grant\s+tool)\b/gi,
+      "[redacted]",
+    )
     .replace(/\bAUTHORISE[_ ]TOOLS?\b/gi, "[redacted]");
 }
 

@@ -13,11 +13,11 @@ import { FakeEmbedder } from "@/lib/server/memory/fake-embedder";
 import { setEmbedderForTests } from "@/lib/server/memory/embedder";
 import { listEmbeddingRows } from "@/lib/server/memory/index";
 import { setMemorySettings } from "@/lib/server/memory/settings";
-import { closeAllNotebookDbs, getNotebookSqlite } from "@/lib/server/project/db";
 import {
-  createChat,
-  insertMessage,
-} from "@/lib/server/project/chats";
+  closeAllNotebookDbs,
+  getNotebookSqlite,
+} from "@/lib/server/project/db";
+import { createChat, insertMessage } from "@/lib/server/project/chats";
 import { ensureResearchStructure } from "@/lib/server/project/init";
 
 afterEach(() => {
@@ -42,7 +42,9 @@ describe("search chats", () => {
       chatId: chat.id,
       parentId: null,
       role: "user",
-      parts: [{ type: "text", text: "We measured caffeine half-life at 5.2 hours." }],
+      parts: [
+        { type: "text", text: "We measured caffeine half-life at 5.2 hours." },
+      ],
     });
     insertMessage(p, {
       chatId: chat.id,
@@ -59,9 +61,9 @@ describe("search chats", () => {
       .prepare("SELECT COUNT(*) AS n FROM message_chunks")
       .get() as { n: number };
     expect(chunks.n).toBeGreaterThan(0);
-    expect(listEmbeddingRows(p, "fake").some((r) => r.ownerType === "message_chunk")).toBe(
-      true,
-    );
+    expect(
+      listEmbeddingRows(p, "fake").some((r) => r.ownerType === "message_chunk"),
+    ).toBe(true);
 
     const hits = await searchChats({
       projectPath: p,

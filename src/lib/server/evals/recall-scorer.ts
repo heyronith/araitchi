@@ -4,10 +4,7 @@
 export type RecallMatchMode = "exact" | "semantic";
 
 export type RecallQuestionKind =
-  | "static"
-  | "changed_later"
-  | "oldest"
-  | "distractor_resistance";
+  "static" | "changed_later" | "oldest" | "distractor_resistance";
 
 export function normalizeRecallText(text: string): string {
   return text

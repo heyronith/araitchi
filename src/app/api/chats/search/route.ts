@@ -18,8 +18,7 @@ export async function GET(request: Request) {
     return Response.json({ error: "Missing q" }, { status: 400 });
   }
 
-  const projectPath =
-    tryCurrentProjectPath() ?? ensureScratchProject().path;
+  const projectPath = tryCurrentProjectPath() ?? ensureScratchProject().path;
   const hits = await searchChats({ projectPath, query: q, limit });
   return Response.json({ hits });
 }

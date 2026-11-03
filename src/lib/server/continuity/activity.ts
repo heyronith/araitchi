@@ -61,9 +61,7 @@ export function searchActivity(
   const q = query.trim();
   if (!q) {
     const rows = listRecentActivity(projectPath, limit);
-    return opts?.since
-      ? rows.filter((r) => r.createdAt >= opts.since!)
-      : rows;
+    return opts?.since ? rows.filter((r) => r.createdAt >= opts.since!) : rows;
   }
   const sqlite = getNotebookSqlite(projectPath);
   try {
@@ -77,11 +75,7 @@ export function searchActivity(
          ORDER BY a.created_at DESC
          LIMIT ?`,
       )
-      .all(
-        ...(opts?.since
-          ? [q, opts.since, limit]
-          : [q, limit]),
-      ) as {
+      .all(...(opts?.since ? [q, opts.since, limit] : [q, limit])) as {
       id: string;
       kind: string;
       summary: string;

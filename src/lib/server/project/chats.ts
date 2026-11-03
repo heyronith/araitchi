@@ -259,8 +259,7 @@ export function updateMessage(
       chatId: existing.chatId,
       role: existing.role as StoredMessage["role"],
       parts,
-      modelId:
-        patch.modelId !== undefined ? patch.modelId : existing.modelId,
+      modelId: patch.modelId !== undefined ? patch.modelId : existing.modelId,
       createdAt: existing.createdAt,
     });
   }

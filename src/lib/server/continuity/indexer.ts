@@ -1,12 +1,7 @@
 import "server-only";
 
 import { createHash } from "node:crypto";
-import {
-  readdirSync,
-  readFileSync,
-  statSync,
-  type Dirent,
-} from "node:fs";
+import { readdirSync, readFileSync, statSync, type Dirent } from "node:fs";
 import path from "node:path";
 
 import chokidar, { type FSWatcher } from "chokidar";

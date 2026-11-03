@@ -7,16 +7,11 @@ import { desc, eq } from "drizzle-orm";
 import { nanoid } from "nanoid";
 
 import { formatAlreadyTestedSection } from "@/lib/server/experiments/already-tested";
-import {
-  claimEntailedByQuote,
-} from "@/lib/server/memory/evidence";
+import { claimEntailedByQuote } from "@/lib/server/memory/evidence";
 import { getNotebookDb } from "@/lib/server/project/db";
 import { researchDir, readBrief } from "@/lib/server/project/init";
 import { listRecords } from "@/lib/server/project/records";
-import {
-  stateHistory,
-  stateProposals,
-} from "@/lib/server/project/schema";
+import { stateHistory, stateProposals } from "@/lib/server/project/schema";
 import { STATE_TEMPLATE } from "@/lib/server/project/templates";
 
 import { recordActivity } from "./activity";
@@ -62,9 +57,7 @@ export function readStateMd(projectPath: string): string {
 }
 
 /** Parse ## sections (ATX headings). */
-export function parseStateSections(
-  markdown: string,
-): Record<string, string> {
+export function parseStateSections(markdown: string): Record<string, string> {
   const out: Record<string, string> = {};
   const lines = markdown.split("\n");
   let current: string | null = null;
@@ -113,7 +106,9 @@ function generatedHypotheses(projectPath: string): string {
   }).filter((r) => r.status === "proposed" || r.status === "testing");
   if (!hyps.length) return "_No active hypotheses._";
   return hyps
-    .map((r) => `- **${r.title}** (${r.status ?? "—"}): ${r.body.slice(0, 200)}`)
+    .map(
+      (r) => `- **${r.title}** (${r.status ?? "—"}): ${r.body.slice(0, 200)}`,
+    )
     .join("\n");
 }
 
@@ -177,21 +172,20 @@ export function rebuildStateMd(
   const prev = parseStateSections(readStateMd(projectPath));
 
   const sections: Record<string, string> = {
-    Goal: prev["Goal"]?.trim()
-      ? prev["Goal"]!
-      : goalFromBrief(projectPath),
+    Goal: prev["Goal"]?.trim() ? prev["Goal"]! : goalFromBrief(projectPath),
     "Current status":
-      (prev["Current status"] ?? "").replace(/\n### System proposals[\s\S]*$/, "").trim() +
-      pendingProposalsBlock(projectPath, "Current status"),
+      (prev["Current status"] ?? "")
+        .replace(/\n### System proposals[\s\S]*$/, "")
+        .trim() + pendingProposalsBlock(projectPath, "Current status"),
     "Active hypotheses": generatedHypotheses(projectPath),
     "Key decisions": generatedDecisions(projectPath),
     "Already tested":
-      formatAlreadyTestedSection(projectPath).trim() ||
-      "_Nothing tested yet._",
+      formatAlreadyTestedSection(projectPath).trim() || "_Nothing tested yet._",
     "Open questions": generatedQuestions(projectPath),
     "Next steps":
-      (prev["Next steps"] ?? "").replace(/\n### System proposals[\s\S]*$/, "").trim() +
-      pendingProposalsBlock(projectPath, "Next steps"),
+      (prev["Next steps"] ?? "")
+        .replace(/\n### System proposals[\s\S]*$/, "")
+        .trim() + pendingProposalsBlock(projectPath, "Next steps"),
   };
 
   // Preserve user narrative even if empty placeholder
@@ -201,11 +195,18 @@ export function rebuildStateMd(
       .trim();
     if (raw && !raw.startsWith("_User-owned") && raw !== "_Empty._") {
       sections[n] =
-        raw + pendingProposalsBlock(projectPath, n as "Current status" | "Next steps");
+        raw +
+        pendingProposalsBlock(
+          projectPath,
+          n as "Current status" | "Next steps",
+        );
     } else if (!sections[n]?.trim()) {
       sections[n] =
         "_User-owned narrative._" +
-        pendingProposalsBlock(projectPath, n as "Current status" | "Next steps");
+        pendingProposalsBlock(
+          projectPath,
+          n as "Current status" | "Next steps",
+        );
     }
   }
 
@@ -300,7 +301,13 @@ export function listStateHistory(
 export function getStateHistoryEntry(
   projectPath: string,
   id: string,
-): { id: string; content: string; source: string; note: string | null; createdAt: number } | null {
+): {
+  id: string;
+  content: string;
+  source: string;
+  note: string | null;
+  createdAt: number;
+} | null {
   return (
     getNotebookDb(projectPath)
       .select()

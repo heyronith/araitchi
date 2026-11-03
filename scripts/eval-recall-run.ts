@@ -19,7 +19,10 @@ import {
 import { indexRecord } from "../src/lib/server/memory/index";
 import { setMemorySettings } from "../src/lib/server/memory/settings";
 import { hybridSearch } from "../src/lib/server/memory/search";
-import { closeAllNotebookDbs, getNotebookDb } from "../src/lib/server/project/db";
+import {
+  closeAllNotebookDbs,
+  getNotebookDb,
+} from "../src/lib/server/project/db";
 import { buildProjectSystemContext } from "../src/lib/server/project/context";
 import { createChat } from "../src/lib/server/project/chats";
 import {
@@ -30,10 +33,7 @@ import {
   type RecallQuestionKind,
 } from "../src/lib/server/evals/recall-scorer";
 import { ensureResearchStructure } from "../src/lib/server/project/init";
-import {
-  createRecord,
-  updateRecord,
-} from "../src/lib/server/project/records";
+import { createRecord, updateRecord } from "../src/lib/server/project/records";
 import { records } from "../src/lib/server/project/schema";
 import { eq } from "drizzle-orm";
 
@@ -171,7 +171,10 @@ function scoreQuestion(
   }
   if (q.kind === "distractor_resistance") {
     // Must find the static token; distractor-only is a fail (already covered by ok)
-    if (/zebra-\d+/i.test(retrieved) && !normalizeIncludes(retrieved, q.expected)) {
+    if (
+      /zebra-\d+/i.test(retrieved) &&
+      !normalizeIncludes(retrieved, q.expected)
+    ) {
       return false;
     }
   }
@@ -214,11 +217,7 @@ async function runEval(): Promise<void> {
 
   for (const q of questions) {
     const chat = createChat(projectPath, `Q ${q.id}`);
-    const retrieved = await answerFromRetrieval(
-      projectPath,
-      q.query,
-      chat.id,
-    );
+    const retrieved = await answerFromRetrieval(projectPath, q.query, chat.id);
     const ok = scoreQuestion(retrieved, q);
     if (ok) correct++;
     byKind.push({ kind: q.kind, ok });

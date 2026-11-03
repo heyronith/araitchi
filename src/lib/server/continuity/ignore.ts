@@ -106,9 +106,7 @@ export function classifyFileKind(
   ) {
     return "code";
   }
-  if (
-    [".md", ".mdx", ".txt", ".rst", ".adoc", ".tex", ".org"].includes(ext)
-  ) {
+  if ([".md", ".mdx", ".txt", ".rst", ".adoc", ".tex", ".org"].includes(ext)) {
     return "doc";
   }
   if (

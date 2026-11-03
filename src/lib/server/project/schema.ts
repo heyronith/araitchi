@@ -296,7 +296,5 @@ export const messageChunks = sqliteTable(
     text: text("text").notNull(),
     createdAt: integer("created_at").notNull(),
   },
-  (t) => [
-    uniqueIndex("message_chunks_msg_idx").on(t.messageId, t.chunkIdx),
-  ],
+  (t) => [uniqueIndex("message_chunks_msg_idx").on(t.messageId, t.chunkIdx)],
 );

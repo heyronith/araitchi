@@ -17,8 +17,7 @@ export async function GET(
   if (!messageId) {
     return Response.json({ error: "Missing messageId" }, { status: 400 });
   }
-  const projectPath =
-    tryCurrentProjectPath() ?? ensureScratchProject().path;
+  const projectPath = tryCurrentProjectPath() ?? ensureScratchProject().path;
   const files = getReadCompleteness(projectPath, chatId, messageId);
   return Response.json({ files });
 }

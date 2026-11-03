@@ -108,10 +108,7 @@ export function readProjectFilePage(input: {
   const lines = raw.split(/\r?\n/);
   const totalLines = lines.length;
   const totalPages = Math.max(1, Math.ceil(totalLines / PAGE_LINES));
-  const page = Math.min(
-    totalPages,
-    Math.max(1, Math.floor(input.page ?? 1)),
-  );
+  const page = Math.min(totalPages, Math.max(1, Math.floor(input.page ?? 1)));
   const start = (page - 1) * PAGE_LINES;
   const end = Math.min(totalLines, start + PAGE_LINES);
   const width = String(totalLines).length;
@@ -175,17 +172,11 @@ export function getReadCompleteness(
     .select()
     .from(readTracker)
     .where(
-      and(
-        eq(readTracker.chatId, chatId),
-        eq(readTracker.messageId, messageId),
-      ),
+      and(eq(readTracker.chatId, chatId), eq(readTracker.messageId, messageId)),
     )
     .all();
 
-  const byPath = new Map<
-    string,
-    { pages: Set<number>; totalPages: number }
-  >();
+  const byPath = new Map<string, { pages: Set<number>; totalPages: number }>();
   for (const r of rows) {
     let entry = byPath.get(r.path);
     if (!entry) {
