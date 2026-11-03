@@ -279,7 +279,7 @@ export function RoutingSettings() {
           size="sm"
           data-testid="routing-export-corrections"
           onClick={() => {
-            window.location.href = "/api/gate/corrections/export?optIn=1";
+            window.open("/api/gate/corrections/export?optIn=1", "_blank");
           }}
         >
           Export anonymised corrections for eval

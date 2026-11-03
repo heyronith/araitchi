@@ -6,12 +6,7 @@
  *
  * Writes evals/results/recall.md with per-kind accuracy split.
  */
-import {
-  existsSync,
-  mkdirSync,
-  readFileSync,
-  writeFileSync,
-} from "node:fs";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { mkdtempSync, mkdirSync as mkdirSync2 } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";

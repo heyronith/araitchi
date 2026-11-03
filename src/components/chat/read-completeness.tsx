@@ -26,24 +26,24 @@ export function ReadCompleteness({
   );
 
   React.useEffect(() => {
-    if (!hasReadTool) {
-      setFiles(null);
-      return;
-    }
+    if (!hasReadTool) return;
     let cancelled = false;
-    void fetch(
-      `/api/chats/${encodeURIComponent(chatId)}/reads?messageId=${encodeURIComponent(messageId)}`,
-    ).then(async (res) => {
-      if (!res.ok || cancelled) return;
-      const data = (await res.json()) as { files: Record<string, FileRead> };
-      if (!cancelled) setFiles(data.files);
-    });
+    const boot = window.setTimeout(() => {
+      void fetch(
+        `/api/chats/${encodeURIComponent(chatId)}/reads?messageId=${encodeURIComponent(messageId)}`,
+      ).then(async (res) => {
+        if (!res.ok || cancelled) return;
+        const data = (await res.json()) as { files: Record<string, FileRead> };
+        if (!cancelled) setFiles(data.files);
+      });
+    }, 0);
     return () => {
       cancelled = true;
+      window.clearTimeout(boot);
     };
   }, [chatId, messageId, hasReadTool]);
 
-  if (!files || Object.keys(files).length === 0) return null;
+  if (!hasReadTool || !files || Object.keys(files).length === 0) return null;
 
   return (
     <div

@@ -1,6 +1,6 @@
 import "server-only";
 
-import { desc, eq, sql } from "drizzle-orm";
+import { desc, sql } from "drizzle-orm";
 import { nanoid } from "nanoid";
 
 import { getNotebookDb, getNotebookSqlite } from "@/lib/server/project/db";

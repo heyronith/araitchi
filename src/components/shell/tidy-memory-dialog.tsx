@@ -63,7 +63,8 @@ export function TidyMemoryDialog({
 
   React.useEffect(() => {
     if (!open) return;
-    void load();
+    const boot = window.setTimeout(() => void load(), 0);
+    return () => window.clearTimeout(boot);
   }, [open, load]);
 
   async function proposeMerges() {
