@@ -1,5 +1,10 @@
 export type EmbeddingOwnerType =
-  "record" | "session_summary" | "doc_chunk" | "paper";
+  | "record"
+  | "session_summary"
+  | "doc_chunk"
+  | "paper"
+  | "project_chunk"
+  | "message_chunk";
 
 export type EmbeddingModelId =
   | "onnx-community/Qwen3-Embedding-0.6B-ONNX"

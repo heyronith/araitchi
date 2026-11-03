@@ -27,7 +27,7 @@ export type RecordType =
 export type HypothesisStatus =
   "proposed" | "testing" | "supported" | "refuted" | "inconclusive";
 export type ExperimentStatus = "planned" | "running" | "done";
-export type QuestionStatus = "open" | "answered";
+export type QuestionStatus = "open" | "answered" | "archived";
 export type RecordStatus =
   HypothesisStatus | ExperimentStatus | QuestionStatus | null;
 

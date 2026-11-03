@@ -8,6 +8,7 @@ import {
 } from "./mcp/client";
 import { createDocumentTools } from "./documents/tools";
 import { createMemoryTools } from "./memory/tools";
+import { createProjectTools } from "./project/tools";
 import { registerPapersTools } from "./papers/tools";
 import type { PaperProvider } from "./papers/types";
 import { createRepoTools, detectRepoPath } from "./repo/tools";
@@ -63,6 +64,7 @@ export function registerEnabledTools(
   if (toggles.memory) {
     broker.registerAll(createMemoryTools());
   }
+  broker.registerAll(createProjectTools());
   if (toggles.repo) {
     const repoPath = detectRepoPath(opts.projectPath);
     broker.registerAll(

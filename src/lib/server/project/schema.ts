@@ -199,3 +199,104 @@ export const experiments = sqliteTable("experiments", {
   createdAt: integer("created_at").notNull(),
   updatedAt: integer("updated_at").notNull(),
 });
+
+/** Snapshots of `.research/STATE.md` (T12). */
+export const stateHistory = sqliteTable("state_history", {
+  id: text("id").primaryKey(),
+  content: text("content").notNull(),
+  source: text("source").notNull().default("system"),
+  note: text("note"),
+  createdAt: integer("created_at").notNull(),
+});
+
+/** Narrative proposals for Current status / Next steps (user accepts). */
+export const stateProposals = sqliteTable("state_proposals", {
+  id: text("id").primaryKey(),
+  section: text("section").notNull(),
+  content: text("content").notNull(),
+  evidenceQuote: text("evidence_quote").notNull().default(""),
+  status: text("status").notNull().default("pending"),
+  createdAt: integer("created_at").notNull(),
+});
+
+/** Project-folder file index (T12 project map). */
+export const projectFiles = sqliteTable(
+  "project_files",
+  {
+    id: text("id").primaryKey(),
+    path: text("path").notNull(),
+    kind: text("kind").notNull(),
+    language: text("language"),
+    size: integer("size").notNull().default(0),
+    mtime: integer("mtime").notNull().default(0),
+    sha256: text("sha256").notNull(),
+    summary: text("summary").notNull().default(""),
+    updatedAt: integer("updated_at").notNull(),
+  },
+  (t) => [uniqueIndex("project_files_path").on(t.path)],
+);
+
+export const projectFileChunks = sqliteTable(
+  "project_file_chunks",
+  {
+    id: text("id").primaryKey(),
+    fileId: text("file_id")
+      .notNull()
+      .references(() => projectFiles.id, { onDelete: "cascade" }),
+    chunkIdx: integer("chunk_idx").notNull().default(0),
+    startLine: integer("start_line").notNull(),
+    endLine: integer("end_line").notNull(),
+    text: text("text").notNull(),
+    updatedAt: integer("updated_at").notNull(),
+  },
+  (t) => [uniqueIndex("project_file_chunks_file_idx").on(t.fileId, t.chunkIdx)],
+);
+
+/** Unified activity feed (T12). */
+export const activity = sqliteTable("activity", {
+  id: text("id").primaryKey(),
+  kind: text("kind").notNull(),
+  summary: text("summary").notNull(),
+  payload: text("payload").notNull().default("{}"),
+  createdAt: integer("created_at").notNull(),
+});
+
+/** Agent suggestions for `.research/AGENTS.md` edits. */
+export const instructionSuggestions = sqliteTable("instruction_suggestions", {
+  id: text("id").primaryKey(),
+  proposal: text("proposal").notNull(),
+  reason: text("reason").notNull().default(""),
+  status: text("status").notNull().default("pending"),
+  createdAt: integer("created_at").notNull(),
+});
+
+/** Per-reply file page reads (T12 read tracker). */
+export const readTracker = sqliteTable("read_tracker", {
+  id: text("id").primaryKey(),
+  chatId: text("chat_id").notNull(),
+  messageId: text("message_id").notNull(),
+  modelId: text("model_id"),
+  path: text("path").notNull(),
+  page: integer("page").notNull(),
+  totalPages: integer("total_pages").notNull(),
+  sha256: text("sha256").notNull().default(""),
+  createdAt: integer("created_at").notNull(),
+});
+
+/** Message chunks for chat search (T12). */
+export const messageChunks = sqliteTable(
+  "message_chunks",
+  {
+    id: text("id").primaryKey(),
+    messageId: text("message_id").notNull(),
+    chatId: text("chat_id").notNull(),
+    chunkIdx: integer("chunk_idx").notNull().default(0),
+    role: text("role").notNull(),
+    modelId: text("model_id"),
+    text: text("text").notNull(),
+    createdAt: integer("created_at").notNull(),
+  },
+  (t) => [
+    uniqueIndex("message_chunks_msg_idx").on(t.messageId, t.chunkIdx),
+  ],
+);

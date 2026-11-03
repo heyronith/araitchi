@@ -155,6 +155,9 @@ export function createRecord(
   void import("@/lib/server/memory/index")
     .then((m) => m.indexRecord(projectPath, id))
     .catch(() => undefined);
+  void import("@/lib/server/continuity/state")
+    .then((m) => m.rebuildStateMd(projectPath, { note: "record create" }))
+    .catch(() => undefined);
   return getRecord(projectPath, id)!;
 }
 
@@ -189,6 +192,9 @@ export function updateRecord(
   exportMemoryMd(projectPath);
   void import("@/lib/server/memory/index")
     .then((m) => m.indexRecord(projectPath, id))
+    .catch(() => undefined);
+  void import("@/lib/server/continuity/state")
+    .then((m) => m.rebuildStateMd(projectPath, { note: "record update" }))
     .catch(() => undefined);
   return getRecord(projectPath, id);
 }

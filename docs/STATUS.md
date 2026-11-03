@@ -30,6 +30,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | T9b Real benchmark | ✅ | v0.1.1 |
 | T10 Live shakedown | ✅ | v0.1.2 |
 | T11 Quality (lit / gate / scribe / probe) | ✅ | v0.1.3 — frozen LitSearch: qwen R@5 28% / R@20 41% (targets 35/55 missed; pool 94%) |
+| T12 Research environment & continuity | 🔄 | rebasing → v0.1.4 |
 
 ## Known issues / follow-ups
 
@@ -54,4 +55,6 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 
 ## Next steps
 
-- Capture README screenshots; owner live bench + rediscovery review; tune `config/defaults.json` from eval tables.
+- Finish T11 (`v0.1.3`), then rebase/merge `t12-environment` and tag `v0.1.4`.
+- Owner: open a real project → indexing → ask “where are we?”; edit `.research/AGENTS.md`; confirm Read fully + model handoff + chat search.
+- Capture README screenshots; tune `config/defaults.json` from eval tables.

@@ -1,5 +1,5 @@
 /**
- * Deterministic evidence-quote checks for scribe records.
+ * Deterministic evidence-quote checks for scribe records (+ STATE narrative).
  * Quotes must appear in the conversation source (user + assistant).
  * Claims must be entailed by their quote (no overstatement).
  */

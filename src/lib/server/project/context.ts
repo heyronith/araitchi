@@ -1,13 +1,17 @@
 import "server-only";
 
-import { readBrief } from "./init";
-import { listPinnedRecords, listRecords } from "./records";
-import type { MemoryRecord } from "./types";
-
 import { formatAlreadyTestedSection } from "@/lib/server/experiments/already-tested";
+import { formatActivityForContext } from "@/lib/server/continuity/activity";
+import { buildInstructionLayers } from "@/lib/server/continuity/instructions";
+import { projectTree } from "@/lib/server/continuity/indexer";
+import { stateForContext } from "@/lib/server/continuity/state";
 import { hybridSearch } from "@/lib/server/memory/search";
 import { getMemorySettings } from "@/lib/server/memory/settings";
 import { getSessionSummary } from "@/lib/server/memory/session-summary";
+
+import { readBrief } from "./init";
+import { listPinnedRecords, listRecords } from "./records";
+import type { MemoryRecord } from "./types";
 
 /** Rough token estimate: ~4 characters per token. */
 export function approxTokens(text: string): number {
@@ -23,7 +27,18 @@ export function truncateToTokens(text: string, maxTokens: number): string {
 export type ContextRef = {
   refId: string;
   kind:
-    "brief" | "pinned" | "hypothesis" | "record" | "session" | "doc" | "paper";
+    | "brief"
+    | "state"
+    | "instructions"
+    | "pinned"
+    | "hypothesis"
+    | "record"
+    | "session"
+    | "doc"
+    | "paper"
+    | "file"
+    | "activity"
+    | "handoff";
   ownerId: string;
   title: string;
   snippet: string;
@@ -39,8 +54,9 @@ export type ProjectContextResult = {
   totalTokens: number;
   items: ContextRef[];
   vectorUsed: boolean;
-  /** @deprecated alias for pinnedCount — Task 3 callers */
-  // kept for estimate route compatibility
+  layerIds: string[];
+  handoffNote: string | null;
+  budgetTokens: number;
 };
 
 function typePrefix(type: string): string {
@@ -76,43 +92,143 @@ function formatRecordLine(refId: string, r: MemoryRecord): string {
   return `- [${refId}] ${r.title}${status}: ${line}`;
 }
 
+/** Memory budget = min(setting, ~25% of model context window). */
+export function resolveContextBudget(
+  projectPath: string,
+  modelId?: string | null,
+): number {
+  const settings = getMemorySettings(projectPath);
+  const settingBudget = settings.memoryTokens;
+  if (!modelId) return settingBudget;
+  const window = lookupModelContextWindow(modelId);
+  if (typeof window === "number" && window > 0) {
+    return Math.min(settingBudget, Math.floor(window * 0.25));
+  }
+  return settingBudget;
+}
+
 /**
  * Build the shared context package for solo + council.
- * Order: brief → pinned → active hypotheses → hybrid top-K (budget).
+ * Priority: instructions → STATE.md → chat summary → recent/relevant memory → files → activity.
  */
 export async function buildProjectSystemContext(
   projectPath: string,
-  opts?: { userMessage?: string; chatId?: string },
+  opts?: {
+    userMessage?: string;
+    chatId?: string;
+    modelId?: string | null;
+    /** Prior messages omitted due to window / model switch. */
+    handoffSummarizedCount?: number;
+    role?: import("@/lib/server/continuity/instructions").InstructionRole;
+  },
 ): Promise<ProjectContextResult> {
-  const settings = getMemorySettings(projectPath);
-  const budget = settings.memoryTokens;
+  const budget = resolveContextBudget(projectPath, opts?.modelId);
   const items: ContextRef[] = [];
   const seen = new Set<string>();
   let used = 0;
+  const layerIds: string[] = [];
 
   const parts: string[] = [
     "You are assisting inside an Araitchi research project.",
     "Cite memory items by their reference ids (e.g. [H-12]) when you use them.",
+    "Prefer `.research/STATE.md` for \"where we are / what's tested / what's next\".",
     "",
   ];
 
-  // 1. Brief (cap ~2000 tokens, but within overall budget)
-  const briefCap = Math.min(2000, Math.floor(budget * 0.4));
-  const briefRaw = readBrief(projectPath).trim();
-  const brief = truncateToTokens(briefRaw, briefCap);
-  const briefTokens = approxTokens(brief);
-  parts.push("## Project brief", brief || "_Empty brief._", "");
-  used += briefTokens;
-  items.push({
-    refId: "brief",
-    kind: "brief",
-    ownerId: "brief",
-    title: "Project brief",
-    snippet: brief.slice(0, 200),
-    tokens: briefTokens,
-  });
+  // 1. Instructions
+  const instr = buildInstructionLayers(projectPath, opts?.role ?? "default");
+  layerIds.push(...instr.layerIds);
+  if (instr.systemBlock.trim()) {
+    const block = truncateToTokens(instr.systemBlock, Math.min(2000, budget));
+    const t = approxTokens(block);
+    parts.push(block, "");
+    used += t;
+    items.push({
+      refId: "instructions",
+      kind: "instructions",
+      ownerId: "instructions",
+      title: `Instructions (${layerIds.join(", ") || "none"})`,
+      snippet: layerIds.join(", "),
+      tokens: t,
+    });
+  }
 
-  // 2. Pinned
+  // 2. STATE.md (always early; ~1500 token cap)
+  const stateCap = Math.min(1500, Math.max(400, budget - used));
+  const state = stateForContext(projectPath, stateCap);
+  {
+    const t = approxTokens(state);
+    parts.push("## Project state (STATE.md)", state, "");
+    used += t;
+    items.push({
+      refId: "state",
+      kind: "state",
+      ownerId: "STATE.md",
+      title: "Project state",
+      snippet: state.slice(0, 200),
+      tokens: t,
+    });
+  }
+
+  // 2b. Brief (supplementary; Goal also mirrored into STATE)
+  {
+    const briefCap = Math.min(800, Math.floor((budget - used) * 0.25));
+    if (briefCap > 80) {
+      const brief = truncateToTokens(readBrief(projectPath).trim(), briefCap);
+      const t = approxTokens(brief);
+      parts.push("## Project brief", brief || "_Empty brief._", "");
+      used += t;
+      items.push({
+        refId: "brief",
+        kind: "brief",
+        ownerId: "brief",
+        title: "Project brief",
+        snippet: brief.slice(0, 200),
+        tokens: t,
+      });
+    }
+  }
+
+  let handoffNote: string | null = null;
+  if (opts?.handoffSummarizedCount && opts.handoffSummarizedCount > 0) {
+    handoffNote = `Handoff: summary of ${opts.handoffSummarizedCount} earlier messages included`;
+    const line = `## Handoff\n${handoffNote}`;
+    const t = approxTokens(line);
+    parts.push(line, "");
+    used += t;
+    items.push({
+      refId: "handoff",
+      kind: "handoff",
+      ownerId: "handoff",
+      title: "Handoff",
+      snippet: handoffNote,
+      tokens: t,
+    });
+  }
+
+  // 3. Current chat session summary
+  if (opts?.chatId) {
+    const sum = getSessionSummary(projectPath, opts.chatId);
+    if (sum?.summary) {
+      const snippet = truncateToTokens(sum.summary, 400);
+      const block = `## Current chat summary\n${snippet}`;
+      const t = approxTokens(block);
+      if (used + t <= budget) {
+        parts.push(block, "");
+        used += t;
+        items.push({
+          refId: `S-${opts.chatId.slice(0, 6)}`,
+          kind: "session",
+          ownerId: opts.chatId,
+          title: "Current chat summary",
+          snippet: oneLine(snippet, 200),
+          tokens: t,
+        });
+      }
+    }
+  }
+
+  // 4. Pinned
   const pinned = listPinnedRecords(projectPath);
   const pinnedLines: string[] = [];
   let pinnedTokens = 0;
@@ -138,13 +254,35 @@ export async function buildProjectSystemContext(
     parts.push("## Pinned memory", ...pinnedLines, "");
   }
 
-  // 3. Active hypotheses (proposed|testing)
+  // 5. Compact project tree (top 2 levels)
+  try {
+    const tree = projectTree({ projectPath, depth: 2 });
+    const treeText = formatTreeCompact(tree);
+    const block = truncateToTokens(`## Project map\n${treeText}`, 400);
+    const t = approxTokens(block);
+    if (used + t <= budget) {
+      parts.push(block, "");
+      used += t;
+      items.push({
+        refId: "project-map",
+        kind: "file",
+        ownerId: "tree",
+        title: "Project map",
+        snippet: treeText.slice(0, 120),
+        tokens: t,
+      });
+    }
+  } catch {
+    /* indexer may be empty */
+  }
+
+  // 6. Active hypotheses (if not already covered by STATE)
   const hyps = listRecords(projectPath, { type: "hypothesis" }).filter(
     (r) =>
       !seen.has(r.id) && (r.status === "proposed" || r.status === "testing"),
   );
   const hypLines: string[] = [];
-  for (const r of hyps) {
+  for (const r of hyps.slice(0, 12)) {
     const refId = `H-${r.id.slice(0, 6)}`;
     const line = formatRecordLine(refId, r);
     const t = approxTokens(line);
@@ -165,7 +303,7 @@ export async function buildProjectSystemContext(
     parts.push("## Active hypotheses", ...hypLines, "");
   }
 
-  // 3b. Already tested (refuted / inconclusive / supported)
+  // 7. Already tested
   const already = formatAlreadyTestedSection(projectPath);
   if (already) {
     const t = approxTokens(already);
@@ -183,7 +321,26 @@ export async function buildProjectSystemContext(
     }
   }
 
-  // 4. Hybrid relevant
+  // 8. Recent activity
+  {
+    const act = formatActivityForContext(projectPath, 15);
+    const block = `## Recent activity\n${act}`;
+    const t = approxTokens(block);
+    if (used + t <= budget) {
+      parts.push(block, "");
+      used += t;
+      items.push({
+        refId: "activity",
+        kind: "activity",
+        ownerId: "activity",
+        title: "Recent activity",
+        snippet: act.slice(0, 120),
+        tokens: t,
+      });
+    }
+  }
+
+  // 9. Hybrid relevant memory / files
   let vectorUsed = true;
   let relevantCount = 0;
   const userMessage = opts?.userMessage?.trim();
@@ -239,10 +396,19 @@ export async function buildProjectSystemContext(
           snippet: oneLine(snippet, 200),
           tokens: t,
         });
-      } else if (hit.ownerType === "doc_chunk" || hit.ownerType === "paper") {
+      } else if (
+        hit.ownerType === "doc_chunk" ||
+        hit.ownerType === "paper" ||
+        hit.ownerType === "project_chunk"
+      ) {
         const key = `${hit.ownerType}:${hit.ownerId}:${hit.chunkIdx}`;
         if (seen.has(key)) continue;
-        const prefix = hit.ownerType === "paper" ? "P" : "C";
+        const prefix =
+          hit.ownerType === "paper"
+            ? "P"
+            : hit.ownerType === "project_chunk"
+              ? "F"
+              : "C";
         const refId = `${prefix}-${hit.ownerId.slice(0, 6)}`;
         const snippet = oneLine(hit.text, 220);
         const line = `- [${refId}] ${snippet}`;
@@ -254,7 +420,7 @@ export async function buildProjectSystemContext(
         relevantCount++;
         items.push({
           refId,
-          kind: hit.ownerType === "paper" ? "paper" : "doc",
+          kind: hit.ownerType === "paper" ? "paper" : "file",
           ownerId: hit.ownerId,
           title: snippet.slice(0, 80),
           snippet,
@@ -267,14 +433,60 @@ export async function buildProjectSystemContext(
     }
   }
 
+  // Context indicator footer for models
+  parts.push(
+    `## Context layers used`,
+    layerIds.length
+      ? layerIds.map((id) => `- ${id}`).join("\n")
+      : "- (none)",
+    handoffNote ? `- ${handoffNote}` : "",
+    "",
+  );
+
   return {
     systemText: parts.join("\n"),
-    briefTokens,
+    briefTokens: approxTokens(state),
     pinnedCount: pinnedLines.length,
     pinnedTokens,
     relevantCount,
     totalTokens: used,
     items,
     vectorUsed,
+    layerIds,
+    handoffNote,
+    budgetTokens: budget,
   };
+}
+
+function formatTreeCompact(
+  node: {
+    type: string;
+    name: string;
+    path?: string;
+    children?: unknown[];
+  },
+  indent = "",
+): string {
+  const lines: string[] = [];
+  const label = node.type === "dir" ? `${node.name}/` : node.name;
+  if (indent || node.name !== ".") lines.push(`${indent}${label}`);
+  const kids = (node.children ?? []) as typeof node[];
+  for (const c of kids.slice(0, 40)) {
+    lines.push(formatTreeCompact(c, indent + "  "));
+  }
+  return lines.join("\n");
+}
+
+/** Optional catalog helper — soft dependency. */
+function lookupModelContextWindow(modelId: string): number | null {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const mod = require("@/lib/server/models-cache") as {
+      findCachedModel?: (id: string) => { context_length?: number } | null;
+    };
+    const m = mod.findCachedModel?.(modelId);
+    return m?.context_length ?? null;
+  } catch {
+    return null;
+  }
 }

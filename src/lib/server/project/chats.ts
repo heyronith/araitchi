@@ -10,6 +10,7 @@ import {
   type StoredMessage,
 } from "@/lib/chat/branches";
 
+import { scheduleIndexMessage } from "@/lib/server/continuity/search-chats";
 import { getNotebookDb } from "./db";
 import { writeSessionTranscript } from "./exporters";
 import { chats, messages } from "./schema";
@@ -197,7 +198,7 @@ export function insertMessage(
     touchChat(projectPath, input.chatId);
   }
 
-  return {
+  const stored: StoredMessage = {
     id,
     chatId: input.chatId,
     parentId: input.parentId,
@@ -207,6 +208,10 @@ export function insertMessage(
     usage: input.usage ?? null,
     createdAt,
   };
+
+  scheduleIndexMessage(projectPath, stored);
+
+  return stored;
 }
 
 export function updateMessage(
@@ -239,6 +244,26 @@ export function updateMessage(
     })
     .where(eq(messages.id, id))
     .run();
+
+  if (patch.parts) {
+    let parts: unknown[] = [];
+    try {
+      parts = JSON.parse(
+        patch.parts ? JSON.stringify(patch.parts) : existing.parts,
+      ) as unknown[];
+    } catch {
+      parts = patch.parts;
+    }
+    scheduleIndexMessage(projectPath, {
+      id: existing.id,
+      chatId: existing.chatId,
+      role: existing.role as StoredMessage["role"],
+      parts,
+      modelId:
+        patch.modelId !== undefined ? patch.modelId : existing.modelId,
+      createdAt: existing.createdAt,
+    });
+  }
 }
 
 function extractText(parts: unknown[]): string {
