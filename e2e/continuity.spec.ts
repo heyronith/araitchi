@@ -117,7 +117,10 @@ test.describe("T12 continuity", () => {
     await expect(page.getByTestId("backup-export")).toBeVisible({
       timeout: 10_000,
     });
-    await expect(page.getByTestId("backup-import")).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: /Import backup/i }),
+    ).toBeVisible();
+    await expect(page.getByTestId("backup-import")).toBeAttached();
     await page.getByRole("button", { name: /Tidy memory/i }).click();
     await expect(page.getByTestId("tidy-memory-dialog")).toBeVisible();
     await page.keyboard.press("Escape");
