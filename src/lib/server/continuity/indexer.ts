@@ -1,7 +1,7 @@
 import "server-only";
 
 import { createHash } from "node:crypto";
-import { readdirSync, readFileSync, statSync, type Dirent } from "node:fs";
+import { lstatSync, readdirSync, readFileSync, type Dirent } from "node:fs";
 import path from "node:path";
 
 import chokidar, { type FSWatcher } from "chokidar";
@@ -41,6 +41,7 @@ import {
   MAX_INDEX_FILES,
   MAX_INDEX_TEXT_BYTES,
 } from "./ignore";
+import { isSafeProjectFile } from "./path-safety";
 
 export type ProjectIndexProgress = {
   filesDone: number;
@@ -77,8 +78,10 @@ function collectFiles(projectPath: string): string[] {
   const root = path.resolve(projectPath);
   const ig = buildProjectIgnore(root);
   const out: string[] = [];
+  const seen = new Set<string>();
 
   function walk(dir: string) {
+    if (!isSafeProjectFile(root, dir, seen)) return;
     let entries: Dirent[];
     try {
       entries = readdirSync(dir, { withFileTypes: true });
@@ -89,9 +92,12 @@ function collectFiles(projectPath: string): string[] {
       const abs = path.join(dir, ent.name);
       const rel = relPosix(root, abs);
       if (isIgnoredPath(root, rel, ig)) continue;
+      // Skip symlinks entirely (no follow) — blocks escape + link loops.
+      if (ent.isSymbolicLink()) continue;
       if (ent.isDirectory()) {
-        walk(abs);
+        walk(abs); // safety + inode loop guard runs at walk() entry
       } else if (ent.isFile()) {
+        if (!isSafeProjectFile(root, abs, seen)) continue;
         out.push(rel);
       }
     }
@@ -197,7 +203,7 @@ async function indexOneFile(
 
   let st;
   try {
-    st = statSync(abs);
+    st = lstatSync(abs);
   } catch {
     const existing = db
       .select()
@@ -208,7 +214,8 @@ async function indexOneFile(
     return { indexed: false, bytes: 0 };
   }
 
-  if (!st.isFile()) return { indexed: false, bytes: 0 };
+  if (st.isSymbolicLink() || !st.isFile()) return { indexed: false, bytes: 0 };
+  if (!isSafeProjectFile(root, abs)) return { indexed: false, bytes: 0 };
   if (isBinaryish(rel) || fileTooLarge(abs)) {
     const sha = fileSha256(abs);
     const existing = db
@@ -390,12 +397,21 @@ export function projectTree(input: {
   const base = sub ? path.join(root, sub) : root;
   const ig = buildProjectIgnore(root);
 
+  const seen = new Set<string>();
+
   function node(abs: string, rel: string, depth: number): ProjectTreeNode {
     const name = path.basename(abs) || rel || ".";
+    // Inode loop guard at entry only (do not pre-check the same path twice).
+    if (!isSafeProjectFile(root, abs, seen)) {
+      return { type: "file", name, path: rel, kind: "other" };
+    }
     let st;
     try {
-      st = statSync(abs);
+      st = lstatSync(abs);
     } catch {
+      return { type: "file", name, path: rel, kind: "other" };
+    }
+    if (st.isSymbolicLink()) {
       return { type: "file", name, path: rel, kind: "other" };
     }
     if (!st.isDirectory()) {
@@ -420,6 +436,7 @@ export function projectTree(input: {
       const childAbs = path.join(abs, ent.name);
       const childRel = relPosix(root, childAbs);
       if (isIgnoredPath(root, childRel, ig)) continue;
+      if (ent.isSymbolicLink()) continue;
       if (ent.isDirectory()) {
         children.push(node(childAbs, childRel, depth + 1));
       } else if (ent.isFile()) {
@@ -579,6 +596,13 @@ export async function searchProjectFiles(input: {
 const pendingByRoot = new Map<string, Set<string>>();
 
 function scheduleIncremental(root: string, rel: string) {
+  const abs = path.join(root, rel);
+  try {
+    const st = lstatSync(abs);
+    if (st.isSymbolicLink()) return;
+  } catch {
+    // unlink path — still schedule so the index row can be removed
+  }
   let set = pendingByRoot.get(root);
   if (!set) {
     set = new Set();

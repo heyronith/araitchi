@@ -1,6 +1,6 @@
 import "server-only";
 
-import { existsSync, readFileSync, statSync } from "node:fs";
+import { existsSync, lstatSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 import ignore, { type Ignore } from "ignore";
@@ -53,8 +53,8 @@ export function buildProjectIgnore(projectPath: string): Ignore {
   const ig = ignore();
   ig.add(DEFAULT_IGNORES);
   ig.add(loadIgnoreFile(path.join(root, ".gitignore")));
-  ig.add(loadIgnoreFile(path.join(researchDir(root), "..", ".researchignore")));
-  // also allow .researchignore at project root
+  // Prefer the template under .research/; still honour a user-made root file.
+  ig.add(loadIgnoreFile(path.join(researchDir(root), ".researchignore")));
   ig.add(loadIgnoreFile(path.join(root, ".researchignore")));
   return ig;
 }
@@ -179,7 +179,9 @@ export function isBinaryish(relativePath: string): boolean {
 
 export function fileTooLarge(absPath: string): boolean {
   try {
-    return statSync(absPath).size > MAX_INDEX_FILE_BYTES;
+    const st = lstatSync(absPath);
+    if (st.isSymbolicLink()) return true;
+    return st.size > MAX_INDEX_FILE_BYTES;
   } catch {
     return true;
   }
