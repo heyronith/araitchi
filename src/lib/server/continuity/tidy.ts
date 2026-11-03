@@ -7,7 +7,12 @@ import { listEmbeddingRows } from "@/lib/server/memory/index";
 import { getEmbedder } from "@/lib/server/memory/embedder";
 import { getMemorySettings } from "@/lib/server/memory/settings";
 import { cosine } from "@/lib/server/memory/vector";
-import { getRecord, listRecords, softDeleteRecord, updateRecord } from "@/lib/server/project/records";
+import {
+  getRecord,
+  listRecords,
+  softDeleteRecord,
+  updateRecord,
+} from "@/lib/server/project/records";
 import { getNotebookDb } from "@/lib/server/project/db";
 import { embeddings } from "@/lib/server/project/schema";
 import {

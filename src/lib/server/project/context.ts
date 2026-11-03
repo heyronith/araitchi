@@ -436,9 +436,7 @@ export async function buildProjectSystemContext(
   // Context indicator footer for models
   parts.push(
     `## Context layers used`,
-    layerIds.length
-      ? layerIds.map((id) => `- ${id}`).join("\n")
-      : "- (none)",
+    layerIds.length ? layerIds.map((id) => `- ${id}`).join("\n") : "- (none)",
     handoffNote ? `- ${handoffNote}` : "",
     "",
   );
@@ -470,7 +468,7 @@ function formatTreeCompact(
   const lines: string[] = [];
   const label = node.type === "dir" ? `${node.name}/` : node.name;
   if (indent || node.name !== ".") lines.push(`${indent}${label}`);
-  const kids = (node.children ?? []) as typeof node[];
+  const kids = (node.children ?? []) as (typeof node)[];
   for (const c of kids.slice(0, 40)) {
     lines.push(formatTreeCompact(c, indent + "  "));
   }

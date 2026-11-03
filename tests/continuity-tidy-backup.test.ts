@@ -24,7 +24,10 @@ import { FakeEmbedder } from "@/lib/server/memory/fake-embedder";
 import { setEmbedderForTests } from "@/lib/server/memory/embedder";
 import { indexRecord } from "@/lib/server/memory/index";
 import { setMemorySettings } from "@/lib/server/memory/settings";
-import { closeAllNotebookDbs, getNotebookSqlite } from "@/lib/server/project/db";
+import {
+  closeAllNotebookDbs,
+  getNotebookSqlite,
+} from "@/lib/server/project/db";
 import { researchDir } from "@/lib/server/project/init";
 import { ensureResearchStructure } from "@/lib/server/project/init";
 import {
@@ -67,9 +70,9 @@ describe("tidy memory", () => {
     await indexRecord(p, b.id);
 
     const clusters = await findDuplicateClusters(p, 0.92);
-    expect(clusters.some((c) => c.ids.includes(a.id) && c.ids.includes(b.id))).toBe(
-      true,
-    );
+    expect(
+      clusters.some((c) => c.ids.includes(a.id) && c.ids.includes(b.id)),
+    ).toBe(true);
 
     const proposals = await proposeMerges(p, 0.92);
     expect(proposals.length).toBeGreaterThan(0);
@@ -80,9 +83,9 @@ describe("tidy memory", () => {
     expect(kept?.body).toContain("Merged from");
     const absorbed = getRecord(p, b.id);
     expect(absorbed?.deletedAt).not.toBeNull();
-    expect(listRecords(p, { includeDeleted: true }).some((r) => r.id === b.id)).toBe(
-      true,
-    );
+    expect(
+      listRecords(p, { includeDeleted: true }).some((r) => r.id === b.id),
+    ).toBe(true);
   });
 
   it("archives stale answered questions", () => {

@@ -121,7 +121,8 @@ export function createProjectTools(): RegisteredTool[] {
 
   const search_activity: RegisteredTool = {
     name: "search_activity",
-    description: "Search the project activity log (tool calls, indexing, verdicts, etc.).",
+    description:
+      "Search the project activity log (tool calls, indexing, verdicts, etc.).",
     inputSchema: z.object({
       query: z.string().max(500).optional(),
       since: z.number().int().optional(),

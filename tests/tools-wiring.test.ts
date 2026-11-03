@@ -154,7 +154,9 @@ describe("buildBrokerTools", () => {
     ]);
 
     // Project read tools are always registered; MCP write tools need approval.
-    expect(Object.keys(broker.getAiSdkTools({ modelId: "m/x" })).sort()).toEqual(
+    expect(
+      Object.keys(broker.getAiSdkTools({ modelId: "m/x" })).sort(),
+    ).toEqual(
       ["project_tree", "read_file", "search_activity", "search_project"].sort(),
     );
     expect(

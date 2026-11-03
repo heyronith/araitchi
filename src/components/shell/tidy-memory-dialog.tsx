@@ -55,9 +55,7 @@ export function TidyMemoryDialog({
     };
     setClusters(data.clusters);
     setProposals(
-      data.proposals.filter(
-        (p) => !p.status || p.status === "pending",
-      ),
+      data.proposals.filter((p) => !p.status || p.status === "pending"),
     );
   }, []);
 

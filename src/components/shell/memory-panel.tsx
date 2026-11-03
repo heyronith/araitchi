@@ -151,8 +151,7 @@ export function MemoryPanel({
     else if (tab === "timeline") void loadTimeline();
     else if (tab === "state") {
       /* StatePanel loads itself */
-    }
-    else void loadRecords();
+    } else void loadRecords();
   }, [collapsed, tab, loadBrief, loadRecords, loadTimeline, refreshKey]);
 
   React.useEffect(() => {
@@ -293,56 +292,56 @@ export function MemoryPanel({
     >
       <div className="flex flex-col gap-1 border-b px-3 py-2">
         <div className="flex h-8 items-center justify-between gap-2">
-        <span className="text-sm font-medium">Memory</span>
-        <div className="flex items-center gap-1">
-          <Button
-            type="button"
-            size="sm"
-            variant="outline"
-            className="h-7 text-xs"
-            data-testid="rebuild-memory-index"
-            onClick={() => {
-              void fetch("/api/memory/config", {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ rebuild: true }),
-              }).then(async (res) => {
-                if (!res.ok) {
-                  toast.error("Rebuild failed");
-                  return;
-                }
-                toast.success("Rebuilding memory index…");
-                for (let i = 0; i < 40; i++) {
-                  await new Promise((r) => setTimeout(r, 250));
-                  const st = await fetch("/api/memory/config");
-                  if (!st.ok) break;
-                  const json = (await st.json()) as {
-                    index: {
-                      phase: string;
-                      done: number;
-                      total: number;
-                    } | null;
-                  };
-                  if (json.index?.phase === "done" || !json.index) {
-                    toast.success("Memory index ready");
-                    break;
+          <span className="text-sm font-medium">Memory</span>
+          <div className="flex items-center gap-1">
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              className="h-7 text-xs"
+              data-testid="rebuild-memory-index"
+              onClick={() => {
+                void fetch("/api/memory/config", {
+                  method: "PATCH",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ rebuild: true }),
+                }).then(async (res) => {
+                  if (!res.ok) {
+                    toast.error("Rebuild failed");
+                    return;
                   }
-                }
-              });
-            }}
-          >
-            Rebuild index
-          </Button>
-          <Button
-            type="button"
-            size="icon-sm"
-            variant="ghost"
-            aria-label="Collapse memory panel"
-            onClick={onToggle}
-          >
-            <PanelRight className="size-4" />
-          </Button>
-        </div>
+                  toast.success("Rebuilding memory index…");
+                  for (let i = 0; i < 40; i++) {
+                    await new Promise((r) => setTimeout(r, 250));
+                    const st = await fetch("/api/memory/config");
+                    if (!st.ok) break;
+                    const json = (await st.json()) as {
+                      index: {
+                        phase: string;
+                        done: number;
+                        total: number;
+                      } | null;
+                    };
+                    if (json.index?.phase === "done" || !json.index) {
+                      toast.success("Memory index ready");
+                      break;
+                    }
+                  }
+                });
+              }}
+            >
+              Rebuild index
+            </Button>
+            <Button
+              type="button"
+              size="icon-sm"
+              variant="ghost"
+              aria-label="Collapse memory panel"
+              onClick={onToggle}
+            >
+              <PanelRight className="size-4" />
+            </Button>
+          </div>
         </div>
         <ProjectIndexProgress compact className="px-0.5" />
         <AgentsSuggestions onChanged={() => undefined} />
@@ -484,143 +483,138 @@ export function MemoryPanel({
 
         {TABS.filter(
           (t) => t.id !== "brief" && t.id !== "timeline" && t.id !== "state",
-        ).map(
-          (t) => (
-            <TabsContent
-              key={t.id}
-              value={t.id}
-              className="mt-0 flex min-h-0 flex-1 flex-col p-3"
-            >
-              <div className="mb-2 flex gap-2">
-                <div className="relative min-w-0 flex-1">
-                  <Search className="text-muted-foreground absolute top-2.5 left-2 size-3.5" />
-                  <Input
-                    className="h-8 pl-7"
-                    placeholder="Search…"
-                    value={tab === t.id ? query : ""}
-                    onChange={(e) => setQuery(e.target.value)}
-                    aria-label={`Search ${t.label}`}
-                  />
-                </div>
-                <Button
-                  type="button"
-                  size="icon-sm"
-                  variant="outline"
-                  aria-label={`Add ${t.label}`}
-                  onClick={openCreate}
-                >
-                  <Plus className="size-3.5" />
-                </Button>
+        ).map((t) => (
+          <TabsContent
+            key={t.id}
+            value={t.id}
+            className="mt-0 flex min-h-0 flex-1 flex-col p-3"
+          >
+            <div className="mb-2 flex gap-2">
+              <div className="relative min-w-0 flex-1">
+                <Search className="text-muted-foreground absolute top-2.5 left-2 size-3.5" />
+                <Input
+                  className="h-8 pl-7"
+                  placeholder="Search…"
+                  value={tab === t.id ? query : ""}
+                  onChange={(e) => setQuery(e.target.value)}
+                  aria-label={`Search ${t.label}`}
+                />
               </div>
-              {STATUS_OPTIONS[t.id] ? (
-                <select
-                  className="border-input bg-background mb-2 h-8 rounded-md border px-2 text-xs"
-                  value={statusFilter}
-                  onChange={(e) => setStatusFilter(e.target.value)}
-                  aria-label="Filter by status"
-                >
-                  <option value="all">All statuses</option>
-                  {STATUS_OPTIONS[t.id]!.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
-                    </option>
-                  ))}
-                </select>
-              ) : null}
-              <ScrollArea className="min-h-0 flex-1">
-                {records.length === 0 ? (
-                  <p className="text-muted-foreground px-1 py-6 text-center text-xs">
-                    {EMPTY[t.id]}
-                  </p>
-                ) : (
-                  <ul className="space-y-2">
-                    {records.map((r) => (
-                      <li
-                        key={r.id}
-                        className="hover:bg-muted/50 group rounded-md border p-2"
+              <Button
+                type="button"
+                size="icon-sm"
+                variant="outline"
+                aria-label={`Add ${t.label}`}
+                onClick={openCreate}
+              >
+                <Plus className="size-3.5" />
+              </Button>
+            </div>
+            {STATUS_OPTIONS[t.id] ? (
+              <select
+                className="border-input bg-background mb-2 h-8 rounded-md border px-2 text-xs"
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                aria-label="Filter by status"
+              >
+                <option value="all">All statuses</option>
+                {STATUS_OPTIONS[t.id]!.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            ) : null}
+            <ScrollArea className="min-h-0 flex-1">
+              {records.length === 0 ? (
+                <p className="text-muted-foreground px-1 py-6 text-center text-xs">
+                  {EMPTY[t.id]}
+                </p>
+              ) : (
+                <ul className="space-y-2">
+                  {records.map((r) => (
+                    <li
+                      key={r.id}
+                      className="hover:bg-muted/50 group rounded-md border p-2"
+                    >
+                      <button
+                        type="button"
+                        className="w-full text-left"
+                        onClick={() => openEdit(r)}
                       >
-                        <button
-                          type="button"
-                          className="w-full text-left"
-                          onClick={() => openEdit(r)}
-                        >
-                          <div className="flex items-start gap-1">
-                            <span className="min-w-0 flex-1 text-sm font-medium">
-                              {r.title}
-                            </span>
-                            {r.pinned ? (
-                              <Pin className="text-muted-foreground size-3 shrink-0" />
-                            ) : null}
-                          </div>
-                          <div className="mt-1 flex flex-wrap gap-1">
-                            {r.status ? (
-                              <Badge
-                                variant="secondary"
-                                className="text-[10px]"
-                              >
-                                {r.status}
-                              </Badge>
-                            ) : null}
-                            {r.createdBy === "scribe" ? (
-                              <Badge
-                                variant="secondary"
-                                className="text-[10px]"
-                                data-testid="scribe-badge"
-                              >
-                                Added by scribe
-                              </Badge>
-                            ) : null}
-                            <Badge variant="outline" className="text-[10px]">
-                              {r.source === "user" ? "You" : r.source}
-                            </Badge>
-                            <span className="text-muted-foreground text-[10px]">
-                              {new Date(r.updatedAt).toLocaleDateString()}
-                            </span>
-                          </div>
-                        </button>
-                        <div className="mt-1 flex flex-wrap gap-1 opacity-100">
-                          {t.id === "hypothesis" ? (
-                            <Button
-                              type="button"
-                              size="sm"
-                              variant="outline"
-                              className="h-7 text-xs"
-                              data-testid="design-experiment"
-                              onClick={() => {
-                                setDesignHyp(r);
-                                setDesignerOpen(true);
-                              }}
-                            >
-                              Design experiment
-                            </Button>
+                        <div className="flex items-start gap-1">
+                          <span className="min-w-0 flex-1 text-sm font-medium">
+                            {r.title}
+                          </span>
+                          {r.pinned ? (
+                            <Pin className="text-muted-foreground size-3 shrink-0" />
                           ) : null}
-                          <Button
-                            type="button"
-                            size="icon-xs"
-                            variant="ghost"
-                            aria-label="Pin"
-                            onClick={() => void togglePin(r)}
-                          >
-                            <Pin className="size-3" />
-                          </Button>
-                          <Button
-                            type="button"
-                            size="icon-xs"
-                            variant="ghost"
-                            aria-label="Delete"
-                            onClick={() => void deleteRecord(r)}
-                          >
-                            <Trash2 className="size-3" />
-                          </Button>
                         </div>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </ScrollArea>
-            </TabsContent>
-          ),
-        )}
+                        <div className="mt-1 flex flex-wrap gap-1">
+                          {r.status ? (
+                            <Badge variant="secondary" className="text-[10px]">
+                              {r.status}
+                            </Badge>
+                          ) : null}
+                          {r.createdBy === "scribe" ? (
+                            <Badge
+                              variant="secondary"
+                              className="text-[10px]"
+                              data-testid="scribe-badge"
+                            >
+                              Added by scribe
+                            </Badge>
+                          ) : null}
+                          <Badge variant="outline" className="text-[10px]">
+                            {r.source === "user" ? "You" : r.source}
+                          </Badge>
+                          <span className="text-muted-foreground text-[10px]">
+                            {new Date(r.updatedAt).toLocaleDateString()}
+                          </span>
+                        </div>
+                      </button>
+                      <div className="mt-1 flex flex-wrap gap-1 opacity-100">
+                        {t.id === "hypothesis" ? (
+                          <Button
+                            type="button"
+                            size="sm"
+                            variant="outline"
+                            className="h-7 text-xs"
+                            data-testid="design-experiment"
+                            onClick={() => {
+                              setDesignHyp(r);
+                              setDesignerOpen(true);
+                            }}
+                          >
+                            Design experiment
+                          </Button>
+                        ) : null}
+                        <Button
+                          type="button"
+                          size="icon-xs"
+                          variant="ghost"
+                          aria-label="Pin"
+                          onClick={() => void togglePin(r)}
+                        >
+                          <Pin className="size-3" />
+                        </Button>
+                        <Button
+                          type="button"
+                          size="icon-xs"
+                          variant="ghost"
+                          aria-label="Delete"
+                          onClick={() => void deleteRecord(r)}
+                        >
+                          <Trash2 className="size-3" />
+                        </Button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </ScrollArea>
+          </TabsContent>
+        ))}
       </Tabs>
 
       <Dialog open={editorOpen} onOpenChange={setEditorOpen}>
