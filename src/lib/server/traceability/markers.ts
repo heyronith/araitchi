@@ -145,9 +145,41 @@ export function traceSentences(
     total: sentences.length,
     claimMap: sentences.map((s) => ({
       sentence: s.text,
-      markers: s.markers.map((mk) => mk.raw),
+      markers: s.markers.map((mk) =>
+        mk.valid ? mk.raw : `[INVALID:${mk.raw}]`,
+      ),
     })),
   };
+}
+
+/**
+ * Infer a provisional source catalog from markers in text when the caller
+ * has no tool/paper index. High paper indices (e.g. [P-999]) are treated as
+ * invalid hallucinations; common low indices stay valid.
+ */
+export function inferCatalogFromText(text: string): SourceCatalog {
+  const papers = new Set<string>();
+  const memory = new Set<string>();
+  const tools = new Set<string>();
+  const experiments = new Set<string>();
+  const files = new Set<string>();
+  for (const m of text.matchAll(MARKER_RE)) {
+    if (m[1]) {
+      const prefix = m[1]!;
+      const num = m[2]!;
+      const n = Number(num);
+      if (prefix === "P" && n >= 1 && n <= 50) papers.add(num);
+      else if (prefix === "T" && n >= 1 && n <= 50) tools.add(num);
+      else if (prefix === "E" && n >= 1 && n <= 50) experiments.add(num);
+      else if (n >= 1 && n <= 50) {
+        memory.add(num);
+        memory.add(`${prefix}-${num}`);
+      }
+    } else if (m[3]) {
+      files.add(m[3]!.trim());
+    }
+  }
+  return { papers, memory, tools, files, experiments };
 }
 
 export function formatTraceabilityFooter(

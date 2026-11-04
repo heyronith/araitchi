@@ -349,6 +349,18 @@ export function ChatPanel({
   const bottomRef = React.useRef<HTMLDivElement>(null);
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
+  React.useEffect(() => {
+    const onRunTask = (ev: Event) => {
+      const detail = (ev as CustomEvent<{ message?: string }>).detail;
+      if (detail?.message) {
+        setInput(detail.message);
+        textareaRef.current?.focus();
+      }
+    };
+    window.addEventListener("araitchi:run-task", onRunTask);
+    return () => window.removeEventListener("araitchi:run-task", onRunTask);
+  }, []);
+
   const transport = React.useMemo(
     () =>
       new AssistantChatTransport({

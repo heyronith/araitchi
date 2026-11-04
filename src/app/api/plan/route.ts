@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import { rebuildStateMd } from "@/lib/server/continuity/state";
 import {
   acceptPlanSuggestion,
   createMilestone,
@@ -8,6 +9,8 @@ import {
   getPlan,
   listPlanSuggestions,
   runTaskPrefill,
+  suggestAnalyseAfterVerdict,
+  suggestPlanItem,
   updateMilestone,
   updateTask,
   listTasks,
@@ -15,6 +18,17 @@ import {
 import { tryCurrentProjectPath } from "@/lib/server/project/registry";
 import { ensureScratchProject } from "@/lib/server/project/scratch";
 import { assertLocalOrigin } from "@/lib/server/security";
+
+function refreshNextSteps(projectPath: string) {
+  try {
+    rebuildStateMd(projectPath, {
+      note: "plan tasks",
+      skipHistory: true,
+    });
+  } catch {
+    /* best-effort */
+  }
+}
 
 export const runtime = "nodejs";
 
@@ -56,6 +70,7 @@ const postSchema = z.discriminatedUnion("action", [
     status: z.enum(["todo", "doing", "blocked", "done"]).optional(),
     dueDate: z.number().nullable().optional(),
     milestoneId: z.string().nullable().optional(),
+    experimentIds: z.array(z.string()).optional(),
   }),
   z.object({
     action: z.literal("updateTask"),
@@ -67,6 +82,7 @@ const postSchema = z.discriminatedUnion("action", [
     dueDate: z.number().nullable().optional(),
     milestoneId: z.string().nullable().optional(),
     sortOrder: z.number().optional(),
+    experimentIds: z.array(z.string()).optional(),
   }),
   z.object({
     action: z.literal("acceptSuggestion"),
@@ -79,6 +95,17 @@ const postSchema = z.discriminatedUnion("action", [
   z.object({
     action: z.literal("runTask"),
     id: z.string().min(1),
+  }),
+  z.object({
+    action: z.literal("suggest"),
+    kind: z.enum(["task", "milestone"]),
+    payload: z.record(z.string(), z.unknown()),
+    reason: z.string().optional(),
+  }),
+  z.object({
+    action: z.literal("suggestAfterVerdict"),
+    experimentId: z.string().min(1),
+    verdict: z.string().min(1),
   }),
 ]);
 
@@ -108,19 +135,25 @@ export async function POST(request: Request) {
         ok: updateMilestone(p, d.id, d),
         plan: getPlan(p),
       });
-    case "createTask":
-      return Response.json({ id: createTask(p, d), plan: getPlan(p) });
-    case "updateTask":
+    case "createTask": {
+      const id = createTask(p, d);
+      refreshNextSteps(p);
+      return Response.json({ id, plan: getPlan(p) });
+    }
+    case "updateTask": {
+      const ok = updateTask(p, d.id, d);
+      refreshNextSteps(p);
+      return Response.json({ ok, plan: getPlan(p) });
+    }
+    case "acceptSuggestion": {
+      const ok = acceptPlanSuggestion(p, d.id);
+      refreshNextSteps(p);
       return Response.json({
-        ok: updateTask(p, d.id, d),
-        plan: getPlan(p),
-      });
-    case "acceptSuggestion":
-      return Response.json({
-        ok: acceptPlanSuggestion(p, d.id),
+        ok,
         plan: getPlan(p),
         suggestions: listPlanSuggestions(p),
       });
+    }
     case "dismissSuggestion":
       return Response.json({
         ok: dismissPlanSuggestion(p, d.id),
@@ -130,6 +163,20 @@ export async function POST(request: Request) {
       const task = listTasks(p).find((t) => t.id === d.id);
       if (!task) return Response.json({ error: "Not found" }, { status: 404 });
       return Response.json({ ok: true, ...runTaskPrefill(task), task });
+    }
+    case "suggest":
+      return Response.json({
+        id: suggestPlanItem(p, d.kind, d.payload, d.reason ?? ""),
+        suggestions: listPlanSuggestions(p),
+      });
+    case "suggestAfterVerdict": {
+      const id = suggestAnalyseAfterVerdict(p, d.experimentId, d.verdict);
+      refreshNextSteps(p);
+      return Response.json({
+        id,
+        plan: getPlan(p),
+        suggestions: listPlanSuggestions(p),
+      });
     }
     default:
       return Response.json({ error: "Unknown action" }, { status: 400 });

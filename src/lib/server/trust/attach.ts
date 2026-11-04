@@ -7,6 +7,7 @@ import {
 } from "@/lib/server/citations/types";
 import {
   formatTraceabilityFooter,
+  inferCatalogFromText,
   traceSentences,
   type SourceCatalog,
 } from "@/lib/server/traceability/markers";
@@ -43,8 +44,10 @@ export async function attachTrustMeta(input: {
 }): Promise<TrustAttachResult> {
   const citations = await checkCitations(input.text, {
     skipSupport: input.skipSupport ?? true,
+    projectPath: input.projectPath,
   });
-  const traced = traceSentences(input.text, input.catalog);
+  const catalog = input.catalog ?? inferCatalogFromText(input.text);
+  const traced = traceSentences(input.text, catalog);
   const summaryLine = formatCitationSummaryLine(citations);
   const traceFooter = formatTraceabilityFooter(
     traced.sourcedCount,

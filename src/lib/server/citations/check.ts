@@ -3,7 +3,10 @@ import "server-only";
 import { extractCitations } from "./extract";
 import { metadataMatches } from "./match";
 import { resolveCitation, type ResolveOptions } from "./resolve";
-import { checkClaimSupport, type SupportCheckOptions } from "./support";
+import {
+  checkClaimSupportDetailed,
+  type SupportCheckOptions,
+} from "./support";
 import {
   emptySummary,
   type CitationCheckResult,
@@ -76,8 +79,12 @@ export async function checkCitations(
       continue;
     }
 
-    const support = await checkClaimSupport(citation.claim, paper, opts);
-    if (support === "not_supported") {
+    const support = await checkClaimSupportDetailed(
+      citation.claim,
+      paper,
+      opts,
+    );
+    if (support.verdict === "not_supported") {
       results.push({
         citation,
         status: "claim_not_supported",
@@ -85,8 +92,8 @@ export async function checkCitations(
         titleSimilarity: meta.titleSimilarity,
         yearOk: meta.yearOk,
         authorOk: meta.authorOk,
-        support,
-        reason: "Claim appears inconsistent with the paper abstract",
+        support: support.verdict,
+        reason: support.reason,
       });
       continue;
     }
@@ -98,11 +105,11 @@ export async function checkCitations(
       titleSimilarity: meta.titleSimilarity,
       yearOk: meta.yearOk,
       authorOk: meta.authorOk,
-      support,
+      support: support.verdict,
       reason:
-        support === "supported"
-          ? "Exists, metadata matches, claim consistent with abstract"
-          : "Exists and metadata matches; support unclear",
+        support.verdict === "supported"
+          ? support.reason
+          : `Exists and metadata matches; support ${support.verdict}`,
     });
   }
 

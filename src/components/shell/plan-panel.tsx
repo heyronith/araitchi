@@ -90,10 +90,14 @@ export function PlanPanel({
       preferCouncil?: boolean;
     } | null;
     if (data?.message) {
-      onRunTask?.({
+      const prefill = {
         message: data.message,
         preferCouncil: Boolean(data.preferCouncil),
-      });
+      };
+      onRunTask?.(prefill);
+      window.dispatchEvent(
+        new CustomEvent("araitchi:run-task", { detail: prefill }),
+      );
       toast.success("Task opened in chat");
     }
   }

@@ -239,6 +239,53 @@ const server = createServer(async (req, res) => {
     return;
   }
 
+  // OpenAlex get-by-DOI: /works/doi:10.1234/...
+  if (req.method === "GET" && path.startsWith("/openalex/works/doi:")) {
+    const doi = decodeURIComponent(path.slice("/openalex/works/doi:".length));
+    const hit = MOCK_PAPERS.results.find(
+      (p) =>
+        p.doi.replace("https://doi.org/", "").toLowerCase() ===
+        doi.toLowerCase(),
+    );
+    if (!hit) {
+      json(res, 404, { error: "not found" });
+      return;
+    }
+    json(res, 200, hit);
+    return;
+  }
+
+  // Crossref get-by-DOI / search (keyless citation resolve in e2e).
+  if (req.method === "GET" && path.startsWith("/mock/crossref/works")) {
+    const doiPath = path.slice("/mock/crossref/works".length).replace(/^\//, "");
+    if (doiPath && !doiPath.startsWith("?")) {
+      const doi = decodeURIComponent(doiPath);
+      if (doi.startsWith("10.9999/") || doi.includes("fake")) {
+        json(res, 404, { status: "error", message: "Not found" });
+        return;
+      }
+      const hit = MOCK_PAPERS.results.find(
+        (p) =>
+          p.doi.replace("https://doi.org/", "").toLowerCase() ===
+          doi.toLowerCase(),
+      );
+      const title = hit?.title ?? "Attention Is All You Need";
+      const year = hit?.publication_year ?? 2017;
+      json(res, 200, {
+        message: {
+          DOI: doi,
+          title: [title],
+          author: [{ given: "Ashish", family: "Vaswani" }],
+          issued: { "date-parts": [[year]] },
+          abstract: "A mock abstract about transformers and attention.",
+        },
+      });
+      return;
+    }
+    json(res, 200, { message: { items: [] } });
+    return;
+  }
+
   // Every other paper provider returns an empty / failing response offline.
   if (path.startsWith("/mock/")) {
     json(res, 404, { error: "mock provider has no data" });
@@ -441,7 +488,24 @@ const server = createServer(async (req, res) => {
       reply =
         "Based on the search, here are recent papers: Mock Paper One: Graph Neural Networks for Molecules (doi:10.1234/mock.one) and Mock Paper Two: Transformers at Scale (doi:10.1234/mock.two).";
     } else {
-      reply = behavior.reply ?? defaultReplyFor(modelId);
+      const lastUser = [...(parsed.messages ?? [])]
+        .reverse()
+        .find((m) => m.role === "user");
+      const lastUserText = messageText(lastUser).toLowerCase();
+      if (
+        lastUserText.includes("cite doi:") ||
+        lastUserText.includes("cite arxiv:") ||
+        /\bcite\b.*\b(doi|arxiv|paper)/i.test(lastUserText)
+      ) {
+        reply = [
+          "Here are relevant citations.",
+          "A fabricated result is doi:10.9999/fake.e2e.doi.",
+          "Real prior work includes doi:10.1234/mock.one and doi:10.1234/mock.two [P-1].",
+          "An invalid marker looks like [P-999].",
+        ].join(" ");
+      } else {
+        reply = behavior.reply ?? defaultReplyFor(modelId);
+      }
     }
 
     const usage = {

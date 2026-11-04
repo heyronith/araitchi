@@ -186,6 +186,7 @@ export function createPaperTools(ctx: PaperToolContext = {}): RegisteredTool[] {
           arxivId: args.arxivId,
           contactEmail,
           signal: toolCtx?.signal,
+          enabledProviders: ctx.enabledProviders,
         });
         if (!paper) return { ok: false, error: "Paper not found" };
         return {

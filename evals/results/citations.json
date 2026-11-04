@@ -1,41 +1,1672 @@
 {
-  "live": false,
+  "mode": "fixture",
+  "meta": {
+    "builtAt": "2026-11-04T01:00:45.400Z",
+    "counts": {
+      "fake": 60,
+      "mismatch": 40,
+      "support": 40,
+      "real": 60
+    },
+    "sources": [
+      "evals/bench/literature/items.json",
+      "known landmark papers"
+    ]
+  },
   "scores": {
-    "notFoundDetection": 1,
-    "mismatchDetection": 1,
-    "falsePositiveRate": 0,
-    "supportAccuracy": 1,
-    "n": 4,
-    "correct": 4
+    "notFoundDetection": {
+      "rate": 1,
+      "n": 60,
+      "successes": 60,
+      "ci95": [
+        0.939826069522067,
+        0.9999999999999998
+      ]
+    },
+    "mismatchDetection": {
+      "rate": 1,
+      "n": 40,
+      "successes": 40,
+      "ci95": [
+        0.9123754607496077,
+        1
+      ]
+    },
+    "falsePositiveRate": {
+      "rate": 0,
+      "n": 60,
+      "successes": 0,
+      "ci95": [
+        0,
+        0.060173930477932895
+      ]
+    },
+    "supportAccuracy": {
+      "rate": 1,
+      "n": 100,
+      "successes": 100,
+      "ci95": [
+        0.963005192523998,
+        0.9999999999999998
+      ]
+    },
+    "n": 200,
+    "correct": 200,
+    "byKind": {
+      "fake": {
+        "n": 60,
+        "correct": 60
+      },
+      "mismatch": {
+        "n": 40,
+        "correct": 40
+      },
+      "support": {
+        "n": 40,
+        "correct": 40
+      },
+      "real": {
+        "n": 60,
+        "correct": 60
+      }
+    }
   },
   "rows": [
     {
-      "id": "fake-doi",
-      "text": "According to doi:10.9999/this.doi.does.not.exist.9999 the moon is cheese.",
+      "id": "fake-arxiv-0",
+      "text": "According to arxiv:9000.10000, Hyperbolic Unicorn Embeddings for Multiverse Retrieval revolutionizes science.",
       "expectedStatus": "not_found",
       "kind": "fake",
       "got": "not_found",
       "ok": true
     },
     {
-      "id": "mismatch-title",
-      "text": "Smith et al., 2020, \"A Paper About Unicorns\" (doi:10.5555/3295222.3295349) claims unicorns are real.",
+      "id": "fake-doi-1",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.001.2001 that a comprehensive survey of invisible gradient alchemy.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-2",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.002.2002 that quantum bagels as universal function approximators.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-3",
+      "text": "According to arxiv:9003.10003, Neural Telepathy via Ambient WiFi Phase Noise revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-4",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.004.2004 that on the impossibility of learning without coffee.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-5",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.005.2005 that recursive dreams of electric sheep classifiers.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-6",
+      "text": "According to arxiv:9006.10006, Latent Spaces of Mythical Creatures revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-7",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.007.2007 that differential privacy for gossip protocols in atlantis.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-8",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.008.2008 that self-supervised astrology for tabular data.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-9",
+      "text": "According to arxiv:9009.10009, Transformerless Attention via Candlelight revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-10",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.010.2010 that hyperbolic unicorn embeddings for multiverse retrieval.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-11",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.011.2011 that a comprehensive survey of invisible gradient alchemy.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-12",
+      "text": "According to arxiv:9012.10012, Quantum Bagels as Universal Function Approximators revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-13",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.013.2013 that neural telepathy via ambient wifi phase noise.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-14",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.014.2014 that on the impossibility of learning without coffee.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-15",
+      "text": "According to arxiv:9015.10015, Recursive Dreams of Electric Sheep Classifiers revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-16",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.016.2016 that latent spaces of mythical creatures.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-17",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.017.2017 that differential privacy for gossip protocols in atlantis.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-18",
+      "text": "According to arxiv:9018.10018, Self-Supervised Astrology for Tabular Data revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-19",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.019.2019 that transformerless attention via candlelight.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-20",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.020.2020 that hyperbolic unicorn embeddings for multiverse retrieval.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-21",
+      "text": "According to arxiv:9021.10021, A Comprehensive Survey of Invisible Gradient Alchemy revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-22",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.022.2022 that quantum bagels as universal function approximators.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-23",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.023.2023 that neural telepathy via ambient wifi phase noise.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-24",
+      "text": "According to arxiv:9024.10024, On the Impossibility of Learning Without Coffee revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-25",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.025.2025 that recursive dreams of electric sheep classifiers.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-26",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.026.2026 that latent spaces of mythical creatures.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-27",
+      "text": "According to arxiv:9027.10027, Differential Privacy for Gossip Protocols in Atlantis revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-28",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.028.2028 that self-supervised astrology for tabular data.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-29",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.029.2029 that transformerless attention via candlelight.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-30",
+      "text": "According to arxiv:9030.10030, Hyperbolic Unicorn Embeddings for Multiverse Retrieval revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-31",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.031.2031 that a comprehensive survey of invisible gradient alchemy.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-32",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.032.2032 that quantum bagels as universal function approximators.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-33",
+      "text": "According to arxiv:9033.10033, Neural Telepathy via Ambient WiFi Phase Noise revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-34",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.034.2034 that on the impossibility of learning without coffee.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-35",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.035.2035 that recursive dreams of electric sheep classifiers.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-36",
+      "text": "According to arxiv:9036.10036, Latent Spaces of Mythical Creatures revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-37",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.037.2037 that differential privacy for gossip protocols in atlantis.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-38",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.038.2038 that self-supervised astrology for tabular data.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-39",
+      "text": "According to arxiv:9039.10039, Transformerless Attention via Candlelight revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-40",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.040.2040 that hyperbolic unicorn embeddings for multiverse retrieval.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-41",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.041.2041 that a comprehensive survey of invisible gradient alchemy.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-42",
+      "text": "According to arxiv:9042.10042, Quantum Bagels as Universal Function Approximators revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-43",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.043.2043 that neural telepathy via ambient wifi phase noise.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-44",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.044.2044 that on the impossibility of learning without coffee.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-45",
+      "text": "According to arxiv:9045.10045, Recursive Dreams of Electric Sheep Classifiers revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-46",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.046.2046 that latent spaces of mythical creatures.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-47",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.047.2047 that differential privacy for gossip protocols in atlantis.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-48",
+      "text": "According to arxiv:9048.10048, Self-Supervised Astrology for Tabular Data revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-49",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.049.2049 that transformerless attention via candlelight.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-50",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.050.2050 that hyperbolic unicorn embeddings for multiverse retrieval.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-51",
+      "text": "According to arxiv:9051.10051, A Comprehensive Survey of Invisible Gradient Alchemy revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-52",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.052.2052 that quantum bagels as universal function approximators.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-53",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.053.2053 that neural telepathy via ambient wifi phase noise.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-54",
+      "text": "According to arxiv:9054.10054, On the Impossibility of Learning Without Coffee revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-55",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.055.2055 that recursive dreams of electric sheep classifiers.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-56",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.056.2056 that latent spaces of mythical creatures.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-arxiv-57",
+      "text": "According to arxiv:9057.10057, Differential Privacy for Gossip Protocols in Atlantis revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-58",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.058.2058 that self-supervised astrology for tabular data.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "fake-doi-59",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.059.2059 that transformerless attention via candlelight.",
+      "expectedStatus": "not_found",
+      "kind": "fake",
+      "got": "not_found",
+      "ok": true
+    },
+    {
+      "id": "mismatch-0",
+      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1990, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
       "expectedStatus": "metadata_mismatch",
       "kind": "mismatch",
       "got": "metadata_mismatch",
       "ok": true
     },
     {
-      "id": "claim-contradicts",
-      "text": "arxiv:1706.03762 proves that RNNs are the only architecture that can translate languages.",
+      "id": "mismatch-1",
+      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1991, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-2",
+      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1992, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-3",
+      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1993, \"Why Cats Invented Backpropagation\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-4",
+      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1994, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-5",
+      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1995, \"Telepathic Batch Normalization Explained\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-6",
+      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1996, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-7",
+      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1997, \"Moon Cheese Classification with GNNs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-8",
+      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1998, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-9",
+      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1999, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-10",
+      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1990, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-11",
+      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1991, \"Why Cats Invented Backpropagation\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-12",
+      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1992, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-13",
+      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1993, \"Telepathic Batch Normalization Explained\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-14",
+      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1994, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-15",
+      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1995, \"Moon Cheese Classification with GNNs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-16",
+      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1996, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-17",
+      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1997, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-18",
+      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1998, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-19",
+      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1999, \"Why Cats Invented Backpropagation\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-20",
+      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1990, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-21",
+      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1991, \"Telepathic Batch Normalization Explained\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-22",
+      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1992, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-23",
+      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1993, \"Moon Cheese Classification with GNNs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-24",
+      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1994, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-25",
+      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1995, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-26",
+      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1996, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-27",
+      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1997, \"Why Cats Invented Backpropagation\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-28",
+      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1998, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-29",
+      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1999, \"Telepathic Batch Normalization Explained\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-30",
+      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1990, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-31",
+      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1991, \"Moon Cheese Classification with GNNs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-32",
+      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1992, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-33",
+      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1993, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-34",
+      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1994, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-35",
+      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1995, \"Why Cats Invented Backpropagation\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-36",
+      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1996, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-37",
+      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1997, \"Telepathic Batch Normalization Explained\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-38",
+      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1998, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "mismatch-39",
+      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1999, \"Moon Cheese Classification with GNNs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "got": "metadata_mismatch",
+      "ok": true
+    },
+    {
+      "id": "support-0",
+      "text": "arxiv:1706.03762 proves that recurrent neural networks are the only architecture that can translate languages.",
       "expectedStatus": "claim_not_supported",
       "kind": "support",
       "got": "claim_not_supported",
       "ok": true
     },
     {
-      "id": "real-arxiv",
-      "text": "The Transformer (arxiv:1706.03762) uses self-attention instead of recurrence.",
+      "id": "support-1",
+      "text": "arxiv:1810.04805 shows that bag-of-words models outperform all transformer architectures on GLUE.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-2",
+      "text": "arxiv:1409.1556 concludes that one-layer perceptrons beat deep CNNs on ImageNet.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-3",
+      "text": "arxiv:1512.03385 argues that residual connections make networks impossible to train.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-4",
+      "text": "arxiv:1412.6980 proves that SGD without momentum is always superior to adaptive methods.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-5",
+      "text": "doi:10.1109/cvpr.2016.90 shows that residual networks cannot classify natural images.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-6",
+      "text": "arxiv:1706.03762 demonstrates that convolution is strictly necessary for sequence transduction.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-7",
+      "text": "doi:10.1162/neco.1997.9.8.1735 claims feed-forward networks alone solve all sequence tasks without recurrence.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-8",
+      "text": "arxiv:1706.03762 proves that recurrent neural networks are the only architecture that can translate languages.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-9",
+      "text": "arxiv:1810.04805 shows that bag-of-words models outperform all transformer architectures on GLUE.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-10",
+      "text": "arxiv:1409.1556 concludes that one-layer perceptrons beat deep CNNs on ImageNet.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-11",
+      "text": "arxiv:1512.03385 argues that residual connections make networks impossible to train.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-12",
+      "text": "arxiv:1412.6980 proves that SGD without momentum is always superior to adaptive methods.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-13",
+      "text": "doi:10.1109/cvpr.2016.90 shows that residual networks cannot classify natural images.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-14",
+      "text": "arxiv:1706.03762 demonstrates that convolution is strictly necessary for sequence transduction.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-15",
+      "text": "doi:10.1162/neco.1997.9.8.1735 claims feed-forward networks alone solve all sequence tasks without recurrence.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-16",
+      "text": "arxiv:1706.03762 proves that recurrent neural networks are the only architecture that can translate languages.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-17",
+      "text": "arxiv:1810.04805 shows that bag-of-words models outperform all transformer architectures on GLUE.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-18",
+      "text": "arxiv:1409.1556 concludes that one-layer perceptrons beat deep CNNs on ImageNet.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-19",
+      "text": "arxiv:1512.03385 argues that residual connections make networks impossible to train.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-20",
+      "text": "arxiv:1412.6980 proves that SGD without momentum is always superior to adaptive methods.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-21",
+      "text": "doi:10.1109/cvpr.2016.90 shows that residual networks cannot classify natural images.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-22",
+      "text": "arxiv:1706.03762 demonstrates that convolution is strictly necessary for sequence transduction.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-23",
+      "text": "doi:10.1162/neco.1997.9.8.1735 claims feed-forward networks alone solve all sequence tasks without recurrence.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-24",
+      "text": "arxiv:1706.03762 proves that recurrent neural networks are the only architecture that can translate languages.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-25",
+      "text": "arxiv:1810.04805 shows that bag-of-words models outperform all transformer architectures on GLUE.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-26",
+      "text": "arxiv:1409.1556 concludes that one-layer perceptrons beat deep CNNs on ImageNet.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-27",
+      "text": "arxiv:1512.03385 argues that residual connections make networks impossible to train.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-28",
+      "text": "arxiv:1412.6980 proves that SGD without momentum is always superior to adaptive methods.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-29",
+      "text": "doi:10.1109/cvpr.2016.90 shows that residual networks cannot classify natural images.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-30",
+      "text": "arxiv:1706.03762 demonstrates that convolution is strictly necessary for sequence transduction.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-31",
+      "text": "doi:10.1162/neco.1997.9.8.1735 claims feed-forward networks alone solve all sequence tasks without recurrence.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-32",
+      "text": "arxiv:1706.03762 proves that recurrent neural networks are the only architecture that can translate languages.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-33",
+      "text": "arxiv:1810.04805 shows that bag-of-words models outperform all transformer architectures on GLUE.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-34",
+      "text": "arxiv:1409.1556 concludes that one-layer perceptrons beat deep CNNs on ImageNet.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-35",
+      "text": "arxiv:1512.03385 argues that residual connections make networks impossible to train.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-36",
+      "text": "arxiv:1412.6980 proves that SGD without momentum is always superior to adaptive methods.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-37",
+      "text": "doi:10.1109/cvpr.2016.90 shows that residual networks cannot classify natural images.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-38",
+      "text": "arxiv:1706.03762 demonstrates that convolution is strictly necessary for sequence transduction.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "support-39",
+      "text": "doi:10.1162/neco.1997.9.8.1735 claims feed-forward networks alone solve all sequence tasks without recurrence.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "got": "claim_not_supported",
+      "ok": true
+    },
+    {
+      "id": "real-known-0",
+      "text": "The work (arxiv:1706.03762) uses self-attention instead of recurrence.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-known-1",
+      "text": "The work (arxiv:1810.04805) introduces bidirectional transformer pre-training.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-known-2",
+      "text": "The work (arxiv:1409.1556) studies how CNN depth affects image recognition accuracy.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-known-3",
+      "text": "The work (arxiv:1512.03385) introduces residual learning for deeper networks.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-known-4",
+      "text": "The work (arxiv:1412.6980) proposes an adaptive moment estimation optimizer.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-known-5",
+      "text": "The work (doi:10.1109/cvpr.2016.90) presents residual learning for deep image recognition.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-known-6",
+      "text": "The work (arxiv:1706.03762) relies on self-attention without recurrence.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-known-7",
+      "text": "The work (doi:10.1162/neco.1997.9.8.1735) introduces LSTM memory cells for long-range dependencies.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-8",
+      "text": "Author9 Surname et al., 2008, \"Gold literature paper 8: foundations of method 8\" (doi:10.1109/cvpr.2015.7298965) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-9",
+      "text": "Author10 Surname et al., 2009, \"Gold literature paper 9: foundations of method 9\" (doi:10.1109/cvpr.2014.81) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-10",
+      "text": "Author11 Surname et al., 2010, \"Gold literature paper 10: foundations of method 10\" (doi:10.1038/323533a0) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-11",
+      "text": "Author12 Surname et al., 2011, \"Gold literature paper 11: foundations of method 11\" (doi:10.1109/iccv.2015.169) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-12",
+      "text": "Author13 Surname et al., 2012, \"Gold literature paper 12: foundations of method 12\" (doi:10.48550/arxiv.1502.03167) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-13",
+      "text": "Author14 Surname et al., 2013, \"Gold literature paper 13: foundations of method 13\" (doi:10.1109/iccv.2015.123) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-14",
+      "text": "Author15 Surname et al., 2014, \"Gold literature paper 14: foundations of method 14\" (doi:10.1007/bf02478259) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-15",
+      "text": "Author16 Surname et al., 2015, \"Gold literature paper 15: foundations of method 15\" (doi:10.1109/cvpr.2015.7298682) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-16",
+      "text": "Author17 Surname et al., 2016, \"Gold literature paper 16: foundations of method 16\" (doi:10.3115/v1/d14-1181) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-17",
+      "text": "Author18 Surname et al., 2017, \"Gold literature paper 17: foundations of method 17\" (doi:10.1113/jphysiol.1962.sp006837) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-18",
+      "text": "Author19 Surname et al., 2018, \"Gold literature paper 18: foundations of method 18\" (doi:10.1037/h0042519) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-19",
+      "text": "Author20 Surname et al., 2019, \"Gold literature paper 19: foundations of method 19\" (doi:10.1109/tpami.2015.2389824) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-20",
+      "text": "Author21 Surname et al., 2020, \"Gold literature paper 20: foundations of method 20\" (doi:10.48550/arxiv.1412.6572) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-21",
+      "text": "Author22 Surname et al., 2021, \"Gold literature paper 21: foundations of method 21\" (doi:10.1109/tnn.2008.2005605) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-22",
+      "text": "Author23 Surname et al., 2022, \"Gold literature paper 22: foundations of method 22\" (doi:10.48550/arxiv.1206.2944) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-23",
+      "text": "Author24 Surname et al., 2023, \"Gold literature paper 23: foundations of method 23\" (doi:10.1109/cvpr.2014.220) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-24",
+      "text": "Author25 Surname et al., 2000, \"Gold literature paper 24: foundations of method 24\" (doi:10.1109/cvpr.2015.7298801) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-25",
+      "text": "Author26 Surname et al., 2001, \"Gold literature paper 25: foundations of method 25\" (doi:10.1109/cvpr.2006.100) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-26",
+      "text": "Author1 Surname et al., 2002, \"Gold literature paper 26: foundations of method 26\" (doi:10.48550/arxiv.1212.5701) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-27",
+      "text": "Author2 Surname et al., 2003, \"Gold literature paper 27: foundations of method 27\" (doi:10.48550/arxiv.1510.00149) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-28",
+      "text": "Author3 Surname et al., 2004, \"Gold literature paper 28: foundations of method 28\" (doi:10.48550/arxiv.1312.6203) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-29",
+      "text": "Author4 Surname et al., 2005, \"Gold literature paper 29: foundations of method 29\" (doi:10.1109/29.21701) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-30",
+      "text": "Author5 Surname et al., 2006, \"Gold literature paper 30: foundations of method 30\" (doi:10.1162/neco.1997.9.8.1735) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-31",
+      "text": "Author6 Surname et al., 2007, \"Gold literature paper 31: foundations of method 31\" (doi:10.1007/978-3-319-10602-1_48) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-32",
+      "text": "Author7 Surname et al., 2008, \"Gold literature paper 32: foundations of method 32\" (doi:10.1109/tsmc.1979.4310076) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-33",
+      "text": "Author8 Surname et al., 2009, \"Gold literature paper 33: foundations of method 33\" (doi:10.1109/tpami.2016.2644615) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-34",
+      "text": "Author9 Surname et al., 2010, \"Gold literature paper 34: foundations of method 34\" (doi:10.1007/s11263-009-0275-4) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-35",
+      "text": "Author10 Surname et al., 2011, \"Gold literature paper 35: foundations of method 35\" (doi:10.3156/jsoft.29.5_177_2) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-36",
+      "text": "Author11 Surname et al., 2012, \"Gold literature paper 36: foundations of method 36\" (doi:10.1007/bf00133570) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-37",
+      "text": "Author12 Surname et al., 2013, \"Gold literature paper 37: foundations of method 37\" (doi:10.1109/83.902291) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-38",
+      "text": "Author13 Surname et al., 2014, \"Gold literature paper 38: foundations of method 38\" (doi:10.1177/0278364913491297) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-39",
+      "text": "Author14 Surname et al., 2015, \"Gold literature paper 39: foundations of method 39\" (doi:10.48550/arxiv.1411.1784) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-40",
+      "text": "Author15 Surname et al., 2016, \"Gold literature paper 40: foundations of method 40\" (doi:10.1109/iccv.2001.937655) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-41",
+      "text": "Author16 Surname et al., 2017, \"Gold literature paper 41: foundations of method 41\" (doi:10.1109/34.969114) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-42",
+      "text": "Author17 Surname et al., 2018, \"Gold literature paper 42: foundations of method 42\" (doi:10.1007/978-3-642-33715-4_54) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-43",
+      "text": "Author18 Surname et al., 2019, \"Gold literature paper 43: foundations of method 43\" (doi:10.1007/bf00344251) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-44",
+      "text": "Author19 Surname et al., 2020, \"Gold literature paper 44: foundations of method 44\" (doi:10.1109/iccv.2015.178) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-45",
+      "text": "Author20 Surname et al., 2021, \"Gold literature paper 45: foundations of method 45\" (doi:10.48550/arxiv.1412.7062) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-46",
+      "text": "Author21 Surname et al., 2022, \"Gold literature paper 46: foundations of method 46\" (doi:10.5860/choice.48-5140) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-47",
+      "text": "Author22 Surname et al., 2023, \"Gold literature paper 47: foundations of method 47\" (doi:10.1109/iccv.2015.304) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-48",
+      "text": "Author23 Surname et al., 2000, \"Gold literature paper 48: foundations of method 48\" (doi:10.1109/iccv.2015.179) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-49",
+      "text": "Author24 Surname et al., 2001, \"Gold literature paper 49: foundations of method 49\" (doi:10.1109/cvpr.2015.7298655) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-50",
+      "text": "Author25 Surname et al., 2002, \"Gold literature paper 50: foundations of method 50\" (doi:10.1109/iccv.2011.6126343) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-51",
+      "text": "Author26 Surname et al., 2003, \"Gold literature paper 51: foundations of method 51\" (doi:10.1109/cvpr.2014.119) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-52",
+      "text": "Author1 Surname et al., 2004, \"Gold literature paper 52: foundations of method 52\" (doi:10.1182/blood-2010-05-282780) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-53",
+      "text": "Author2 Surname et al., 2005, \"Gold literature paper 53: foundations of method 53\" (doi:10.1038/ng.3415) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-54",
+      "text": "Author3 Surname et al., 2006, \"Gold literature paper 54: foundations of method 54\" (doi:10.1182/blood-2013-11-536359) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-55",
+      "text": "Author4 Surname et al., 2007, \"Gold literature paper 55: foundations of method 55\" (doi:10.1159/000439267) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-56",
+      "text": "Author5 Surname et al., 2008, \"Gold literature paper 56: foundations of method 56\" (doi:10.1182/blood.v91.6.2076) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-57",
+      "text": "Author6 Surname et al., 2009, \"Gold literature paper 57: foundations of method 57\" (doi:10.1182/blood-2011-10-381921) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-58",
+      "text": "Author7 Surname et al., 2010, \"Gold literature paper 58: foundations of method 58\" (doi:10.1038/ki.2014.408) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-59",
+      "text": "Author8 Surname et al., 2011, \"Gold literature paper 59: foundations of method 59\" (doi:10.1182/blood-2013-10-531509) reports relevant prior work.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",

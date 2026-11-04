@@ -1,77 +1,4194 @@
 {
+  "meta": {
+    "builtAt": "2026-11-04T01:00:45.400Z",
+    "counts": {
+      "fake": 60,
+      "mismatch": 40,
+      "support": 40,
+      "real": 60
+    },
+    "sources": [
+      "evals/bench/literature/items.json",
+      "known landmark papers"
+    ]
+  },
   "cases": [
     {
-      "id": "fake-doi",
-      "text": "According to doi:10.9999/this.doi.does.not.exist.9999 the moon is cheese.",
+      "id": "fake-arxiv-0",
+      "text": "According to arxiv:9000.10000, Hyperbolic Unicorn Embeddings for Multiverse Retrieval revolutionizes science.",
       "expectedStatus": "not_found",
       "kind": "fake"
     },
     {
-      "id": "mismatch-title",
-      "text": "Smith et al., 2020, \"A Paper About Unicorns\" (doi:10.5555/3295222.3295349) claims unicorns are real.",
+      "id": "fake-doi-1",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.001.2001 that a comprehensive survey of invisible gradient alchemy.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-2",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.002.2002 that quantum bagels as universal function approximators.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-3",
+      "text": "According to arxiv:9003.10003, Neural Telepathy via Ambient WiFi Phase Noise revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-4",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.004.2004 that on the impossibility of learning without coffee.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-5",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.005.2005 that recursive dreams of electric sheep classifiers.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-6",
+      "text": "According to arxiv:9006.10006, Latent Spaces of Mythical Creatures revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-7",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.007.2007 that differential privacy for gossip protocols in atlantis.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-8",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.008.2008 that self-supervised astrology for tabular data.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-9",
+      "text": "According to arxiv:9009.10009, Transformerless Attention via Candlelight revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-10",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.010.2010 that hyperbolic unicorn embeddings for multiverse retrieval.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-11",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.011.2011 that a comprehensive survey of invisible gradient alchemy.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-12",
+      "text": "According to arxiv:9012.10012, Quantum Bagels as Universal Function Approximators revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-13",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.013.2013 that neural telepathy via ambient wifi phase noise.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-14",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.014.2014 that on the impossibility of learning without coffee.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-15",
+      "text": "According to arxiv:9015.10015, Recursive Dreams of Electric Sheep Classifiers revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-16",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.016.2016 that latent spaces of mythical creatures.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-17",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.017.2017 that differential privacy for gossip protocols in atlantis.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-18",
+      "text": "According to arxiv:9018.10018, Self-Supervised Astrology for Tabular Data revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-19",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.019.2019 that transformerless attention via candlelight.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-20",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.020.2020 that hyperbolic unicorn embeddings for multiverse retrieval.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-21",
+      "text": "According to arxiv:9021.10021, A Comprehensive Survey of Invisible Gradient Alchemy revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-22",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.022.2022 that quantum bagels as universal function approximators.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-23",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.023.2023 that neural telepathy via ambient wifi phase noise.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-24",
+      "text": "According to arxiv:9024.10024, On the Impossibility of Learning Without Coffee revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-25",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.025.2025 that recursive dreams of electric sheep classifiers.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-26",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.026.2026 that latent spaces of mythical creatures.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-27",
+      "text": "According to arxiv:9027.10027, Differential Privacy for Gossip Protocols in Atlantis revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-28",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.028.2028 that self-supervised astrology for tabular data.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-29",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.029.2029 that transformerless attention via candlelight.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-30",
+      "text": "According to arxiv:9030.10030, Hyperbolic Unicorn Embeddings for Multiverse Retrieval revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-31",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.031.2031 that a comprehensive survey of invisible gradient alchemy.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-32",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.032.2032 that quantum bagels as universal function approximators.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-33",
+      "text": "According to arxiv:9033.10033, Neural Telepathy via Ambient WiFi Phase Noise revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-34",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.034.2034 that on the impossibility of learning without coffee.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-35",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.035.2035 that recursive dreams of electric sheep classifiers.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-36",
+      "text": "According to arxiv:9036.10036, Latent Spaces of Mythical Creatures revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-37",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.037.2037 that differential privacy for gossip protocols in atlantis.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-38",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.038.2038 that self-supervised astrology for tabular data.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-39",
+      "text": "According to arxiv:9039.10039, Transformerless Attention via Candlelight revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-40",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.040.2040 that hyperbolic unicorn embeddings for multiverse retrieval.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-41",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.041.2041 that a comprehensive survey of invisible gradient alchemy.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-42",
+      "text": "According to arxiv:9042.10042, Quantum Bagels as Universal Function Approximators revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-43",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.043.2043 that neural telepathy via ambient wifi phase noise.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-44",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.044.2044 that on the impossibility of learning without coffee.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-45",
+      "text": "According to arxiv:9045.10045, Recursive Dreams of Electric Sheep Classifiers revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-46",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.046.2046 that latent spaces of mythical creatures.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-47",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.047.2047 that differential privacy for gossip protocols in atlantis.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-48",
+      "text": "According to arxiv:9048.10048, Self-Supervised Astrology for Tabular Data revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-49",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.049.2049 that transformerless attention via candlelight.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-50",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.050.2050 that hyperbolic unicorn embeddings for multiverse retrieval.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-51",
+      "text": "According to arxiv:9051.10051, A Comprehensive Survey of Invisible Gradient Alchemy revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-52",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.052.2052 that quantum bagels as universal function approximators.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-53",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.053.2053 that neural telepathy via ambient wifi phase noise.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-54",
+      "text": "According to arxiv:9054.10054, On the Impossibility of Learning Without Coffee revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-55",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.055.2055 that recursive dreams of electric sheep classifiers.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-56",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.056.2056 that latent spaces of mythical creatures.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-arxiv-57",
+      "text": "According to arxiv:9057.10057, Differential Privacy for Gossip Protocols in Atlantis revolutionizes science.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-58",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.058.2058 that self-supervised astrology for tabular data.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "fake-doi-59",
+      "text": "Smith et al. show in doi:10.9999/fake.eval.059.2059 that transformerless attention via candlelight.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "mismatch-0",
+      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1990, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
       "expectedStatus": "metadata_mismatch",
       "kind": "mismatch",
       "resolve": {
-        "doi": "10.5555/3295222.3295349",
+        "doi": "10.1109/cvpr.2016.90",
         "paper": {
-          "title": "Attention Is All You Need",
-          "authors": ["Ashish Vaswani"],
-          "year": 2017,
-          "venue": "NeurIPS",
-          "abstract": "We propose the Transformer architecture based solely on attention mechanisms.",
-          "doi": "10.5555/3295222.3295349",
-          "arxivId": "1706.03762",
-          "url": null,
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "We present a residual learning framework for deeper networks.",
+          "doi": "10.1109/cvpr.2016.90",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2016.90",
           "pdfUrl": null,
-          "citationCount": 1,
-          "foundBy": ["crossref"]
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
         }
       }
     },
     {
-      "id": "claim-contradicts",
-      "text": "arxiv:1706.03762 proves that RNNs are the only architecture that can translate languages.",
+      "id": "mismatch-1",
+      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1991, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1162/neco.1997.9.8.1735",
+        "paper": {
+          "title": "Long Short-Term Memory",
+          "authors": [
+            "Sepp Hochreiter",
+            "Jurgen Schmidhuber"
+          ],
+          "year": 1997,
+          "venue": null,
+          "abstract": "We introduce LSTM, a recurrent architecture for long-range dependencies.",
+          "doi": "10.1162/neco.1997.9.8.1735",
+          "arxivId": null,
+          "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-2",
+      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1992, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1038/323533a0",
+        "paper": {
+          "title": "Learning representations by back-propagating errors",
+          "authors": [
+            "David E. Rumelhart"
+          ],
+          "year": 1986,
+          "venue": null,
+          "abstract": "We describe a new learning procedure, back-propagation, for networks.",
+          "doi": "10.1038/323533a0",
+          "arxivId": null,
+          "url": "https://doi.org/10.1038/323533a0",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-3",
+      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1993, \"Why Cats Invented Backpropagation\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1109/5.726791",
+        "paper": {
+          "title": "Gradient-based learning applied to document recognition",
+          "authors": [
+            "Y. Lecun"
+          ],
+          "year": 1998,
+          "venue": null,
+          "abstract": "Multilayer neural networks trained with gradient descent for document recognition.",
+          "doi": "10.1109/5.726791",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/5.726791",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-4",
+      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1994, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1109/tpami.2016.2577031",
+        "paper": {
+          "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
+          "authors": [
+            "Shaoqing Ren"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "We present Faster R-CNN with a region proposal network.",
+          "doi": "10.1109/tpami.2016.2577031",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/tpami.2016.2577031",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-5",
+      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1995, \"Telepathic Batch Normalization Explained\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.3115/v1/d14-1181",
+        "paper": {
+          "title": "Convolutional Neural Networks for Sentence Classification",
+          "authors": [
+            "Yoon Kim"
+          ],
+          "year": 2014,
+          "venue": null,
+          "abstract": "We report on CNN models for sentence classification tasks.",
+          "doi": "10.3115/v1/d14-1181",
+          "arxivId": null,
+          "url": "https://doi.org/10.3115/v1/d14-1181",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-6",
+      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1996, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1007/s11263-009-0275-4",
+        "paper": {
+          "title": "The Pascal Visual Object Classes (VOC) Challenge",
+          "authors": [
+            "Mark Everingham"
+          ],
+          "year": 2009,
+          "venue": null,
+          "abstract": "The Pascal VOC challenge for visual object class recognition.",
+          "doi": "10.1007/s11263-009-0275-4",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/s11263-009-0275-4",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-7",
+      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1997, \"Moon Cheese Classification with GNNs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1113/jphysiol.1962.sp006837",
+        "paper": {
+          "title": "Receptive fields, binocular interaction and functional architecture in the cat's visual cortex",
+          "authors": [
+            "D. H. Hubel"
+          ],
+          "year": 1962,
+          "venue": null,
+          "abstract": "We describe receptive fields in the cat visual cortex.",
+          "doi": "10.1113/jphysiol.1962.sp006837",
+          "arxivId": null,
+          "url": "https://doi.org/10.1113/jphysiol.1962.sp006837",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-8",
+      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1998, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1109/cvpr.2016.90",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "We present a residual learning framework for deeper networks.",
+          "doi": "10.1109/cvpr.2016.90",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2016.90",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-9",
+      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1999, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1162/neco.1997.9.8.1735",
+        "paper": {
+          "title": "Long Short-Term Memory",
+          "authors": [
+            "Sepp Hochreiter",
+            "Jurgen Schmidhuber"
+          ],
+          "year": 1997,
+          "venue": null,
+          "abstract": "We introduce LSTM, a recurrent architecture for long-range dependencies.",
+          "doi": "10.1162/neco.1997.9.8.1735",
+          "arxivId": null,
+          "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-10",
+      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1990, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1038/323533a0",
+        "paper": {
+          "title": "Learning representations by back-propagating errors",
+          "authors": [
+            "David E. Rumelhart"
+          ],
+          "year": 1986,
+          "venue": null,
+          "abstract": "We describe a new learning procedure, back-propagation, for networks.",
+          "doi": "10.1038/323533a0",
+          "arxivId": null,
+          "url": "https://doi.org/10.1038/323533a0",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-11",
+      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1991, \"Why Cats Invented Backpropagation\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1109/5.726791",
+        "paper": {
+          "title": "Gradient-based learning applied to document recognition",
+          "authors": [
+            "Y. Lecun"
+          ],
+          "year": 1998,
+          "venue": null,
+          "abstract": "Multilayer neural networks trained with gradient descent for document recognition.",
+          "doi": "10.1109/5.726791",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/5.726791",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-12",
+      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1992, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1109/tpami.2016.2577031",
+        "paper": {
+          "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
+          "authors": [
+            "Shaoqing Ren"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "We present Faster R-CNN with a region proposal network.",
+          "doi": "10.1109/tpami.2016.2577031",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/tpami.2016.2577031",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-13",
+      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1993, \"Telepathic Batch Normalization Explained\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.3115/v1/d14-1181",
+        "paper": {
+          "title": "Convolutional Neural Networks for Sentence Classification",
+          "authors": [
+            "Yoon Kim"
+          ],
+          "year": 2014,
+          "venue": null,
+          "abstract": "We report on CNN models for sentence classification tasks.",
+          "doi": "10.3115/v1/d14-1181",
+          "arxivId": null,
+          "url": "https://doi.org/10.3115/v1/d14-1181",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-14",
+      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1994, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1007/s11263-009-0275-4",
+        "paper": {
+          "title": "The Pascal Visual Object Classes (VOC) Challenge",
+          "authors": [
+            "Mark Everingham"
+          ],
+          "year": 2009,
+          "venue": null,
+          "abstract": "The Pascal VOC challenge for visual object class recognition.",
+          "doi": "10.1007/s11263-009-0275-4",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/s11263-009-0275-4",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-15",
+      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1995, \"Moon Cheese Classification with GNNs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1113/jphysiol.1962.sp006837",
+        "paper": {
+          "title": "Receptive fields, binocular interaction and functional architecture in the cat's visual cortex",
+          "authors": [
+            "D. H. Hubel"
+          ],
+          "year": 1962,
+          "venue": null,
+          "abstract": "We describe receptive fields in the cat visual cortex.",
+          "doi": "10.1113/jphysiol.1962.sp006837",
+          "arxivId": null,
+          "url": "https://doi.org/10.1113/jphysiol.1962.sp006837",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-16",
+      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1996, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1109/cvpr.2016.90",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "We present a residual learning framework for deeper networks.",
+          "doi": "10.1109/cvpr.2016.90",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2016.90",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-17",
+      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1997, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1162/neco.1997.9.8.1735",
+        "paper": {
+          "title": "Long Short-Term Memory",
+          "authors": [
+            "Sepp Hochreiter",
+            "Jurgen Schmidhuber"
+          ],
+          "year": 1997,
+          "venue": null,
+          "abstract": "We introduce LSTM, a recurrent architecture for long-range dependencies.",
+          "doi": "10.1162/neco.1997.9.8.1735",
+          "arxivId": null,
+          "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-18",
+      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1998, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1038/323533a0",
+        "paper": {
+          "title": "Learning representations by back-propagating errors",
+          "authors": [
+            "David E. Rumelhart"
+          ],
+          "year": 1986,
+          "venue": null,
+          "abstract": "We describe a new learning procedure, back-propagation, for networks.",
+          "doi": "10.1038/323533a0",
+          "arxivId": null,
+          "url": "https://doi.org/10.1038/323533a0",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-19",
+      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1999, \"Why Cats Invented Backpropagation\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1109/5.726791",
+        "paper": {
+          "title": "Gradient-based learning applied to document recognition",
+          "authors": [
+            "Y. Lecun"
+          ],
+          "year": 1998,
+          "venue": null,
+          "abstract": "Multilayer neural networks trained with gradient descent for document recognition.",
+          "doi": "10.1109/5.726791",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/5.726791",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-20",
+      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1990, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1109/tpami.2016.2577031",
+        "paper": {
+          "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
+          "authors": [
+            "Shaoqing Ren"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "We present Faster R-CNN with a region proposal network.",
+          "doi": "10.1109/tpami.2016.2577031",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/tpami.2016.2577031",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-21",
+      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1991, \"Telepathic Batch Normalization Explained\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.3115/v1/d14-1181",
+        "paper": {
+          "title": "Convolutional Neural Networks for Sentence Classification",
+          "authors": [
+            "Yoon Kim"
+          ],
+          "year": 2014,
+          "venue": null,
+          "abstract": "We report on CNN models for sentence classification tasks.",
+          "doi": "10.3115/v1/d14-1181",
+          "arxivId": null,
+          "url": "https://doi.org/10.3115/v1/d14-1181",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-22",
+      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1992, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1007/s11263-009-0275-4",
+        "paper": {
+          "title": "The Pascal Visual Object Classes (VOC) Challenge",
+          "authors": [
+            "Mark Everingham"
+          ],
+          "year": 2009,
+          "venue": null,
+          "abstract": "The Pascal VOC challenge for visual object class recognition.",
+          "doi": "10.1007/s11263-009-0275-4",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/s11263-009-0275-4",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-23",
+      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1993, \"Moon Cheese Classification with GNNs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1113/jphysiol.1962.sp006837",
+        "paper": {
+          "title": "Receptive fields, binocular interaction and functional architecture in the cat's visual cortex",
+          "authors": [
+            "D. H. Hubel"
+          ],
+          "year": 1962,
+          "venue": null,
+          "abstract": "We describe receptive fields in the cat visual cortex.",
+          "doi": "10.1113/jphysiol.1962.sp006837",
+          "arxivId": null,
+          "url": "https://doi.org/10.1113/jphysiol.1962.sp006837",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-24",
+      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1994, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1109/cvpr.2016.90",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "We present a residual learning framework for deeper networks.",
+          "doi": "10.1109/cvpr.2016.90",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2016.90",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-25",
+      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1995, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1162/neco.1997.9.8.1735",
+        "paper": {
+          "title": "Long Short-Term Memory",
+          "authors": [
+            "Sepp Hochreiter",
+            "Jurgen Schmidhuber"
+          ],
+          "year": 1997,
+          "venue": null,
+          "abstract": "We introduce LSTM, a recurrent architecture for long-range dependencies.",
+          "doi": "10.1162/neco.1997.9.8.1735",
+          "arxivId": null,
+          "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-26",
+      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1996, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1038/323533a0",
+        "paper": {
+          "title": "Learning representations by back-propagating errors",
+          "authors": [
+            "David E. Rumelhart"
+          ],
+          "year": 1986,
+          "venue": null,
+          "abstract": "We describe a new learning procedure, back-propagation, for networks.",
+          "doi": "10.1038/323533a0",
+          "arxivId": null,
+          "url": "https://doi.org/10.1038/323533a0",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-27",
+      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1997, \"Why Cats Invented Backpropagation\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1109/5.726791",
+        "paper": {
+          "title": "Gradient-based learning applied to document recognition",
+          "authors": [
+            "Y. Lecun"
+          ],
+          "year": 1998,
+          "venue": null,
+          "abstract": "Multilayer neural networks trained with gradient descent for document recognition.",
+          "doi": "10.1109/5.726791",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/5.726791",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-28",
+      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1998, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1109/tpami.2016.2577031",
+        "paper": {
+          "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
+          "authors": [
+            "Shaoqing Ren"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "We present Faster R-CNN with a region proposal network.",
+          "doi": "10.1109/tpami.2016.2577031",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/tpami.2016.2577031",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-29",
+      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1999, \"Telepathic Batch Normalization Explained\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.3115/v1/d14-1181",
+        "paper": {
+          "title": "Convolutional Neural Networks for Sentence Classification",
+          "authors": [
+            "Yoon Kim"
+          ],
+          "year": 2014,
+          "venue": null,
+          "abstract": "We report on CNN models for sentence classification tasks.",
+          "doi": "10.3115/v1/d14-1181",
+          "arxivId": null,
+          "url": "https://doi.org/10.3115/v1/d14-1181",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-30",
+      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1990, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1007/s11263-009-0275-4",
+        "paper": {
+          "title": "The Pascal Visual Object Classes (VOC) Challenge",
+          "authors": [
+            "Mark Everingham"
+          ],
+          "year": 2009,
+          "venue": null,
+          "abstract": "The Pascal VOC challenge for visual object class recognition.",
+          "doi": "10.1007/s11263-009-0275-4",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/s11263-009-0275-4",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-31",
+      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1991, \"Moon Cheese Classification with GNNs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1113/jphysiol.1962.sp006837",
+        "paper": {
+          "title": "Receptive fields, binocular interaction and functional architecture in the cat's visual cortex",
+          "authors": [
+            "D. H. Hubel"
+          ],
+          "year": 1962,
+          "venue": null,
+          "abstract": "We describe receptive fields in the cat visual cortex.",
+          "doi": "10.1113/jphysiol.1962.sp006837",
+          "arxivId": null,
+          "url": "https://doi.org/10.1113/jphysiol.1962.sp006837",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-32",
+      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1992, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1109/cvpr.2016.90",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "We present a residual learning framework for deeper networks.",
+          "doi": "10.1109/cvpr.2016.90",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2016.90",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-33",
+      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1993, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1162/neco.1997.9.8.1735",
+        "paper": {
+          "title": "Long Short-Term Memory",
+          "authors": [
+            "Sepp Hochreiter",
+            "Jurgen Schmidhuber"
+          ],
+          "year": 1997,
+          "venue": null,
+          "abstract": "We introduce LSTM, a recurrent architecture for long-range dependencies.",
+          "doi": "10.1162/neco.1997.9.8.1735",
+          "arxivId": null,
+          "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-34",
+      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1994, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1038/323533a0",
+        "paper": {
+          "title": "Learning representations by back-propagating errors",
+          "authors": [
+            "David E. Rumelhart"
+          ],
+          "year": 1986,
+          "venue": null,
+          "abstract": "We describe a new learning procedure, back-propagation, for networks.",
+          "doi": "10.1038/323533a0",
+          "arxivId": null,
+          "url": "https://doi.org/10.1038/323533a0",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-35",
+      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1995, \"Why Cats Invented Backpropagation\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1109/5.726791",
+        "paper": {
+          "title": "Gradient-based learning applied to document recognition",
+          "authors": [
+            "Y. Lecun"
+          ],
+          "year": 1998,
+          "venue": null,
+          "abstract": "Multilayer neural networks trained with gradient descent for document recognition.",
+          "doi": "10.1109/5.726791",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/5.726791",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-36",
+      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1996, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1109/tpami.2016.2577031",
+        "paper": {
+          "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
+          "authors": [
+            "Shaoqing Ren"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "We present Faster R-CNN with a region proposal network.",
+          "doi": "10.1109/tpami.2016.2577031",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/tpami.2016.2577031",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-37",
+      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1997, \"Telepathic Batch Normalization Explained\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.3115/v1/d14-1181",
+        "paper": {
+          "title": "Convolutional Neural Networks for Sentence Classification",
+          "authors": [
+            "Yoon Kim"
+          ],
+          "year": 2014,
+          "venue": null,
+          "abstract": "We report on CNN models for sentence classification tasks.",
+          "doi": "10.3115/v1/d14-1181",
+          "arxivId": null,
+          "url": "https://doi.org/10.3115/v1/d14-1181",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-38",
+      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1998, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1007/s11263-009-0275-4",
+        "paper": {
+          "title": "The Pascal Visual Object Classes (VOC) Challenge",
+          "authors": [
+            "Mark Everingham"
+          ],
+          "year": 2009,
+          "venue": null,
+          "abstract": "The Pascal VOC challenge for visual object class recognition.",
+          "doi": "10.1007/s11263-009-0275-4",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/s11263-009-0275-4",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "mismatch-39",
+      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1999, \"Moon Cheese Classification with GNNs\") the result is mythical.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.1113/jphysiol.1962.sp006837",
+        "paper": {
+          "title": "Receptive fields, binocular interaction and functional architecture in the cat's visual cortex",
+          "authors": [
+            "D. H. Hubel"
+          ],
+          "year": 1962,
+          "venue": null,
+          "abstract": "We describe receptive fields in the cat visual cortex.",
+          "doi": "10.1113/jphysiol.1962.sp006837",
+          "arxivId": null,
+          "url": "https://doi.org/10.1113/jphysiol.1962.sp006837",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      }
+    },
+    {
+      "id": "support-0",
+      "text": "arxiv:1706.03762 proves that recurrent neural networks are the only architecture that can translate languages.",
       "expectedStatus": "claim_not_supported",
       "kind": "support",
       "resolve": {
+        "doi": "10.5555/3295222.3295349",
         "arxivId": "1706.03762",
         "paper": {
           "title": "Attention Is All You Need",
-          "authors": ["Ashish Vaswani"],
+          "authors": [
+            "Ashish Vaswani",
+            "Noam Shazeer"
+          ],
           "year": 2017,
-          "venue": "NeurIPS",
+          "venue": null,
           "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
           "doi": "10.5555/3295222.3295349",
           "arxivId": "1706.03762",
-          "url": null,
+          "url": "https://doi.org/10.5555/3295222.3295349",
           "pdfUrl": null,
-          "citationCount": 1,
-          "foundBy": ["arxiv"]
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
         }
       },
       "support": "not_supported"
     },
     {
-      "id": "real-arxiv",
-      "text": "The Transformer (arxiv:1706.03762) uses self-attention instead of recurrence.",
-      "expectedStatus": "verified",
-      "kind": "real",
+      "id": "support-1",
+      "text": "arxiv:1810.04805 shows that bag-of-words models outperform all transformer architectures on GLUE.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
       "resolve": {
+        "doi": "10.48550/arxiv.1810.04805",
+        "arxivId": "1810.04805",
+        "paper": {
+          "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+          "authors": [
+            "Jacob Devlin",
+            "Ming-Wei Chang"
+          ],
+          "year": 2019,
+          "venue": null,
+          "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. BERT is designed to pre-train deep bidirectional representations.",
+          "doi": "10.48550/arxiv.1810.04805",
+          "arxivId": "1810.04805",
+          "url": "https://doi.org/10.48550/arxiv.1810.04805",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-2",
+      "text": "arxiv:1409.1556 concludes that one-layer perceptrons beat deep CNNs on ImageNet.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1409.1556",
+        "arxivId": "1409.1556",
+        "paper": {
+          "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+          "authors": [
+            "Karen Simonyan",
+            "Andrew Zisserman"
+          ],
+          "year": 2015,
+          "venue": null,
+          "abstract": "In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. We use an architecture with very small convolution filters.",
+          "doi": "10.48550/arxiv.1409.1556",
+          "arxivId": "1409.1556",
+          "url": "https://doi.org/10.48550/arxiv.1409.1556",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-3",
+      "text": "arxiv:1512.03385 argues that residual connections make networks impossible to train.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1512.03385",
+        "arxivId": "1512.03385",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He",
+            "Xiangyu Zhang"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions.",
+          "doi": "10.48550/arxiv.1512.03385",
+          "arxivId": "1512.03385",
+          "url": "https://doi.org/10.48550/arxiv.1512.03385",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-4",
+      "text": "arxiv:1412.6980 proves that SGD without momentum is always superior to adaptive methods.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1412.6980",
+        "arxivId": "1412.6980",
+        "paper": {
+          "title": "Adam: A Method for Stochastic Optimization",
+          "authors": [
+            "Diederik P. Kingma",
+            "Jimmy Ba"
+          ],
+          "year": 2015,
+          "venue": null,
+          "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments.",
+          "doi": "10.48550/arxiv.1412.6980",
+          "arxivId": "1412.6980",
+          "url": "https://doi.org/10.48550/arxiv.1412.6980",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-5",
+      "text": "doi:10.1109/cvpr.2016.90 shows that residual networks cannot classify natural images.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.1109/cvpr.2016.90",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper.",
+          "doi": "10.1109/cvpr.2016.90",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2016.90",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-6",
+      "text": "arxiv:1706.03762 demonstrates that convolution is strictly necessary for sequence transduction.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1706.03762",
         "arxivId": "1706.03762",
         "paper": {
           "title": "Attention Is All You Need",
-          "authors": ["Ashish Vaswani"],
+          "authors": [
+            "Ashish Vaswani"
+          ],
           "year": 2017,
-          "venue": "NeurIPS",
-          "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms.",
+          "venue": null,
+          "abstract": "The Transformer architecture relies entirely on self-attention to compute representations, without recurrence or convolutions.",
+          "doi": "10.48550/arxiv.1706.03762",
+          "arxivId": "1706.03762",
+          "url": "https://doi.org/10.48550/arxiv.1706.03762",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-7",
+      "text": "doi:10.1162/neco.1997.9.8.1735 claims feed-forward networks alone solve all sequence tasks without recurrence.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.1162/neco.1997.9.8.1735",
+        "paper": {
+          "title": "Long Short-Term Memory",
+          "authors": [
+            "Sepp Hochreiter",
+            "Jurgen Schmidhuber"
+          ],
+          "year": 1997,
+          "venue": null,
+          "abstract": "We introduce Long Short-Term Memory (LSTM), a novel recurrent network architecture that can learn long-range dependencies by using memory cells and gates.",
+          "doi": "10.1162/neco.1997.9.8.1735",
+          "arxivId": null,
+          "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-8",
+      "text": "arxiv:1706.03762 proves that recurrent neural networks are the only architecture that can translate languages.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.5555/3295222.3295349",
+        "arxivId": "1706.03762",
+        "paper": {
+          "title": "Attention Is All You Need",
+          "authors": [
+            "Ashish Vaswani",
+            "Noam Shazeer"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
           "doi": "10.5555/3295222.3295349",
           "arxivId": "1706.03762",
-          "url": null,
+          "url": "https://doi.org/10.5555/3295222.3295349",
           "pdfUrl": null,
-          "citationCount": 1,
-          "foundBy": ["arxiv"]
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
         }
-      }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-9",
+      "text": "arxiv:1810.04805 shows that bag-of-words models outperform all transformer architectures on GLUE.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1810.04805",
+        "arxivId": "1810.04805",
+        "paper": {
+          "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+          "authors": [
+            "Jacob Devlin",
+            "Ming-Wei Chang"
+          ],
+          "year": 2019,
+          "venue": null,
+          "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. BERT is designed to pre-train deep bidirectional representations.",
+          "doi": "10.48550/arxiv.1810.04805",
+          "arxivId": "1810.04805",
+          "url": "https://doi.org/10.48550/arxiv.1810.04805",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-10",
+      "text": "arxiv:1409.1556 concludes that one-layer perceptrons beat deep CNNs on ImageNet.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1409.1556",
+        "arxivId": "1409.1556",
+        "paper": {
+          "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+          "authors": [
+            "Karen Simonyan",
+            "Andrew Zisserman"
+          ],
+          "year": 2015,
+          "venue": null,
+          "abstract": "In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. We use an architecture with very small convolution filters.",
+          "doi": "10.48550/arxiv.1409.1556",
+          "arxivId": "1409.1556",
+          "url": "https://doi.org/10.48550/arxiv.1409.1556",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-11",
+      "text": "arxiv:1512.03385 argues that residual connections make networks impossible to train.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1512.03385",
+        "arxivId": "1512.03385",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He",
+            "Xiangyu Zhang"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions.",
+          "doi": "10.48550/arxiv.1512.03385",
+          "arxivId": "1512.03385",
+          "url": "https://doi.org/10.48550/arxiv.1512.03385",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-12",
+      "text": "arxiv:1412.6980 proves that SGD without momentum is always superior to adaptive methods.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1412.6980",
+        "arxivId": "1412.6980",
+        "paper": {
+          "title": "Adam: A Method for Stochastic Optimization",
+          "authors": [
+            "Diederik P. Kingma",
+            "Jimmy Ba"
+          ],
+          "year": 2015,
+          "venue": null,
+          "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments.",
+          "doi": "10.48550/arxiv.1412.6980",
+          "arxivId": "1412.6980",
+          "url": "https://doi.org/10.48550/arxiv.1412.6980",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-13",
+      "text": "doi:10.1109/cvpr.2016.90 shows that residual networks cannot classify natural images.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.1109/cvpr.2016.90",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper.",
+          "doi": "10.1109/cvpr.2016.90",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2016.90",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-14",
+      "text": "arxiv:1706.03762 demonstrates that convolution is strictly necessary for sequence transduction.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1706.03762",
+        "arxivId": "1706.03762",
+        "paper": {
+          "title": "Attention Is All You Need",
+          "authors": [
+            "Ashish Vaswani"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "The Transformer architecture relies entirely on self-attention to compute representations, without recurrence or convolutions.",
+          "doi": "10.48550/arxiv.1706.03762",
+          "arxivId": "1706.03762",
+          "url": "https://doi.org/10.48550/arxiv.1706.03762",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-15",
+      "text": "doi:10.1162/neco.1997.9.8.1735 claims feed-forward networks alone solve all sequence tasks without recurrence.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.1162/neco.1997.9.8.1735",
+        "paper": {
+          "title": "Long Short-Term Memory",
+          "authors": [
+            "Sepp Hochreiter",
+            "Jurgen Schmidhuber"
+          ],
+          "year": 1997,
+          "venue": null,
+          "abstract": "We introduce Long Short-Term Memory (LSTM), a novel recurrent network architecture that can learn long-range dependencies by using memory cells and gates.",
+          "doi": "10.1162/neco.1997.9.8.1735",
+          "arxivId": null,
+          "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-16",
+      "text": "arxiv:1706.03762 proves that recurrent neural networks are the only architecture that can translate languages.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.5555/3295222.3295349",
+        "arxivId": "1706.03762",
+        "paper": {
+          "title": "Attention Is All You Need",
+          "authors": [
+            "Ashish Vaswani",
+            "Noam Shazeer"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+          "doi": "10.5555/3295222.3295349",
+          "arxivId": "1706.03762",
+          "url": "https://doi.org/10.5555/3295222.3295349",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-17",
+      "text": "arxiv:1810.04805 shows that bag-of-words models outperform all transformer architectures on GLUE.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1810.04805",
+        "arxivId": "1810.04805",
+        "paper": {
+          "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+          "authors": [
+            "Jacob Devlin",
+            "Ming-Wei Chang"
+          ],
+          "year": 2019,
+          "venue": null,
+          "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. BERT is designed to pre-train deep bidirectional representations.",
+          "doi": "10.48550/arxiv.1810.04805",
+          "arxivId": "1810.04805",
+          "url": "https://doi.org/10.48550/arxiv.1810.04805",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-18",
+      "text": "arxiv:1409.1556 concludes that one-layer perceptrons beat deep CNNs on ImageNet.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1409.1556",
+        "arxivId": "1409.1556",
+        "paper": {
+          "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+          "authors": [
+            "Karen Simonyan",
+            "Andrew Zisserman"
+          ],
+          "year": 2015,
+          "venue": null,
+          "abstract": "In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. We use an architecture with very small convolution filters.",
+          "doi": "10.48550/arxiv.1409.1556",
+          "arxivId": "1409.1556",
+          "url": "https://doi.org/10.48550/arxiv.1409.1556",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-19",
+      "text": "arxiv:1512.03385 argues that residual connections make networks impossible to train.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1512.03385",
+        "arxivId": "1512.03385",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He",
+            "Xiangyu Zhang"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions.",
+          "doi": "10.48550/arxiv.1512.03385",
+          "arxivId": "1512.03385",
+          "url": "https://doi.org/10.48550/arxiv.1512.03385",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-20",
+      "text": "arxiv:1412.6980 proves that SGD without momentum is always superior to adaptive methods.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1412.6980",
+        "arxivId": "1412.6980",
+        "paper": {
+          "title": "Adam: A Method for Stochastic Optimization",
+          "authors": [
+            "Diederik P. Kingma",
+            "Jimmy Ba"
+          ],
+          "year": 2015,
+          "venue": null,
+          "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments.",
+          "doi": "10.48550/arxiv.1412.6980",
+          "arxivId": "1412.6980",
+          "url": "https://doi.org/10.48550/arxiv.1412.6980",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-21",
+      "text": "doi:10.1109/cvpr.2016.90 shows that residual networks cannot classify natural images.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.1109/cvpr.2016.90",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper.",
+          "doi": "10.1109/cvpr.2016.90",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2016.90",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-22",
+      "text": "arxiv:1706.03762 demonstrates that convolution is strictly necessary for sequence transduction.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1706.03762",
+        "arxivId": "1706.03762",
+        "paper": {
+          "title": "Attention Is All You Need",
+          "authors": [
+            "Ashish Vaswani"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "The Transformer architecture relies entirely on self-attention to compute representations, without recurrence or convolutions.",
+          "doi": "10.48550/arxiv.1706.03762",
+          "arxivId": "1706.03762",
+          "url": "https://doi.org/10.48550/arxiv.1706.03762",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-23",
+      "text": "doi:10.1162/neco.1997.9.8.1735 claims feed-forward networks alone solve all sequence tasks without recurrence.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.1162/neco.1997.9.8.1735",
+        "paper": {
+          "title": "Long Short-Term Memory",
+          "authors": [
+            "Sepp Hochreiter",
+            "Jurgen Schmidhuber"
+          ],
+          "year": 1997,
+          "venue": null,
+          "abstract": "We introduce Long Short-Term Memory (LSTM), a novel recurrent network architecture that can learn long-range dependencies by using memory cells and gates.",
+          "doi": "10.1162/neco.1997.9.8.1735",
+          "arxivId": null,
+          "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-24",
+      "text": "arxiv:1706.03762 proves that recurrent neural networks are the only architecture that can translate languages.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.5555/3295222.3295349",
+        "arxivId": "1706.03762",
+        "paper": {
+          "title": "Attention Is All You Need",
+          "authors": [
+            "Ashish Vaswani",
+            "Noam Shazeer"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+          "doi": "10.5555/3295222.3295349",
+          "arxivId": "1706.03762",
+          "url": "https://doi.org/10.5555/3295222.3295349",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-25",
+      "text": "arxiv:1810.04805 shows that bag-of-words models outperform all transformer architectures on GLUE.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1810.04805",
+        "arxivId": "1810.04805",
+        "paper": {
+          "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+          "authors": [
+            "Jacob Devlin",
+            "Ming-Wei Chang"
+          ],
+          "year": 2019,
+          "venue": null,
+          "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. BERT is designed to pre-train deep bidirectional representations.",
+          "doi": "10.48550/arxiv.1810.04805",
+          "arxivId": "1810.04805",
+          "url": "https://doi.org/10.48550/arxiv.1810.04805",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-26",
+      "text": "arxiv:1409.1556 concludes that one-layer perceptrons beat deep CNNs on ImageNet.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1409.1556",
+        "arxivId": "1409.1556",
+        "paper": {
+          "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+          "authors": [
+            "Karen Simonyan",
+            "Andrew Zisserman"
+          ],
+          "year": 2015,
+          "venue": null,
+          "abstract": "In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. We use an architecture with very small convolution filters.",
+          "doi": "10.48550/arxiv.1409.1556",
+          "arxivId": "1409.1556",
+          "url": "https://doi.org/10.48550/arxiv.1409.1556",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-27",
+      "text": "arxiv:1512.03385 argues that residual connections make networks impossible to train.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1512.03385",
+        "arxivId": "1512.03385",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He",
+            "Xiangyu Zhang"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions.",
+          "doi": "10.48550/arxiv.1512.03385",
+          "arxivId": "1512.03385",
+          "url": "https://doi.org/10.48550/arxiv.1512.03385",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-28",
+      "text": "arxiv:1412.6980 proves that SGD without momentum is always superior to adaptive methods.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1412.6980",
+        "arxivId": "1412.6980",
+        "paper": {
+          "title": "Adam: A Method for Stochastic Optimization",
+          "authors": [
+            "Diederik P. Kingma",
+            "Jimmy Ba"
+          ],
+          "year": 2015,
+          "venue": null,
+          "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments.",
+          "doi": "10.48550/arxiv.1412.6980",
+          "arxivId": "1412.6980",
+          "url": "https://doi.org/10.48550/arxiv.1412.6980",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-29",
+      "text": "doi:10.1109/cvpr.2016.90 shows that residual networks cannot classify natural images.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.1109/cvpr.2016.90",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper.",
+          "doi": "10.1109/cvpr.2016.90",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2016.90",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-30",
+      "text": "arxiv:1706.03762 demonstrates that convolution is strictly necessary for sequence transduction.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1706.03762",
+        "arxivId": "1706.03762",
+        "paper": {
+          "title": "Attention Is All You Need",
+          "authors": [
+            "Ashish Vaswani"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "The Transformer architecture relies entirely on self-attention to compute representations, without recurrence or convolutions.",
+          "doi": "10.48550/arxiv.1706.03762",
+          "arxivId": "1706.03762",
+          "url": "https://doi.org/10.48550/arxiv.1706.03762",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-31",
+      "text": "doi:10.1162/neco.1997.9.8.1735 claims feed-forward networks alone solve all sequence tasks without recurrence.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.1162/neco.1997.9.8.1735",
+        "paper": {
+          "title": "Long Short-Term Memory",
+          "authors": [
+            "Sepp Hochreiter",
+            "Jurgen Schmidhuber"
+          ],
+          "year": 1997,
+          "venue": null,
+          "abstract": "We introduce Long Short-Term Memory (LSTM), a novel recurrent network architecture that can learn long-range dependencies by using memory cells and gates.",
+          "doi": "10.1162/neco.1997.9.8.1735",
+          "arxivId": null,
+          "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-32",
+      "text": "arxiv:1706.03762 proves that recurrent neural networks are the only architecture that can translate languages.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.5555/3295222.3295349",
+        "arxivId": "1706.03762",
+        "paper": {
+          "title": "Attention Is All You Need",
+          "authors": [
+            "Ashish Vaswani",
+            "Noam Shazeer"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+          "doi": "10.5555/3295222.3295349",
+          "arxivId": "1706.03762",
+          "url": "https://doi.org/10.5555/3295222.3295349",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-33",
+      "text": "arxiv:1810.04805 shows that bag-of-words models outperform all transformer architectures on GLUE.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1810.04805",
+        "arxivId": "1810.04805",
+        "paper": {
+          "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+          "authors": [
+            "Jacob Devlin",
+            "Ming-Wei Chang"
+          ],
+          "year": 2019,
+          "venue": null,
+          "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. BERT is designed to pre-train deep bidirectional representations.",
+          "doi": "10.48550/arxiv.1810.04805",
+          "arxivId": "1810.04805",
+          "url": "https://doi.org/10.48550/arxiv.1810.04805",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-34",
+      "text": "arxiv:1409.1556 concludes that one-layer perceptrons beat deep CNNs on ImageNet.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1409.1556",
+        "arxivId": "1409.1556",
+        "paper": {
+          "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+          "authors": [
+            "Karen Simonyan",
+            "Andrew Zisserman"
+          ],
+          "year": 2015,
+          "venue": null,
+          "abstract": "In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. We use an architecture with very small convolution filters.",
+          "doi": "10.48550/arxiv.1409.1556",
+          "arxivId": "1409.1556",
+          "url": "https://doi.org/10.48550/arxiv.1409.1556",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-35",
+      "text": "arxiv:1512.03385 argues that residual connections make networks impossible to train.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1512.03385",
+        "arxivId": "1512.03385",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He",
+            "Xiangyu Zhang"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions.",
+          "doi": "10.48550/arxiv.1512.03385",
+          "arxivId": "1512.03385",
+          "url": "https://doi.org/10.48550/arxiv.1512.03385",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-36",
+      "text": "arxiv:1412.6980 proves that SGD without momentum is always superior to adaptive methods.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1412.6980",
+        "arxivId": "1412.6980",
+        "paper": {
+          "title": "Adam: A Method for Stochastic Optimization",
+          "authors": [
+            "Diederik P. Kingma",
+            "Jimmy Ba"
+          ],
+          "year": 2015,
+          "venue": null,
+          "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments.",
+          "doi": "10.48550/arxiv.1412.6980",
+          "arxivId": "1412.6980",
+          "url": "https://doi.org/10.48550/arxiv.1412.6980",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-37",
+      "text": "doi:10.1109/cvpr.2016.90 shows that residual networks cannot classify natural images.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.1109/cvpr.2016.90",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper.",
+          "doi": "10.1109/cvpr.2016.90",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2016.90",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-38",
+      "text": "arxiv:1706.03762 demonstrates that convolution is strictly necessary for sequence transduction.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.48550/arxiv.1706.03762",
+        "arxivId": "1706.03762",
+        "paper": {
+          "title": "Attention Is All You Need",
+          "authors": [
+            "Ashish Vaswani"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "The Transformer architecture relies entirely on self-attention to compute representations, without recurrence or convolutions.",
+          "doi": "10.48550/arxiv.1706.03762",
+          "arxivId": "1706.03762",
+          "url": "https://doi.org/10.48550/arxiv.1706.03762",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "support-39",
+      "text": "doi:10.1162/neco.1997.9.8.1735 claims feed-forward networks alone solve all sequence tasks without recurrence.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "doi": "10.1162/neco.1997.9.8.1735",
+        "paper": {
+          "title": "Long Short-Term Memory",
+          "authors": [
+            "Sepp Hochreiter",
+            "Jurgen Schmidhuber"
+          ],
+          "year": 1997,
+          "venue": null,
+          "abstract": "We introduce Long Short-Term Memory (LSTM), a novel recurrent network architecture that can learn long-range dependencies by using memory cells and gates.",
+          "doi": "10.1162/neco.1997.9.8.1735",
+          "arxivId": null,
+          "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "arxiv"
+          ]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "real-known-0",
+      "text": "The work (arxiv:1706.03762) uses self-attention instead of recurrence.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.5555/3295222.3295349",
+        "arxivId": "1706.03762",
+        "paper": {
+          "title": "Attention Is All You Need",
+          "authors": [
+            "Ashish Vaswani",
+            "Noam Shazeer"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+          "doi": "10.5555/3295222.3295349",
+          "arxivId": "1706.03762",
+          "url": "https://doi.org/10.5555/3295222.3295349",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-known-1",
+      "text": "The work (arxiv:1810.04805) introduces bidirectional transformer pre-training.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.48550/arxiv.1810.04805",
+        "arxivId": "1810.04805",
+        "paper": {
+          "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+          "authors": [
+            "Jacob Devlin",
+            "Ming-Wei Chang"
+          ],
+          "year": 2019,
+          "venue": null,
+          "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. BERT is designed to pre-train deep bidirectional representations.",
+          "doi": "10.48550/arxiv.1810.04805",
+          "arxivId": "1810.04805",
+          "url": "https://doi.org/10.48550/arxiv.1810.04805",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-known-2",
+      "text": "The work (arxiv:1409.1556) studies how CNN depth affects image recognition accuracy.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.48550/arxiv.1409.1556",
+        "arxivId": "1409.1556",
+        "paper": {
+          "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+          "authors": [
+            "Karen Simonyan",
+            "Andrew Zisserman"
+          ],
+          "year": 2015,
+          "venue": null,
+          "abstract": "In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. We use an architecture with very small convolution filters.",
+          "doi": "10.48550/arxiv.1409.1556",
+          "arxivId": "1409.1556",
+          "url": "https://doi.org/10.48550/arxiv.1409.1556",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-known-3",
+      "text": "The work (arxiv:1512.03385) introduces residual learning for deeper networks.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.48550/arxiv.1512.03385",
+        "arxivId": "1512.03385",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He",
+            "Xiangyu Zhang"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions.",
+          "doi": "10.48550/arxiv.1512.03385",
+          "arxivId": "1512.03385",
+          "url": "https://doi.org/10.48550/arxiv.1512.03385",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-known-4",
+      "text": "The work (arxiv:1412.6980) proposes an adaptive moment estimation optimizer.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.48550/arxiv.1412.6980",
+        "arxivId": "1412.6980",
+        "paper": {
+          "title": "Adam: A Method for Stochastic Optimization",
+          "authors": [
+            "Diederik P. Kingma",
+            "Jimmy Ba"
+          ],
+          "year": 2015,
+          "venue": null,
+          "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments.",
+          "doi": "10.48550/arxiv.1412.6980",
+          "arxivId": "1412.6980",
+          "url": "https://doi.org/10.48550/arxiv.1412.6980",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-known-5",
+      "text": "The work (doi:10.1109/cvpr.2016.90) presents residual learning for deep image recognition.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/cvpr.2016.90",
+        "paper": {
+          "title": "Deep Residual Learning for Image Recognition",
+          "authors": [
+            "Kaiming He"
+          ],
+          "year": 2016,
+          "venue": null,
+          "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper.",
+          "doi": "10.1109/cvpr.2016.90",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2016.90",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-known-6",
+      "text": "The work (arxiv:1706.03762) relies on self-attention without recurrence.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.48550/arxiv.1706.03762",
+        "arxivId": "1706.03762",
+        "paper": {
+          "title": "Attention Is All You Need",
+          "authors": [
+            "Ashish Vaswani"
+          ],
+          "year": 2017,
+          "venue": null,
+          "abstract": "The Transformer architecture relies entirely on self-attention to compute representations, without recurrence or convolutions.",
+          "doi": "10.48550/arxiv.1706.03762",
+          "arxivId": "1706.03762",
+          "url": "https://doi.org/10.48550/arxiv.1706.03762",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-known-7",
+      "text": "The work (doi:10.1162/neco.1997.9.8.1735) introduces LSTM memory cells for long-range dependencies.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1162/neco.1997.9.8.1735",
+        "paper": {
+          "title": "Long Short-Term Memory",
+          "authors": [
+            "Sepp Hochreiter",
+            "Jurgen Schmidhuber"
+          ],
+          "year": 1997,
+          "venue": null,
+          "abstract": "We introduce Long Short-Term Memory (LSTM), a novel recurrent network architecture that can learn long-range dependencies by using memory cells and gates.",
+          "doi": "10.1162/neco.1997.9.8.1735",
+          "arxivId": null,
+          "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-8",
+      "text": "Author9 Surname et al., 2008, \"Gold literature paper 8: foundations of method 8\" (doi:10.1109/cvpr.2015.7298965) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/cvpr.2015.7298965",
+        "paper": {
+          "title": "Gold literature paper 8: foundations of method 8",
+          "authors": [
+            "Author9 Surname"
+          ],
+          "year": 2008,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 8 and reports empirical results on standard benchmarks. We find that technique 8 improves accuracy under controlled conditions.",
+          "doi": "10.1109/cvpr.2015.7298965",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2015.7298965",
+          "pdfUrl": null,
+          "citationCount": 18,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-9",
+      "text": "Author10 Surname et al., 2009, \"Gold literature paper 9: foundations of method 9\" (doi:10.1109/cvpr.2014.81) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/cvpr.2014.81",
+        "paper": {
+          "title": "Gold literature paper 9: foundations of method 9",
+          "authors": [
+            "Author10 Surname"
+          ],
+          "year": 2009,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 9 and reports empirical results on standard benchmarks. We find that technique 9 improves accuracy under controlled conditions.",
+          "doi": "10.1109/cvpr.2014.81",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2014.81",
+          "pdfUrl": null,
+          "citationCount": 19,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-10",
+      "text": "Author11 Surname et al., 2010, \"Gold literature paper 10: foundations of method 10\" (doi:10.1038/323533a0) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1038/323533a0",
+        "paper": {
+          "title": "Gold literature paper 10: foundations of method 10",
+          "authors": [
+            "Author11 Surname"
+          ],
+          "year": 2010,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 10 and reports empirical results on standard benchmarks. We find that technique 10 improves accuracy under controlled conditions.",
+          "doi": "10.1038/323533a0",
+          "arxivId": null,
+          "url": "https://doi.org/10.1038/323533a0",
+          "pdfUrl": null,
+          "citationCount": 20,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-11",
+      "text": "Author12 Surname et al., 2011, \"Gold literature paper 11: foundations of method 11\" (doi:10.1109/iccv.2015.169) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/iccv.2015.169",
+        "paper": {
+          "title": "Gold literature paper 11: foundations of method 11",
+          "authors": [
+            "Author12 Surname"
+          ],
+          "year": 2011,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 11 and reports empirical results on standard benchmarks. We find that technique 11 improves accuracy under controlled conditions.",
+          "doi": "10.1109/iccv.2015.169",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/iccv.2015.169",
+          "pdfUrl": null,
+          "citationCount": 21,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-12",
+      "text": "Author13 Surname et al., 2012, \"Gold literature paper 12: foundations of method 12\" (doi:10.48550/arxiv.1502.03167) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.48550/arxiv.1502.03167",
+        "paper": {
+          "title": "Gold literature paper 12: foundations of method 12",
+          "authors": [
+            "Author13 Surname"
+          ],
+          "year": 2012,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 12 and reports empirical results on standard benchmarks. We find that technique 12 improves accuracy under controlled conditions.",
+          "doi": "10.48550/arxiv.1502.03167",
+          "arxivId": "1502.03167",
+          "url": "https://doi.org/10.48550/arxiv.1502.03167",
+          "pdfUrl": null,
+          "citationCount": 22,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-13",
+      "text": "Author14 Surname et al., 2013, \"Gold literature paper 13: foundations of method 13\" (doi:10.1109/iccv.2015.123) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/iccv.2015.123",
+        "paper": {
+          "title": "Gold literature paper 13: foundations of method 13",
+          "authors": [
+            "Author14 Surname"
+          ],
+          "year": 2013,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 13 and reports empirical results on standard benchmarks. We find that technique 13 improves accuracy under controlled conditions.",
+          "doi": "10.1109/iccv.2015.123",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/iccv.2015.123",
+          "pdfUrl": null,
+          "citationCount": 23,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-14",
+      "text": "Author15 Surname et al., 2014, \"Gold literature paper 14: foundations of method 14\" (doi:10.1007/bf02478259) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1007/bf02478259",
+        "paper": {
+          "title": "Gold literature paper 14: foundations of method 14",
+          "authors": [
+            "Author15 Surname"
+          ],
+          "year": 2014,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 14 and reports empirical results on standard benchmarks. We find that technique 14 improves accuracy under controlled conditions.",
+          "doi": "10.1007/bf02478259",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/bf02478259",
+          "pdfUrl": null,
+          "citationCount": 24,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-15",
+      "text": "Author16 Surname et al., 2015, \"Gold literature paper 15: foundations of method 15\" (doi:10.1109/cvpr.2015.7298682) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/cvpr.2015.7298682",
+        "paper": {
+          "title": "Gold literature paper 15: foundations of method 15",
+          "authors": [
+            "Author16 Surname"
+          ],
+          "year": 2015,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 15 and reports empirical results on standard benchmarks. We find that technique 15 improves accuracy under controlled conditions.",
+          "doi": "10.1109/cvpr.2015.7298682",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2015.7298682",
+          "pdfUrl": null,
+          "citationCount": 25,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-16",
+      "text": "Author17 Surname et al., 2016, \"Gold literature paper 16: foundations of method 16\" (doi:10.3115/v1/d14-1181) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.3115/v1/d14-1181",
+        "paper": {
+          "title": "Gold literature paper 16: foundations of method 16",
+          "authors": [
+            "Author17 Surname"
+          ],
+          "year": 2016,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 16 and reports empirical results on standard benchmarks. We find that technique 16 improves accuracy under controlled conditions.",
+          "doi": "10.3115/v1/d14-1181",
+          "arxivId": null,
+          "url": "https://doi.org/10.3115/v1/d14-1181",
+          "pdfUrl": null,
+          "citationCount": 26,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-17",
+      "text": "Author18 Surname et al., 2017, \"Gold literature paper 17: foundations of method 17\" (doi:10.1113/jphysiol.1962.sp006837) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1113/jphysiol.1962.sp006837",
+        "paper": {
+          "title": "Gold literature paper 17: foundations of method 17",
+          "authors": [
+            "Author18 Surname"
+          ],
+          "year": 2017,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 17 and reports empirical results on standard benchmarks. We find that technique 17 improves accuracy under controlled conditions.",
+          "doi": "10.1113/jphysiol.1962.sp006837",
+          "arxivId": null,
+          "url": "https://doi.org/10.1113/jphysiol.1962.sp006837",
+          "pdfUrl": null,
+          "citationCount": 27,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-18",
+      "text": "Author19 Surname et al., 2018, \"Gold literature paper 18: foundations of method 18\" (doi:10.1037/h0042519) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1037/h0042519",
+        "paper": {
+          "title": "Gold literature paper 18: foundations of method 18",
+          "authors": [
+            "Author19 Surname"
+          ],
+          "year": 2018,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 18 and reports empirical results on standard benchmarks. We find that technique 18 improves accuracy under controlled conditions.",
+          "doi": "10.1037/h0042519",
+          "arxivId": null,
+          "url": "https://doi.org/10.1037/h0042519",
+          "pdfUrl": null,
+          "citationCount": 28,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-19",
+      "text": "Author20 Surname et al., 2019, \"Gold literature paper 19: foundations of method 19\" (doi:10.1109/tpami.2015.2389824) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/tpami.2015.2389824",
+        "paper": {
+          "title": "Gold literature paper 19: foundations of method 19",
+          "authors": [
+            "Author20 Surname"
+          ],
+          "year": 2019,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 19 and reports empirical results on standard benchmarks. We find that technique 19 improves accuracy under controlled conditions.",
+          "doi": "10.1109/tpami.2015.2389824",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/tpami.2015.2389824",
+          "pdfUrl": null,
+          "citationCount": 29,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-20",
+      "text": "Author21 Surname et al., 2020, \"Gold literature paper 20: foundations of method 20\" (doi:10.48550/arxiv.1412.6572) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.48550/arxiv.1412.6572",
+        "paper": {
+          "title": "Gold literature paper 20: foundations of method 20",
+          "authors": [
+            "Author21 Surname"
+          ],
+          "year": 2020,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 20 and reports empirical results on standard benchmarks. We find that technique 20 improves accuracy under controlled conditions.",
+          "doi": "10.48550/arxiv.1412.6572",
+          "arxivId": "1412.6572",
+          "url": "https://doi.org/10.48550/arxiv.1412.6572",
+          "pdfUrl": null,
+          "citationCount": 30,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-21",
+      "text": "Author22 Surname et al., 2021, \"Gold literature paper 21: foundations of method 21\" (doi:10.1109/tnn.2008.2005605) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/tnn.2008.2005605",
+        "paper": {
+          "title": "Gold literature paper 21: foundations of method 21",
+          "authors": [
+            "Author22 Surname"
+          ],
+          "year": 2021,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 21 and reports empirical results on standard benchmarks. We find that technique 21 improves accuracy under controlled conditions.",
+          "doi": "10.1109/tnn.2008.2005605",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/tnn.2008.2005605",
+          "pdfUrl": null,
+          "citationCount": 31,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-22",
+      "text": "Author23 Surname et al., 2022, \"Gold literature paper 22: foundations of method 22\" (doi:10.48550/arxiv.1206.2944) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.48550/arxiv.1206.2944",
+        "paper": {
+          "title": "Gold literature paper 22: foundations of method 22",
+          "authors": [
+            "Author23 Surname"
+          ],
+          "year": 2022,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 22 and reports empirical results on standard benchmarks. We find that technique 22 improves accuracy under controlled conditions.",
+          "doi": "10.48550/arxiv.1206.2944",
+          "arxivId": "1206.2944",
+          "url": "https://doi.org/10.48550/arxiv.1206.2944",
+          "pdfUrl": null,
+          "citationCount": 32,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-23",
+      "text": "Author24 Surname et al., 2023, \"Gold literature paper 23: foundations of method 23\" (doi:10.1109/cvpr.2014.220) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/cvpr.2014.220",
+        "paper": {
+          "title": "Gold literature paper 23: foundations of method 23",
+          "authors": [
+            "Author24 Surname"
+          ],
+          "year": 2023,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 23 and reports empirical results on standard benchmarks. We find that technique 23 improves accuracy under controlled conditions.",
+          "doi": "10.1109/cvpr.2014.220",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2014.220",
+          "pdfUrl": null,
+          "citationCount": 33,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-24",
+      "text": "Author25 Surname et al., 2000, \"Gold literature paper 24: foundations of method 24\" (doi:10.1109/cvpr.2015.7298801) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/cvpr.2015.7298801",
+        "paper": {
+          "title": "Gold literature paper 24: foundations of method 24",
+          "authors": [
+            "Author25 Surname"
+          ],
+          "year": 2000,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 24 and reports empirical results on standard benchmarks. We find that technique 24 improves accuracy under controlled conditions.",
+          "doi": "10.1109/cvpr.2015.7298801",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2015.7298801",
+          "pdfUrl": null,
+          "citationCount": 34,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-25",
+      "text": "Author26 Surname et al., 2001, \"Gold literature paper 25: foundations of method 25\" (doi:10.1109/cvpr.2006.100) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/cvpr.2006.100",
+        "paper": {
+          "title": "Gold literature paper 25: foundations of method 25",
+          "authors": [
+            "Author26 Surname"
+          ],
+          "year": 2001,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 25 and reports empirical results on standard benchmarks. We find that technique 25 improves accuracy under controlled conditions.",
+          "doi": "10.1109/cvpr.2006.100",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2006.100",
+          "pdfUrl": null,
+          "citationCount": 35,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-26",
+      "text": "Author1 Surname et al., 2002, \"Gold literature paper 26: foundations of method 26\" (doi:10.48550/arxiv.1212.5701) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.48550/arxiv.1212.5701",
+        "paper": {
+          "title": "Gold literature paper 26: foundations of method 26",
+          "authors": [
+            "Author1 Surname"
+          ],
+          "year": 2002,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 26 and reports empirical results on standard benchmarks. We find that technique 26 improves accuracy under controlled conditions.",
+          "doi": "10.48550/arxiv.1212.5701",
+          "arxivId": "1212.5701",
+          "url": "https://doi.org/10.48550/arxiv.1212.5701",
+          "pdfUrl": null,
+          "citationCount": 36,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-27",
+      "text": "Author2 Surname et al., 2003, \"Gold literature paper 27: foundations of method 27\" (doi:10.48550/arxiv.1510.00149) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.48550/arxiv.1510.00149",
+        "paper": {
+          "title": "Gold literature paper 27: foundations of method 27",
+          "authors": [
+            "Author2 Surname"
+          ],
+          "year": 2003,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 27 and reports empirical results on standard benchmarks. We find that technique 27 improves accuracy under controlled conditions.",
+          "doi": "10.48550/arxiv.1510.00149",
+          "arxivId": "1510.00149",
+          "url": "https://doi.org/10.48550/arxiv.1510.00149",
+          "pdfUrl": null,
+          "citationCount": 37,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-28",
+      "text": "Author3 Surname et al., 2004, \"Gold literature paper 28: foundations of method 28\" (doi:10.48550/arxiv.1312.6203) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.48550/arxiv.1312.6203",
+        "paper": {
+          "title": "Gold literature paper 28: foundations of method 28",
+          "authors": [
+            "Author3 Surname"
+          ],
+          "year": 2004,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 28 and reports empirical results on standard benchmarks. We find that technique 28 improves accuracy under controlled conditions.",
+          "doi": "10.48550/arxiv.1312.6203",
+          "arxivId": "1312.6203",
+          "url": "https://doi.org/10.48550/arxiv.1312.6203",
+          "pdfUrl": null,
+          "citationCount": 38,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-29",
+      "text": "Author4 Surname et al., 2005, \"Gold literature paper 29: foundations of method 29\" (doi:10.1109/29.21701) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/29.21701",
+        "paper": {
+          "title": "Gold literature paper 29: foundations of method 29",
+          "authors": [
+            "Author4 Surname"
+          ],
+          "year": 2005,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 29 and reports empirical results on standard benchmarks. We find that technique 29 improves accuracy under controlled conditions.",
+          "doi": "10.1109/29.21701",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/29.21701",
+          "pdfUrl": null,
+          "citationCount": 39,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-30",
+      "text": "Author5 Surname et al., 2006, \"Gold literature paper 30: foundations of method 30\" (doi:10.1162/neco.1997.9.8.1735) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1162/neco.1997.9.8.1735",
+        "paper": {
+          "title": "Gold literature paper 30: foundations of method 30",
+          "authors": [
+            "Author5 Surname"
+          ],
+          "year": 2006,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 30 and reports empirical results on standard benchmarks. We find that technique 30 improves accuracy under controlled conditions.",
+          "doi": "10.1162/neco.1997.9.8.1735",
+          "arxivId": null,
+          "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
+          "pdfUrl": null,
+          "citationCount": 40,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-31",
+      "text": "Author6 Surname et al., 2007, \"Gold literature paper 31: foundations of method 31\" (doi:10.1007/978-3-319-10602-1_48) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1007/978-3-319-10602-1_48",
+        "paper": {
+          "title": "Gold literature paper 31: foundations of method 31",
+          "authors": [
+            "Author6 Surname"
+          ],
+          "year": 2007,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 31 and reports empirical results on standard benchmarks. We find that technique 31 improves accuracy under controlled conditions.",
+          "doi": "10.1007/978-3-319-10602-1_48",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/978-3-319-10602-1_48",
+          "pdfUrl": null,
+          "citationCount": 41,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-32",
+      "text": "Author7 Surname et al., 2008, \"Gold literature paper 32: foundations of method 32\" (doi:10.1109/tsmc.1979.4310076) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/tsmc.1979.4310076",
+        "paper": {
+          "title": "Gold literature paper 32: foundations of method 32",
+          "authors": [
+            "Author7 Surname"
+          ],
+          "year": 2008,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 32 and reports empirical results on standard benchmarks. We find that technique 32 improves accuracy under controlled conditions.",
+          "doi": "10.1109/tsmc.1979.4310076",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/tsmc.1979.4310076",
+          "pdfUrl": null,
+          "citationCount": 42,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-33",
+      "text": "Author8 Surname et al., 2009, \"Gold literature paper 33: foundations of method 33\" (doi:10.1109/tpami.2016.2644615) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/tpami.2016.2644615",
+        "paper": {
+          "title": "Gold literature paper 33: foundations of method 33",
+          "authors": [
+            "Author8 Surname"
+          ],
+          "year": 2009,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 33 and reports empirical results on standard benchmarks. We find that technique 33 improves accuracy under controlled conditions.",
+          "doi": "10.1109/tpami.2016.2644615",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/tpami.2016.2644615",
+          "pdfUrl": null,
+          "citationCount": 43,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-34",
+      "text": "Author9 Surname et al., 2010, \"Gold literature paper 34: foundations of method 34\" (doi:10.1007/s11263-009-0275-4) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1007/s11263-009-0275-4",
+        "paper": {
+          "title": "Gold literature paper 34: foundations of method 34",
+          "authors": [
+            "Author9 Surname"
+          ],
+          "year": 2010,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 34 and reports empirical results on standard benchmarks. We find that technique 34 improves accuracy under controlled conditions.",
+          "doi": "10.1007/s11263-009-0275-4",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/s11263-009-0275-4",
+          "pdfUrl": null,
+          "citationCount": 44,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-35",
+      "text": "Author10 Surname et al., 2011, \"Gold literature paper 35: foundations of method 35\" (doi:10.3156/jsoft.29.5_177_2) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.3156/jsoft.29.5_177_2",
+        "paper": {
+          "title": "Gold literature paper 35: foundations of method 35",
+          "authors": [
+            "Author10 Surname"
+          ],
+          "year": 2011,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 35 and reports empirical results on standard benchmarks. We find that technique 35 improves accuracy under controlled conditions.",
+          "doi": "10.3156/jsoft.29.5_177_2",
+          "arxivId": null,
+          "url": "https://doi.org/10.3156/jsoft.29.5_177_2",
+          "pdfUrl": null,
+          "citationCount": 45,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-36",
+      "text": "Author11 Surname et al., 2012, \"Gold literature paper 36: foundations of method 36\" (doi:10.1007/bf00133570) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1007/bf00133570",
+        "paper": {
+          "title": "Gold literature paper 36: foundations of method 36",
+          "authors": [
+            "Author11 Surname"
+          ],
+          "year": 2012,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 36 and reports empirical results on standard benchmarks. We find that technique 36 improves accuracy under controlled conditions.",
+          "doi": "10.1007/bf00133570",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/bf00133570",
+          "pdfUrl": null,
+          "citationCount": 46,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-37",
+      "text": "Author12 Surname et al., 2013, \"Gold literature paper 37: foundations of method 37\" (doi:10.1109/83.902291) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/83.902291",
+        "paper": {
+          "title": "Gold literature paper 37: foundations of method 37",
+          "authors": [
+            "Author12 Surname"
+          ],
+          "year": 2013,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 37 and reports empirical results on standard benchmarks. We find that technique 37 improves accuracy under controlled conditions.",
+          "doi": "10.1109/83.902291",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/83.902291",
+          "pdfUrl": null,
+          "citationCount": 47,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-38",
+      "text": "Author13 Surname et al., 2014, \"Gold literature paper 38: foundations of method 38\" (doi:10.1177/0278364913491297) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1177/0278364913491297",
+        "paper": {
+          "title": "Gold literature paper 38: foundations of method 38",
+          "authors": [
+            "Author13 Surname"
+          ],
+          "year": 2014,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 38 and reports empirical results on standard benchmarks. We find that technique 38 improves accuracy under controlled conditions.",
+          "doi": "10.1177/0278364913491297",
+          "arxivId": null,
+          "url": "https://doi.org/10.1177/0278364913491297",
+          "pdfUrl": null,
+          "citationCount": 48,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-39",
+      "text": "Author14 Surname et al., 2015, \"Gold literature paper 39: foundations of method 39\" (doi:10.48550/arxiv.1411.1784) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.48550/arxiv.1411.1784",
+        "paper": {
+          "title": "Gold literature paper 39: foundations of method 39",
+          "authors": [
+            "Author14 Surname"
+          ],
+          "year": 2015,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 39 and reports empirical results on standard benchmarks. We find that technique 39 improves accuracy under controlled conditions.",
+          "doi": "10.48550/arxiv.1411.1784",
+          "arxivId": "1411.1784",
+          "url": "https://doi.org/10.48550/arxiv.1411.1784",
+          "pdfUrl": null,
+          "citationCount": 49,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-40",
+      "text": "Author15 Surname et al., 2016, \"Gold literature paper 40: foundations of method 40\" (doi:10.1109/iccv.2001.937655) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/iccv.2001.937655",
+        "paper": {
+          "title": "Gold literature paper 40: foundations of method 40",
+          "authors": [
+            "Author15 Surname"
+          ],
+          "year": 2016,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 40 and reports empirical results on standard benchmarks. We find that technique 40 improves accuracy under controlled conditions.",
+          "doi": "10.1109/iccv.2001.937655",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/iccv.2001.937655",
+          "pdfUrl": null,
+          "citationCount": 50,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-41",
+      "text": "Author16 Surname et al., 2017, \"Gold literature paper 41: foundations of method 41\" (doi:10.1109/34.969114) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/34.969114",
+        "paper": {
+          "title": "Gold literature paper 41: foundations of method 41",
+          "authors": [
+            "Author16 Surname"
+          ],
+          "year": 2017,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 41 and reports empirical results on standard benchmarks. We find that technique 41 improves accuracy under controlled conditions.",
+          "doi": "10.1109/34.969114",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/34.969114",
+          "pdfUrl": null,
+          "citationCount": 51,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-42",
+      "text": "Author17 Surname et al., 2018, \"Gold literature paper 42: foundations of method 42\" (doi:10.1007/978-3-642-33715-4_54) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1007/978-3-642-33715-4_54",
+        "paper": {
+          "title": "Gold literature paper 42: foundations of method 42",
+          "authors": [
+            "Author17 Surname"
+          ],
+          "year": 2018,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 42 and reports empirical results on standard benchmarks. We find that technique 42 improves accuracy under controlled conditions.",
+          "doi": "10.1007/978-3-642-33715-4_54",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/978-3-642-33715-4_54",
+          "pdfUrl": null,
+          "citationCount": 52,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-43",
+      "text": "Author18 Surname et al., 2019, \"Gold literature paper 43: foundations of method 43\" (doi:10.1007/bf00344251) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1007/bf00344251",
+        "paper": {
+          "title": "Gold literature paper 43: foundations of method 43",
+          "authors": [
+            "Author18 Surname"
+          ],
+          "year": 2019,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 43 and reports empirical results on standard benchmarks. We find that technique 43 improves accuracy under controlled conditions.",
+          "doi": "10.1007/bf00344251",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/bf00344251",
+          "pdfUrl": null,
+          "citationCount": 53,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-44",
+      "text": "Author19 Surname et al., 2020, \"Gold literature paper 44: foundations of method 44\" (doi:10.1109/iccv.2015.178) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/iccv.2015.178",
+        "paper": {
+          "title": "Gold literature paper 44: foundations of method 44",
+          "authors": [
+            "Author19 Surname"
+          ],
+          "year": 2020,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 44 and reports empirical results on standard benchmarks. We find that technique 44 improves accuracy under controlled conditions.",
+          "doi": "10.1109/iccv.2015.178",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/iccv.2015.178",
+          "pdfUrl": null,
+          "citationCount": 54,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-45",
+      "text": "Author20 Surname et al., 2021, \"Gold literature paper 45: foundations of method 45\" (doi:10.48550/arxiv.1412.7062) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.48550/arxiv.1412.7062",
+        "paper": {
+          "title": "Gold literature paper 45: foundations of method 45",
+          "authors": [
+            "Author20 Surname"
+          ],
+          "year": 2021,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 45 and reports empirical results on standard benchmarks. We find that technique 45 improves accuracy under controlled conditions.",
+          "doi": "10.48550/arxiv.1412.7062",
+          "arxivId": "1412.7062",
+          "url": "https://doi.org/10.48550/arxiv.1412.7062",
+          "pdfUrl": null,
+          "citationCount": 55,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-46",
+      "text": "Author21 Surname et al., 2022, \"Gold literature paper 46: foundations of method 46\" (doi:10.5860/choice.48-5140) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.5860/choice.48-5140",
+        "paper": {
+          "title": "Gold literature paper 46: foundations of method 46",
+          "authors": [
+            "Author21 Surname"
+          ],
+          "year": 2022,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 46 and reports empirical results on standard benchmarks. We find that technique 46 improves accuracy under controlled conditions.",
+          "doi": "10.5860/choice.48-5140",
+          "arxivId": null,
+          "url": "https://doi.org/10.5860/choice.48-5140",
+          "pdfUrl": null,
+          "citationCount": 56,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-47",
+      "text": "Author22 Surname et al., 2023, \"Gold literature paper 47: foundations of method 47\" (doi:10.1109/iccv.2015.304) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/iccv.2015.304",
+        "paper": {
+          "title": "Gold literature paper 47: foundations of method 47",
+          "authors": [
+            "Author22 Surname"
+          ],
+          "year": 2023,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 47 and reports empirical results on standard benchmarks. We find that technique 47 improves accuracy under controlled conditions.",
+          "doi": "10.1109/iccv.2015.304",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/iccv.2015.304",
+          "pdfUrl": null,
+          "citationCount": 57,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-48",
+      "text": "Author23 Surname et al., 2000, \"Gold literature paper 48: foundations of method 48\" (doi:10.1109/iccv.2015.179) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/iccv.2015.179",
+        "paper": {
+          "title": "Gold literature paper 48: foundations of method 48",
+          "authors": [
+            "Author23 Surname"
+          ],
+          "year": 2000,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 48 and reports empirical results on standard benchmarks. We find that technique 48 improves accuracy under controlled conditions.",
+          "doi": "10.1109/iccv.2015.179",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/iccv.2015.179",
+          "pdfUrl": null,
+          "citationCount": 58,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-49",
+      "text": "Author24 Surname et al., 2001, \"Gold literature paper 49: foundations of method 49\" (doi:10.1109/cvpr.2015.7298655) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/cvpr.2015.7298655",
+        "paper": {
+          "title": "Gold literature paper 49: foundations of method 49",
+          "authors": [
+            "Author24 Surname"
+          ],
+          "year": 2001,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 49 and reports empirical results on standard benchmarks. We find that technique 49 improves accuracy under controlled conditions.",
+          "doi": "10.1109/cvpr.2015.7298655",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2015.7298655",
+          "pdfUrl": null,
+          "citationCount": 59,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-50",
+      "text": "Author25 Surname et al., 2002, \"Gold literature paper 50: foundations of method 50\" (doi:10.1109/iccv.2011.6126343) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/iccv.2011.6126343",
+        "paper": {
+          "title": "Gold literature paper 50: foundations of method 50",
+          "authors": [
+            "Author25 Surname"
+          ],
+          "year": 2002,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 50 and reports empirical results on standard benchmarks. We find that technique 50 improves accuracy under controlled conditions.",
+          "doi": "10.1109/iccv.2011.6126343",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/iccv.2011.6126343",
+          "pdfUrl": null,
+          "citationCount": 60,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-51",
+      "text": "Author26 Surname et al., 2003, \"Gold literature paper 51: foundations of method 51\" (doi:10.1109/cvpr.2014.119) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/cvpr.2014.119",
+        "paper": {
+          "title": "Gold literature paper 51: foundations of method 51",
+          "authors": [
+            "Author26 Surname"
+          ],
+          "year": 2003,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 51 and reports empirical results on standard benchmarks. We find that technique 51 improves accuracy under controlled conditions.",
+          "doi": "10.1109/cvpr.2014.119",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/cvpr.2014.119",
+          "pdfUrl": null,
+          "citationCount": 61,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-52",
+      "text": "Author1 Surname et al., 2004, \"Gold literature paper 52: foundations of method 52\" (doi:10.1182/blood-2010-05-282780) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1182/blood-2010-05-282780",
+        "paper": {
+          "title": "Gold literature paper 52: foundations of method 52",
+          "authors": [
+            "Author1 Surname"
+          ],
+          "year": 2004,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 52 and reports empirical results on standard benchmarks. We find that technique 52 improves accuracy under controlled conditions.",
+          "doi": "10.1182/blood-2010-05-282780",
+          "arxivId": null,
+          "url": "https://doi.org/10.1182/blood-2010-05-282780",
+          "pdfUrl": null,
+          "citationCount": 62,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-53",
+      "text": "Author2 Surname et al., 2005, \"Gold literature paper 53: foundations of method 53\" (doi:10.1038/ng.3415) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1038/ng.3415",
+        "paper": {
+          "title": "Gold literature paper 53: foundations of method 53",
+          "authors": [
+            "Author2 Surname"
+          ],
+          "year": 2005,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 53 and reports empirical results on standard benchmarks. We find that technique 53 improves accuracy under controlled conditions.",
+          "doi": "10.1038/ng.3415",
+          "arxivId": null,
+          "url": "https://doi.org/10.1038/ng.3415",
+          "pdfUrl": null,
+          "citationCount": 63,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-54",
+      "text": "Author3 Surname et al., 2006, \"Gold literature paper 54: foundations of method 54\" (doi:10.1182/blood-2013-11-536359) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1182/blood-2013-11-536359",
+        "paper": {
+          "title": "Gold literature paper 54: foundations of method 54",
+          "authors": [
+            "Author3 Surname"
+          ],
+          "year": 2006,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 54 and reports empirical results on standard benchmarks. We find that technique 54 improves accuracy under controlled conditions.",
+          "doi": "10.1182/blood-2013-11-536359",
+          "arxivId": null,
+          "url": "https://doi.org/10.1182/blood-2013-11-536359",
+          "pdfUrl": null,
+          "citationCount": 64,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-55",
+      "text": "Author4 Surname et al., 2007, \"Gold literature paper 55: foundations of method 55\" (doi:10.1159/000439267) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1159/000439267",
+        "paper": {
+          "title": "Gold literature paper 55: foundations of method 55",
+          "authors": [
+            "Author4 Surname"
+          ],
+          "year": 2007,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 55 and reports empirical results on standard benchmarks. We find that technique 55 improves accuracy under controlled conditions.",
+          "doi": "10.1159/000439267",
+          "arxivId": null,
+          "url": "https://doi.org/10.1159/000439267",
+          "pdfUrl": null,
+          "citationCount": 65,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-56",
+      "text": "Author5 Surname et al., 2008, \"Gold literature paper 56: foundations of method 56\" (doi:10.1182/blood.v91.6.2076) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1182/blood.v91.6.2076",
+        "paper": {
+          "title": "Gold literature paper 56: foundations of method 56",
+          "authors": [
+            "Author5 Surname"
+          ],
+          "year": 2008,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 56 and reports empirical results on standard benchmarks. We find that technique 56 improves accuracy under controlled conditions.",
+          "doi": "10.1182/blood.v91.6.2076",
+          "arxivId": null,
+          "url": "https://doi.org/10.1182/blood.v91.6.2076",
+          "pdfUrl": null,
+          "citationCount": 66,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-57",
+      "text": "Author6 Surname et al., 2009, \"Gold literature paper 57: foundations of method 57\" (doi:10.1182/blood-2011-10-381921) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1182/blood-2011-10-381921",
+        "paper": {
+          "title": "Gold literature paper 57: foundations of method 57",
+          "authors": [
+            "Author6 Surname"
+          ],
+          "year": 2009,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 57 and reports empirical results on standard benchmarks. We find that technique 57 improves accuracy under controlled conditions.",
+          "doi": "10.1182/blood-2011-10-381921",
+          "arxivId": null,
+          "url": "https://doi.org/10.1182/blood-2011-10-381921",
+          "pdfUrl": null,
+          "citationCount": 67,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-58",
+      "text": "Author7 Surname et al., 2010, \"Gold literature paper 58: foundations of method 58\" (doi:10.1038/ki.2014.408) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1038/ki.2014.408",
+        "paper": {
+          "title": "Gold literature paper 58: foundations of method 58",
+          "authors": [
+            "Author7 Surname"
+          ],
+          "year": 2010,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 58 and reports empirical results on standard benchmarks. We find that technique 58 improves accuracy under controlled conditions.",
+          "doi": "10.1038/ki.2014.408",
+          "arxivId": null,
+          "url": "https://doi.org/10.1038/ki.2014.408",
+          "pdfUrl": null,
+          "citationCount": 68,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-59",
+      "text": "Author8 Surname et al., 2011, \"Gold literature paper 59: foundations of method 59\" (doi:10.1182/blood-2013-10-531509) reports relevant prior work.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1182/blood-2013-10-531509",
+        "paper": {
+          "title": "Gold literature paper 59: foundations of method 59",
+          "authors": [
+            "Author8 Surname"
+          ],
+          "year": 2011,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 59 and reports empirical results on standard benchmarks. We find that technique 59 improves accuracy under controlled conditions.",
+          "doi": "10.1182/blood-2013-10-531509",
+          "arxivId": null,
+          "url": "https://doi.org/10.1182/blood-2013-10-531509",
+          "pdfUrl": null,
+          "citationCount": 69,
+          "foundBy": [
+            "crossref"
+          ]
+        }
+      },
+      "support": "supported"
     }
   ]
 }

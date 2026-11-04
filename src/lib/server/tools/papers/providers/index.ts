@@ -7,7 +7,11 @@ export {
   searchArxiv,
 } from "./arxiv";
 export { normalizeCore, searchCore } from "./core";
-export { normalizeCrossref, searchCrossref } from "./crossref";
+export {
+  fetchCrossrefWork,
+  normalizeCrossref,
+  searchCrossref,
+} from "./crossref";
 export { normalizeDblp, searchDblp } from "./dblp";
 export {
   fetchOpenAlexLinks,
