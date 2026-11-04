@@ -134,17 +134,17 @@ export async function getPaper(input: {
   const enabled = input.enabledProviders?.length
     ? new Set(input.enabledProviders)
     : null;
-  const use = (p: PaperProvider) => !enabled || enabled.has(p);
+  const allows = (p: PaperProvider) => !enabled || enabled.has(p);
   const mailto = input.contactEmail?.trim() || undefined;
 
   const parts: Paper[] = [];
   if (doi) {
     const jobs: Promise<Paper | null>[] = [];
-    if (use("openalex"))
+    if (allows("openalex"))
       jobs.push(fetchOpenAlexWork({ doi, signal: input.signal, mailto }));
-    if (use("semantic_scholar"))
+    if (allows("semantic_scholar"))
       jobs.push(fetchSemanticScholarPaper({ doi, signal: input.signal }));
-    if (use("crossref"))
+    if (allows("crossref"))
       jobs.push(
         fetchCrossrefWork({ doi, signal: input.signal, mailto }),
       );
@@ -152,7 +152,7 @@ export async function getPaper(input: {
     const arxivFromDoi = doi.toLowerCase().startsWith("10.48550/arxiv.")
       ? normalizeArxivId(doi.slice("10.48550/arxiv.".length))
       : null;
-    if (arxivFromDoi && use("arxiv")) {
+    if (arxivFromDoi && allows("arxiv")) {
       jobs.push(
         searchArxiv(arxivFromDoi, { limit: 1, signal: input.signal }).then(
           (r) => r.papers[0] ?? null,
@@ -164,13 +164,13 @@ export async function getPaper(input: {
     }
   } else if (arxivId) {
     const jobs: Promise<Paper | null>[] = [];
-    if (use("openalex"))
+    if (allows("openalex"))
       jobs.push(
         fetchOpenAlexWork({ arxivId, signal: input.signal, mailto }),
       );
-    if (use("semantic_scholar"))
+    if (allows("semantic_scholar"))
       jobs.push(fetchSemanticScholarPaper({ arxivId, signal: input.signal }));
-    if (use("arxiv")) {
+    if (allows("arxiv")) {
       jobs.push(
         searchArxiv(arxivId, { limit: 1, signal: input.signal }).then(
           (r) => r.papers[0] ?? null,
