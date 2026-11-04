@@ -11,10 +11,7 @@ type Case = {
   id: string;
   text: string;
   expectedStatus:
-    | "not_found"
-    | "metadata_mismatch"
-    | "claim_not_supported"
-    | "verified";
+    "not_found" | "metadata_mismatch" | "claim_not_supported" | "verified";
   kind: "fake" | "mismatch" | "support" | "real";
   resolve?: {
     doi?: string;
@@ -185,7 +182,7 @@ function syntheticPaper(doi: string, i: number): Paper {
     abstract: `This paper studies method ${i} and reports empirical results on standard benchmarks. We find that technique ${i} improves accuracy under controlled conditions.`,
     doi,
     arxivId: doi.toLowerCase().includes("arxiv.")
-      ? doi.split("arxiv.")[1] ?? null
+      ? (doi.split("arxiv.")[1] ?? null)
       : null,
     url: `https://doi.org/${doi}`,
     pdfUrl: null,
@@ -251,21 +248,24 @@ function main() {
       title: "Long Short-Term Memory",
       authors: ["Sepp Hochreiter", "Jurgen Schmidhuber"],
       year: 1997,
-      abstract: "We introduce LSTM, a recurrent architecture for long-range dependencies.",
+      abstract:
+        "We introduce LSTM, a recurrent architecture for long-range dependencies.",
     },
     {
       doi: "10.1038/323533a0",
       title: "Learning representations by back-propagating errors",
       authors: ["David E. Rumelhart"],
       year: 1986,
-      abstract: "We describe a new learning procedure, back-propagation, for networks.",
+      abstract:
+        "We describe a new learning procedure, back-propagation, for networks.",
     },
     {
       doi: "10.1109/5.726791",
       title: "Gradient-based learning applied to document recognition",
       authors: ["Y. Lecun"],
       year: 1998,
-      abstract: "Multilayer neural networks trained with gradient descent for document recognition.",
+      abstract:
+        "Multilayer neural networks trained with gradient descent for document recognition.",
     },
     {
       doi: "10.1109/tpami.2016.2577031",
@@ -385,7 +385,9 @@ function main() {
     counts.real < 60 ||
     cases.length < 200
   ) {
-    throw new Error(`Fixture too small: ${JSON.stringify(counts)} total=${cases.length}`);
+    throw new Error(
+      `Fixture too small: ${JSON.stringify(counts)} total=${cases.length}`,
+    );
   }
 
   const outDir = path.join(root, "evals/citations");

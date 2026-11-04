@@ -8,47 +8,32 @@
       "support": 40,
       "real": 60
     },
-    "sources": [
-      "evals/bench/literature/items.json",
-      "known landmark papers"
-    ]
+    "sources": ["evals/bench/literature/items.json", "known landmark papers"]
   },
   "scores": {
     "notFoundDetection": {
       "rate": 1,
       "n": 60,
       "successes": 60,
-      "ci95": [
-        0.939826069522067,
-        0.9999999999999998
-      ]
+      "ci95": [0.939826069522067, 0.9999999999999998]
     },
     "mismatchDetection": {
       "rate": 1,
       "n": 40,
       "successes": 40,
-      "ci95": [
-        0.9123754607496077,
-        1
-      ]
+      "ci95": [0.9123754607496077, 1]
     },
     "falsePositiveRate": {
       "rate": 0,
       "n": 60,
       "successes": 0,
-      "ci95": [
-        0,
-        0.060173930477932895
-      ]
+      "ci95": [0, 0.060173930477932895]
     },
     "supportAccuracy": {
       "rate": 1,
       "n": 100,
       "successes": 100,
-      "ci95": [
-        0.963005192523998,
-        0.9999999999999998
-      ]
+      "ci95": [0.963005192523998, 0.9999999999999998]
     },
     "n": 200,
     "correct": 200,

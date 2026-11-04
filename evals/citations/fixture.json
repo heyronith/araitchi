@@ -7,10 +7,7 @@
       "support": 40,
       "real": 60
     },
-    "sources": [
-      "evals/bench/literature/items.json",
-      "known landmark papers"
-    ]
+    "sources": ["evals/bench/literature/items.json", "known landmark papers"]
   },
   "cases": [
     {
@@ -382,9 +379,7 @@
         "doi": "10.1109/cvpr.2016.90",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He"
-          ],
+          "authors": ["Kaiming He"],
           "year": 2016,
           "venue": null,
           "abstract": "We present a residual learning framework for deeper networks.",
@@ -393,9 +388,7 @@
           "url": "https://doi.org/10.1109/cvpr.2016.90",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -408,10 +401,7 @@
         "doi": "10.1162/neco.1997.9.8.1735",
         "paper": {
           "title": "Long Short-Term Memory",
-          "authors": [
-            "Sepp Hochreiter",
-            "Jurgen Schmidhuber"
-          ],
+          "authors": ["Sepp Hochreiter", "Jurgen Schmidhuber"],
           "year": 1997,
           "venue": null,
           "abstract": "We introduce LSTM, a recurrent architecture for long-range dependencies.",
@@ -420,9 +410,7 @@
           "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -435,9 +423,7 @@
         "doi": "10.1038/323533a0",
         "paper": {
           "title": "Learning representations by back-propagating errors",
-          "authors": [
-            "David E. Rumelhart"
-          ],
+          "authors": ["David E. Rumelhart"],
           "year": 1986,
           "venue": null,
           "abstract": "We describe a new learning procedure, back-propagation, for networks.",
@@ -446,9 +432,7 @@
           "url": "https://doi.org/10.1038/323533a0",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -461,9 +445,7 @@
         "doi": "10.1109/5.726791",
         "paper": {
           "title": "Gradient-based learning applied to document recognition",
-          "authors": [
-            "Y. Lecun"
-          ],
+          "authors": ["Y. Lecun"],
           "year": 1998,
           "venue": null,
           "abstract": "Multilayer neural networks trained with gradient descent for document recognition.",
@@ -472,9 +454,7 @@
           "url": "https://doi.org/10.1109/5.726791",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -487,9 +467,7 @@
         "doi": "10.1109/tpami.2016.2577031",
         "paper": {
           "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
-          "authors": [
-            "Shaoqing Ren"
-          ],
+          "authors": ["Shaoqing Ren"],
           "year": 2017,
           "venue": null,
           "abstract": "We present Faster R-CNN with a region proposal network.",
@@ -498,9 +476,7 @@
           "url": "https://doi.org/10.1109/tpami.2016.2577031",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -513,9 +489,7 @@
         "doi": "10.3115/v1/d14-1181",
         "paper": {
           "title": "Convolutional Neural Networks for Sentence Classification",
-          "authors": [
-            "Yoon Kim"
-          ],
+          "authors": ["Yoon Kim"],
           "year": 2014,
           "venue": null,
           "abstract": "We report on CNN models for sentence classification tasks.",
@@ -524,9 +498,7 @@
           "url": "https://doi.org/10.3115/v1/d14-1181",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -539,9 +511,7 @@
         "doi": "10.1007/s11263-009-0275-4",
         "paper": {
           "title": "The Pascal Visual Object Classes (VOC) Challenge",
-          "authors": [
-            "Mark Everingham"
-          ],
+          "authors": ["Mark Everingham"],
           "year": 2009,
           "venue": null,
           "abstract": "The Pascal VOC challenge for visual object class recognition.",
@@ -550,9 +520,7 @@
           "url": "https://doi.org/10.1007/s11263-009-0275-4",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -565,9 +533,7 @@
         "doi": "10.1113/jphysiol.1962.sp006837",
         "paper": {
           "title": "Receptive fields, binocular interaction and functional architecture in the cat's visual cortex",
-          "authors": [
-            "D. H. Hubel"
-          ],
+          "authors": ["D. H. Hubel"],
           "year": 1962,
           "venue": null,
           "abstract": "We describe receptive fields in the cat visual cortex.",
@@ -576,9 +542,7 @@
           "url": "https://doi.org/10.1113/jphysiol.1962.sp006837",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -591,9 +555,7 @@
         "doi": "10.1109/cvpr.2016.90",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He"
-          ],
+          "authors": ["Kaiming He"],
           "year": 2016,
           "venue": null,
           "abstract": "We present a residual learning framework for deeper networks.",
@@ -602,9 +564,7 @@
           "url": "https://doi.org/10.1109/cvpr.2016.90",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -617,10 +577,7 @@
         "doi": "10.1162/neco.1997.9.8.1735",
         "paper": {
           "title": "Long Short-Term Memory",
-          "authors": [
-            "Sepp Hochreiter",
-            "Jurgen Schmidhuber"
-          ],
+          "authors": ["Sepp Hochreiter", "Jurgen Schmidhuber"],
           "year": 1997,
           "venue": null,
           "abstract": "We introduce LSTM, a recurrent architecture for long-range dependencies.",
@@ -629,9 +586,7 @@
           "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -644,9 +599,7 @@
         "doi": "10.1038/323533a0",
         "paper": {
           "title": "Learning representations by back-propagating errors",
-          "authors": [
-            "David E. Rumelhart"
-          ],
+          "authors": ["David E. Rumelhart"],
           "year": 1986,
           "venue": null,
           "abstract": "We describe a new learning procedure, back-propagation, for networks.",
@@ -655,9 +608,7 @@
           "url": "https://doi.org/10.1038/323533a0",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -670,9 +621,7 @@
         "doi": "10.1109/5.726791",
         "paper": {
           "title": "Gradient-based learning applied to document recognition",
-          "authors": [
-            "Y. Lecun"
-          ],
+          "authors": ["Y. Lecun"],
           "year": 1998,
           "venue": null,
           "abstract": "Multilayer neural networks trained with gradient descent for document recognition.",
@@ -681,9 +630,7 @@
           "url": "https://doi.org/10.1109/5.726791",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -696,9 +643,7 @@
         "doi": "10.1109/tpami.2016.2577031",
         "paper": {
           "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
-          "authors": [
-            "Shaoqing Ren"
-          ],
+          "authors": ["Shaoqing Ren"],
           "year": 2017,
           "venue": null,
           "abstract": "We present Faster R-CNN with a region proposal network.",
@@ -707,9 +652,7 @@
           "url": "https://doi.org/10.1109/tpami.2016.2577031",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -722,9 +665,7 @@
         "doi": "10.3115/v1/d14-1181",
         "paper": {
           "title": "Convolutional Neural Networks for Sentence Classification",
-          "authors": [
-            "Yoon Kim"
-          ],
+          "authors": ["Yoon Kim"],
           "year": 2014,
           "venue": null,
           "abstract": "We report on CNN models for sentence classification tasks.",
@@ -733,9 +674,7 @@
           "url": "https://doi.org/10.3115/v1/d14-1181",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -748,9 +687,7 @@
         "doi": "10.1007/s11263-009-0275-4",
         "paper": {
           "title": "The Pascal Visual Object Classes (VOC) Challenge",
-          "authors": [
-            "Mark Everingham"
-          ],
+          "authors": ["Mark Everingham"],
           "year": 2009,
           "venue": null,
           "abstract": "The Pascal VOC challenge for visual object class recognition.",
@@ -759,9 +696,7 @@
           "url": "https://doi.org/10.1007/s11263-009-0275-4",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -774,9 +709,7 @@
         "doi": "10.1113/jphysiol.1962.sp006837",
         "paper": {
           "title": "Receptive fields, binocular interaction and functional architecture in the cat's visual cortex",
-          "authors": [
-            "D. H. Hubel"
-          ],
+          "authors": ["D. H. Hubel"],
           "year": 1962,
           "venue": null,
           "abstract": "We describe receptive fields in the cat visual cortex.",
@@ -785,9 +718,7 @@
           "url": "https://doi.org/10.1113/jphysiol.1962.sp006837",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -800,9 +731,7 @@
         "doi": "10.1109/cvpr.2016.90",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He"
-          ],
+          "authors": ["Kaiming He"],
           "year": 2016,
           "venue": null,
           "abstract": "We present a residual learning framework for deeper networks.",
@@ -811,9 +740,7 @@
           "url": "https://doi.org/10.1109/cvpr.2016.90",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -826,10 +753,7 @@
         "doi": "10.1162/neco.1997.9.8.1735",
         "paper": {
           "title": "Long Short-Term Memory",
-          "authors": [
-            "Sepp Hochreiter",
-            "Jurgen Schmidhuber"
-          ],
+          "authors": ["Sepp Hochreiter", "Jurgen Schmidhuber"],
           "year": 1997,
           "venue": null,
           "abstract": "We introduce LSTM, a recurrent architecture for long-range dependencies.",
@@ -838,9 +762,7 @@
           "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -853,9 +775,7 @@
         "doi": "10.1038/323533a0",
         "paper": {
           "title": "Learning representations by back-propagating errors",
-          "authors": [
-            "David E. Rumelhart"
-          ],
+          "authors": ["David E. Rumelhart"],
           "year": 1986,
           "venue": null,
           "abstract": "We describe a new learning procedure, back-propagation, for networks.",
@@ -864,9 +784,7 @@
           "url": "https://doi.org/10.1038/323533a0",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -879,9 +797,7 @@
         "doi": "10.1109/5.726791",
         "paper": {
           "title": "Gradient-based learning applied to document recognition",
-          "authors": [
-            "Y. Lecun"
-          ],
+          "authors": ["Y. Lecun"],
           "year": 1998,
           "venue": null,
           "abstract": "Multilayer neural networks trained with gradient descent for document recognition.",
@@ -890,9 +806,7 @@
           "url": "https://doi.org/10.1109/5.726791",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -905,9 +819,7 @@
         "doi": "10.1109/tpami.2016.2577031",
         "paper": {
           "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
-          "authors": [
-            "Shaoqing Ren"
-          ],
+          "authors": ["Shaoqing Ren"],
           "year": 2017,
           "venue": null,
           "abstract": "We present Faster R-CNN with a region proposal network.",
@@ -916,9 +828,7 @@
           "url": "https://doi.org/10.1109/tpami.2016.2577031",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -931,9 +841,7 @@
         "doi": "10.3115/v1/d14-1181",
         "paper": {
           "title": "Convolutional Neural Networks for Sentence Classification",
-          "authors": [
-            "Yoon Kim"
-          ],
+          "authors": ["Yoon Kim"],
           "year": 2014,
           "venue": null,
           "abstract": "We report on CNN models for sentence classification tasks.",
@@ -942,9 +850,7 @@
           "url": "https://doi.org/10.3115/v1/d14-1181",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -957,9 +863,7 @@
         "doi": "10.1007/s11263-009-0275-4",
         "paper": {
           "title": "The Pascal Visual Object Classes (VOC) Challenge",
-          "authors": [
-            "Mark Everingham"
-          ],
+          "authors": ["Mark Everingham"],
           "year": 2009,
           "venue": null,
           "abstract": "The Pascal VOC challenge for visual object class recognition.",
@@ -968,9 +872,7 @@
           "url": "https://doi.org/10.1007/s11263-009-0275-4",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -983,9 +885,7 @@
         "doi": "10.1113/jphysiol.1962.sp006837",
         "paper": {
           "title": "Receptive fields, binocular interaction and functional architecture in the cat's visual cortex",
-          "authors": [
-            "D. H. Hubel"
-          ],
+          "authors": ["D. H. Hubel"],
           "year": 1962,
           "venue": null,
           "abstract": "We describe receptive fields in the cat visual cortex.",
@@ -994,9 +894,7 @@
           "url": "https://doi.org/10.1113/jphysiol.1962.sp006837",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1009,9 +907,7 @@
         "doi": "10.1109/cvpr.2016.90",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He"
-          ],
+          "authors": ["Kaiming He"],
           "year": 2016,
           "venue": null,
           "abstract": "We present a residual learning framework for deeper networks.",
@@ -1020,9 +916,7 @@
           "url": "https://doi.org/10.1109/cvpr.2016.90",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1035,10 +929,7 @@
         "doi": "10.1162/neco.1997.9.8.1735",
         "paper": {
           "title": "Long Short-Term Memory",
-          "authors": [
-            "Sepp Hochreiter",
-            "Jurgen Schmidhuber"
-          ],
+          "authors": ["Sepp Hochreiter", "Jurgen Schmidhuber"],
           "year": 1997,
           "venue": null,
           "abstract": "We introduce LSTM, a recurrent architecture for long-range dependencies.",
@@ -1047,9 +938,7 @@
           "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1062,9 +951,7 @@
         "doi": "10.1038/323533a0",
         "paper": {
           "title": "Learning representations by back-propagating errors",
-          "authors": [
-            "David E. Rumelhart"
-          ],
+          "authors": ["David E. Rumelhart"],
           "year": 1986,
           "venue": null,
           "abstract": "We describe a new learning procedure, back-propagation, for networks.",
@@ -1073,9 +960,7 @@
           "url": "https://doi.org/10.1038/323533a0",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1088,9 +973,7 @@
         "doi": "10.1109/5.726791",
         "paper": {
           "title": "Gradient-based learning applied to document recognition",
-          "authors": [
-            "Y. Lecun"
-          ],
+          "authors": ["Y. Lecun"],
           "year": 1998,
           "venue": null,
           "abstract": "Multilayer neural networks trained with gradient descent for document recognition.",
@@ -1099,9 +982,7 @@
           "url": "https://doi.org/10.1109/5.726791",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1114,9 +995,7 @@
         "doi": "10.1109/tpami.2016.2577031",
         "paper": {
           "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
-          "authors": [
-            "Shaoqing Ren"
-          ],
+          "authors": ["Shaoqing Ren"],
           "year": 2017,
           "venue": null,
           "abstract": "We present Faster R-CNN with a region proposal network.",
@@ -1125,9 +1004,7 @@
           "url": "https://doi.org/10.1109/tpami.2016.2577031",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1140,9 +1017,7 @@
         "doi": "10.3115/v1/d14-1181",
         "paper": {
           "title": "Convolutional Neural Networks for Sentence Classification",
-          "authors": [
-            "Yoon Kim"
-          ],
+          "authors": ["Yoon Kim"],
           "year": 2014,
           "venue": null,
           "abstract": "We report on CNN models for sentence classification tasks.",
@@ -1151,9 +1026,7 @@
           "url": "https://doi.org/10.3115/v1/d14-1181",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1166,9 +1039,7 @@
         "doi": "10.1007/s11263-009-0275-4",
         "paper": {
           "title": "The Pascal Visual Object Classes (VOC) Challenge",
-          "authors": [
-            "Mark Everingham"
-          ],
+          "authors": ["Mark Everingham"],
           "year": 2009,
           "venue": null,
           "abstract": "The Pascal VOC challenge for visual object class recognition.",
@@ -1177,9 +1048,7 @@
           "url": "https://doi.org/10.1007/s11263-009-0275-4",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1192,9 +1061,7 @@
         "doi": "10.1113/jphysiol.1962.sp006837",
         "paper": {
           "title": "Receptive fields, binocular interaction and functional architecture in the cat's visual cortex",
-          "authors": [
-            "D. H. Hubel"
-          ],
+          "authors": ["D. H. Hubel"],
           "year": 1962,
           "venue": null,
           "abstract": "We describe receptive fields in the cat visual cortex.",
@@ -1203,9 +1070,7 @@
           "url": "https://doi.org/10.1113/jphysiol.1962.sp006837",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1218,9 +1083,7 @@
         "doi": "10.1109/cvpr.2016.90",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He"
-          ],
+          "authors": ["Kaiming He"],
           "year": 2016,
           "venue": null,
           "abstract": "We present a residual learning framework for deeper networks.",
@@ -1229,9 +1092,7 @@
           "url": "https://doi.org/10.1109/cvpr.2016.90",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1244,10 +1105,7 @@
         "doi": "10.1162/neco.1997.9.8.1735",
         "paper": {
           "title": "Long Short-Term Memory",
-          "authors": [
-            "Sepp Hochreiter",
-            "Jurgen Schmidhuber"
-          ],
+          "authors": ["Sepp Hochreiter", "Jurgen Schmidhuber"],
           "year": 1997,
           "venue": null,
           "abstract": "We introduce LSTM, a recurrent architecture for long-range dependencies.",
@@ -1256,9 +1114,7 @@
           "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1271,9 +1127,7 @@
         "doi": "10.1038/323533a0",
         "paper": {
           "title": "Learning representations by back-propagating errors",
-          "authors": [
-            "David E. Rumelhart"
-          ],
+          "authors": ["David E. Rumelhart"],
           "year": 1986,
           "venue": null,
           "abstract": "We describe a new learning procedure, back-propagation, for networks.",
@@ -1282,9 +1136,7 @@
           "url": "https://doi.org/10.1038/323533a0",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1297,9 +1149,7 @@
         "doi": "10.1109/5.726791",
         "paper": {
           "title": "Gradient-based learning applied to document recognition",
-          "authors": [
-            "Y. Lecun"
-          ],
+          "authors": ["Y. Lecun"],
           "year": 1998,
           "venue": null,
           "abstract": "Multilayer neural networks trained with gradient descent for document recognition.",
@@ -1308,9 +1158,7 @@
           "url": "https://doi.org/10.1109/5.726791",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1323,9 +1171,7 @@
         "doi": "10.1109/tpami.2016.2577031",
         "paper": {
           "title": "Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks",
-          "authors": [
-            "Shaoqing Ren"
-          ],
+          "authors": ["Shaoqing Ren"],
           "year": 2017,
           "venue": null,
           "abstract": "We present Faster R-CNN with a region proposal network.",
@@ -1334,9 +1180,7 @@
           "url": "https://doi.org/10.1109/tpami.2016.2577031",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1349,9 +1193,7 @@
         "doi": "10.3115/v1/d14-1181",
         "paper": {
           "title": "Convolutional Neural Networks for Sentence Classification",
-          "authors": [
-            "Yoon Kim"
-          ],
+          "authors": ["Yoon Kim"],
           "year": 2014,
           "venue": null,
           "abstract": "We report on CNN models for sentence classification tasks.",
@@ -1360,9 +1202,7 @@
           "url": "https://doi.org/10.3115/v1/d14-1181",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1375,9 +1215,7 @@
         "doi": "10.1007/s11263-009-0275-4",
         "paper": {
           "title": "The Pascal Visual Object Classes (VOC) Challenge",
-          "authors": [
-            "Mark Everingham"
-          ],
+          "authors": ["Mark Everingham"],
           "year": 2009,
           "venue": null,
           "abstract": "The Pascal VOC challenge for visual object class recognition.",
@@ -1386,9 +1224,7 @@
           "url": "https://doi.org/10.1007/s11263-009-0275-4",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1401,9 +1237,7 @@
         "doi": "10.1113/jphysiol.1962.sp006837",
         "paper": {
           "title": "Receptive fields, binocular interaction and functional architecture in the cat's visual cortex",
-          "authors": [
-            "D. H. Hubel"
-          ],
+          "authors": ["D. H. Hubel"],
           "year": 1962,
           "venue": null,
           "abstract": "We describe receptive fields in the cat visual cortex.",
@@ -1412,9 +1246,7 @@
           "url": "https://doi.org/10.1113/jphysiol.1962.sp006837",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       }
     },
@@ -1428,10 +1260,7 @@
         "arxivId": "1706.03762",
         "paper": {
           "title": "Attention Is All You Need",
-          "authors": [
-            "Ashish Vaswani",
-            "Noam Shazeer"
-          ],
+          "authors": ["Ashish Vaswani", "Noam Shazeer"],
           "year": 2017,
           "venue": null,
           "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
@@ -1440,9 +1269,7 @@
           "url": "https://doi.org/10.5555/3295222.3295349",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1457,10 +1284,7 @@
         "arxivId": "1810.04805",
         "paper": {
           "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
-          "authors": [
-            "Jacob Devlin",
-            "Ming-Wei Chang"
-          ],
+          "authors": ["Jacob Devlin", "Ming-Wei Chang"],
           "year": 2019,
           "venue": null,
           "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. BERT is designed to pre-train deep bidirectional representations.",
@@ -1469,9 +1293,7 @@
           "url": "https://doi.org/10.48550/arxiv.1810.04805",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1486,10 +1308,7 @@
         "arxivId": "1409.1556",
         "paper": {
           "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
-          "authors": [
-            "Karen Simonyan",
-            "Andrew Zisserman"
-          ],
+          "authors": ["Karen Simonyan", "Andrew Zisserman"],
           "year": 2015,
           "venue": null,
           "abstract": "In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. We use an architecture with very small convolution filters.",
@@ -1498,9 +1317,7 @@
           "url": "https://doi.org/10.48550/arxiv.1409.1556",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1515,10 +1332,7 @@
         "arxivId": "1512.03385",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He",
-            "Xiangyu Zhang"
-          ],
+          "authors": ["Kaiming He", "Xiangyu Zhang"],
           "year": 2016,
           "venue": null,
           "abstract": "We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions.",
@@ -1527,9 +1341,7 @@
           "url": "https://doi.org/10.48550/arxiv.1512.03385",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1544,10 +1356,7 @@
         "arxivId": "1412.6980",
         "paper": {
           "title": "Adam: A Method for Stochastic Optimization",
-          "authors": [
-            "Diederik P. Kingma",
-            "Jimmy Ba"
-          ],
+          "authors": ["Diederik P. Kingma", "Jimmy Ba"],
           "year": 2015,
           "venue": null,
           "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments.",
@@ -1556,9 +1365,7 @@
           "url": "https://doi.org/10.48550/arxiv.1412.6980",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1572,9 +1379,7 @@
         "doi": "10.1109/cvpr.2016.90",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He"
-          ],
+          "authors": ["Kaiming He"],
           "year": 2016,
           "venue": null,
           "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper.",
@@ -1583,9 +1388,7 @@
           "url": "https://doi.org/10.1109/cvpr.2016.90",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1600,9 +1403,7 @@
         "arxivId": "1706.03762",
         "paper": {
           "title": "Attention Is All You Need",
-          "authors": [
-            "Ashish Vaswani"
-          ],
+          "authors": ["Ashish Vaswani"],
           "year": 2017,
           "venue": null,
           "abstract": "The Transformer architecture relies entirely on self-attention to compute representations, without recurrence or convolutions.",
@@ -1611,9 +1412,7 @@
           "url": "https://doi.org/10.48550/arxiv.1706.03762",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1627,10 +1426,7 @@
         "doi": "10.1162/neco.1997.9.8.1735",
         "paper": {
           "title": "Long Short-Term Memory",
-          "authors": [
-            "Sepp Hochreiter",
-            "Jurgen Schmidhuber"
-          ],
+          "authors": ["Sepp Hochreiter", "Jurgen Schmidhuber"],
           "year": 1997,
           "venue": null,
           "abstract": "We introduce Long Short-Term Memory (LSTM), a novel recurrent network architecture that can learn long-range dependencies by using memory cells and gates.",
@@ -1639,9 +1435,7 @@
           "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1656,10 +1450,7 @@
         "arxivId": "1706.03762",
         "paper": {
           "title": "Attention Is All You Need",
-          "authors": [
-            "Ashish Vaswani",
-            "Noam Shazeer"
-          ],
+          "authors": ["Ashish Vaswani", "Noam Shazeer"],
           "year": 2017,
           "venue": null,
           "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
@@ -1668,9 +1459,7 @@
           "url": "https://doi.org/10.5555/3295222.3295349",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1685,10 +1474,7 @@
         "arxivId": "1810.04805",
         "paper": {
           "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
-          "authors": [
-            "Jacob Devlin",
-            "Ming-Wei Chang"
-          ],
+          "authors": ["Jacob Devlin", "Ming-Wei Chang"],
           "year": 2019,
           "venue": null,
           "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. BERT is designed to pre-train deep bidirectional representations.",
@@ -1697,9 +1483,7 @@
           "url": "https://doi.org/10.48550/arxiv.1810.04805",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1714,10 +1498,7 @@
         "arxivId": "1409.1556",
         "paper": {
           "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
-          "authors": [
-            "Karen Simonyan",
-            "Andrew Zisserman"
-          ],
+          "authors": ["Karen Simonyan", "Andrew Zisserman"],
           "year": 2015,
           "venue": null,
           "abstract": "In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. We use an architecture with very small convolution filters.",
@@ -1726,9 +1507,7 @@
           "url": "https://doi.org/10.48550/arxiv.1409.1556",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1743,10 +1522,7 @@
         "arxivId": "1512.03385",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He",
-            "Xiangyu Zhang"
-          ],
+          "authors": ["Kaiming He", "Xiangyu Zhang"],
           "year": 2016,
           "venue": null,
           "abstract": "We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions.",
@@ -1755,9 +1531,7 @@
           "url": "https://doi.org/10.48550/arxiv.1512.03385",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1772,10 +1546,7 @@
         "arxivId": "1412.6980",
         "paper": {
           "title": "Adam: A Method for Stochastic Optimization",
-          "authors": [
-            "Diederik P. Kingma",
-            "Jimmy Ba"
-          ],
+          "authors": ["Diederik P. Kingma", "Jimmy Ba"],
           "year": 2015,
           "venue": null,
           "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments.",
@@ -1784,9 +1555,7 @@
           "url": "https://doi.org/10.48550/arxiv.1412.6980",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1800,9 +1569,7 @@
         "doi": "10.1109/cvpr.2016.90",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He"
-          ],
+          "authors": ["Kaiming He"],
           "year": 2016,
           "venue": null,
           "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper.",
@@ -1811,9 +1578,7 @@
           "url": "https://doi.org/10.1109/cvpr.2016.90",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1828,9 +1593,7 @@
         "arxivId": "1706.03762",
         "paper": {
           "title": "Attention Is All You Need",
-          "authors": [
-            "Ashish Vaswani"
-          ],
+          "authors": ["Ashish Vaswani"],
           "year": 2017,
           "venue": null,
           "abstract": "The Transformer architecture relies entirely on self-attention to compute representations, without recurrence or convolutions.",
@@ -1839,9 +1602,7 @@
           "url": "https://doi.org/10.48550/arxiv.1706.03762",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1855,10 +1616,7 @@
         "doi": "10.1162/neco.1997.9.8.1735",
         "paper": {
           "title": "Long Short-Term Memory",
-          "authors": [
-            "Sepp Hochreiter",
-            "Jurgen Schmidhuber"
-          ],
+          "authors": ["Sepp Hochreiter", "Jurgen Schmidhuber"],
           "year": 1997,
           "venue": null,
           "abstract": "We introduce Long Short-Term Memory (LSTM), a novel recurrent network architecture that can learn long-range dependencies by using memory cells and gates.",
@@ -1867,9 +1625,7 @@
           "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1884,10 +1640,7 @@
         "arxivId": "1706.03762",
         "paper": {
           "title": "Attention Is All You Need",
-          "authors": [
-            "Ashish Vaswani",
-            "Noam Shazeer"
-          ],
+          "authors": ["Ashish Vaswani", "Noam Shazeer"],
           "year": 2017,
           "venue": null,
           "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
@@ -1896,9 +1649,7 @@
           "url": "https://doi.org/10.5555/3295222.3295349",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1913,10 +1664,7 @@
         "arxivId": "1810.04805",
         "paper": {
           "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
-          "authors": [
-            "Jacob Devlin",
-            "Ming-Wei Chang"
-          ],
+          "authors": ["Jacob Devlin", "Ming-Wei Chang"],
           "year": 2019,
           "venue": null,
           "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. BERT is designed to pre-train deep bidirectional representations.",
@@ -1925,9 +1673,7 @@
           "url": "https://doi.org/10.48550/arxiv.1810.04805",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1942,10 +1688,7 @@
         "arxivId": "1409.1556",
         "paper": {
           "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
-          "authors": [
-            "Karen Simonyan",
-            "Andrew Zisserman"
-          ],
+          "authors": ["Karen Simonyan", "Andrew Zisserman"],
           "year": 2015,
           "venue": null,
           "abstract": "In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. We use an architecture with very small convolution filters.",
@@ -1954,9 +1697,7 @@
           "url": "https://doi.org/10.48550/arxiv.1409.1556",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -1971,10 +1712,7 @@
         "arxivId": "1512.03385",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He",
-            "Xiangyu Zhang"
-          ],
+          "authors": ["Kaiming He", "Xiangyu Zhang"],
           "year": 2016,
           "venue": null,
           "abstract": "We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions.",
@@ -1983,9 +1721,7 @@
           "url": "https://doi.org/10.48550/arxiv.1512.03385",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2000,10 +1736,7 @@
         "arxivId": "1412.6980",
         "paper": {
           "title": "Adam: A Method for Stochastic Optimization",
-          "authors": [
-            "Diederik P. Kingma",
-            "Jimmy Ba"
-          ],
+          "authors": ["Diederik P. Kingma", "Jimmy Ba"],
           "year": 2015,
           "venue": null,
           "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments.",
@@ -2012,9 +1745,7 @@
           "url": "https://doi.org/10.48550/arxiv.1412.6980",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2028,9 +1759,7 @@
         "doi": "10.1109/cvpr.2016.90",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He"
-          ],
+          "authors": ["Kaiming He"],
           "year": 2016,
           "venue": null,
           "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper.",
@@ -2039,9 +1768,7 @@
           "url": "https://doi.org/10.1109/cvpr.2016.90",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2056,9 +1783,7 @@
         "arxivId": "1706.03762",
         "paper": {
           "title": "Attention Is All You Need",
-          "authors": [
-            "Ashish Vaswani"
-          ],
+          "authors": ["Ashish Vaswani"],
           "year": 2017,
           "venue": null,
           "abstract": "The Transformer architecture relies entirely on self-attention to compute representations, without recurrence or convolutions.",
@@ -2067,9 +1792,7 @@
           "url": "https://doi.org/10.48550/arxiv.1706.03762",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2083,10 +1806,7 @@
         "doi": "10.1162/neco.1997.9.8.1735",
         "paper": {
           "title": "Long Short-Term Memory",
-          "authors": [
-            "Sepp Hochreiter",
-            "Jurgen Schmidhuber"
-          ],
+          "authors": ["Sepp Hochreiter", "Jurgen Schmidhuber"],
           "year": 1997,
           "venue": null,
           "abstract": "We introduce Long Short-Term Memory (LSTM), a novel recurrent network architecture that can learn long-range dependencies by using memory cells and gates.",
@@ -2095,9 +1815,7 @@
           "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2112,10 +1830,7 @@
         "arxivId": "1706.03762",
         "paper": {
           "title": "Attention Is All You Need",
-          "authors": [
-            "Ashish Vaswani",
-            "Noam Shazeer"
-          ],
+          "authors": ["Ashish Vaswani", "Noam Shazeer"],
           "year": 2017,
           "venue": null,
           "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
@@ -2124,9 +1839,7 @@
           "url": "https://doi.org/10.5555/3295222.3295349",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2141,10 +1854,7 @@
         "arxivId": "1810.04805",
         "paper": {
           "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
-          "authors": [
-            "Jacob Devlin",
-            "Ming-Wei Chang"
-          ],
+          "authors": ["Jacob Devlin", "Ming-Wei Chang"],
           "year": 2019,
           "venue": null,
           "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. BERT is designed to pre-train deep bidirectional representations.",
@@ -2153,9 +1863,7 @@
           "url": "https://doi.org/10.48550/arxiv.1810.04805",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2170,10 +1878,7 @@
         "arxivId": "1409.1556",
         "paper": {
           "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
-          "authors": [
-            "Karen Simonyan",
-            "Andrew Zisserman"
-          ],
+          "authors": ["Karen Simonyan", "Andrew Zisserman"],
           "year": 2015,
           "venue": null,
           "abstract": "In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. We use an architecture with very small convolution filters.",
@@ -2182,9 +1887,7 @@
           "url": "https://doi.org/10.48550/arxiv.1409.1556",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2199,10 +1902,7 @@
         "arxivId": "1512.03385",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He",
-            "Xiangyu Zhang"
-          ],
+          "authors": ["Kaiming He", "Xiangyu Zhang"],
           "year": 2016,
           "venue": null,
           "abstract": "We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions.",
@@ -2211,9 +1911,7 @@
           "url": "https://doi.org/10.48550/arxiv.1512.03385",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2228,10 +1926,7 @@
         "arxivId": "1412.6980",
         "paper": {
           "title": "Adam: A Method for Stochastic Optimization",
-          "authors": [
-            "Diederik P. Kingma",
-            "Jimmy Ba"
-          ],
+          "authors": ["Diederik P. Kingma", "Jimmy Ba"],
           "year": 2015,
           "venue": null,
           "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments.",
@@ -2240,9 +1935,7 @@
           "url": "https://doi.org/10.48550/arxiv.1412.6980",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2256,9 +1949,7 @@
         "doi": "10.1109/cvpr.2016.90",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He"
-          ],
+          "authors": ["Kaiming He"],
           "year": 2016,
           "venue": null,
           "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper.",
@@ -2267,9 +1958,7 @@
           "url": "https://doi.org/10.1109/cvpr.2016.90",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2284,9 +1973,7 @@
         "arxivId": "1706.03762",
         "paper": {
           "title": "Attention Is All You Need",
-          "authors": [
-            "Ashish Vaswani"
-          ],
+          "authors": ["Ashish Vaswani"],
           "year": 2017,
           "venue": null,
           "abstract": "The Transformer architecture relies entirely on self-attention to compute representations, without recurrence or convolutions.",
@@ -2295,9 +1982,7 @@
           "url": "https://doi.org/10.48550/arxiv.1706.03762",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2311,10 +1996,7 @@
         "doi": "10.1162/neco.1997.9.8.1735",
         "paper": {
           "title": "Long Short-Term Memory",
-          "authors": [
-            "Sepp Hochreiter",
-            "Jurgen Schmidhuber"
-          ],
+          "authors": ["Sepp Hochreiter", "Jurgen Schmidhuber"],
           "year": 1997,
           "venue": null,
           "abstract": "We introduce Long Short-Term Memory (LSTM), a novel recurrent network architecture that can learn long-range dependencies by using memory cells and gates.",
@@ -2323,9 +2005,7 @@
           "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2340,10 +2020,7 @@
         "arxivId": "1706.03762",
         "paper": {
           "title": "Attention Is All You Need",
-          "authors": [
-            "Ashish Vaswani",
-            "Noam Shazeer"
-          ],
+          "authors": ["Ashish Vaswani", "Noam Shazeer"],
           "year": 2017,
           "venue": null,
           "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
@@ -2352,9 +2029,7 @@
           "url": "https://doi.org/10.5555/3295222.3295349",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2369,10 +2044,7 @@
         "arxivId": "1810.04805",
         "paper": {
           "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
-          "authors": [
-            "Jacob Devlin",
-            "Ming-Wei Chang"
-          ],
+          "authors": ["Jacob Devlin", "Ming-Wei Chang"],
           "year": 2019,
           "venue": null,
           "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. BERT is designed to pre-train deep bidirectional representations.",
@@ -2381,9 +2053,7 @@
           "url": "https://doi.org/10.48550/arxiv.1810.04805",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2398,10 +2068,7 @@
         "arxivId": "1409.1556",
         "paper": {
           "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
-          "authors": [
-            "Karen Simonyan",
-            "Andrew Zisserman"
-          ],
+          "authors": ["Karen Simonyan", "Andrew Zisserman"],
           "year": 2015,
           "venue": null,
           "abstract": "In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. We use an architecture with very small convolution filters.",
@@ -2410,9 +2077,7 @@
           "url": "https://doi.org/10.48550/arxiv.1409.1556",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2427,10 +2092,7 @@
         "arxivId": "1512.03385",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He",
-            "Xiangyu Zhang"
-          ],
+          "authors": ["Kaiming He", "Xiangyu Zhang"],
           "year": 2016,
           "venue": null,
           "abstract": "We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions.",
@@ -2439,9 +2101,7 @@
           "url": "https://doi.org/10.48550/arxiv.1512.03385",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2456,10 +2116,7 @@
         "arxivId": "1412.6980",
         "paper": {
           "title": "Adam: A Method for Stochastic Optimization",
-          "authors": [
-            "Diederik P. Kingma",
-            "Jimmy Ba"
-          ],
+          "authors": ["Diederik P. Kingma", "Jimmy Ba"],
           "year": 2015,
           "venue": null,
           "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments.",
@@ -2468,9 +2125,7 @@
           "url": "https://doi.org/10.48550/arxiv.1412.6980",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2484,9 +2139,7 @@
         "doi": "10.1109/cvpr.2016.90",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He"
-          ],
+          "authors": ["Kaiming He"],
           "year": 2016,
           "venue": null,
           "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper.",
@@ -2495,9 +2148,7 @@
           "url": "https://doi.org/10.1109/cvpr.2016.90",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2512,9 +2163,7 @@
         "arxivId": "1706.03762",
         "paper": {
           "title": "Attention Is All You Need",
-          "authors": [
-            "Ashish Vaswani"
-          ],
+          "authors": ["Ashish Vaswani"],
           "year": 2017,
           "venue": null,
           "abstract": "The Transformer architecture relies entirely on self-attention to compute representations, without recurrence or convolutions.",
@@ -2523,9 +2172,7 @@
           "url": "https://doi.org/10.48550/arxiv.1706.03762",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2539,10 +2186,7 @@
         "doi": "10.1162/neco.1997.9.8.1735",
         "paper": {
           "title": "Long Short-Term Memory",
-          "authors": [
-            "Sepp Hochreiter",
-            "Jurgen Schmidhuber"
-          ],
+          "authors": ["Sepp Hochreiter", "Jurgen Schmidhuber"],
           "year": 1997,
           "venue": null,
           "abstract": "We introduce Long Short-Term Memory (LSTM), a novel recurrent network architecture that can learn long-range dependencies by using memory cells and gates.",
@@ -2551,9 +2195,7 @@
           "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "arxiv"
-          ]
+          "foundBy": ["arxiv"]
         }
       },
       "support": "not_supported"
@@ -2568,10 +2210,7 @@
         "arxivId": "1706.03762",
         "paper": {
           "title": "Attention Is All You Need",
-          "authors": [
-            "Ashish Vaswani",
-            "Noam Shazeer"
-          ],
+          "authors": ["Ashish Vaswani", "Noam Shazeer"],
           "year": 2017,
           "venue": null,
           "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
@@ -2580,9 +2219,7 @@
           "url": "https://doi.org/10.5555/3295222.3295349",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2597,10 +2234,7 @@
         "arxivId": "1810.04805",
         "paper": {
           "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
-          "authors": [
-            "Jacob Devlin",
-            "Ming-Wei Chang"
-          ],
+          "authors": ["Jacob Devlin", "Ming-Wei Chang"],
           "year": 2019,
           "venue": null,
           "abstract": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. BERT is designed to pre-train deep bidirectional representations.",
@@ -2609,9 +2243,7 @@
           "url": "https://doi.org/10.48550/arxiv.1810.04805",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2626,10 +2258,7 @@
         "arxivId": "1409.1556",
         "paper": {
           "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
-          "authors": [
-            "Karen Simonyan",
-            "Andrew Zisserman"
-          ],
+          "authors": ["Karen Simonyan", "Andrew Zisserman"],
           "year": 2015,
           "venue": null,
           "abstract": "In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. We use an architecture with very small convolution filters.",
@@ -2638,9 +2267,7 @@
           "url": "https://doi.org/10.48550/arxiv.1409.1556",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2655,10 +2282,7 @@
         "arxivId": "1512.03385",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He",
-            "Xiangyu Zhang"
-          ],
+          "authors": ["Kaiming He", "Xiangyu Zhang"],
           "year": 2016,
           "venue": null,
           "abstract": "We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions.",
@@ -2667,9 +2291,7 @@
           "url": "https://doi.org/10.48550/arxiv.1512.03385",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2684,10 +2306,7 @@
         "arxivId": "1412.6980",
         "paper": {
           "title": "Adam: A Method for Stochastic Optimization",
-          "authors": [
-            "Diederik P. Kingma",
-            "Jimmy Ba"
-          ],
+          "authors": ["Diederik P. Kingma", "Jimmy Ba"],
           "year": 2015,
           "venue": null,
           "abstract": "We introduce Adam, an algorithm for first-order gradient-based optimization of stochastic objective functions, based on adaptive estimates of lower-order moments.",
@@ -2696,9 +2315,7 @@
           "url": "https://doi.org/10.48550/arxiv.1412.6980",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2712,9 +2329,7 @@
         "doi": "10.1109/cvpr.2016.90",
         "paper": {
           "title": "Deep Residual Learning for Image Recognition",
-          "authors": [
-            "Kaiming He"
-          ],
+          "authors": ["Kaiming He"],
           "year": 2016,
           "venue": null,
           "abstract": "Deeper neural networks are more difficult to train. We present a residual learning framework to ease the training of networks that are substantially deeper.",
@@ -2723,9 +2338,7 @@
           "url": "https://doi.org/10.1109/cvpr.2016.90",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2740,9 +2353,7 @@
         "arxivId": "1706.03762",
         "paper": {
           "title": "Attention Is All You Need",
-          "authors": [
-            "Ashish Vaswani"
-          ],
+          "authors": ["Ashish Vaswani"],
           "year": 2017,
           "venue": null,
           "abstract": "The Transformer architecture relies entirely on self-attention to compute representations, without recurrence or convolutions.",
@@ -2751,9 +2362,7 @@
           "url": "https://doi.org/10.48550/arxiv.1706.03762",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2767,10 +2376,7 @@
         "doi": "10.1162/neco.1997.9.8.1735",
         "paper": {
           "title": "Long Short-Term Memory",
-          "authors": [
-            "Sepp Hochreiter",
-            "Jurgen Schmidhuber"
-          ],
+          "authors": ["Sepp Hochreiter", "Jurgen Schmidhuber"],
           "year": 1997,
           "venue": null,
           "abstract": "We introduce Long Short-Term Memory (LSTM), a novel recurrent network architecture that can learn long-range dependencies by using memory cells and gates.",
@@ -2779,9 +2385,7 @@
           "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
           "pdfUrl": null,
           "citationCount": 100,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2795,9 +2399,7 @@
         "doi": "10.1109/cvpr.2015.7298965",
         "paper": {
           "title": "Gold literature paper 8: foundations of method 8",
-          "authors": [
-            "Author9 Surname"
-          ],
+          "authors": ["Author9 Surname"],
           "year": 2008,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 8 and reports empirical results on standard benchmarks. We find that technique 8 improves accuracy under controlled conditions.",
@@ -2806,9 +2408,7 @@
           "url": "https://doi.org/10.1109/cvpr.2015.7298965",
           "pdfUrl": null,
           "citationCount": 18,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2822,9 +2422,7 @@
         "doi": "10.1109/cvpr.2014.81",
         "paper": {
           "title": "Gold literature paper 9: foundations of method 9",
-          "authors": [
-            "Author10 Surname"
-          ],
+          "authors": ["Author10 Surname"],
           "year": 2009,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 9 and reports empirical results on standard benchmarks. We find that technique 9 improves accuracy under controlled conditions.",
@@ -2833,9 +2431,7 @@
           "url": "https://doi.org/10.1109/cvpr.2014.81",
           "pdfUrl": null,
           "citationCount": 19,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2849,9 +2445,7 @@
         "doi": "10.1038/323533a0",
         "paper": {
           "title": "Gold literature paper 10: foundations of method 10",
-          "authors": [
-            "Author11 Surname"
-          ],
+          "authors": ["Author11 Surname"],
           "year": 2010,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 10 and reports empirical results on standard benchmarks. We find that technique 10 improves accuracy under controlled conditions.",
@@ -2860,9 +2454,7 @@
           "url": "https://doi.org/10.1038/323533a0",
           "pdfUrl": null,
           "citationCount": 20,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2876,9 +2468,7 @@
         "doi": "10.1109/iccv.2015.169",
         "paper": {
           "title": "Gold literature paper 11: foundations of method 11",
-          "authors": [
-            "Author12 Surname"
-          ],
+          "authors": ["Author12 Surname"],
           "year": 2011,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 11 and reports empirical results on standard benchmarks. We find that technique 11 improves accuracy under controlled conditions.",
@@ -2887,9 +2477,7 @@
           "url": "https://doi.org/10.1109/iccv.2015.169",
           "pdfUrl": null,
           "citationCount": 21,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2903,9 +2491,7 @@
         "doi": "10.48550/arxiv.1502.03167",
         "paper": {
           "title": "Gold literature paper 12: foundations of method 12",
-          "authors": [
-            "Author13 Surname"
-          ],
+          "authors": ["Author13 Surname"],
           "year": 2012,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 12 and reports empirical results on standard benchmarks. We find that technique 12 improves accuracy under controlled conditions.",
@@ -2914,9 +2500,7 @@
           "url": "https://doi.org/10.48550/arxiv.1502.03167",
           "pdfUrl": null,
           "citationCount": 22,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2930,9 +2514,7 @@
         "doi": "10.1109/iccv.2015.123",
         "paper": {
           "title": "Gold literature paper 13: foundations of method 13",
-          "authors": [
-            "Author14 Surname"
-          ],
+          "authors": ["Author14 Surname"],
           "year": 2013,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 13 and reports empirical results on standard benchmarks. We find that technique 13 improves accuracy under controlled conditions.",
@@ -2941,9 +2523,7 @@
           "url": "https://doi.org/10.1109/iccv.2015.123",
           "pdfUrl": null,
           "citationCount": 23,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2957,9 +2537,7 @@
         "doi": "10.1007/bf02478259",
         "paper": {
           "title": "Gold literature paper 14: foundations of method 14",
-          "authors": [
-            "Author15 Surname"
-          ],
+          "authors": ["Author15 Surname"],
           "year": 2014,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 14 and reports empirical results on standard benchmarks. We find that technique 14 improves accuracy under controlled conditions.",
@@ -2968,9 +2546,7 @@
           "url": "https://doi.org/10.1007/bf02478259",
           "pdfUrl": null,
           "citationCount": 24,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -2984,9 +2560,7 @@
         "doi": "10.1109/cvpr.2015.7298682",
         "paper": {
           "title": "Gold literature paper 15: foundations of method 15",
-          "authors": [
-            "Author16 Surname"
-          ],
+          "authors": ["Author16 Surname"],
           "year": 2015,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 15 and reports empirical results on standard benchmarks. We find that technique 15 improves accuracy under controlled conditions.",
@@ -2995,9 +2569,7 @@
           "url": "https://doi.org/10.1109/cvpr.2015.7298682",
           "pdfUrl": null,
           "citationCount": 25,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3011,9 +2583,7 @@
         "doi": "10.3115/v1/d14-1181",
         "paper": {
           "title": "Gold literature paper 16: foundations of method 16",
-          "authors": [
-            "Author17 Surname"
-          ],
+          "authors": ["Author17 Surname"],
           "year": 2016,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 16 and reports empirical results on standard benchmarks. We find that technique 16 improves accuracy under controlled conditions.",
@@ -3022,9 +2592,7 @@
           "url": "https://doi.org/10.3115/v1/d14-1181",
           "pdfUrl": null,
           "citationCount": 26,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3038,9 +2606,7 @@
         "doi": "10.1113/jphysiol.1962.sp006837",
         "paper": {
           "title": "Gold literature paper 17: foundations of method 17",
-          "authors": [
-            "Author18 Surname"
-          ],
+          "authors": ["Author18 Surname"],
           "year": 2017,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 17 and reports empirical results on standard benchmarks. We find that technique 17 improves accuracy under controlled conditions.",
@@ -3049,9 +2615,7 @@
           "url": "https://doi.org/10.1113/jphysiol.1962.sp006837",
           "pdfUrl": null,
           "citationCount": 27,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3065,9 +2629,7 @@
         "doi": "10.1037/h0042519",
         "paper": {
           "title": "Gold literature paper 18: foundations of method 18",
-          "authors": [
-            "Author19 Surname"
-          ],
+          "authors": ["Author19 Surname"],
           "year": 2018,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 18 and reports empirical results on standard benchmarks. We find that technique 18 improves accuracy under controlled conditions.",
@@ -3076,9 +2638,7 @@
           "url": "https://doi.org/10.1037/h0042519",
           "pdfUrl": null,
           "citationCount": 28,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3092,9 +2652,7 @@
         "doi": "10.1109/tpami.2015.2389824",
         "paper": {
           "title": "Gold literature paper 19: foundations of method 19",
-          "authors": [
-            "Author20 Surname"
-          ],
+          "authors": ["Author20 Surname"],
           "year": 2019,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 19 and reports empirical results on standard benchmarks. We find that technique 19 improves accuracy under controlled conditions.",
@@ -3103,9 +2661,7 @@
           "url": "https://doi.org/10.1109/tpami.2015.2389824",
           "pdfUrl": null,
           "citationCount": 29,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3119,9 +2675,7 @@
         "doi": "10.48550/arxiv.1412.6572",
         "paper": {
           "title": "Gold literature paper 20: foundations of method 20",
-          "authors": [
-            "Author21 Surname"
-          ],
+          "authors": ["Author21 Surname"],
           "year": 2020,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 20 and reports empirical results on standard benchmarks. We find that technique 20 improves accuracy under controlled conditions.",
@@ -3130,9 +2684,7 @@
           "url": "https://doi.org/10.48550/arxiv.1412.6572",
           "pdfUrl": null,
           "citationCount": 30,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3146,9 +2698,7 @@
         "doi": "10.1109/tnn.2008.2005605",
         "paper": {
           "title": "Gold literature paper 21: foundations of method 21",
-          "authors": [
-            "Author22 Surname"
-          ],
+          "authors": ["Author22 Surname"],
           "year": 2021,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 21 and reports empirical results on standard benchmarks. We find that technique 21 improves accuracy under controlled conditions.",
@@ -3157,9 +2707,7 @@
           "url": "https://doi.org/10.1109/tnn.2008.2005605",
           "pdfUrl": null,
           "citationCount": 31,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3173,9 +2721,7 @@
         "doi": "10.48550/arxiv.1206.2944",
         "paper": {
           "title": "Gold literature paper 22: foundations of method 22",
-          "authors": [
-            "Author23 Surname"
-          ],
+          "authors": ["Author23 Surname"],
           "year": 2022,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 22 and reports empirical results on standard benchmarks. We find that technique 22 improves accuracy under controlled conditions.",
@@ -3184,9 +2730,7 @@
           "url": "https://doi.org/10.48550/arxiv.1206.2944",
           "pdfUrl": null,
           "citationCount": 32,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3200,9 +2744,7 @@
         "doi": "10.1109/cvpr.2014.220",
         "paper": {
           "title": "Gold literature paper 23: foundations of method 23",
-          "authors": [
-            "Author24 Surname"
-          ],
+          "authors": ["Author24 Surname"],
           "year": 2023,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 23 and reports empirical results on standard benchmarks. We find that technique 23 improves accuracy under controlled conditions.",
@@ -3211,9 +2753,7 @@
           "url": "https://doi.org/10.1109/cvpr.2014.220",
           "pdfUrl": null,
           "citationCount": 33,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3227,9 +2767,7 @@
         "doi": "10.1109/cvpr.2015.7298801",
         "paper": {
           "title": "Gold literature paper 24: foundations of method 24",
-          "authors": [
-            "Author25 Surname"
-          ],
+          "authors": ["Author25 Surname"],
           "year": 2000,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 24 and reports empirical results on standard benchmarks. We find that technique 24 improves accuracy under controlled conditions.",
@@ -3238,9 +2776,7 @@
           "url": "https://doi.org/10.1109/cvpr.2015.7298801",
           "pdfUrl": null,
           "citationCount": 34,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3254,9 +2790,7 @@
         "doi": "10.1109/cvpr.2006.100",
         "paper": {
           "title": "Gold literature paper 25: foundations of method 25",
-          "authors": [
-            "Author26 Surname"
-          ],
+          "authors": ["Author26 Surname"],
           "year": 2001,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 25 and reports empirical results on standard benchmarks. We find that technique 25 improves accuracy under controlled conditions.",
@@ -3265,9 +2799,7 @@
           "url": "https://doi.org/10.1109/cvpr.2006.100",
           "pdfUrl": null,
           "citationCount": 35,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3281,9 +2813,7 @@
         "doi": "10.48550/arxiv.1212.5701",
         "paper": {
           "title": "Gold literature paper 26: foundations of method 26",
-          "authors": [
-            "Author1 Surname"
-          ],
+          "authors": ["Author1 Surname"],
           "year": 2002,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 26 and reports empirical results on standard benchmarks. We find that technique 26 improves accuracy under controlled conditions.",
@@ -3292,9 +2822,7 @@
           "url": "https://doi.org/10.48550/arxiv.1212.5701",
           "pdfUrl": null,
           "citationCount": 36,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3308,9 +2836,7 @@
         "doi": "10.48550/arxiv.1510.00149",
         "paper": {
           "title": "Gold literature paper 27: foundations of method 27",
-          "authors": [
-            "Author2 Surname"
-          ],
+          "authors": ["Author2 Surname"],
           "year": 2003,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 27 and reports empirical results on standard benchmarks. We find that technique 27 improves accuracy under controlled conditions.",
@@ -3319,9 +2845,7 @@
           "url": "https://doi.org/10.48550/arxiv.1510.00149",
           "pdfUrl": null,
           "citationCount": 37,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3335,9 +2859,7 @@
         "doi": "10.48550/arxiv.1312.6203",
         "paper": {
           "title": "Gold literature paper 28: foundations of method 28",
-          "authors": [
-            "Author3 Surname"
-          ],
+          "authors": ["Author3 Surname"],
           "year": 2004,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 28 and reports empirical results on standard benchmarks. We find that technique 28 improves accuracy under controlled conditions.",
@@ -3346,9 +2868,7 @@
           "url": "https://doi.org/10.48550/arxiv.1312.6203",
           "pdfUrl": null,
           "citationCount": 38,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3362,9 +2882,7 @@
         "doi": "10.1109/29.21701",
         "paper": {
           "title": "Gold literature paper 29: foundations of method 29",
-          "authors": [
-            "Author4 Surname"
-          ],
+          "authors": ["Author4 Surname"],
           "year": 2005,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 29 and reports empirical results on standard benchmarks. We find that technique 29 improves accuracy under controlled conditions.",
@@ -3373,9 +2891,7 @@
           "url": "https://doi.org/10.1109/29.21701",
           "pdfUrl": null,
           "citationCount": 39,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3389,9 +2905,7 @@
         "doi": "10.1162/neco.1997.9.8.1735",
         "paper": {
           "title": "Gold literature paper 30: foundations of method 30",
-          "authors": [
-            "Author5 Surname"
-          ],
+          "authors": ["Author5 Surname"],
           "year": 2006,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 30 and reports empirical results on standard benchmarks. We find that technique 30 improves accuracy under controlled conditions.",
@@ -3400,9 +2914,7 @@
           "url": "https://doi.org/10.1162/neco.1997.9.8.1735",
           "pdfUrl": null,
           "citationCount": 40,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3416,9 +2928,7 @@
         "doi": "10.1007/978-3-319-10602-1_48",
         "paper": {
           "title": "Gold literature paper 31: foundations of method 31",
-          "authors": [
-            "Author6 Surname"
-          ],
+          "authors": ["Author6 Surname"],
           "year": 2007,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 31 and reports empirical results on standard benchmarks. We find that technique 31 improves accuracy under controlled conditions.",
@@ -3427,9 +2937,7 @@
           "url": "https://doi.org/10.1007/978-3-319-10602-1_48",
           "pdfUrl": null,
           "citationCount": 41,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3443,9 +2951,7 @@
         "doi": "10.1109/tsmc.1979.4310076",
         "paper": {
           "title": "Gold literature paper 32: foundations of method 32",
-          "authors": [
-            "Author7 Surname"
-          ],
+          "authors": ["Author7 Surname"],
           "year": 2008,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 32 and reports empirical results on standard benchmarks. We find that technique 32 improves accuracy under controlled conditions.",
@@ -3454,9 +2960,7 @@
           "url": "https://doi.org/10.1109/tsmc.1979.4310076",
           "pdfUrl": null,
           "citationCount": 42,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3470,9 +2974,7 @@
         "doi": "10.1109/tpami.2016.2644615",
         "paper": {
           "title": "Gold literature paper 33: foundations of method 33",
-          "authors": [
-            "Author8 Surname"
-          ],
+          "authors": ["Author8 Surname"],
           "year": 2009,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 33 and reports empirical results on standard benchmarks. We find that technique 33 improves accuracy under controlled conditions.",
@@ -3481,9 +2983,7 @@
           "url": "https://doi.org/10.1109/tpami.2016.2644615",
           "pdfUrl": null,
           "citationCount": 43,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3497,9 +2997,7 @@
         "doi": "10.1007/s11263-009-0275-4",
         "paper": {
           "title": "Gold literature paper 34: foundations of method 34",
-          "authors": [
-            "Author9 Surname"
-          ],
+          "authors": ["Author9 Surname"],
           "year": 2010,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 34 and reports empirical results on standard benchmarks. We find that technique 34 improves accuracy under controlled conditions.",
@@ -3508,9 +3006,7 @@
           "url": "https://doi.org/10.1007/s11263-009-0275-4",
           "pdfUrl": null,
           "citationCount": 44,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3524,9 +3020,7 @@
         "doi": "10.3156/jsoft.29.5_177_2",
         "paper": {
           "title": "Gold literature paper 35: foundations of method 35",
-          "authors": [
-            "Author10 Surname"
-          ],
+          "authors": ["Author10 Surname"],
           "year": 2011,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 35 and reports empirical results on standard benchmarks. We find that technique 35 improves accuracy under controlled conditions.",
@@ -3535,9 +3029,7 @@
           "url": "https://doi.org/10.3156/jsoft.29.5_177_2",
           "pdfUrl": null,
           "citationCount": 45,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3551,9 +3043,7 @@
         "doi": "10.1007/bf00133570",
         "paper": {
           "title": "Gold literature paper 36: foundations of method 36",
-          "authors": [
-            "Author11 Surname"
-          ],
+          "authors": ["Author11 Surname"],
           "year": 2012,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 36 and reports empirical results on standard benchmarks. We find that technique 36 improves accuracy under controlled conditions.",
@@ -3562,9 +3052,7 @@
           "url": "https://doi.org/10.1007/bf00133570",
           "pdfUrl": null,
           "citationCount": 46,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3578,9 +3066,7 @@
         "doi": "10.1109/83.902291",
         "paper": {
           "title": "Gold literature paper 37: foundations of method 37",
-          "authors": [
-            "Author12 Surname"
-          ],
+          "authors": ["Author12 Surname"],
           "year": 2013,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 37 and reports empirical results on standard benchmarks. We find that technique 37 improves accuracy under controlled conditions.",
@@ -3589,9 +3075,7 @@
           "url": "https://doi.org/10.1109/83.902291",
           "pdfUrl": null,
           "citationCount": 47,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3605,9 +3089,7 @@
         "doi": "10.1177/0278364913491297",
         "paper": {
           "title": "Gold literature paper 38: foundations of method 38",
-          "authors": [
-            "Author13 Surname"
-          ],
+          "authors": ["Author13 Surname"],
           "year": 2014,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 38 and reports empirical results on standard benchmarks. We find that technique 38 improves accuracy under controlled conditions.",
@@ -3616,9 +3098,7 @@
           "url": "https://doi.org/10.1177/0278364913491297",
           "pdfUrl": null,
           "citationCount": 48,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3632,9 +3112,7 @@
         "doi": "10.48550/arxiv.1411.1784",
         "paper": {
           "title": "Gold literature paper 39: foundations of method 39",
-          "authors": [
-            "Author14 Surname"
-          ],
+          "authors": ["Author14 Surname"],
           "year": 2015,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 39 and reports empirical results on standard benchmarks. We find that technique 39 improves accuracy under controlled conditions.",
@@ -3643,9 +3121,7 @@
           "url": "https://doi.org/10.48550/arxiv.1411.1784",
           "pdfUrl": null,
           "citationCount": 49,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3659,9 +3135,7 @@
         "doi": "10.1109/iccv.2001.937655",
         "paper": {
           "title": "Gold literature paper 40: foundations of method 40",
-          "authors": [
-            "Author15 Surname"
-          ],
+          "authors": ["Author15 Surname"],
           "year": 2016,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 40 and reports empirical results on standard benchmarks. We find that technique 40 improves accuracy under controlled conditions.",
@@ -3670,9 +3144,7 @@
           "url": "https://doi.org/10.1109/iccv.2001.937655",
           "pdfUrl": null,
           "citationCount": 50,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3686,9 +3158,7 @@
         "doi": "10.1109/34.969114",
         "paper": {
           "title": "Gold literature paper 41: foundations of method 41",
-          "authors": [
-            "Author16 Surname"
-          ],
+          "authors": ["Author16 Surname"],
           "year": 2017,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 41 and reports empirical results on standard benchmarks. We find that technique 41 improves accuracy under controlled conditions.",
@@ -3697,9 +3167,7 @@
           "url": "https://doi.org/10.1109/34.969114",
           "pdfUrl": null,
           "citationCount": 51,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3713,9 +3181,7 @@
         "doi": "10.1007/978-3-642-33715-4_54",
         "paper": {
           "title": "Gold literature paper 42: foundations of method 42",
-          "authors": [
-            "Author17 Surname"
-          ],
+          "authors": ["Author17 Surname"],
           "year": 2018,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 42 and reports empirical results on standard benchmarks. We find that technique 42 improves accuracy under controlled conditions.",
@@ -3724,9 +3190,7 @@
           "url": "https://doi.org/10.1007/978-3-642-33715-4_54",
           "pdfUrl": null,
           "citationCount": 52,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3740,9 +3204,7 @@
         "doi": "10.1007/bf00344251",
         "paper": {
           "title": "Gold literature paper 43: foundations of method 43",
-          "authors": [
-            "Author18 Surname"
-          ],
+          "authors": ["Author18 Surname"],
           "year": 2019,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 43 and reports empirical results on standard benchmarks. We find that technique 43 improves accuracy under controlled conditions.",
@@ -3751,9 +3213,7 @@
           "url": "https://doi.org/10.1007/bf00344251",
           "pdfUrl": null,
           "citationCount": 53,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3767,9 +3227,7 @@
         "doi": "10.1109/iccv.2015.178",
         "paper": {
           "title": "Gold literature paper 44: foundations of method 44",
-          "authors": [
-            "Author19 Surname"
-          ],
+          "authors": ["Author19 Surname"],
           "year": 2020,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 44 and reports empirical results on standard benchmarks. We find that technique 44 improves accuracy under controlled conditions.",
@@ -3778,9 +3236,7 @@
           "url": "https://doi.org/10.1109/iccv.2015.178",
           "pdfUrl": null,
           "citationCount": 54,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3794,9 +3250,7 @@
         "doi": "10.48550/arxiv.1412.7062",
         "paper": {
           "title": "Gold literature paper 45: foundations of method 45",
-          "authors": [
-            "Author20 Surname"
-          ],
+          "authors": ["Author20 Surname"],
           "year": 2021,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 45 and reports empirical results on standard benchmarks. We find that technique 45 improves accuracy under controlled conditions.",
@@ -3805,9 +3259,7 @@
           "url": "https://doi.org/10.48550/arxiv.1412.7062",
           "pdfUrl": null,
           "citationCount": 55,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3821,9 +3273,7 @@
         "doi": "10.5860/choice.48-5140",
         "paper": {
           "title": "Gold literature paper 46: foundations of method 46",
-          "authors": [
-            "Author21 Surname"
-          ],
+          "authors": ["Author21 Surname"],
           "year": 2022,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 46 and reports empirical results on standard benchmarks. We find that technique 46 improves accuracy under controlled conditions.",
@@ -3832,9 +3282,7 @@
           "url": "https://doi.org/10.5860/choice.48-5140",
           "pdfUrl": null,
           "citationCount": 56,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3848,9 +3296,7 @@
         "doi": "10.1109/iccv.2015.304",
         "paper": {
           "title": "Gold literature paper 47: foundations of method 47",
-          "authors": [
-            "Author22 Surname"
-          ],
+          "authors": ["Author22 Surname"],
           "year": 2023,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 47 and reports empirical results on standard benchmarks. We find that technique 47 improves accuracy under controlled conditions.",
@@ -3859,9 +3305,7 @@
           "url": "https://doi.org/10.1109/iccv.2015.304",
           "pdfUrl": null,
           "citationCount": 57,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3875,9 +3319,7 @@
         "doi": "10.1109/iccv.2015.179",
         "paper": {
           "title": "Gold literature paper 48: foundations of method 48",
-          "authors": [
-            "Author23 Surname"
-          ],
+          "authors": ["Author23 Surname"],
           "year": 2000,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 48 and reports empirical results on standard benchmarks. We find that technique 48 improves accuracy under controlled conditions.",
@@ -3886,9 +3328,7 @@
           "url": "https://doi.org/10.1109/iccv.2015.179",
           "pdfUrl": null,
           "citationCount": 58,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3902,9 +3342,7 @@
         "doi": "10.1109/cvpr.2015.7298655",
         "paper": {
           "title": "Gold literature paper 49: foundations of method 49",
-          "authors": [
-            "Author24 Surname"
-          ],
+          "authors": ["Author24 Surname"],
           "year": 2001,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 49 and reports empirical results on standard benchmarks. We find that technique 49 improves accuracy under controlled conditions.",
@@ -3913,9 +3351,7 @@
           "url": "https://doi.org/10.1109/cvpr.2015.7298655",
           "pdfUrl": null,
           "citationCount": 59,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3929,9 +3365,7 @@
         "doi": "10.1109/iccv.2011.6126343",
         "paper": {
           "title": "Gold literature paper 50: foundations of method 50",
-          "authors": [
-            "Author25 Surname"
-          ],
+          "authors": ["Author25 Surname"],
           "year": 2002,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 50 and reports empirical results on standard benchmarks. We find that technique 50 improves accuracy under controlled conditions.",
@@ -3940,9 +3374,7 @@
           "url": "https://doi.org/10.1109/iccv.2011.6126343",
           "pdfUrl": null,
           "citationCount": 60,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3956,9 +3388,7 @@
         "doi": "10.1109/cvpr.2014.119",
         "paper": {
           "title": "Gold literature paper 51: foundations of method 51",
-          "authors": [
-            "Author26 Surname"
-          ],
+          "authors": ["Author26 Surname"],
           "year": 2003,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 51 and reports empirical results on standard benchmarks. We find that technique 51 improves accuracy under controlled conditions.",
@@ -3967,9 +3397,7 @@
           "url": "https://doi.org/10.1109/cvpr.2014.119",
           "pdfUrl": null,
           "citationCount": 61,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -3983,9 +3411,7 @@
         "doi": "10.1182/blood-2010-05-282780",
         "paper": {
           "title": "Gold literature paper 52: foundations of method 52",
-          "authors": [
-            "Author1 Surname"
-          ],
+          "authors": ["Author1 Surname"],
           "year": 2004,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 52 and reports empirical results on standard benchmarks. We find that technique 52 improves accuracy under controlled conditions.",
@@ -3994,9 +3420,7 @@
           "url": "https://doi.org/10.1182/blood-2010-05-282780",
           "pdfUrl": null,
           "citationCount": 62,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -4010,9 +3434,7 @@
         "doi": "10.1038/ng.3415",
         "paper": {
           "title": "Gold literature paper 53: foundations of method 53",
-          "authors": [
-            "Author2 Surname"
-          ],
+          "authors": ["Author2 Surname"],
           "year": 2005,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 53 and reports empirical results on standard benchmarks. We find that technique 53 improves accuracy under controlled conditions.",
@@ -4021,9 +3443,7 @@
           "url": "https://doi.org/10.1038/ng.3415",
           "pdfUrl": null,
           "citationCount": 63,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -4037,9 +3457,7 @@
         "doi": "10.1182/blood-2013-11-536359",
         "paper": {
           "title": "Gold literature paper 54: foundations of method 54",
-          "authors": [
-            "Author3 Surname"
-          ],
+          "authors": ["Author3 Surname"],
           "year": 2006,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 54 and reports empirical results on standard benchmarks. We find that technique 54 improves accuracy under controlled conditions.",
@@ -4048,9 +3466,7 @@
           "url": "https://doi.org/10.1182/blood-2013-11-536359",
           "pdfUrl": null,
           "citationCount": 64,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -4064,9 +3480,7 @@
         "doi": "10.1159/000439267",
         "paper": {
           "title": "Gold literature paper 55: foundations of method 55",
-          "authors": [
-            "Author4 Surname"
-          ],
+          "authors": ["Author4 Surname"],
           "year": 2007,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 55 and reports empirical results on standard benchmarks. We find that technique 55 improves accuracy under controlled conditions.",
@@ -4075,9 +3489,7 @@
           "url": "https://doi.org/10.1159/000439267",
           "pdfUrl": null,
           "citationCount": 65,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -4091,9 +3503,7 @@
         "doi": "10.1182/blood.v91.6.2076",
         "paper": {
           "title": "Gold literature paper 56: foundations of method 56",
-          "authors": [
-            "Author5 Surname"
-          ],
+          "authors": ["Author5 Surname"],
           "year": 2008,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 56 and reports empirical results on standard benchmarks. We find that technique 56 improves accuracy under controlled conditions.",
@@ -4102,9 +3512,7 @@
           "url": "https://doi.org/10.1182/blood.v91.6.2076",
           "pdfUrl": null,
           "citationCount": 66,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -4118,9 +3526,7 @@
         "doi": "10.1182/blood-2011-10-381921",
         "paper": {
           "title": "Gold literature paper 57: foundations of method 57",
-          "authors": [
-            "Author6 Surname"
-          ],
+          "authors": ["Author6 Surname"],
           "year": 2009,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 57 and reports empirical results on standard benchmarks. We find that technique 57 improves accuracy under controlled conditions.",
@@ -4129,9 +3535,7 @@
           "url": "https://doi.org/10.1182/blood-2011-10-381921",
           "pdfUrl": null,
           "citationCount": 67,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -4145,9 +3549,7 @@
         "doi": "10.1038/ki.2014.408",
         "paper": {
           "title": "Gold literature paper 58: foundations of method 58",
-          "authors": [
-            "Author7 Surname"
-          ],
+          "authors": ["Author7 Surname"],
           "year": 2010,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 58 and reports empirical results on standard benchmarks. We find that technique 58 improves accuracy under controlled conditions.",
@@ -4156,9 +3558,7 @@
           "url": "https://doi.org/10.1038/ki.2014.408",
           "pdfUrl": null,
           "citationCount": 68,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"
@@ -4172,9 +3572,7 @@
         "doi": "10.1182/blood-2013-10-531509",
         "paper": {
           "title": "Gold literature paper 59: foundations of method 59",
-          "authors": [
-            "Author8 Surname"
-          ],
+          "authors": ["Author8 Surname"],
           "year": 2011,
           "venue": "Survey Proceedings",
           "abstract": "This paper studies method 59 and reports empirical results on standard benchmarks. We find that technique 59 improves accuracy under controlled conditions.",
@@ -4183,9 +3581,7 @@
           "url": "https://doi.org/10.1182/blood-2013-10-531509",
           "pdfUrl": null,
           "citationCount": 69,
-          "foundBy": [
-            "crossref"
-          ]
+          "foundBy": ["crossref"]
         }
       },
       "support": "supported"

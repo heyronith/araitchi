@@ -400,9 +400,7 @@ export async function getPaper(input: {
     if (allows("semantic_scholar"))
       jobs.push(fetchSemanticScholarPaper({ doi, signal: input.signal }));
     if (allows("crossref"))
-      jobs.push(
-        fetchCrossrefWork({ doi, signal: input.signal, mailto }),
-      );
+      jobs.push(fetchCrossrefWork({ doi, signal: input.signal, mailto }));
     // arXiv-minted DOIs resolve via the arXiv API when enabled.
     const arxivFromDoi = doi.toLowerCase().startsWith("10.48550/arxiv.")
       ? normalizeArxivId(doi.slice("10.48550/arxiv.".length))
@@ -420,9 +418,7 @@ export async function getPaper(input: {
   } else if (arxivId) {
     const jobs: Promise<Paper | null>[] = [];
     if (allows("openalex"))
-      jobs.push(
-        fetchOpenAlexWork({ arxivId, signal: input.signal, mailto }),
-      );
+      jobs.push(fetchOpenAlexWork({ arxivId, signal: input.signal, mailto }));
     if (allows("semantic_scholar"))
       jobs.push(fetchSemanticScholarPaper({ arxivId, signal: input.signal }));
     if (allows("arxiv")) {
