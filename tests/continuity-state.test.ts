@@ -64,9 +64,9 @@ describe("STATE.md", () => {
   it("accepts narrative proposals after entailment", () => {
     const p = tempProject();
     dirs.push(p);
-    writeStateSection(p, "Next steps", "Base plan.");
+    writeStateSection(p, "Current status", "Base status.");
     const id = proposeStateNarrative(p, {
-      section: "Next steps",
+      section: "Current status",
       content: "Run the amber filter pilot next week",
       evidenceQuote: "Run the amber filter pilot next week",
     });

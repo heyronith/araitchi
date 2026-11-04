@@ -323,6 +323,10 @@ export function proposeStateNarrative(
     evidenceQuote: string;
   },
 ): string | null {
+  // T13: Next steps are generated from plan tasks — proposals only for status.
+  if (input.section === "Next steps") {
+    throw new Error("Next steps is generated; edit records instead");
+  }
   if (
     !claimEntailedByQuote({
       title: input.content.slice(0, 120),

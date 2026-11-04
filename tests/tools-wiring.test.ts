@@ -150,6 +150,8 @@ describe("buildBrokerTools", () => {
       "search_project",
       "read_file",
       "search_activity",
+      "list_tasks",
+      "get_plan",
       "mcp_mock_delete_all",
     ]);
 
@@ -157,7 +159,14 @@ describe("buildBrokerTools", () => {
     expect(
       Object.keys(broker.getAiSdkTools({ modelId: "m/x" })).sort(),
     ).toEqual(
-      ["project_tree", "read_file", "search_activity", "search_project"].sort(),
+      [
+        "get_plan",
+        "list_tasks",
+        "project_tree",
+        "read_file",
+        "search_activity",
+        "search_project",
+      ].sort(),
     );
     expect(
       Object.keys(
@@ -165,6 +174,8 @@ describe("buildBrokerTools", () => {
       ).sort(),
     ).toEqual(
       [
+        "get_plan",
+        "list_tasks",
         "mcp_mock_delete_all",
         "project_tree",
         "read_file",
