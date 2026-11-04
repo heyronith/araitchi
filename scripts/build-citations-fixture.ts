@@ -339,10 +339,11 @@ function main() {
     });
   }
 
-  // ≥60 correct real citations from LitSearch/survey gold
-  for (let i = 0; i < 60; i++) {
-    const known = KNOWN[i % KNOWN.length]!;
+  // ≥150 correct real citations from LitSearch/survey gold (live FP needs n≥150)
+  const REAL_N = 150;
+  for (let i = 0; i < REAL_N; i++) {
     if (i < KNOWN.length) {
+      const known = KNOWN[i]!;
       const idPart = known.arxivId
         ? `arxiv:${known.arxivId}`
         : `doi:${known.doi}`;
@@ -359,11 +360,12 @@ function main() {
         support: "supported",
       });
     } else {
-      const doi = goldDois[i]!;
+      const doi = goldDois[i % goldDois.length]!;
       const paper = syntheticPaper(doi, i);
+      // Bare DOI cite — live resolve checks existence; planted title is fixture-only.
       cases.push({
         id: `real-gold-${i}`,
-        text: `${paper.authors[0]} et al., ${paper.year}, "${paper.title}" (doi:${doi}) reports relevant prior work.`,
+        text: `According to doi:${doi} the cited prior work is relevant to this question.`,
         expectedStatus: "verified",
         kind: "real",
         resolve: { doi, paper },
@@ -382,8 +384,8 @@ function main() {
     counts.fake < 60 ||
     counts.mismatch < 40 ||
     counts.support < 40 ||
-    counts.real < 60 ||
-    cases.length < 200
+    counts.real < 150 ||
+    cases.length < 290
   ) {
     throw new Error(
       `Fixture too small: ${JSON.stringify(counts)} total=${cases.length}`,

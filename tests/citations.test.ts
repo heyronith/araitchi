@@ -53,6 +53,16 @@ const realPaper: Paper = {
 };
 
 describe("citation extraction", () => {
+  it("does not treat years inside DOI paths as asserted metadata", () => {
+    const cites = extractCitations(
+      "According to doi:10.1109/cvpr.2015.7298965 the prior work is relevant.",
+    );
+    const doi = cites.find((c) => c.kind === "doi");
+    expect(doi?.doi).toContain("10.1109/cvpr.2015");
+    expect(doi?.year).toBeUndefined();
+    expect(doi?.title).toBeUndefined();
+  });
+
   it("extracts DOI, arXiv, URL, and free-text", () => {
     const text = [
       "See doi:10.5555/3295222.3295349 for the Transformer.",
@@ -243,5 +253,95 @@ describe("wilson CI", () => {
     expect(lo).toBeGreaterThan(0.8);
     expect(hi).toBeLessThanOrEqual(1);
     expect(hi).toBeGreaterThan(lo);
+  });
+});
+
+describe("inconclusive resolution → unchecked", () => {
+  it("simulated 429 never becomes not_found", async () => {
+    const summary = await checkCitations("See doi:10.9999/rate.limited.doi.", {
+      resolveOverride: () => ({
+        paper: null,
+        outcome: {
+          kind: "unchecked",
+          reason: "Inconclusive resolution: openalex:rate_limited",
+          attempts: [
+            {
+              provider: "openalex",
+              answered: false,
+              error: "rate_limited",
+            },
+            {
+              provider: "crossref",
+              answered: false,
+              error: "HTTP 429",
+            },
+          ],
+        },
+      }),
+      skipSupport: true,
+    });
+    expect(summary.unchecked).toBe(1);
+    expect(summary.not_found).toBe(0);
+    expect(summary.results[0]?.status).toBe("unchecked");
+  });
+
+  it("simulated timeout never becomes not_found", async () => {
+    const summary = await checkCitations("See arxiv:9999.99999.", {
+      resolveOverride: () => ({
+        paper: null,
+        outcome: {
+          kind: "unchecked",
+          reason: "Inconclusive resolution: get_paper timed out",
+          attempts: [
+            {
+              provider: "arxiv",
+              answered: false,
+              error: "timeout",
+            },
+          ],
+        },
+      }),
+      skipSupport: true,
+    });
+    expect(summary.results[0]?.status).toBe("unchecked");
+    expect(summary.not_found).toBe(0);
+  });
+
+  it("confident miss (≥2 answered) stays not_found", async () => {
+    const summary = await checkCitations("See doi:10.9999/really.missing.", {
+      resolveOverride: () => ({
+        paper: null,
+        outcome: {
+          kind: "not_found",
+          reason: "2 providers answered; none found the work",
+          attempts: [
+            { provider: "crossref", answered: true },
+            { provider: "openalex", answered: true },
+          ],
+        },
+      }),
+      skipSupport: true,
+    });
+    expect(summary.not_found).toBe(1);
+    expect(summary.unchecked).toBe(0);
+  });
+});
+
+describe("classifyMiss", () => {
+  it("requires two answered providers for not_found", async () => {
+    const { classifyMiss } =
+      await import("@/lib/server/citations/resolve-outcome");
+    expect(
+      classifyMiss([
+        { provider: "crossref", answered: false, error: "rate_limited" },
+        { provider: "openalex", answered: false, error: "HTTP 503" },
+      ]).kind,
+    ).toBe("unchecked");
+    expect(
+      classifyMiss([
+        { provider: "crossref", answered: true },
+        { provider: "openalex", answered: true },
+      ]).kind,
+    ).toBe("not_found");
   });
 });

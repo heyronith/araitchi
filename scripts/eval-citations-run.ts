@@ -3,9 +3,11 @@
  *
  * Modes:
  *   (default)        Fixture resolveOverride + injected support (CI / offline).
- *   --keyless        Live Crossref+arXiv via tool broker; fake+mismatch (+real
- *                    existence). Skips model support and OpenAlex.
- *   --support        Also run model support on support+real subsets (needs key).
+ *                    Labels: INJECTED (not live-measured).
+ *   --keyless        Live Crossref+arXiv+S2 via tool broker; fake+mismatch
+ *                    (+real if included). Skips model support / OpenAlex.
+ *   --support        Run model support on support+real subsets (needs key).
+ *                    Can combine with --live or fixture.
  *   --live           All providers including OpenAlex (after OA reset).
  *   --kinds a,b      Restrict to kinds (fake,mismatch,support,real).
  */
@@ -83,13 +85,16 @@ async function main() {
   if (keyless || liveAll) {
     projectPath = mkdtempSync(path.join(tmpdir(), "araitchi-cite-eval-"));
     ensureResearchStructure(projectPath, { name: "cite-eval" });
+    // Keyless needs ≥2 answering providers so confident misses stay not_found
+    // (Crossref + Semantic Scholar; arXiv for arXiv ids). Live uses all.
     enabledProviders = liveAll
       ? undefined
-      : (["crossref", "arxiv"] as PaperProvider[]);
+      : (["crossref", "arxiv", "semantic_scholar"] as PaperProvider[]);
     broker = createBrokerForRequest({
       projectPath,
       chatId: "cite-eval",
       messageId: "cite-eval",
+      timeoutMs: 120_000,
     });
     broker.registerAll(
       createPaperTools({
@@ -100,6 +105,10 @@ async function main() {
     );
   }
 
+  const useNetwork = Boolean(broker);
+  const injectResolve = !useNetwork;
+  const injectSupport = !supportLive;
+
   const rows: CitationEvalRow[] = [];
   let i = 0;
   for (const c of cases) {
@@ -107,11 +116,10 @@ async function main() {
     if (i % 25 === 0 || i === 1) {
       console.error(`… ${i}/${cases.length} (${c.id})`);
     }
-    // Pace keyless Crossref/arXiv to stay under polite-pool limits.
+    // Pace live providers to stay under polite-pool limits.
     if (broker && i > 1) {
-      await new Promise((r) => setTimeout(r, 220));
+      await new Promise((r) => setTimeout(r, liveAll ? 150 : 220));
     }
-    const useNetwork = Boolean(broker);
     const kind = c.kind as FixtureCase["kind"];
     const runSupport = kind === "support" || (supportLive && kind === "real");
 
@@ -138,8 +146,7 @@ async function main() {
           ? async () => c.support!
           : undefined,
     });
-    // Prefer DOI/arXiv results over free-text in the same sentence (free-text
-    // often sorts first by index and can mask the id-based citation under test).
+    // Prefer DOI/arXiv results over free-text in the same sentence.
     const preferred =
       summary.results.find(
         (r) =>
@@ -164,17 +171,29 @@ async function main() {
 
   const scores = scoreCitationEval(rows);
   const mode = liveAll
-    ? "live"
+    ? supportLive
+      ? "live+support"
+      : "live"
     : keyless
       ? supportLive
         ? "keyless+support"
         : "keyless"
       : "fixture";
 
+  const evidence = {
+    resolve: injectResolve ? "injected" : "measured",
+    support: !rows.some((r) => r.kind === "support" || supportLive)
+      ? "n/a"
+      : injectSupport
+        ? "injected"
+        : "measured",
+  };
+
   const outDir = path.join(root, "evals/results");
   mkdirSync(outDir, { recursive: true });
   const payload = {
     mode,
+    evidence,
     meta: fixture.meta,
     scores,
     rows,
@@ -184,23 +203,50 @@ async function main() {
     JSON.stringify(payload, null, 2),
   );
 
+  type EvidenceTag = "injected" | "measured" | "n/a";
+  const label = (metric: string, ev: EvidenceTag) =>
+    ev === "n/a" ? metric : `${metric} [${ev}]`;
+  const resolveEv = evidence.resolve as EvidenceTag;
+  const supportEv = (
+    evidence.support === "n/a" ? "injected" : evidence.support
+  ) as EvidenceTag;
+
   const md = [
     `# Citation eval (${mode})`,
     "",
     `Cases: ${scores.n} · correct ${scores.correct}`,
     "",
+    `Evidence: resolve=**${evidence.resolve}**, support=**${evidence.support}**.`,
+    "",
+    `- **injected** — fixture ` +
+      "`resolveOverride`" +
+      " / planted support verdict (not a live provider or model call).",
+    "- **measured** — live provider resolution and/or real scribe-model support check.",
+    "",
     `| Metric | Value | Target |`,
     `| --- | --- | --- |`,
-    formatMetric("not_found detection", scores.notFoundDetection, "100%"),
-    formatMetric("mismatch detection", scores.mismatchDetection, "≥95%"),
-    formatMetric("FP on real", scores.falsePositiveRate, "≤2%"),
+    formatMetric(
+      label("not_found detection", resolveEv),
+      scores.notFoundDetection,
+      "100%",
+    ),
+    formatMetric(
+      label("mismatch detection", resolveEv),
+      scores.mismatchDetection,
+      "≥95%",
+    ),
+    formatMetric(
+      label("FP on real", resolveEv),
+      scores.falsePositiveRate,
+      "≤2%",
+    ),
     scores.supportAccuracy
       ? formatMetric(
-          "support accuracy (contradicted+correct)",
+          label("support accuracy (contradicted+correct)", supportEv),
           scores.supportAccuracy,
           "report",
         )
-      : `| support accuracy | n/a (deferred) | report |`,
+      : `| support accuracy | n/a | report |`,
     "",
     "## By kind",
     "",

@@ -16,7 +16,12 @@ export type ToolResult =
       sources?: ToolSource[];
       modelText?: string;
     }
-  | { ok: false; error: string };
+  | {
+      ok: false;
+      error: string;
+      /** Optional structured detail (e.g. provider attempts on a miss). */
+      data?: unknown;
+    };
 
 export type ToolHandlerContext = {
   projectPath: string;

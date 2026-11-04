@@ -143,7 +143,14 @@ export function extractCitations(text: string): ExtractedCitation[] {
 
 /** Pull quoted title / author / year from the claim sentence onto an id citation. */
 export function enrichFromClaim(c: ExtractedCitation): void {
-  const claim = c.claim;
+  // Strip DOI / arXiv tokens so we don't treat path digits (e.g. cvpr.2015.x) as years.
+  const claim = c.claim
+    .replace(/\b(?:doi:\s*)?10\.\d{4,9}\/[-._;()/:A-Z0-9]+/gi, " ")
+    .replace(/\b(?:arxiv:\s*)?\d{4}\.\d{4,5}(?:v\d+)?\b/gi, " ")
+    .replace(
+      /\b(?:arxiv:\s*)?(?:cs|math|physics|q-bio|q-fin|stat|hep|gr-qc|nlin|nucl|astro-ph|cond-mat)(?:\.[A-Za-z-]+)?\/\d{7}\b/gi,
+      " ",
+    );
   if (!c.year) {
     const ym = claim.match(/\b((?:19|20)\d{2})\b/);
     if (ym) c.year = Number(ym[1]);

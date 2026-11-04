@@ -9,6 +9,7 @@ export {
 export { normalizeCore, searchCore } from "./core";
 export {
   fetchCrossrefWork,
+  fetchCrossrefWorkDetailed,
   normalizeCrossref,
   searchCrossref,
 } from "./crossref";
@@ -17,6 +18,7 @@ export {
   consumeOpenAlexSearchMeta,
   fetchOpenAlexLinks,
   fetchOpenAlexWork,
+  fetchOpenAlexWorkDetailed,
   normalizeOpenAlex,
   refreshOpenAlexBudget,
   searchOpenAlex,
@@ -33,6 +35,7 @@ export { normalizeOpenReview, searchOpenReview } from "./openreview";
 export {
   fetchSemanticScholarLinks,
   fetchSemanticScholarPaper,
+  fetchSemanticScholarPaperDetailed,
   normalizeSemanticScholar,
   normalizeSemanticScholarPaper,
   searchSemanticScholar,

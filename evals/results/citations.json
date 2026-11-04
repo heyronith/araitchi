@@ -1,862 +1,58 @@
 {
-  "mode": "fixture",
+  "mode": "live+support",
+  "evidence": {
+    "resolve": "measured",
+    "support": "measured"
+  },
   "meta": {
-    "builtAt": "2026-11-04T01:00:45.400Z",
+    "builtAt": "2026-11-04T04:05:16.804Z",
     "counts": {
       "fake": 60,
       "mismatch": 40,
       "support": 40,
-      "real": 60
+      "real": 150
     },
     "sources": ["evals/bench/literature/items.json", "known landmark papers"]
   },
   "scores": {
     "notFoundDetection": {
       "rate": 1,
-      "n": 60,
-      "successes": 60,
-      "ci95": [0.939826069522067, 0.9999999999999998]
+      "n": 0,
+      "successes": 0,
+      "ci95": [0, 1]
     },
     "mismatchDetection": {
       "rate": 1,
-      "n": 40,
-      "successes": 40,
-      "ci95": [0.9123754607496077, 1]
+      "n": 0,
+      "successes": 0,
+      "ci95": [0, 1]
     },
     "falsePositiveRate": {
       "rate": 0,
-      "n": 60,
+      "n": 150,
       "successes": 0,
-      "ci95": [0, 0.060173930477932895]
+      "ci95": [0, 0.02497113914571871]
     },
     "supportAccuracy": {
       "rate": 1,
-      "n": 100,
-      "successes": 100,
-      "ci95": [0.963005192523998, 0.9999999999999998]
+      "n": 190,
+      "successes": 190,
+      "ci95": [0.980181756650791, 0.9999999999999998]
     },
-    "n": 200,
-    "correct": 200,
+    "n": 190,
+    "correct": 190,
     "byKind": {
-      "fake": {
-        "n": 60,
-        "correct": 60
-      },
-      "mismatch": {
-        "n": 40,
-        "correct": 40
-      },
       "support": {
         "n": 40,
         "correct": 40
       },
       "real": {
-        "n": 60,
-        "correct": 60
+        "n": 150,
+        "correct": 150
       }
     }
   },
   "rows": [
-    {
-      "id": "fake-arxiv-0",
-      "text": "According to arxiv:9000.10000, Hyperbolic Unicorn Embeddings for Multiverse Retrieval revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-1",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.001.2001 that a comprehensive survey of invisible gradient alchemy.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-2",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.002.2002 that quantum bagels as universal function approximators.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-3",
-      "text": "According to arxiv:9003.10003, Neural Telepathy via Ambient WiFi Phase Noise revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-4",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.004.2004 that on the impossibility of learning without coffee.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-5",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.005.2005 that recursive dreams of electric sheep classifiers.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-6",
-      "text": "According to arxiv:9006.10006, Latent Spaces of Mythical Creatures revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-7",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.007.2007 that differential privacy for gossip protocols in atlantis.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-8",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.008.2008 that self-supervised astrology for tabular data.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-9",
-      "text": "According to arxiv:9009.10009, Transformerless Attention via Candlelight revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-10",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.010.2010 that hyperbolic unicorn embeddings for multiverse retrieval.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-11",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.011.2011 that a comprehensive survey of invisible gradient alchemy.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-12",
-      "text": "According to arxiv:9012.10012, Quantum Bagels as Universal Function Approximators revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-13",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.013.2013 that neural telepathy via ambient wifi phase noise.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-14",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.014.2014 that on the impossibility of learning without coffee.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-15",
-      "text": "According to arxiv:9015.10015, Recursive Dreams of Electric Sheep Classifiers revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-16",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.016.2016 that latent spaces of mythical creatures.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-17",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.017.2017 that differential privacy for gossip protocols in atlantis.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-18",
-      "text": "According to arxiv:9018.10018, Self-Supervised Astrology for Tabular Data revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-19",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.019.2019 that transformerless attention via candlelight.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-20",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.020.2020 that hyperbolic unicorn embeddings for multiverse retrieval.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-21",
-      "text": "According to arxiv:9021.10021, A Comprehensive Survey of Invisible Gradient Alchemy revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-22",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.022.2022 that quantum bagels as universal function approximators.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-23",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.023.2023 that neural telepathy via ambient wifi phase noise.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-24",
-      "text": "According to arxiv:9024.10024, On the Impossibility of Learning Without Coffee revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-25",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.025.2025 that recursive dreams of electric sheep classifiers.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-26",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.026.2026 that latent spaces of mythical creatures.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-27",
-      "text": "According to arxiv:9027.10027, Differential Privacy for Gossip Protocols in Atlantis revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-28",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.028.2028 that self-supervised astrology for tabular data.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-29",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.029.2029 that transformerless attention via candlelight.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-30",
-      "text": "According to arxiv:9030.10030, Hyperbolic Unicorn Embeddings for Multiverse Retrieval revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-31",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.031.2031 that a comprehensive survey of invisible gradient alchemy.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-32",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.032.2032 that quantum bagels as universal function approximators.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-33",
-      "text": "According to arxiv:9033.10033, Neural Telepathy via Ambient WiFi Phase Noise revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-34",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.034.2034 that on the impossibility of learning without coffee.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-35",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.035.2035 that recursive dreams of electric sheep classifiers.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-36",
-      "text": "According to arxiv:9036.10036, Latent Spaces of Mythical Creatures revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-37",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.037.2037 that differential privacy for gossip protocols in atlantis.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-38",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.038.2038 that self-supervised astrology for tabular data.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-39",
-      "text": "According to arxiv:9039.10039, Transformerless Attention via Candlelight revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-40",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.040.2040 that hyperbolic unicorn embeddings for multiverse retrieval.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-41",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.041.2041 that a comprehensive survey of invisible gradient alchemy.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-42",
-      "text": "According to arxiv:9042.10042, Quantum Bagels as Universal Function Approximators revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-43",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.043.2043 that neural telepathy via ambient wifi phase noise.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-44",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.044.2044 that on the impossibility of learning without coffee.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-45",
-      "text": "According to arxiv:9045.10045, Recursive Dreams of Electric Sheep Classifiers revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-46",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.046.2046 that latent spaces of mythical creatures.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-47",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.047.2047 that differential privacy for gossip protocols in atlantis.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-48",
-      "text": "According to arxiv:9048.10048, Self-Supervised Astrology for Tabular Data revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-49",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.049.2049 that transformerless attention via candlelight.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-50",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.050.2050 that hyperbolic unicorn embeddings for multiverse retrieval.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-51",
-      "text": "According to arxiv:9051.10051, A Comprehensive Survey of Invisible Gradient Alchemy revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-52",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.052.2052 that quantum bagels as universal function approximators.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-53",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.053.2053 that neural telepathy via ambient wifi phase noise.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-54",
-      "text": "According to arxiv:9054.10054, On the Impossibility of Learning Without Coffee revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-55",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.055.2055 that recursive dreams of electric sheep classifiers.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-56",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.056.2056 that latent spaces of mythical creatures.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-arxiv-57",
-      "text": "According to arxiv:9057.10057, Differential Privacy for Gossip Protocols in Atlantis revolutionizes science.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-58",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.058.2058 that self-supervised astrology for tabular data.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "fake-doi-59",
-      "text": "Smith et al. show in doi:10.9999/fake.eval.059.2059 that transformerless attention via candlelight.",
-      "expectedStatus": "not_found",
-      "kind": "fake",
-      "got": "not_found",
-      "ok": true
-    },
-    {
-      "id": "mismatch-0",
-      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1990, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-1",
-      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1991, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-2",
-      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1992, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-3",
-      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1993, \"Why Cats Invented Backpropagation\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-4",
-      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1994, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-5",
-      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1995, \"Telepathic Batch Normalization Explained\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-6",
-      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1996, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-7",
-      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1997, \"Moon Cheese Classification with GNNs\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-8",
-      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1998, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-9",
-      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1999, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-10",
-      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1990, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-11",
-      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1991, \"Why Cats Invented Backpropagation\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-12",
-      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1992, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-13",
-      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1993, \"Telepathic Batch Normalization Explained\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-14",
-      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1994, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-15",
-      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1995, \"Moon Cheese Classification with GNNs\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-16",
-      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1996, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-17",
-      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1997, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-18",
-      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1998, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-19",
-      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1999, \"Why Cats Invented Backpropagation\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-20",
-      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1990, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-21",
-      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1991, \"Telepathic Batch Normalization Explained\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-22",
-      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1992, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-23",
-      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1993, \"Moon Cheese Classification with GNNs\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-24",
-      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1994, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-25",
-      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1995, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-26",
-      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1996, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-27",
-      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1997, \"Why Cats Invented Backpropagation\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-28",
-      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1998, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-29",
-      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1999, \"Telepathic Batch Normalization Explained\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-30",
-      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1990, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-31",
-      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1991, \"Moon Cheese Classification with GNNs\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-32",
-      "text": "According to doi:10.1109/cvpr.2016.90 (Totallyfake, 1992, \"A Paper About Unicorns in Gradient Descent\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-33",
-      "text": "According to doi:10.1162/neco.1997.9.8.1735 (Totallyfake, 1993, \"Cooking Pasta with Stochastic Gradients\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-34",
-      "text": "According to doi:10.1038/323533a0 (Totallyfake, 1994, \"The Complete Guide to Imaginary Numbers in Biology\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-35",
-      "text": "According to doi:10.1109/5.726791 (Totallyfake, 1995, \"Why Cats Invented Backpropagation\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-36",
-      "text": "According to doi:10.1109/tpami.2016.2577031 (Totallyfake, 1996, \"Underwater Basket Weaving with Neural ODEs\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-37",
-      "text": "According to doi:10.3115/v1/d14-1181 (Totallyfake, 1997, \"Telepathic Batch Normalization Explained\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-38",
-      "text": "According to doi:10.1007/s11263-009-0275-4 (Totallyfake, 1998, \"A Taxonomy of Fictional Optimizers\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
-    {
-      "id": "mismatch-39",
-      "text": "According to doi:10.1113/jphysiol.1962.sp006837 (Totallyfake, 1999, \"Moon Cheese Classification with GNNs\") the result is mythical.",
-      "expectedStatus": "metadata_mismatch",
-      "kind": "mismatch",
-      "got": "metadata_mismatch",
-      "ok": true
-    },
     {
       "id": "support-0",
       "text": "arxiv:1706.03762 proves that recurrent neural networks are the only architecture that can translate languages.",
@@ -1243,7 +439,7 @@
     },
     {
       "id": "real-gold-8",
-      "text": "Author9 Surname et al., 2008, \"Gold literature paper 8: foundations of method 8\" (doi:10.1109/cvpr.2015.7298965) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2015.7298965 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1251,7 +447,7 @@
     },
     {
       "id": "real-gold-9",
-      "text": "Author10 Surname et al., 2009, \"Gold literature paper 9: foundations of method 9\" (doi:10.1109/cvpr.2014.81) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2014.81 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1259,7 +455,7 @@
     },
     {
       "id": "real-gold-10",
-      "text": "Author11 Surname et al., 2010, \"Gold literature paper 10: foundations of method 10\" (doi:10.1038/323533a0) reports relevant prior work.",
+      "text": "According to doi:10.1038/323533a0 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1267,7 +463,7 @@
     },
     {
       "id": "real-gold-11",
-      "text": "Author12 Surname et al., 2011, \"Gold literature paper 11: foundations of method 11\" (doi:10.1109/iccv.2015.169) reports relevant prior work.",
+      "text": "According to doi:10.1109/iccv.2015.169 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1275,7 +471,7 @@
     },
     {
       "id": "real-gold-12",
-      "text": "Author13 Surname et al., 2012, \"Gold literature paper 12: foundations of method 12\" (doi:10.48550/arxiv.1502.03167) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1502.03167 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1283,7 +479,7 @@
     },
     {
       "id": "real-gold-13",
-      "text": "Author14 Surname et al., 2013, \"Gold literature paper 13: foundations of method 13\" (doi:10.1109/iccv.2015.123) reports relevant prior work.",
+      "text": "According to doi:10.1109/iccv.2015.123 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1291,7 +487,7 @@
     },
     {
       "id": "real-gold-14",
-      "text": "Author15 Surname et al., 2014, \"Gold literature paper 14: foundations of method 14\" (doi:10.1007/bf02478259) reports relevant prior work.",
+      "text": "According to doi:10.1007/bf02478259 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1299,7 +495,7 @@
     },
     {
       "id": "real-gold-15",
-      "text": "Author16 Surname et al., 2015, \"Gold literature paper 15: foundations of method 15\" (doi:10.1109/cvpr.2015.7298682) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2015.7298682 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1307,7 +503,7 @@
     },
     {
       "id": "real-gold-16",
-      "text": "Author17 Surname et al., 2016, \"Gold literature paper 16: foundations of method 16\" (doi:10.3115/v1/d14-1181) reports relevant prior work.",
+      "text": "According to doi:10.3115/v1/d14-1181 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1315,7 +511,7 @@
     },
     {
       "id": "real-gold-17",
-      "text": "Author18 Surname et al., 2017, \"Gold literature paper 17: foundations of method 17\" (doi:10.1113/jphysiol.1962.sp006837) reports relevant prior work.",
+      "text": "According to doi:10.1113/jphysiol.1962.sp006837 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1323,7 +519,7 @@
     },
     {
       "id": "real-gold-18",
-      "text": "Author19 Surname et al., 2018, \"Gold literature paper 18: foundations of method 18\" (doi:10.1037/h0042519) reports relevant prior work.",
+      "text": "According to doi:10.1037/h0042519 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1331,7 +527,7 @@
     },
     {
       "id": "real-gold-19",
-      "text": "Author20 Surname et al., 2019, \"Gold literature paper 19: foundations of method 19\" (doi:10.1109/tpami.2015.2389824) reports relevant prior work.",
+      "text": "According to doi:10.1109/tpami.2015.2389824 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1339,7 +535,7 @@
     },
     {
       "id": "real-gold-20",
-      "text": "Author21 Surname et al., 2020, \"Gold literature paper 20: foundations of method 20\" (doi:10.48550/arxiv.1412.6572) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1412.6572 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1347,7 +543,7 @@
     },
     {
       "id": "real-gold-21",
-      "text": "Author22 Surname et al., 2021, \"Gold literature paper 21: foundations of method 21\" (doi:10.1109/tnn.2008.2005605) reports relevant prior work.",
+      "text": "According to doi:10.1109/tnn.2008.2005605 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1355,7 +551,7 @@
     },
     {
       "id": "real-gold-22",
-      "text": "Author23 Surname et al., 2022, \"Gold literature paper 22: foundations of method 22\" (doi:10.48550/arxiv.1206.2944) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1206.2944 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1363,7 +559,7 @@
     },
     {
       "id": "real-gold-23",
-      "text": "Author24 Surname et al., 2023, \"Gold literature paper 23: foundations of method 23\" (doi:10.1109/cvpr.2014.220) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2014.220 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1371,7 +567,7 @@
     },
     {
       "id": "real-gold-24",
-      "text": "Author25 Surname et al., 2000, \"Gold literature paper 24: foundations of method 24\" (doi:10.1109/cvpr.2015.7298801) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2015.7298801 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1379,7 +575,7 @@
     },
     {
       "id": "real-gold-25",
-      "text": "Author26 Surname et al., 2001, \"Gold literature paper 25: foundations of method 25\" (doi:10.1109/cvpr.2006.100) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2006.100 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1387,7 +583,7 @@
     },
     {
       "id": "real-gold-26",
-      "text": "Author1 Surname et al., 2002, \"Gold literature paper 26: foundations of method 26\" (doi:10.48550/arxiv.1212.5701) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1212.5701 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1395,7 +591,7 @@
     },
     {
       "id": "real-gold-27",
-      "text": "Author2 Surname et al., 2003, \"Gold literature paper 27: foundations of method 27\" (doi:10.48550/arxiv.1510.00149) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1510.00149 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1403,7 +599,7 @@
     },
     {
       "id": "real-gold-28",
-      "text": "Author3 Surname et al., 2004, \"Gold literature paper 28: foundations of method 28\" (doi:10.48550/arxiv.1312.6203) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1312.6203 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1411,7 +607,7 @@
     },
     {
       "id": "real-gold-29",
-      "text": "Author4 Surname et al., 2005, \"Gold literature paper 29: foundations of method 29\" (doi:10.1109/29.21701) reports relevant prior work.",
+      "text": "According to doi:10.1109/29.21701 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1419,7 +615,7 @@
     },
     {
       "id": "real-gold-30",
-      "text": "Author5 Surname et al., 2006, \"Gold literature paper 30: foundations of method 30\" (doi:10.1162/neco.1997.9.8.1735) reports relevant prior work.",
+      "text": "According to doi:10.1162/neco.1997.9.8.1735 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1427,7 +623,7 @@
     },
     {
       "id": "real-gold-31",
-      "text": "Author6 Surname et al., 2007, \"Gold literature paper 31: foundations of method 31\" (doi:10.1007/978-3-319-10602-1_48) reports relevant prior work.",
+      "text": "According to doi:10.1007/978-3-319-10602-1_48 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1435,7 +631,7 @@
     },
     {
       "id": "real-gold-32",
-      "text": "Author7 Surname et al., 2008, \"Gold literature paper 32: foundations of method 32\" (doi:10.1109/tsmc.1979.4310076) reports relevant prior work.",
+      "text": "According to doi:10.1109/tsmc.1979.4310076 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1443,7 +639,7 @@
     },
     {
       "id": "real-gold-33",
-      "text": "Author8 Surname et al., 2009, \"Gold literature paper 33: foundations of method 33\" (doi:10.1109/tpami.2016.2644615) reports relevant prior work.",
+      "text": "According to doi:10.1109/tpami.2016.2644615 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1451,7 +647,7 @@
     },
     {
       "id": "real-gold-34",
-      "text": "Author9 Surname et al., 2010, \"Gold literature paper 34: foundations of method 34\" (doi:10.1007/s11263-009-0275-4) reports relevant prior work.",
+      "text": "According to doi:10.1007/s11263-009-0275-4 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1459,7 +655,7 @@
     },
     {
       "id": "real-gold-35",
-      "text": "Author10 Surname et al., 2011, \"Gold literature paper 35: foundations of method 35\" (doi:10.3156/jsoft.29.5_177_2) reports relevant prior work.",
+      "text": "According to doi:10.3156/jsoft.29.5_177_2 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1467,7 +663,7 @@
     },
     {
       "id": "real-gold-36",
-      "text": "Author11 Surname et al., 2012, \"Gold literature paper 36: foundations of method 36\" (doi:10.1007/bf00133570) reports relevant prior work.",
+      "text": "According to doi:10.1007/bf00133570 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1475,7 +671,7 @@
     },
     {
       "id": "real-gold-37",
-      "text": "Author12 Surname et al., 2013, \"Gold literature paper 37: foundations of method 37\" (doi:10.1109/83.902291) reports relevant prior work.",
+      "text": "According to doi:10.1109/83.902291 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1483,7 +679,7 @@
     },
     {
       "id": "real-gold-38",
-      "text": "Author13 Surname et al., 2014, \"Gold literature paper 38: foundations of method 38\" (doi:10.1177/0278364913491297) reports relevant prior work.",
+      "text": "According to doi:10.1177/0278364913491297 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1491,7 +687,7 @@
     },
     {
       "id": "real-gold-39",
-      "text": "Author14 Surname et al., 2015, \"Gold literature paper 39: foundations of method 39\" (doi:10.48550/arxiv.1411.1784) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1411.1784 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1499,7 +695,7 @@
     },
     {
       "id": "real-gold-40",
-      "text": "Author15 Surname et al., 2016, \"Gold literature paper 40: foundations of method 40\" (doi:10.1109/iccv.2001.937655) reports relevant prior work.",
+      "text": "According to doi:10.1109/iccv.2001.937655 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1507,7 +703,7 @@
     },
     {
       "id": "real-gold-41",
-      "text": "Author16 Surname et al., 2017, \"Gold literature paper 41: foundations of method 41\" (doi:10.1109/34.969114) reports relevant prior work.",
+      "text": "According to doi:10.1109/34.969114 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1515,7 +711,7 @@
     },
     {
       "id": "real-gold-42",
-      "text": "Author17 Surname et al., 2018, \"Gold literature paper 42: foundations of method 42\" (doi:10.1007/978-3-642-33715-4_54) reports relevant prior work.",
+      "text": "According to doi:10.1007/978-3-642-33715-4_54 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1523,7 +719,7 @@
     },
     {
       "id": "real-gold-43",
-      "text": "Author18 Surname et al., 2019, \"Gold literature paper 43: foundations of method 43\" (doi:10.1007/bf00344251) reports relevant prior work.",
+      "text": "According to doi:10.1007/bf00344251 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1531,7 +727,7 @@
     },
     {
       "id": "real-gold-44",
-      "text": "Author19 Surname et al., 2020, \"Gold literature paper 44: foundations of method 44\" (doi:10.1109/iccv.2015.178) reports relevant prior work.",
+      "text": "According to doi:10.1109/iccv.2015.178 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1539,7 +735,7 @@
     },
     {
       "id": "real-gold-45",
-      "text": "Author20 Surname et al., 2021, \"Gold literature paper 45: foundations of method 45\" (doi:10.48550/arxiv.1412.7062) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1412.7062 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1547,7 +743,7 @@
     },
     {
       "id": "real-gold-46",
-      "text": "Author21 Surname et al., 2022, \"Gold literature paper 46: foundations of method 46\" (doi:10.5860/choice.48-5140) reports relevant prior work.",
+      "text": "According to doi:10.5860/choice.48-5140 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1555,7 +751,7 @@
     },
     {
       "id": "real-gold-47",
-      "text": "Author22 Surname et al., 2023, \"Gold literature paper 47: foundations of method 47\" (doi:10.1109/iccv.2015.304) reports relevant prior work.",
+      "text": "According to doi:10.1109/iccv.2015.304 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1563,7 +759,7 @@
     },
     {
       "id": "real-gold-48",
-      "text": "Author23 Surname et al., 2000, \"Gold literature paper 48: foundations of method 48\" (doi:10.1109/iccv.2015.179) reports relevant prior work.",
+      "text": "According to doi:10.1109/iccv.2015.179 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1571,7 +767,7 @@
     },
     {
       "id": "real-gold-49",
-      "text": "Author24 Surname et al., 2001, \"Gold literature paper 49: foundations of method 49\" (doi:10.1109/cvpr.2015.7298655) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2015.7298655 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1579,7 +775,7 @@
     },
     {
       "id": "real-gold-50",
-      "text": "Author25 Surname et al., 2002, \"Gold literature paper 50: foundations of method 50\" (doi:10.1109/iccv.2011.6126343) reports relevant prior work.",
+      "text": "According to doi:10.1109/iccv.2011.6126343 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1587,7 +783,7 @@
     },
     {
       "id": "real-gold-51",
-      "text": "Author26 Surname et al., 2003, \"Gold literature paper 51: foundations of method 51\" (doi:10.1109/cvpr.2014.119) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2014.119 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1595,7 +791,7 @@
     },
     {
       "id": "real-gold-52",
-      "text": "Author1 Surname et al., 2004, \"Gold literature paper 52: foundations of method 52\" (doi:10.1182/blood-2010-05-282780) reports relevant prior work.",
+      "text": "According to doi:10.1182/blood-2010-05-282780 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1603,7 +799,7 @@
     },
     {
       "id": "real-gold-53",
-      "text": "Author2 Surname et al., 2005, \"Gold literature paper 53: foundations of method 53\" (doi:10.1038/ng.3415) reports relevant prior work.",
+      "text": "According to doi:10.1038/ng.3415 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1611,7 +807,7 @@
     },
     {
       "id": "real-gold-54",
-      "text": "Author3 Surname et al., 2006, \"Gold literature paper 54: foundations of method 54\" (doi:10.1182/blood-2013-11-536359) reports relevant prior work.",
+      "text": "According to doi:10.1182/blood-2013-11-536359 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1619,7 +815,7 @@
     },
     {
       "id": "real-gold-55",
-      "text": "Author4 Surname et al., 2007, \"Gold literature paper 55: foundations of method 55\" (doi:10.1159/000439267) reports relevant prior work.",
+      "text": "According to doi:10.1159/000439267 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1627,7 +823,7 @@
     },
     {
       "id": "real-gold-56",
-      "text": "Author5 Surname et al., 2008, \"Gold literature paper 56: foundations of method 56\" (doi:10.1182/blood.v91.6.2076) reports relevant prior work.",
+      "text": "According to doi:10.1182/blood.v91.6.2076 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1635,7 +831,7 @@
     },
     {
       "id": "real-gold-57",
-      "text": "Author6 Surname et al., 2009, \"Gold literature paper 57: foundations of method 57\" (doi:10.1182/blood-2011-10-381921) reports relevant prior work.",
+      "text": "According to doi:10.1182/blood-2011-10-381921 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1643,7 +839,7 @@
     },
     {
       "id": "real-gold-58",
-      "text": "Author7 Surname et al., 2010, \"Gold literature paper 58: foundations of method 58\" (doi:10.1038/ki.2014.408) reports relevant prior work.",
+      "text": "According to doi:10.1038/ki.2014.408 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",
@@ -1651,7 +847,727 @@
     },
     {
       "id": "real-gold-59",
-      "text": "Author8 Surname et al., 2011, \"Gold literature paper 59: foundations of method 59\" (doi:10.1182/blood-2013-10-531509) reports relevant prior work.",
+      "text": "According to doi:10.1182/blood-2013-10-531509 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-60",
+      "text": "According to doi:10.1038/sj.leu.2403501 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-61",
+      "text": "According to doi:10.1097/01.pas.0000209855.28282.ce the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-62",
+      "text": "According to doi:10.1182/blood.v99.2.627 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-63",
+      "text": "According to doi:10.1097/00000478-200310000-00007 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-64",
+      "text": "According to doi:10.1182/blood-2013-02-474437 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-65",
+      "text": "According to doi:10.1182/blood-2008-12-194852 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-66",
+      "text": "According to doi:10.1182/blood-2004-03-1206 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-67",
+      "text": "According to doi:10.1182/blood.v96.10.3569 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-68",
+      "text": "According to doi:10.1182/blood-2013-07-512830 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-69",
+      "text": "According to doi:10.1016/s0002-9440(10)64630-5 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-70",
+      "text": "According to doi:10.1016/0145-2126(80)90066-1 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-71",
+      "text": "According to doi:10.1111/his.12251 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-72",
+      "text": "According to doi:10.1002/path.1715 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-73",
+      "text": "According to doi:10.1182/blood-2008-07-168682 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-74",
+      "text": "According to doi:10.1111/j.1365-2141.2011.08942.x the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-75",
+      "text": "According to doi:10.1200/jco.2008.21.2704 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-76",
+      "text": "According to doi:10.1182/blood-2010-06-290650 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-77",
+      "text": "According to doi:10.1038/sj.leu.2401999 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-78",
+      "text": "According to doi:10.3324/haematol.2009.010991 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-79",
+      "text": "According to doi:10.1007/s00428-015-1858-9 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-80",
+      "text": "According to doi:10.1016/j.semcancer.2011.09.007 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-81",
+      "text": "According to doi:10.1097/pas.0b013e318267fabc the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-82",
+      "text": "According to doi:10.1177/001316446002000104 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-83",
+      "text": "According to doi:10.5860/choice.43-5664 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-84",
+      "text": "According to doi:10.2307/1164658 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-85",
+      "text": "According to doi:10.1016/0925-2312(95)90020-9 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-86",
+      "text": "According to doi:10.21019/ale.2000.252 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-87",
+      "text": "According to doi:10.1080/08923649509526885 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-88",
+      "text": "According to doi:10.1258/jrsm.99.4.178 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-89",
+      "text": "According to doi:10.2307/2185277 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-90",
+      "text": "According to doi:10.1016/j.dss.2010.06.003 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-91",
+      "text": "According to doi:10.1080/14703297.2012.678665 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-92",
+      "text": "According to doi:10.1016/j.compedu.2008.05.008 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-93",
+      "text": "According to doi:10.1016/j.chb.2015.05.041 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-94",
+      "text": "According to doi:10.1016/j.dss.2017.05.003 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-95",
+      "text": "According to doi:10.1016/j.compedu.2013.01.015 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-96",
+      "text": "According to doi:10.1016/j.compedu.2011.08.018 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-97",
+      "text": "According to doi:10.2190/cs.13.1.b the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-98",
+      "text": "According to doi:10.1177/0265532210364391 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-99",
+      "text": "According to doi:10.1016/j.compedu.2009.05.025 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-100",
+      "text": "According to doi:10.1111/jcal.12099 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-101",
+      "text": "According to doi:10.1007/s40593-013-0010-8 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-102",
+      "text": "According to doi:10.1016/j.ipm.2012.12.002 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-103",
+      "text": "According to doi:10.2167/la416.0 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-104",
+      "text": "According to doi:10.21225/d5930x the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-105",
+      "text": "According to doi:10.1109/tlt.2014.2330297 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-106",
+      "text": "According to doi:10.1108/02640470810879482 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-107",
+      "text": "According to doi:10.1016/j.knosys.2009.01.007 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-108",
+      "text": "According to doi:10.1109/te.2006.888902 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-109",
+      "text": "According to doi:10.11139/cj.28.1.99-134 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-110",
+      "text": "According to doi:10.1111/j.1540-4609.2007.00143.x the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-111",
+      "text": "According to doi:10.1016/j.compedu.2011.06.005 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-112",
+      "text": "According to doi:10.48550/arxiv.1201.0490 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-113",
+      "text": "According to doi:10.1023/a:1008202821328 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-114",
+      "text": "According to doi:10.1093/comjnl/7.4.308 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-115",
+      "text": "According to doi:10.1086/670067 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-116",
+      "text": "According to doi:10.1007/978-1-4612-6333-3 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-117",
+      "text": "According to doi:10.1109/mcse.2011.37 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-118",
+      "text": "According to doi:10.7717/peerj.453 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-119",
+      "text": "According to doi:10.25080/majora-92bf1922-011 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-120",
+      "text": "According to doi:10.1137/0916069 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-121",
+      "text": "According to doi:10.1073/pnas.0307752101 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-122",
+      "text": "According to doi:10.1145/235815.235821 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-123",
+      "text": "According to doi:10.1093/comjnl/7.2.155 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-124",
+      "text": "According to doi:10.1145/279232.279236 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-125",
+      "text": "According to doi:10.1137/1.9780898719857 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-126",
+      "text": "According to doi:10.1137/1.9780898719628 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-127",
+      "text": "According to doi:10.7717/peerj-cs.55 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-128",
+      "text": "According to doi:10.1137/0717021 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-129",
+      "text": "According to doi:10.1145/321607.321609 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-130",
+      "text": "According to doi:10.1145/2833157.2833162 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-131",
+      "text": "According to doi:10.1137/0904038 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-132",
+      "text": "According to doi:10.1007/978-94-015-8330-5_4 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-133",
+      "text": "According to doi:10.1109/mcse.2011.36 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-134",
+      "text": "According to doi:10.1109/mcse.2010.118 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-135",
+      "text": "According to doi:10.1137/0720042 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-136",
+      "text": "According to doi:10.1109/38.56302 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-137",
+      "text": "According to doi:10.1007/978-1-4757-3216-0_8 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-138",
+      "text": "According to doi:10.1109/mcse.2011.35 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-139",
+      "text": "According to doi:10.2172/6997568 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-140",
+      "text": "According to doi:10.1017/s0962492900002841 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-141",
+      "text": "According to doi:10.1145/1089014.1089017 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-142",
+      "text": "According to doi:10.1002/wics.1347 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-143",
+      "text": "According to doi:10.1145/3488560.3501396 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-144",
+      "text": "According to doi:10.1145/3485447.3512162 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-145",
+      "text": "According to doi:10.1016/j.aiopen.2021.01.001 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-146",
+      "text": "According to doi:10.1109/tnnls.2020.2978386 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-147",
+      "text": "According to doi:10.1007/s00138-021-01251-0 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-148",
+      "text": "According to doi:10.1016/j.ddtec.2020.11.009 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "got": "verified",
+      "ok": true
+    },
+    {
+      "id": "real-gold-149",
+      "text": "According to doi:10.1093/bioinformatics/btac112 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "got": "verified",

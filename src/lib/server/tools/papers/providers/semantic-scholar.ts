@@ -116,12 +116,18 @@ type PaperRef = {
   signal?: AbortSignal;
 };
 
-/** Fetch one paper by DOI or arXiv id. Never throws. */
-export async function fetchSemanticScholarPaper(
+export type SemanticScholarPaperResult = {
+  paper: Paper | null;
+  answered: boolean;
+  error?: string;
+};
+
+/** Fetch one paper by DOI or arXiv id with answer/error discrimination. */
+export async function fetchSemanticScholarPaperDetailed(
   id: PaperRef,
-): Promise<Paper | null> {
+): Promise<SemanticScholarPaperResult> {
   const ref = paperRef(id);
-  if (!ref) return null;
+  if (!ref) return { paper: null, answered: false, error: "empty id" };
   try {
     const res = await withSemanticScholarQueue(() =>
       fetchJson<unknown>(
@@ -129,10 +135,33 @@ export async function fetchSemanticScholarPaper(
         { headers: headers(), signal: id.signal },
       ),
     );
-    return res.ok ? normalizeSemanticScholarPaper(res.data) : null;
-  } catch {
-    return null;
+    if (!res.ok) {
+      const status = res.status;
+      if (status === 404) return { paper: null, answered: true };
+      return {
+        paper: null,
+        answered: false,
+        error: res.error || `HTTP ${status ?? "?"}`,
+      };
+    }
+    return {
+      paper: normalizeSemanticScholarPaper(res.data),
+      answered: true,
+    };
+  } catch (e) {
+    return {
+      paper: null,
+      answered: false,
+      error: e instanceof Error ? e.message : "Fetch failed",
+    };
   }
+}
+
+/** Fetch one paper by DOI or arXiv id. Never throws. */
+export async function fetchSemanticScholarPaper(
+  id: PaperRef,
+): Promise<Paper | null> {
+  return (await fetchSemanticScholarPaperDetailed(id)).paper;
 }
 
 /** Citations / references of a paper. Never throws (empty on failure). */
