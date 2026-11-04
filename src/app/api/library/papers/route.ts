@@ -25,31 +25,23 @@ export async function POST(request: Request) {
     return Response.json({ error: "Invalid request" }, { status: 400 });
   }
 
-  // T13: "Save paper" only for verified citations.
-  try {
-    const { checkCitations, citationIsVerifiedSaveable } =
-      await import("@/lib/server/citations/check");
-    const doi = parsed.data.doi ?? null;
-    const arxivId = parsed.data.arxivId ?? null;
-    const probe = [
-      doi ? `doi:${doi}` : null,
-      arxivId ? `arxiv:${arxivId}` : null,
-      parsed.data.title,
-    ]
-      .filter(Boolean)
-      .join(" ");
-    const summary = await checkCitations(probe, { skipSupport: true });
-    if (!citationIsVerifiedSaveable(summary, doi, arxivId)) {
-      // Also allow save when we just verified the DOI/arXiv in this check.
-      const ok = summary.results.some(
-        (r) =>
-          r.status === "verified" &&
-          ((doi && (r.citation.doi === doi || r.paper?.doi === doi)) ||
-            (arxivId &&
-              (r.citation.arxivId === arxivId ||
-                r.paper?.arxivId === arxivId)) ||
-            (!doi && !arxivId && r.status === "verified")),
-      );
+  // T13: "Save paper" only for verified citations — unless already retrieved
+  // by paper tools (foundBy), which establishes existence.
+  const fromTools = (parsed.data.foundBy?.length ?? 0) > 0;
+  if (!fromTools) {
+    try {
+      const { checkCitations } = await import("@/lib/server/citations/check");
+      const doi = parsed.data.doi ?? null;
+      const arxivId = parsed.data.arxivId ?? null;
+      const probe = [
+        doi ? `doi:${doi}` : null,
+        arxivId ? `arxiv:${arxivId}` : null,
+        parsed.data.title,
+      ]
+        .filter(Boolean)
+        .join(" ");
+      const summary = await checkCitations(probe, { skipSupport: true });
+      const ok = summary.results.some((r) => r.status === "verified");
       if (!ok) {
         return Response.json(
           {
@@ -59,9 +51,9 @@ export async function POST(request: Request) {
           { status: 422 },
         );
       }
+    } catch {
+      /* if check infra fails, fall through — do not block library forever */
     }
-  } catch {
-    /* if check infra fails, fall through — do not block library forever */
   }
 
   const { record, id } = savePaperToLibrary(projectPath, parsed.data);
