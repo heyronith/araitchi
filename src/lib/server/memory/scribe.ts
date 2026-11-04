@@ -219,6 +219,23 @@ export async function runScribe(
 
   setMemorySettings(input.projectPath, { lastScribeCostUsd: costUsd });
 
+  // T13: never save records whose only support is a failed citation.
+  try {
+    const { checkCitations, citationsBlockMemorySave } =
+      await import("@/lib/server/citations/check");
+    const citeSummary = await checkCitations(input.replyText, {
+      skipSupport: true,
+    });
+    if (citationsBlockMemorySave(citeSummary)) {
+      output = {
+        ...output,
+        create: output.create.filter((c) => c.type !== "paper"),
+      };
+    }
+  } catch {
+    /* ignore */
+  }
+
   const batchId = nanoid();
   const created: MemoryRecord[] = [];
   const updated: MemoryRecord[] = [];

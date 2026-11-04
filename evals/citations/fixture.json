@@ -1,0 +1,77 @@
+{
+  "cases": [
+    {
+      "id": "fake-doi",
+      "text": "According to doi:10.9999/this.doi.does.not.exist.9999 the moon is cheese.",
+      "expectedStatus": "not_found",
+      "kind": "fake"
+    },
+    {
+      "id": "mismatch-title",
+      "text": "Smith et al., 2020, \"A Paper About Unicorns\" (doi:10.5555/3295222.3295349) claims unicorns are real.",
+      "expectedStatus": "metadata_mismatch",
+      "kind": "mismatch",
+      "resolve": {
+        "doi": "10.5555/3295222.3295349",
+        "paper": {
+          "title": "Attention Is All You Need",
+          "authors": ["Ashish Vaswani"],
+          "year": 2017,
+          "venue": "NeurIPS",
+          "abstract": "We propose the Transformer architecture based solely on attention mechanisms.",
+          "doi": "10.5555/3295222.3295349",
+          "arxivId": "1706.03762",
+          "url": null,
+          "pdfUrl": null,
+          "citationCount": 1,
+          "foundBy": ["crossref"]
+        }
+      }
+    },
+    {
+      "id": "claim-contradicts",
+      "text": "arxiv:1706.03762 proves that RNNs are the only architecture that can translate languages.",
+      "expectedStatus": "claim_not_supported",
+      "kind": "support",
+      "resolve": {
+        "arxivId": "1706.03762",
+        "paper": {
+          "title": "Attention Is All You Need",
+          "authors": ["Ashish Vaswani"],
+          "year": 2017,
+          "venue": "NeurIPS",
+          "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+          "doi": "10.5555/3295222.3295349",
+          "arxivId": "1706.03762",
+          "url": null,
+          "pdfUrl": null,
+          "citationCount": 1,
+          "foundBy": ["arxiv"]
+        }
+      },
+      "support": "not_supported"
+    },
+    {
+      "id": "real-arxiv",
+      "text": "The Transformer (arxiv:1706.03762) uses self-attention instead of recurrence.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "arxivId": "1706.03762",
+        "paper": {
+          "title": "Attention Is All You Need",
+          "authors": ["Ashish Vaswani"],
+          "year": 2017,
+          "venue": "NeurIPS",
+          "abstract": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms.",
+          "doi": "10.5555/3295222.3295349",
+          "arxivId": "1706.03762",
+          "url": null,
+          "pdfUrl": null,
+          "citationCount": 1,
+          "foundBy": ["arxiv"]
+        }
+      }
+    }
+  ]
+}

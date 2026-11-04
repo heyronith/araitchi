@@ -8,6 +8,7 @@ import { Markdown } from "@/components/chat/markdown";
 import { AgentsSuggestions } from "@/components/chat/agents-suggestions";
 import { ExperimentDesigner } from "@/components/shell/experiment-designer";
 import { ProjectIndexProgress } from "@/components/shell/project-index-progress";
+import { PlanPanel } from "@/components/shell/plan-panel";
 import { StatePanel } from "@/components/shell/state-panel";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -43,6 +44,7 @@ export type MemoryRecordDto = {
 
 const TABS = [
   { id: "state", label: "State" },
+  { id: "plan", label: "Plan" },
   { id: "brief", label: "Brief" },
   { id: "timeline", label: "Timeline" },
   { id: "hypothesis", label: "Hypotheses" },
@@ -367,6 +369,10 @@ export function MemoryPanel({
           className="mt-0 flex min-h-0 flex-1 flex-col"
         >
           <StatePanel active={tab === "state"} />
+        </TabsContent>
+
+        <TabsContent value="plan" className="mt-0 flex min-h-0 flex-1 flex-col">
+          <PlanPanel />
         </TabsContent>
 
         <TabsContent

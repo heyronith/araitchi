@@ -25,6 +25,7 @@
     "eval:probe": "node scripts/eval-probe.mjs",
     "eval:litsearch": "node scripts/eval-litsearch.mjs",
     "eval:recall": "node scripts/eval-recall.mjs",
+    "eval:citations": "node scripts/eval-citations.mjs",
     "bench": "node scripts/bench.mjs",
     "bench:build-fixtures": "node scripts/build-bench-fixtures.mjs",
     "bench:validate-fixtures": "node scripts/validate-bench-fixtures.mjs",

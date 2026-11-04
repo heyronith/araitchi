@@ -14,6 +14,8 @@ import { listRecords } from "@/lib/server/project/records";
 import { stateHistory, stateProposals } from "@/lib/server/project/schema";
 import { STATE_TEMPLATE } from "@/lib/server/project/templates";
 
+import { nextStepsFromTasks } from "@/lib/server/plan/service";
+
 import { recordActivity } from "./activity";
 
 export const STATE_SECTIONS = [
@@ -33,12 +35,10 @@ const GENERATED: ReadonlySet<StateSection> = new Set([
   "Key decisions",
   "Already tested",
   "Open questions",
-]);
-
-const NARRATIVE: ReadonlySet<StateSection> = new Set([
-  "Current status",
   "Next steps",
 ]);
+
+const NARRATIVE: ReadonlySet<StateSection> = new Set(["Current status"]);
 
 export function statePath(projectPath: string): string {
   return path.join(researchDir(projectPath), "STATE.md");
@@ -182,10 +182,8 @@ export function rebuildStateMd(
     "Already tested":
       formatAlreadyTestedSection(projectPath).trim() || "_Nothing tested yet._",
     "Open questions": generatedQuestions(projectPath),
-    "Next steps":
-      (prev["Next steps"] ?? "")
-        .replace(/\n### System proposals[\s\S]*$/, "")
-        .trim() + pendingProposalsBlock(projectPath, "Next steps"),
+    // T13: Next steps come from open plan tasks (not free-form proposals).
+    "Next steps": nextStepsFromTasks(projectPath),
   };
 
   // Preserve user narrative even if empty placeholder

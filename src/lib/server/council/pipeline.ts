@@ -474,6 +474,27 @@ export async function runCouncil(input: {
     ok.map((m) => ({ modelId: m.modelId, content: m.content })),
   );
 
+  // T13: citation-check member answers before synthesis.
+  let citationBrief = "";
+  try {
+    const { checkCitations, formatMemberCitationBrief } =
+      await import("@/lib/server/citations/check");
+    const briefs: string[] = [];
+    for (const a of anonymized) {
+      const summary = await checkCitations(a.content, { skipSupport: true });
+      briefs.push(formatMemberCitationBrief(a.label, summary));
+    }
+    if (briefs.length) {
+      citationBrief = [
+        "",
+        "## Citation checks (pre-synthesis)",
+        ...briefs,
+      ].join("\n");
+    }
+  } catch {
+    citationBrief = "";
+  }
+
   const synthSystem =
     input.synthesizerSystem ?? loadPrompt("council-synthesizer.md");
   const userPrompt = [
@@ -481,7 +502,10 @@ export async function runCouncil(input: {
     "Synthesize the following independent answers:",
     "",
     formatAnonymizedPrompt(anonymized),
-  ].join("\n");
+    citationBrief,
+  ]
+    .filter(Boolean)
+    .join("\n");
 
   const synthModel = input.catalog.find(
     (m) => m.id === input.config.synthesizer,

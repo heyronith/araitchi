@@ -12,6 +12,7 @@ import {
   readProjectFilePage,
   recordRead,
 } from "@/lib/server/continuity/read-file";
+import { getPlan, listTasks } from "@/lib/server/plan/service";
 
 import type { RegisteredTool } from "../types";
 
@@ -150,5 +151,77 @@ export function createProjectTools(): RegisteredTool[] {
     },
   };
 
-  return [project_tree, search_project, read_file, search_activity];
+  const list_tasks: RegisteredTool = {
+    name: "list_tasks",
+    description:
+      "List research-plan tasks (read-only). Optional filters: status, owner (me|team).",
+    inputSchema: z.object({
+      status: z.enum(["todo", "doing", "blocked", "done"]).optional(),
+      owner: z.enum(["me", "team"]).optional(),
+    }),
+    kind: "read",
+    provider: "project",
+    ttlSec: 0,
+    handler: async (args, ctx) => {
+      const tasks = listTasks(ctx.projectPath, {
+        status: args.status,
+        owner: args.owner,
+      });
+      return {
+        ok: true,
+        data: tasks,
+        modelText:
+          tasks
+            .map(
+              (t) =>
+                `- [${t.status}] (${t.owner}) ${t.title}${t.milestoneId ? ` · milestone ${t.milestoneId.slice(0, 8)}` : ""}`,
+            )
+            .join("\n") || "No tasks.",
+      };
+    },
+  };
+
+  const get_plan: RegisteredTool = {
+    name: "get_plan",
+    description:
+      "Read-only overview of research milestones and tasks for this project.",
+    inputSchema: z.object({}),
+    kind: "read",
+    provider: "project",
+    ttlSec: 0,
+    handler: async (_args, ctx) => {
+      const plan = getPlan(ctx.projectPath);
+      return {
+        ok: true,
+        data: plan,
+        modelText: JSON.stringify(
+          {
+            milestones: plan.milestones.map((m) => ({
+              id: m.id,
+              title: m.title,
+              status: m.status,
+            })),
+            tasks: plan.tasks.map((t) => ({
+              id: t.id,
+              title: t.title,
+              status: t.status,
+              owner: t.owner,
+              milestoneId: t.milestoneId,
+            })),
+          },
+          null,
+          2,
+        ),
+      };
+    },
+  };
+
+  return [
+    project_tree,
+    search_project,
+    read_file,
+    search_activity,
+    list_tasks,
+    get_plan,
+  ];
 }
