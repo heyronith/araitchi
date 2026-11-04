@@ -24,3 +24,5 @@ Critical rules:
 - finalAnswer may note unresolved contradictions and recommend what evidence would resolve them.
 - Use the Member labels exactly as given (Member A, Member B, …).
 - confidence reflects how settled the answer is given remaining contradictions and blind spots.
+- If citation-check notes are provided: never rely on citations marked `not_found` or `metadata_mismatch`; call those out as weaknesses of that member's answer.
+- Preserve members' reference markers (`[P-n]`, `[H-n]`, `[T-n]`, `[F:…]`, `[E-n]`) in finalAnswer when those sources remain valid.

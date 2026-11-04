@@ -31,6 +31,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | T10 Live shakedown | ✅ | v0.1.2 |
 | T11 Quality (lit / gate / scribe / probe) | ✅ | v0.1.3 — frozen LitSearch: qwen R@5 28% / R@20 41% (targets 35/55 missed; pool 94%) |
 | T12 Research environment & continuity | ✅ | v0.1.4 — STATE.md, project map, recall eval, continuity tools |
+| T13 Trust (citations / traceability / plan) | 🔄 | rebasing → v0.1.5 |
 
 ## Known issues / follow-ups
 
@@ -56,5 +57,6 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 ## Next steps
 
 - Finish T11 (`v0.1.3`), then rebase/merge `t12-environment` and tag `v0.1.4`.
+- Then rebase/merge `t13-trust` and tag `v0.1.5`.
 - Owner: open a real project → indexing → ask “where are we?”; edit `.research/AGENTS.md`; confirm Read fully + model handoff + chat search.
 - Capture README screenshots; tune `config/defaults.json` from eval tables.

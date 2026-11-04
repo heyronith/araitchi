@@ -29,7 +29,9 @@ import { Markdown } from "@/components/chat/markdown";
 import { ModelPicker } from "@/components/chat/model-picker";
 import { ReasoningBlock } from "@/components/chat/reasoning-block";
 import { SaveToMemoryDialog } from "@/components/chat/save-to-memory-dialog";
+import { CitationBadges } from "@/components/chat/citation-badges";
 import { SourcesSection } from "@/components/chat/sources-section";
+import { TraceabilityView } from "@/components/chat/traceability-view";
 import {
   phaseFromCouncil,
   phaseFromToolCalls,
@@ -250,6 +252,29 @@ function extractGate(parts: UIMessage["parts"]): GateChipData | null {
   for (const p of parts) {
     if (p.type === "data-gate" && "data" in p) {
       return p.data as GateChipData;
+    }
+  }
+  return null;
+}
+
+function extractTrust(parts: UIMessage["parts"]): {
+  citations: import("@/lib/server/citations/types").CitationSummary;
+  summaryLine: string;
+  traceFooter: string;
+  claimMap: { sentence: string; markers: string[] }[];
+  sourcedCount: number;
+  sentenceCount: number;
+} | null {
+  for (const p of parts) {
+    if (p.type === "data-trust" && "data" in p) {
+      return p.data as {
+        citations: import("@/lib/server/citations/types").CitationSummary;
+        summaryLine: string;
+        traceFooter: string;
+        claimMap: { sentence: string; markers: string[] }[];
+        sourcedCount: number;
+        sentenceCount: number;
+      };
     }
   }
   return null;
@@ -834,6 +859,27 @@ export function ChatPanel({
                     ) : null}
                   </div>
                 ) : null}
+
+                {message.role === "assistant" && !isStreaming
+                  ? (() => {
+                      const trust = extractTrust(message.parts);
+                      if (!trust) return null;
+                      return (
+                        <div className="w-full">
+                          <CitationBadges
+                            summary={trust.citations}
+                            summaryLine={trust.summaryLine}
+                          />
+                          <TraceabilityView
+                            claimMap={trust.claimMap}
+                            sourcedCount={trust.sourcedCount}
+                            sentenceCount={trust.sentenceCount}
+                            footer={trust.traceFooter}
+                          />
+                        </div>
+                      );
+                    })()
+                  : null}
 
                 {message.role === "assistant"
                   ? (() => {

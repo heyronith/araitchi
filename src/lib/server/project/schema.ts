@@ -298,3 +298,52 @@ export const messageChunks = sqliteTable(
   },
   (t) => [uniqueIndex("message_chunks_msg_idx").on(t.messageId, t.chunkIdx)],
 );
+
+/** Research plan milestones (T13). */
+export const milestones = sqliteTable("milestones", {
+  id: text("id").primaryKey(),
+  title: text("title").notNull(),
+  goal: text("goal").notNull().default(""),
+  targetDate: integer("target_date"),
+  status: text("status").notNull().default("open"),
+  sortOrder: integer("sort_order").notNull().default(0),
+  createdAt: integer("created_at").notNull(),
+  updatedAt: integer("updated_at").notNull(),
+});
+
+/** Research plan tasks (T13). Table name plan_tasks to avoid SQL keyword clash. */
+export const planTasks = sqliteTable("plan_tasks", {
+  id: text("id").primaryKey(),
+  title: text("title").notNull(),
+  description: text("description").notNull().default(""),
+  owner: text("owner").notNull().default("me"),
+  status: text("status").notNull().default("todo"),
+  dueDate: integer("due_date"),
+  milestoneId: text("milestone_id"),
+  hypothesisIds: text("hypothesis_ids").notNull().default("[]"),
+  experimentIds: text("experiment_ids").notNull().default("[]"),
+  paperIds: text("paper_ids").notNull().default("[]"),
+  filePaths: text("file_paths").notNull().default("[]"),
+  sortOrder: integer("sort_order").notNull().default(0),
+  createdAt: integer("created_at").notNull(),
+  updatedAt: integer("updated_at").notNull(),
+});
+
+export const planSuggestions = sqliteTable("plan_suggestions", {
+  id: text("id").primaryKey(),
+  kind: text("kind").notNull(),
+  payload: text("payload").notNull(),
+  reason: text("reason").notNull().default(""),
+  status: text("status").notNull().default("pending"),
+  createdAt: integer("created_at").notNull(),
+});
+
+/** Citation + claim→source map persisted per assistant message (T13). */
+export const messageTrust = sqliteTable("message_trust", {
+  messageId: text("message_id").primaryKey(),
+  citations: text("citations").notNull().default("[]"),
+  claimMap: text("claim_map").notNull().default("[]"),
+  sourcedCount: integer("sourced_count").notNull().default(0),
+  sentenceCount: integer("sentence_count").notNull().default(0),
+  updatedAt: integer("updated_at").notNull(),
+});

@@ -496,6 +496,18 @@ export async function POST(request: Request) {
           });
         }
 
+        try {
+          const { attachTrustMeta } = await import("@/lib/server/trust/attach");
+          const trust = await attachTrustMeta({
+            projectPath,
+            messageId: assistantId,
+            text,
+          });
+          parts.push(trust.part);
+        } catch {
+          /* citation check is best-effort */
+        }
+
         updateMessage(assistantId, {
           parts,
           modelId,
@@ -857,6 +869,19 @@ async function handleCouncil(input: {
             id: scribeSummary.batchId,
             data: scribeSummary,
           });
+        }
+
+        try {
+          const { attachTrustMeta } = await import("@/lib/server/trust/attach");
+          const trust = await attachTrustMeta({
+            projectPath: input.projectPath,
+            messageId: input.assistantId,
+            text: finalText,
+          });
+          parts.push(trust.part);
+          writer.write(trust.part as never);
+        } catch {
+          /* best-effort */
         }
 
         updateMessage(input.assistantId, {

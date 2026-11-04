@@ -182,6 +182,13 @@ export async function runCheckResults(input: {
 
   applyVerdictToHypotheses(input.projectPath, updated.hypothesisIds, verdict);
   syncVerdictIntoMemory(input.projectPath, updated, verdict);
+  try {
+    const { suggestAnalyseAfterVerdict } =
+      await import("@/lib/server/plan/service");
+    suggestAnalyseAfterVerdict(input.projectPath, input.id, verdict);
+  } catch {
+    /* plan optional */
+  }
 
   // Replication rule: ≥2 independent passing locked versions in the family
   const passes = countPassingFamilyVersions(
