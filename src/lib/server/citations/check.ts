@@ -2,7 +2,7 @@ import "server-only";
 
 import { extractCitations } from "./extract";
 import { metadataMatches } from "./match";
-import { resolveCitation, type ResolveOptions } from "./resolve";
+import { resolveCitationDetailed, type ResolveOptions } from "./resolve";
 import { checkClaimSupportDetailed, type SupportCheckOptions } from "./support";
 import {
   emptySummary,
@@ -24,27 +24,42 @@ export async function checkCitations(
   const results: CitationCheckResult[] = [];
 
   for (const citation of extracted) {
-    let paper = null;
+    let resolved;
     try {
-      paper = await resolveCitation(citation, opts);
-    } catch {
-      paper = null;
-    }
-
-    if (!paper) {
+      resolved = await resolveCitationDetailed(citation, opts);
+    } catch (e) {
       results.push({
         citation,
-        status: "not_found",
+        status: "unchecked",
         paper: null,
         titleSimilarity: null,
         yearOk: null,
         authorOk: null,
         support: null,
-        reason: "Could not resolve citation in Crossref/arXiv/OpenAlex/S2",
+        reason:
+          e instanceof Error
+            ? `Resolution failed: ${e.message}`
+            : "Resolution failed",
       });
       continue;
     }
 
+    if (!resolved.paper) {
+      results.push({
+        citation,
+        status:
+          resolved.outcome.kind === "not_found" ? "not_found" : "unchecked",
+        paper: null,
+        titleSimilarity: null,
+        yearOk: null,
+        authorOk: null,
+        support: null,
+        reason: resolved.outcome.reason,
+      });
+      continue;
+    }
+
+    const paper = resolved.paper;
     const meta = metadataMatches(citation, paper);
     if (!meta.ok) {
       results.push({
@@ -130,8 +145,8 @@ export function formatMemberCitationBrief(
     return `  - [${r.status}] ${id}${r.reason ? ` — ${r.reason}` : ""}`;
   });
   return [
-    `${memberLabel}: ${summary.total} citations (${summary.verified} verified, ${summary.not_found} not found, ${summary.metadata_mismatch} mismatch, ${summary.claim_not_supported} unsupported).`,
-    "Do not rely on not_found or metadata_mismatch citations; treat those as weaknesses of this member's answer.",
+    `${memberLabel}: ${summary.total} citations (${summary.verified} verified, ${summary.not_found} not found, ${summary.metadata_mismatch} mismatch, ${summary.claim_not_supported} unsupported, ${summary.unchecked} unchecked).`,
+    "Do not rely on not_found, metadata_mismatch, or unchecked citations; treat those as weaknesses of this member's answer.",
     ...lines,
   ].join("\n");
 }

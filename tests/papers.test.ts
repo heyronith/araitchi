@@ -691,9 +691,13 @@ describe("paper tools", () => {
       vi.fn(async () => new Response("", { status: 404 })),
     );
     const get = createPaperTools({})[1];
-    expect(await get.handler({ doi: "10.1/none" }, ctx)).toEqual({
-      ok: false,
-      error: "Paper not found",
-    });
+    const out = await get.handler({ doi: "10.1/none" }, ctx);
+    expect(out.ok).toBe(false);
+    if (out.ok) return;
+    expect(out.error).toBe("Paper not found");
+    expect(out.data).toMatchObject({ paper: null });
+    expect(Array.isArray((out.data as { attempts?: unknown }).attempts)).toBe(
+      true,
+    );
   });
 });

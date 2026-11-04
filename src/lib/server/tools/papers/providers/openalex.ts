@@ -135,16 +135,28 @@ type WorkRef = {
   signal?: AbortSignal;
 };
 
+export type OpenAlexWorkResult = {
+  openAlexId: string | null;
+  paper: Paper | null;
+  answered: boolean;
+  error?: string;
+};
+
 /** Look up one work by DOI (or arXiv id via its DataCite DOI). Never throws. */
-async function lookupWork(
-  ref: WorkRef,
-): Promise<{ openAlexId: string | null; paper: Paper | null }> {
+async function lookupWork(ref: WorkRef): Promise<OpenAlexWorkResult> {
   try {
     const arxiv = normalizeArxivId(ref.arxivId ?? null);
     const doi =
       normalizeDoi(ref.doi ?? null) ??
       (arxiv ? `10.48550/arxiv.${arxiv}` : null);
-    if (!doi) return { openAlexId: null, paper: null };
+    if (!doi) {
+      return {
+        openAlexId: null,
+        paper: null,
+        answered: false,
+        error: "empty doi",
+      };
+    }
     const res = await withOpenAlexQueue(() =>
       fetchJson<unknown>(
         `${getProviderBaseUrl("openalex")}/works/doi:${encodeDoiPath(doi)}?${authParams(ref.mailto)}`,
@@ -154,20 +166,44 @@ async function lookupWork(
         },
       ),
     );
-    if (!res.ok) return { openAlexId: null, paper: null };
+    if (!res.ok) {
+      const status = res.status;
+      if (status === 404) {
+        return { openAlexId: null, paper: null, answered: true };
+      }
+      return {
+        openAlexId: null,
+        paper: null,
+        answered: false,
+        error: res.error || `HTTP ${status ?? "?"}`,
+      };
+    }
     const rawId = asStr(asObj(res.data).id);
     return {
       openAlexId: rawId ? (rawId.split("/").pop() ?? null) : null,
       paper: normalizeWork(res.data),
+      answered: true,
     };
-  } catch {
-    return { openAlexId: null, paper: null };
+  } catch (e) {
+    return {
+      openAlexId: null,
+      paper: null,
+      answered: false,
+      error: e instanceof Error ? e.message : "Fetch failed",
+    };
   }
 }
 
 /** Fetch one work by DOI or arXiv id. Never throws. */
 export async function fetchOpenAlexWork(ref: WorkRef): Promise<Paper | null> {
   return (await lookupWork(ref)).paper;
+}
+
+/** Fetch one work with answered/error discrimination. Never throws. */
+export async function fetchOpenAlexWorkDetailed(
+  ref: WorkRef,
+): Promise<OpenAlexWorkResult> {
+  return lookupWork(ref);
 }
 
 /** Citations / references of a work (fallback when Semantic Scholar has none). Never throws. */

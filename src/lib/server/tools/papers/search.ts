@@ -4,11 +4,11 @@ import { getBenchContext } from "@/lib/server/bench/context";
 
 import { mergePapers, normalizeArxivId, normalizeDoi, rrfRank } from "./merge";
 import {
-  fetchCrossrefWork,
+  fetchCrossrefWorkDetailed,
   fetchOpenAlexLinks,
-  fetchOpenAlexWork,
+  fetchOpenAlexWorkDetailed,
   fetchSemanticScholarLinks,
-  fetchSemanticScholarPaper,
+  fetchSemanticScholarPaperDetailed,
   lookupUnpaywall,
   searchArxiv,
   searchCore,
@@ -19,6 +19,17 @@ import {
   searchSemanticScholar,
 } from "./providers";
 import type { Paper, PaperProvider, ProviderSearchResult } from "./types";
+
+export type ProviderLookupAttempt = {
+  provider: PaperProvider;
+  answered: boolean;
+  error?: string;
+};
+
+export type GetPaperResult = {
+  paper: Paper | null;
+  attempts: ProviderLookupAttempt[];
+};
 
 export const SEARCH_PROVIDERS: PaperProvider[] = [
   "openalex",
@@ -119,17 +130,17 @@ export async function searchPapers(
   return { papers: filtered.slice(0, limit), providers };
 }
 
-export async function getPaper(input: {
+export async function getPaperDetailed(input: {
   doi?: string;
   arxivId?: string;
   contactEmail?: string | null;
   signal?: AbortSignal;
   /** When set, only these providers are queried (e.g. keyless Crossref+arXiv). */
   enabledProviders?: PaperProvider[];
-}): Promise<Paper | null> {
+}): Promise<GetPaperResult> {
   const doi = normalizeDoi(input.doi);
   const arxivId = normalizeArxivId(input.arxivId);
-  if (!doi && !arxivId) return null;
+  if (!doi && !arxivId) return { paper: null, attempts: [] };
 
   const enabled = input.enabledProviders?.length
     ? new Set(input.enabledProviders)
@@ -137,61 +148,146 @@ export async function getPaper(input: {
   const allows = (p: PaperProvider) => !enabled || enabled.has(p);
   const mailto = input.contactEmail?.trim() || undefined;
 
-  const parts: Paper[] = [];
+  type Job = Promise<{
+    paper: Paper | null;
+    attempt: ProviderLookupAttempt;
+  }>;
+  const jobs: Job[] = [];
+
   if (doi) {
-    const jobs: Promise<Paper | null>[] = [];
-    if (allows("openalex"))
-      jobs.push(fetchOpenAlexWork({ doi, signal: input.signal, mailto }));
-    if (allows("semantic_scholar"))
-      jobs.push(fetchSemanticScholarPaper({ doi, signal: input.signal }));
-    if (allows("crossref"))
-      jobs.push(fetchCrossrefWork({ doi, signal: input.signal, mailto }));
-    // arXiv-minted DOIs resolve via the arXiv API when enabled.
+    if (allows("openalex")) {
+      jobs.push(
+        fetchOpenAlexWorkDetailed({ doi, signal: input.signal, mailto }).then(
+          (r) => ({
+            paper: r.paper,
+            attempt: {
+              provider: "openalex" as const,
+              answered: r.answered,
+              error: r.error,
+            },
+          }),
+        ),
+      );
+    }
+    if (allows("semantic_scholar")) {
+      jobs.push(
+        fetchSemanticScholarPaperDetailed({
+          doi,
+          signal: input.signal,
+        }).then((r) => ({
+          paper: r.paper,
+          attempt: {
+            provider: "semantic_scholar" as const,
+            answered: r.answered,
+            error: r.error,
+          },
+        })),
+      );
+    }
+    if (allows("crossref")) {
+      jobs.push(
+        fetchCrossrefWorkDetailed({
+          doi,
+          signal: input.signal,
+          mailto,
+        }).then((r) => ({
+          paper: r.paper,
+          attempt: {
+            provider: "crossref" as const,
+            answered: r.answered,
+            error: r.error,
+          },
+        })),
+      );
+    }
     const arxivFromDoi = doi.toLowerCase().startsWith("10.48550/arxiv.")
       ? normalizeArxivId(doi.slice("10.48550/arxiv.".length))
       : null;
     if (arxivFromDoi && allows("arxiv")) {
       jobs.push(
         searchArxiv(arxivFromDoi, { limit: 1, signal: input.signal }).then(
-          (r) => r.papers[0] ?? null,
+          (r) => ({
+            paper: r.ok ? (r.papers[0] ?? null) : null,
+            attempt: {
+              provider: "arxiv" as const,
+              answered: r.ok,
+              error: r.ok ? undefined : (r.error ?? "error"),
+            },
+          }),
         ),
       );
-    }
-    for (const p of await Promise.all(jobs)) {
-      if (p) parts.push(p);
     }
   } else if (arxivId) {
-    const jobs: Promise<Paper | null>[] = [];
-    if (allows("openalex"))
-      jobs.push(fetchOpenAlexWork({ arxivId, signal: input.signal, mailto }));
-    if (allows("semantic_scholar"))
-      jobs.push(fetchSemanticScholarPaper({ arxivId, signal: input.signal }));
-    if (allows("arxiv")) {
+    if (allows("openalex")) {
       jobs.push(
-        searchArxiv(arxivId, { limit: 1, signal: input.signal }).then(
-          (r) => r.papers[0] ?? null,
-        ),
+        fetchOpenAlexWorkDetailed({
+          arxivId,
+          signal: input.signal,
+          mailto,
+        }).then((r) => ({
+          paper: r.paper,
+          attempt: {
+            provider: "openalex" as const,
+            answered: r.answered,
+            error: r.error,
+          },
+        })),
       );
     }
-    // Crossref only when explicitly enabled (keyless mode) — avoid surprise
-    // network calls on default getPaper(arxivId) paths used in tests/tools.
+    if (allows("semantic_scholar")) {
+      jobs.push(
+        fetchSemanticScholarPaperDetailed({
+          arxivId,
+          signal: input.signal,
+        }).then((r) => ({
+          paper: r.paper,
+          attempt: {
+            provider: "semantic_scholar" as const,
+            answered: r.answered,
+            error: r.error,
+          },
+        })),
+      );
+    }
+    if (allows("arxiv")) {
+      jobs.push(
+        searchArxiv(arxivId, { limit: 1, signal: input.signal }).then((r) => ({
+          paper: r.ok ? (r.papers[0] ?? null) : null,
+          attempt: {
+            provider: "arxiv" as const,
+            answered: r.ok,
+            error: r.ok ? undefined : (r.error ?? "error"),
+          },
+        })),
+      );
+    }
     if (enabled?.has("crossref")) {
       jobs.push(
-        fetchCrossrefWork({
+        fetchCrossrefWorkDetailed({
           doi: `10.48550/arxiv.${arxivId}`,
           signal: input.signal,
           mailto,
-        }),
+        }).then((r) => ({
+          paper: r.paper,
+          attempt: {
+            provider: "crossref" as const,
+            answered: r.answered,
+            error: r.error,
+          },
+        })),
       );
-    }
-    for (const p of await Promise.all(jobs)) {
-      if (p) parts.push(p);
     }
   }
 
-  if (parts.length === 0) return null;
+  const settled = await Promise.all(jobs);
+  const attempts = settled.map((s) => s.attempt);
+  const parts = settled
+    .map((s) => s.paper)
+    .filter((p): p is Paper => Boolean(p));
+
+  if (parts.length === 0) return { paper: null, attempts };
   let paper = mergePapers([parts])[0] ?? null;
-  if (!paper) return null;
+  if (!paper) return { paper: null, attempts };
 
   if (paper.doi && input.contactEmail) {
     const oa = await lookupUnpaywall(paper.doi, {
@@ -200,7 +296,18 @@ export async function getPaper(input: {
     });
     if (oa?.pdfUrl) paper = { ...paper, pdfUrl: oa.pdfUrl };
   }
-  return paper;
+  return { paper, attempts };
+}
+
+export async function getPaper(input: {
+  doi?: string;
+  arxivId?: string;
+  contactEmail?: string | null;
+  signal?: AbortSignal;
+  /** When set, only these providers are queried (e.g. keyless Crossref+arXiv). */
+  enabledProviders?: PaperProvider[];
+}): Promise<Paper | null> {
+  return (await getPaperDetailed(input)).paper;
 }
 
 export async function paperLinks(input: {

@@ -1,11 +1,11 @@
 {
   "meta": {
-    "builtAt": "2026-11-04T01:00:45.400Z",
+    "builtAt": "2026-11-04T04:05:16.804Z",
     "counts": {
       "fake": 60,
       "mismatch": 40,
       "support": 40,
-      "real": 60
+      "real": 150
     },
     "sources": ["evals/bench/literature/items.json", "known landmark papers"]
   },
@@ -2392,7 +2392,7 @@
     },
     {
       "id": "real-gold-8",
-      "text": "Author9 Surname et al., 2008, \"Gold literature paper 8: foundations of method 8\" (doi:10.1109/cvpr.2015.7298965) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2015.7298965 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2415,7 +2415,7 @@
     },
     {
       "id": "real-gold-9",
-      "text": "Author10 Surname et al., 2009, \"Gold literature paper 9: foundations of method 9\" (doi:10.1109/cvpr.2014.81) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2014.81 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2438,7 +2438,7 @@
     },
     {
       "id": "real-gold-10",
-      "text": "Author11 Surname et al., 2010, \"Gold literature paper 10: foundations of method 10\" (doi:10.1038/323533a0) reports relevant prior work.",
+      "text": "According to doi:10.1038/323533a0 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2461,7 +2461,7 @@
     },
     {
       "id": "real-gold-11",
-      "text": "Author12 Surname et al., 2011, \"Gold literature paper 11: foundations of method 11\" (doi:10.1109/iccv.2015.169) reports relevant prior work.",
+      "text": "According to doi:10.1109/iccv.2015.169 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2484,7 +2484,7 @@
     },
     {
       "id": "real-gold-12",
-      "text": "Author13 Surname et al., 2012, \"Gold literature paper 12: foundations of method 12\" (doi:10.48550/arxiv.1502.03167) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1502.03167 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2507,7 +2507,7 @@
     },
     {
       "id": "real-gold-13",
-      "text": "Author14 Surname et al., 2013, \"Gold literature paper 13: foundations of method 13\" (doi:10.1109/iccv.2015.123) reports relevant prior work.",
+      "text": "According to doi:10.1109/iccv.2015.123 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2530,7 +2530,7 @@
     },
     {
       "id": "real-gold-14",
-      "text": "Author15 Surname et al., 2014, \"Gold literature paper 14: foundations of method 14\" (doi:10.1007/bf02478259) reports relevant prior work.",
+      "text": "According to doi:10.1007/bf02478259 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2553,7 +2553,7 @@
     },
     {
       "id": "real-gold-15",
-      "text": "Author16 Surname et al., 2015, \"Gold literature paper 15: foundations of method 15\" (doi:10.1109/cvpr.2015.7298682) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2015.7298682 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2576,7 +2576,7 @@
     },
     {
       "id": "real-gold-16",
-      "text": "Author17 Surname et al., 2016, \"Gold literature paper 16: foundations of method 16\" (doi:10.3115/v1/d14-1181) reports relevant prior work.",
+      "text": "According to doi:10.3115/v1/d14-1181 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2599,7 +2599,7 @@
     },
     {
       "id": "real-gold-17",
-      "text": "Author18 Surname et al., 2017, \"Gold literature paper 17: foundations of method 17\" (doi:10.1113/jphysiol.1962.sp006837) reports relevant prior work.",
+      "text": "According to doi:10.1113/jphysiol.1962.sp006837 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2622,7 +2622,7 @@
     },
     {
       "id": "real-gold-18",
-      "text": "Author19 Surname et al., 2018, \"Gold literature paper 18: foundations of method 18\" (doi:10.1037/h0042519) reports relevant prior work.",
+      "text": "According to doi:10.1037/h0042519 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2645,7 +2645,7 @@
     },
     {
       "id": "real-gold-19",
-      "text": "Author20 Surname et al., 2019, \"Gold literature paper 19: foundations of method 19\" (doi:10.1109/tpami.2015.2389824) reports relevant prior work.",
+      "text": "According to doi:10.1109/tpami.2015.2389824 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2668,7 +2668,7 @@
     },
     {
       "id": "real-gold-20",
-      "text": "Author21 Surname et al., 2020, \"Gold literature paper 20: foundations of method 20\" (doi:10.48550/arxiv.1412.6572) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1412.6572 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2691,7 +2691,7 @@
     },
     {
       "id": "real-gold-21",
-      "text": "Author22 Surname et al., 2021, \"Gold literature paper 21: foundations of method 21\" (doi:10.1109/tnn.2008.2005605) reports relevant prior work.",
+      "text": "According to doi:10.1109/tnn.2008.2005605 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2714,7 +2714,7 @@
     },
     {
       "id": "real-gold-22",
-      "text": "Author23 Surname et al., 2022, \"Gold literature paper 22: foundations of method 22\" (doi:10.48550/arxiv.1206.2944) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1206.2944 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2737,7 +2737,7 @@
     },
     {
       "id": "real-gold-23",
-      "text": "Author24 Surname et al., 2023, \"Gold literature paper 23: foundations of method 23\" (doi:10.1109/cvpr.2014.220) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2014.220 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2760,7 +2760,7 @@
     },
     {
       "id": "real-gold-24",
-      "text": "Author25 Surname et al., 2000, \"Gold literature paper 24: foundations of method 24\" (doi:10.1109/cvpr.2015.7298801) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2015.7298801 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2783,7 +2783,7 @@
     },
     {
       "id": "real-gold-25",
-      "text": "Author26 Surname et al., 2001, \"Gold literature paper 25: foundations of method 25\" (doi:10.1109/cvpr.2006.100) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2006.100 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2806,7 +2806,7 @@
     },
     {
       "id": "real-gold-26",
-      "text": "Author1 Surname et al., 2002, \"Gold literature paper 26: foundations of method 26\" (doi:10.48550/arxiv.1212.5701) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1212.5701 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2829,7 +2829,7 @@
     },
     {
       "id": "real-gold-27",
-      "text": "Author2 Surname et al., 2003, \"Gold literature paper 27: foundations of method 27\" (doi:10.48550/arxiv.1510.00149) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1510.00149 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2852,7 +2852,7 @@
     },
     {
       "id": "real-gold-28",
-      "text": "Author3 Surname et al., 2004, \"Gold literature paper 28: foundations of method 28\" (doi:10.48550/arxiv.1312.6203) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1312.6203 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2875,7 +2875,7 @@
     },
     {
       "id": "real-gold-29",
-      "text": "Author4 Surname et al., 2005, \"Gold literature paper 29: foundations of method 29\" (doi:10.1109/29.21701) reports relevant prior work.",
+      "text": "According to doi:10.1109/29.21701 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2898,7 +2898,7 @@
     },
     {
       "id": "real-gold-30",
-      "text": "Author5 Surname et al., 2006, \"Gold literature paper 30: foundations of method 30\" (doi:10.1162/neco.1997.9.8.1735) reports relevant prior work.",
+      "text": "According to doi:10.1162/neco.1997.9.8.1735 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2921,7 +2921,7 @@
     },
     {
       "id": "real-gold-31",
-      "text": "Author6 Surname et al., 2007, \"Gold literature paper 31: foundations of method 31\" (doi:10.1007/978-3-319-10602-1_48) reports relevant prior work.",
+      "text": "According to doi:10.1007/978-3-319-10602-1_48 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2944,7 +2944,7 @@
     },
     {
       "id": "real-gold-32",
-      "text": "Author7 Surname et al., 2008, \"Gold literature paper 32: foundations of method 32\" (doi:10.1109/tsmc.1979.4310076) reports relevant prior work.",
+      "text": "According to doi:10.1109/tsmc.1979.4310076 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2967,7 +2967,7 @@
     },
     {
       "id": "real-gold-33",
-      "text": "Author8 Surname et al., 2009, \"Gold literature paper 33: foundations of method 33\" (doi:10.1109/tpami.2016.2644615) reports relevant prior work.",
+      "text": "According to doi:10.1109/tpami.2016.2644615 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -2990,7 +2990,7 @@
     },
     {
       "id": "real-gold-34",
-      "text": "Author9 Surname et al., 2010, \"Gold literature paper 34: foundations of method 34\" (doi:10.1007/s11263-009-0275-4) reports relevant prior work.",
+      "text": "According to doi:10.1007/s11263-009-0275-4 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3013,7 +3013,7 @@
     },
     {
       "id": "real-gold-35",
-      "text": "Author10 Surname et al., 2011, \"Gold literature paper 35: foundations of method 35\" (doi:10.3156/jsoft.29.5_177_2) reports relevant prior work.",
+      "text": "According to doi:10.3156/jsoft.29.5_177_2 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3036,7 +3036,7 @@
     },
     {
       "id": "real-gold-36",
-      "text": "Author11 Surname et al., 2012, \"Gold literature paper 36: foundations of method 36\" (doi:10.1007/bf00133570) reports relevant prior work.",
+      "text": "According to doi:10.1007/bf00133570 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3059,7 +3059,7 @@
     },
     {
       "id": "real-gold-37",
-      "text": "Author12 Surname et al., 2013, \"Gold literature paper 37: foundations of method 37\" (doi:10.1109/83.902291) reports relevant prior work.",
+      "text": "According to doi:10.1109/83.902291 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3082,7 +3082,7 @@
     },
     {
       "id": "real-gold-38",
-      "text": "Author13 Surname et al., 2014, \"Gold literature paper 38: foundations of method 38\" (doi:10.1177/0278364913491297) reports relevant prior work.",
+      "text": "According to doi:10.1177/0278364913491297 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3105,7 +3105,7 @@
     },
     {
       "id": "real-gold-39",
-      "text": "Author14 Surname et al., 2015, \"Gold literature paper 39: foundations of method 39\" (doi:10.48550/arxiv.1411.1784) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1411.1784 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3128,7 +3128,7 @@
     },
     {
       "id": "real-gold-40",
-      "text": "Author15 Surname et al., 2016, \"Gold literature paper 40: foundations of method 40\" (doi:10.1109/iccv.2001.937655) reports relevant prior work.",
+      "text": "According to doi:10.1109/iccv.2001.937655 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3151,7 +3151,7 @@
     },
     {
       "id": "real-gold-41",
-      "text": "Author16 Surname et al., 2017, \"Gold literature paper 41: foundations of method 41\" (doi:10.1109/34.969114) reports relevant prior work.",
+      "text": "According to doi:10.1109/34.969114 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3174,7 +3174,7 @@
     },
     {
       "id": "real-gold-42",
-      "text": "Author17 Surname et al., 2018, \"Gold literature paper 42: foundations of method 42\" (doi:10.1007/978-3-642-33715-4_54) reports relevant prior work.",
+      "text": "According to doi:10.1007/978-3-642-33715-4_54 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3197,7 +3197,7 @@
     },
     {
       "id": "real-gold-43",
-      "text": "Author18 Surname et al., 2019, \"Gold literature paper 43: foundations of method 43\" (doi:10.1007/bf00344251) reports relevant prior work.",
+      "text": "According to doi:10.1007/bf00344251 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3220,7 +3220,7 @@
     },
     {
       "id": "real-gold-44",
-      "text": "Author19 Surname et al., 2020, \"Gold literature paper 44: foundations of method 44\" (doi:10.1109/iccv.2015.178) reports relevant prior work.",
+      "text": "According to doi:10.1109/iccv.2015.178 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3243,7 +3243,7 @@
     },
     {
       "id": "real-gold-45",
-      "text": "Author20 Surname et al., 2021, \"Gold literature paper 45: foundations of method 45\" (doi:10.48550/arxiv.1412.7062) reports relevant prior work.",
+      "text": "According to doi:10.48550/arxiv.1412.7062 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3266,7 +3266,7 @@
     },
     {
       "id": "real-gold-46",
-      "text": "Author21 Surname et al., 2022, \"Gold literature paper 46: foundations of method 46\" (doi:10.5860/choice.48-5140) reports relevant prior work.",
+      "text": "According to doi:10.5860/choice.48-5140 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3289,7 +3289,7 @@
     },
     {
       "id": "real-gold-47",
-      "text": "Author22 Surname et al., 2023, \"Gold literature paper 47: foundations of method 47\" (doi:10.1109/iccv.2015.304) reports relevant prior work.",
+      "text": "According to doi:10.1109/iccv.2015.304 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3312,7 +3312,7 @@
     },
     {
       "id": "real-gold-48",
-      "text": "Author23 Surname et al., 2000, \"Gold literature paper 48: foundations of method 48\" (doi:10.1109/iccv.2015.179) reports relevant prior work.",
+      "text": "According to doi:10.1109/iccv.2015.179 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3335,7 +3335,7 @@
     },
     {
       "id": "real-gold-49",
-      "text": "Author24 Surname et al., 2001, \"Gold literature paper 49: foundations of method 49\" (doi:10.1109/cvpr.2015.7298655) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2015.7298655 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3358,7 +3358,7 @@
     },
     {
       "id": "real-gold-50",
-      "text": "Author25 Surname et al., 2002, \"Gold literature paper 50: foundations of method 50\" (doi:10.1109/iccv.2011.6126343) reports relevant prior work.",
+      "text": "According to doi:10.1109/iccv.2011.6126343 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3381,7 +3381,7 @@
     },
     {
       "id": "real-gold-51",
-      "text": "Author26 Surname et al., 2003, \"Gold literature paper 51: foundations of method 51\" (doi:10.1109/cvpr.2014.119) reports relevant prior work.",
+      "text": "According to doi:10.1109/cvpr.2014.119 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3404,7 +3404,7 @@
     },
     {
       "id": "real-gold-52",
-      "text": "Author1 Surname et al., 2004, \"Gold literature paper 52: foundations of method 52\" (doi:10.1182/blood-2010-05-282780) reports relevant prior work.",
+      "text": "According to doi:10.1182/blood-2010-05-282780 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3427,7 +3427,7 @@
     },
     {
       "id": "real-gold-53",
-      "text": "Author2 Surname et al., 2005, \"Gold literature paper 53: foundations of method 53\" (doi:10.1038/ng.3415) reports relevant prior work.",
+      "text": "According to doi:10.1038/ng.3415 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3450,7 +3450,7 @@
     },
     {
       "id": "real-gold-54",
-      "text": "Author3 Surname et al., 2006, \"Gold literature paper 54: foundations of method 54\" (doi:10.1182/blood-2013-11-536359) reports relevant prior work.",
+      "text": "According to doi:10.1182/blood-2013-11-536359 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3473,7 +3473,7 @@
     },
     {
       "id": "real-gold-55",
-      "text": "Author4 Surname et al., 2007, \"Gold literature paper 55: foundations of method 55\" (doi:10.1159/000439267) reports relevant prior work.",
+      "text": "According to doi:10.1159/000439267 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3496,7 +3496,7 @@
     },
     {
       "id": "real-gold-56",
-      "text": "Author5 Surname et al., 2008, \"Gold literature paper 56: foundations of method 56\" (doi:10.1182/blood.v91.6.2076) reports relevant prior work.",
+      "text": "According to doi:10.1182/blood.v91.6.2076 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3519,7 +3519,7 @@
     },
     {
       "id": "real-gold-57",
-      "text": "Author6 Surname et al., 2009, \"Gold literature paper 57: foundations of method 57\" (doi:10.1182/blood-2011-10-381921) reports relevant prior work.",
+      "text": "According to doi:10.1182/blood-2011-10-381921 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3542,7 +3542,7 @@
     },
     {
       "id": "real-gold-58",
-      "text": "Author7 Surname et al., 2010, \"Gold literature paper 58: foundations of method 58\" (doi:10.1038/ki.2014.408) reports relevant prior work.",
+      "text": "According to doi:10.1038/ki.2014.408 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3565,7 +3565,7 @@
     },
     {
       "id": "real-gold-59",
-      "text": "Author8 Surname et al., 2011, \"Gold literature paper 59: foundations of method 59\" (doi:10.1182/blood-2013-10-531509) reports relevant prior work.",
+      "text": "According to doi:10.1182/blood-2013-10-531509 the cited prior work is relevant to this question.",
       "expectedStatus": "verified",
       "kind": "real",
       "resolve": {
@@ -3581,6 +3581,2076 @@
           "url": "https://doi.org/10.1182/blood-2013-10-531509",
           "pdfUrl": null,
           "citationCount": 69,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-60",
+      "text": "According to doi:10.1038/sj.leu.2403501 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1038/sj.leu.2403501",
+        "paper": {
+          "title": "Gold literature paper 60: foundations of method 60",
+          "authors": ["Author9 Surname"],
+          "year": 2012,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 60 and reports empirical results on standard benchmarks. We find that technique 60 improves accuracy under controlled conditions.",
+          "doi": "10.1038/sj.leu.2403501",
+          "arxivId": null,
+          "url": "https://doi.org/10.1038/sj.leu.2403501",
+          "pdfUrl": null,
+          "citationCount": 70,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-61",
+      "text": "According to doi:10.1097/01.pas.0000209855.28282.ce the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1097/01.pas.0000209855.28282.ce",
+        "paper": {
+          "title": "Gold literature paper 61: foundations of method 61",
+          "authors": ["Author10 Surname"],
+          "year": 2013,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 61 and reports empirical results on standard benchmarks. We find that technique 61 improves accuracy under controlled conditions.",
+          "doi": "10.1097/01.pas.0000209855.28282.ce",
+          "arxivId": null,
+          "url": "https://doi.org/10.1097/01.pas.0000209855.28282.ce",
+          "pdfUrl": null,
+          "citationCount": 71,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-62",
+      "text": "According to doi:10.1182/blood.v99.2.627 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1182/blood.v99.2.627",
+        "paper": {
+          "title": "Gold literature paper 62: foundations of method 62",
+          "authors": ["Author11 Surname"],
+          "year": 2014,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 62 and reports empirical results on standard benchmarks. We find that technique 62 improves accuracy under controlled conditions.",
+          "doi": "10.1182/blood.v99.2.627",
+          "arxivId": null,
+          "url": "https://doi.org/10.1182/blood.v99.2.627",
+          "pdfUrl": null,
+          "citationCount": 72,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-63",
+      "text": "According to doi:10.1097/00000478-200310000-00007 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1097/00000478-200310000-00007",
+        "paper": {
+          "title": "Gold literature paper 63: foundations of method 63",
+          "authors": ["Author12 Surname"],
+          "year": 2015,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 63 and reports empirical results on standard benchmarks. We find that technique 63 improves accuracy under controlled conditions.",
+          "doi": "10.1097/00000478-200310000-00007",
+          "arxivId": null,
+          "url": "https://doi.org/10.1097/00000478-200310000-00007",
+          "pdfUrl": null,
+          "citationCount": 73,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-64",
+      "text": "According to doi:10.1182/blood-2013-02-474437 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1182/blood-2013-02-474437",
+        "paper": {
+          "title": "Gold literature paper 64: foundations of method 64",
+          "authors": ["Author13 Surname"],
+          "year": 2016,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 64 and reports empirical results on standard benchmarks. We find that technique 64 improves accuracy under controlled conditions.",
+          "doi": "10.1182/blood-2013-02-474437",
+          "arxivId": null,
+          "url": "https://doi.org/10.1182/blood-2013-02-474437",
+          "pdfUrl": null,
+          "citationCount": 74,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-65",
+      "text": "According to doi:10.1182/blood-2008-12-194852 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1182/blood-2008-12-194852",
+        "paper": {
+          "title": "Gold literature paper 65: foundations of method 65",
+          "authors": ["Author14 Surname"],
+          "year": 2017,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 65 and reports empirical results on standard benchmarks. We find that technique 65 improves accuracy under controlled conditions.",
+          "doi": "10.1182/blood-2008-12-194852",
+          "arxivId": null,
+          "url": "https://doi.org/10.1182/blood-2008-12-194852",
+          "pdfUrl": null,
+          "citationCount": 75,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-66",
+      "text": "According to doi:10.1182/blood-2004-03-1206 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1182/blood-2004-03-1206",
+        "paper": {
+          "title": "Gold literature paper 66: foundations of method 66",
+          "authors": ["Author15 Surname"],
+          "year": 2018,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 66 and reports empirical results on standard benchmarks. We find that technique 66 improves accuracy under controlled conditions.",
+          "doi": "10.1182/blood-2004-03-1206",
+          "arxivId": null,
+          "url": "https://doi.org/10.1182/blood-2004-03-1206",
+          "pdfUrl": null,
+          "citationCount": 76,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-67",
+      "text": "According to doi:10.1182/blood.v96.10.3569 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1182/blood.v96.10.3569",
+        "paper": {
+          "title": "Gold literature paper 67: foundations of method 67",
+          "authors": ["Author16 Surname"],
+          "year": 2019,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 67 and reports empirical results on standard benchmarks. We find that technique 67 improves accuracy under controlled conditions.",
+          "doi": "10.1182/blood.v96.10.3569",
+          "arxivId": null,
+          "url": "https://doi.org/10.1182/blood.v96.10.3569",
+          "pdfUrl": null,
+          "citationCount": 77,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-68",
+      "text": "According to doi:10.1182/blood-2013-07-512830 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1182/blood-2013-07-512830",
+        "paper": {
+          "title": "Gold literature paper 68: foundations of method 68",
+          "authors": ["Author17 Surname"],
+          "year": 2020,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 68 and reports empirical results on standard benchmarks. We find that technique 68 improves accuracy under controlled conditions.",
+          "doi": "10.1182/blood-2013-07-512830",
+          "arxivId": null,
+          "url": "https://doi.org/10.1182/blood-2013-07-512830",
+          "pdfUrl": null,
+          "citationCount": 78,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-69",
+      "text": "According to doi:10.1016/s0002-9440(10)64630-5 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/s0002-9440(10)64630-5",
+        "paper": {
+          "title": "Gold literature paper 69: foundations of method 69",
+          "authors": ["Author18 Surname"],
+          "year": 2021,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 69 and reports empirical results on standard benchmarks. We find that technique 69 improves accuracy under controlled conditions.",
+          "doi": "10.1016/s0002-9440(10)64630-5",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/s0002-9440(10)64630-5",
+          "pdfUrl": null,
+          "citationCount": 79,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-70",
+      "text": "According to doi:10.1016/0145-2126(80)90066-1 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/0145-2126(80)90066-1",
+        "paper": {
+          "title": "Gold literature paper 70: foundations of method 70",
+          "authors": ["Author19 Surname"],
+          "year": 2022,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 70 and reports empirical results on standard benchmarks. We find that technique 70 improves accuracy under controlled conditions.",
+          "doi": "10.1016/0145-2126(80)90066-1",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/0145-2126(80)90066-1",
+          "pdfUrl": null,
+          "citationCount": 80,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-71",
+      "text": "According to doi:10.1111/his.12251 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1111/his.12251",
+        "paper": {
+          "title": "Gold literature paper 71: foundations of method 71",
+          "authors": ["Author20 Surname"],
+          "year": 2023,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 71 and reports empirical results on standard benchmarks. We find that technique 71 improves accuracy under controlled conditions.",
+          "doi": "10.1111/his.12251",
+          "arxivId": null,
+          "url": "https://doi.org/10.1111/his.12251",
+          "pdfUrl": null,
+          "citationCount": 81,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-72",
+      "text": "According to doi:10.1002/path.1715 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1002/path.1715",
+        "paper": {
+          "title": "Gold literature paper 72: foundations of method 72",
+          "authors": ["Author21 Surname"],
+          "year": 2000,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 72 and reports empirical results on standard benchmarks. We find that technique 72 improves accuracy under controlled conditions.",
+          "doi": "10.1002/path.1715",
+          "arxivId": null,
+          "url": "https://doi.org/10.1002/path.1715",
+          "pdfUrl": null,
+          "citationCount": 82,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-73",
+      "text": "According to doi:10.1182/blood-2008-07-168682 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1182/blood-2008-07-168682",
+        "paper": {
+          "title": "Gold literature paper 73: foundations of method 73",
+          "authors": ["Author22 Surname"],
+          "year": 2001,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 73 and reports empirical results on standard benchmarks. We find that technique 73 improves accuracy under controlled conditions.",
+          "doi": "10.1182/blood-2008-07-168682",
+          "arxivId": null,
+          "url": "https://doi.org/10.1182/blood-2008-07-168682",
+          "pdfUrl": null,
+          "citationCount": 83,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-74",
+      "text": "According to doi:10.1111/j.1365-2141.2011.08942.x the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1111/j.1365-2141.2011.08942.x",
+        "paper": {
+          "title": "Gold literature paper 74: foundations of method 74",
+          "authors": ["Author23 Surname"],
+          "year": 2002,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 74 and reports empirical results on standard benchmarks. We find that technique 74 improves accuracy under controlled conditions.",
+          "doi": "10.1111/j.1365-2141.2011.08942.x",
+          "arxivId": null,
+          "url": "https://doi.org/10.1111/j.1365-2141.2011.08942.x",
+          "pdfUrl": null,
+          "citationCount": 84,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-75",
+      "text": "According to doi:10.1200/jco.2008.21.2704 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1200/jco.2008.21.2704",
+        "paper": {
+          "title": "Gold literature paper 75: foundations of method 75",
+          "authors": ["Author24 Surname"],
+          "year": 2003,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 75 and reports empirical results on standard benchmarks. We find that technique 75 improves accuracy under controlled conditions.",
+          "doi": "10.1200/jco.2008.21.2704",
+          "arxivId": null,
+          "url": "https://doi.org/10.1200/jco.2008.21.2704",
+          "pdfUrl": null,
+          "citationCount": 85,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-76",
+      "text": "According to doi:10.1182/blood-2010-06-290650 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1182/blood-2010-06-290650",
+        "paper": {
+          "title": "Gold literature paper 76: foundations of method 76",
+          "authors": ["Author25 Surname"],
+          "year": 2004,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 76 and reports empirical results on standard benchmarks. We find that technique 76 improves accuracy under controlled conditions.",
+          "doi": "10.1182/blood-2010-06-290650",
+          "arxivId": null,
+          "url": "https://doi.org/10.1182/blood-2010-06-290650",
+          "pdfUrl": null,
+          "citationCount": 86,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-77",
+      "text": "According to doi:10.1038/sj.leu.2401999 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1038/sj.leu.2401999",
+        "paper": {
+          "title": "Gold literature paper 77: foundations of method 77",
+          "authors": ["Author26 Surname"],
+          "year": 2005,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 77 and reports empirical results on standard benchmarks. We find that technique 77 improves accuracy under controlled conditions.",
+          "doi": "10.1038/sj.leu.2401999",
+          "arxivId": null,
+          "url": "https://doi.org/10.1038/sj.leu.2401999",
+          "pdfUrl": null,
+          "citationCount": 87,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-78",
+      "text": "According to doi:10.3324/haematol.2009.010991 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.3324/haematol.2009.010991",
+        "paper": {
+          "title": "Gold literature paper 78: foundations of method 78",
+          "authors": ["Author1 Surname"],
+          "year": 2006,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 78 and reports empirical results on standard benchmarks. We find that technique 78 improves accuracy under controlled conditions.",
+          "doi": "10.3324/haematol.2009.010991",
+          "arxivId": null,
+          "url": "https://doi.org/10.3324/haematol.2009.010991",
+          "pdfUrl": null,
+          "citationCount": 88,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-79",
+      "text": "According to doi:10.1007/s00428-015-1858-9 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1007/s00428-015-1858-9",
+        "paper": {
+          "title": "Gold literature paper 79: foundations of method 79",
+          "authors": ["Author2 Surname"],
+          "year": 2007,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 79 and reports empirical results on standard benchmarks. We find that technique 79 improves accuracy under controlled conditions.",
+          "doi": "10.1007/s00428-015-1858-9",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/s00428-015-1858-9",
+          "pdfUrl": null,
+          "citationCount": 89,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-80",
+      "text": "According to doi:10.1016/j.semcancer.2011.09.007 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/j.semcancer.2011.09.007",
+        "paper": {
+          "title": "Gold literature paper 80: foundations of method 80",
+          "authors": ["Author3 Surname"],
+          "year": 2008,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 80 and reports empirical results on standard benchmarks. We find that technique 80 improves accuracy under controlled conditions.",
+          "doi": "10.1016/j.semcancer.2011.09.007",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/j.semcancer.2011.09.007",
+          "pdfUrl": null,
+          "citationCount": 90,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-81",
+      "text": "According to doi:10.1097/pas.0b013e318267fabc the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1097/pas.0b013e318267fabc",
+        "paper": {
+          "title": "Gold literature paper 81: foundations of method 81",
+          "authors": ["Author4 Surname"],
+          "year": 2009,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 81 and reports empirical results on standard benchmarks. We find that technique 81 improves accuracy under controlled conditions.",
+          "doi": "10.1097/pas.0b013e318267fabc",
+          "arxivId": null,
+          "url": "https://doi.org/10.1097/pas.0b013e318267fabc",
+          "pdfUrl": null,
+          "citationCount": 91,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-82",
+      "text": "According to doi:10.1177/001316446002000104 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1177/001316446002000104",
+        "paper": {
+          "title": "Gold literature paper 82: foundations of method 82",
+          "authors": ["Author5 Surname"],
+          "year": 2010,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 82 and reports empirical results on standard benchmarks. We find that technique 82 improves accuracy under controlled conditions.",
+          "doi": "10.1177/001316446002000104",
+          "arxivId": null,
+          "url": "https://doi.org/10.1177/001316446002000104",
+          "pdfUrl": null,
+          "citationCount": 92,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-83",
+      "text": "According to doi:10.5860/choice.43-5664 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.5860/choice.43-5664",
+        "paper": {
+          "title": "Gold literature paper 83: foundations of method 83",
+          "authors": ["Author6 Surname"],
+          "year": 2011,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 83 and reports empirical results on standard benchmarks. We find that technique 83 improves accuracy under controlled conditions.",
+          "doi": "10.5860/choice.43-5664",
+          "arxivId": null,
+          "url": "https://doi.org/10.5860/choice.43-5664",
+          "pdfUrl": null,
+          "citationCount": 93,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-84",
+      "text": "According to doi:10.2307/1164658 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.2307/1164658",
+        "paper": {
+          "title": "Gold literature paper 84: foundations of method 84",
+          "authors": ["Author7 Surname"],
+          "year": 2012,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 84 and reports empirical results on standard benchmarks. We find that technique 84 improves accuracy under controlled conditions.",
+          "doi": "10.2307/1164658",
+          "arxivId": null,
+          "url": "https://doi.org/10.2307/1164658",
+          "pdfUrl": null,
+          "citationCount": 94,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-85",
+      "text": "According to doi:10.1016/0925-2312(95)90020-9 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/0925-2312(95)90020-9",
+        "paper": {
+          "title": "Gold literature paper 85: foundations of method 85",
+          "authors": ["Author8 Surname"],
+          "year": 2013,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 85 and reports empirical results on standard benchmarks. We find that technique 85 improves accuracy under controlled conditions.",
+          "doi": "10.1016/0925-2312(95)90020-9",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/0925-2312(95)90020-9",
+          "pdfUrl": null,
+          "citationCount": 95,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-86",
+      "text": "According to doi:10.21019/ale.2000.252 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.21019/ale.2000.252",
+        "paper": {
+          "title": "Gold literature paper 86: foundations of method 86",
+          "authors": ["Author9 Surname"],
+          "year": 2014,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 86 and reports empirical results on standard benchmarks. We find that technique 86 improves accuracy under controlled conditions.",
+          "doi": "10.21019/ale.2000.252",
+          "arxivId": null,
+          "url": "https://doi.org/10.21019/ale.2000.252",
+          "pdfUrl": null,
+          "citationCount": 96,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-87",
+      "text": "According to doi:10.1080/08923649509526885 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1080/08923649509526885",
+        "paper": {
+          "title": "Gold literature paper 87: foundations of method 87",
+          "authors": ["Author10 Surname"],
+          "year": 2015,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 87 and reports empirical results on standard benchmarks. We find that technique 87 improves accuracy under controlled conditions.",
+          "doi": "10.1080/08923649509526885",
+          "arxivId": null,
+          "url": "https://doi.org/10.1080/08923649509526885",
+          "pdfUrl": null,
+          "citationCount": 97,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-88",
+      "text": "According to doi:10.1258/jrsm.99.4.178 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1258/jrsm.99.4.178",
+        "paper": {
+          "title": "Gold literature paper 88: foundations of method 88",
+          "authors": ["Author11 Surname"],
+          "year": 2016,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 88 and reports empirical results on standard benchmarks. We find that technique 88 improves accuracy under controlled conditions.",
+          "doi": "10.1258/jrsm.99.4.178",
+          "arxivId": null,
+          "url": "https://doi.org/10.1258/jrsm.99.4.178",
+          "pdfUrl": null,
+          "citationCount": 98,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-89",
+      "text": "According to doi:10.2307/2185277 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.2307/2185277",
+        "paper": {
+          "title": "Gold literature paper 89: foundations of method 89",
+          "authors": ["Author12 Surname"],
+          "year": 2017,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 89 and reports empirical results on standard benchmarks. We find that technique 89 improves accuracy under controlled conditions.",
+          "doi": "10.2307/2185277",
+          "arxivId": null,
+          "url": "https://doi.org/10.2307/2185277",
+          "pdfUrl": null,
+          "citationCount": 99,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-90",
+      "text": "According to doi:10.1016/j.dss.2010.06.003 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/j.dss.2010.06.003",
+        "paper": {
+          "title": "Gold literature paper 90: foundations of method 90",
+          "authors": ["Author13 Surname"],
+          "year": 2018,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 90 and reports empirical results on standard benchmarks. We find that technique 90 improves accuracy under controlled conditions.",
+          "doi": "10.1016/j.dss.2010.06.003",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/j.dss.2010.06.003",
+          "pdfUrl": null,
+          "citationCount": 100,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-91",
+      "text": "According to doi:10.1080/14703297.2012.678665 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1080/14703297.2012.678665",
+        "paper": {
+          "title": "Gold literature paper 91: foundations of method 91",
+          "authors": ["Author14 Surname"],
+          "year": 2019,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 91 and reports empirical results on standard benchmarks. We find that technique 91 improves accuracy under controlled conditions.",
+          "doi": "10.1080/14703297.2012.678665",
+          "arxivId": null,
+          "url": "https://doi.org/10.1080/14703297.2012.678665",
+          "pdfUrl": null,
+          "citationCount": 101,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-92",
+      "text": "According to doi:10.1016/j.compedu.2008.05.008 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/j.compedu.2008.05.008",
+        "paper": {
+          "title": "Gold literature paper 92: foundations of method 92",
+          "authors": ["Author15 Surname"],
+          "year": 2020,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 92 and reports empirical results on standard benchmarks. We find that technique 92 improves accuracy under controlled conditions.",
+          "doi": "10.1016/j.compedu.2008.05.008",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/j.compedu.2008.05.008",
+          "pdfUrl": null,
+          "citationCount": 102,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-93",
+      "text": "According to doi:10.1016/j.chb.2015.05.041 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/j.chb.2015.05.041",
+        "paper": {
+          "title": "Gold literature paper 93: foundations of method 93",
+          "authors": ["Author16 Surname"],
+          "year": 2021,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 93 and reports empirical results on standard benchmarks. We find that technique 93 improves accuracy under controlled conditions.",
+          "doi": "10.1016/j.chb.2015.05.041",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/j.chb.2015.05.041",
+          "pdfUrl": null,
+          "citationCount": 103,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-94",
+      "text": "According to doi:10.1016/j.dss.2017.05.003 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/j.dss.2017.05.003",
+        "paper": {
+          "title": "Gold literature paper 94: foundations of method 94",
+          "authors": ["Author17 Surname"],
+          "year": 2022,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 94 and reports empirical results on standard benchmarks. We find that technique 94 improves accuracy under controlled conditions.",
+          "doi": "10.1016/j.dss.2017.05.003",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/j.dss.2017.05.003",
+          "pdfUrl": null,
+          "citationCount": 104,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-95",
+      "text": "According to doi:10.1016/j.compedu.2013.01.015 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/j.compedu.2013.01.015",
+        "paper": {
+          "title": "Gold literature paper 95: foundations of method 95",
+          "authors": ["Author18 Surname"],
+          "year": 2023,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 95 and reports empirical results on standard benchmarks. We find that technique 95 improves accuracy under controlled conditions.",
+          "doi": "10.1016/j.compedu.2013.01.015",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/j.compedu.2013.01.015",
+          "pdfUrl": null,
+          "citationCount": 105,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-96",
+      "text": "According to doi:10.1016/j.compedu.2011.08.018 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/j.compedu.2011.08.018",
+        "paper": {
+          "title": "Gold literature paper 96: foundations of method 96",
+          "authors": ["Author19 Surname"],
+          "year": 2000,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 96 and reports empirical results on standard benchmarks. We find that technique 96 improves accuracy under controlled conditions.",
+          "doi": "10.1016/j.compedu.2011.08.018",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/j.compedu.2011.08.018",
+          "pdfUrl": null,
+          "citationCount": 106,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-97",
+      "text": "According to doi:10.2190/cs.13.1.b the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.2190/cs.13.1.b",
+        "paper": {
+          "title": "Gold literature paper 97: foundations of method 97",
+          "authors": ["Author20 Surname"],
+          "year": 2001,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 97 and reports empirical results on standard benchmarks. We find that technique 97 improves accuracy under controlled conditions.",
+          "doi": "10.2190/cs.13.1.b",
+          "arxivId": null,
+          "url": "https://doi.org/10.2190/cs.13.1.b",
+          "pdfUrl": null,
+          "citationCount": 107,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-98",
+      "text": "According to doi:10.1177/0265532210364391 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1177/0265532210364391",
+        "paper": {
+          "title": "Gold literature paper 98: foundations of method 98",
+          "authors": ["Author21 Surname"],
+          "year": 2002,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 98 and reports empirical results on standard benchmarks. We find that technique 98 improves accuracy under controlled conditions.",
+          "doi": "10.1177/0265532210364391",
+          "arxivId": null,
+          "url": "https://doi.org/10.1177/0265532210364391",
+          "pdfUrl": null,
+          "citationCount": 108,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-99",
+      "text": "According to doi:10.1016/j.compedu.2009.05.025 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/j.compedu.2009.05.025",
+        "paper": {
+          "title": "Gold literature paper 99: foundations of method 99",
+          "authors": ["Author22 Surname"],
+          "year": 2003,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 99 and reports empirical results on standard benchmarks. We find that technique 99 improves accuracy under controlled conditions.",
+          "doi": "10.1016/j.compedu.2009.05.025",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/j.compedu.2009.05.025",
+          "pdfUrl": null,
+          "citationCount": 109,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-100",
+      "text": "According to doi:10.1111/jcal.12099 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1111/jcal.12099",
+        "paper": {
+          "title": "Gold literature paper 100: foundations of method 100",
+          "authors": ["Author23 Surname"],
+          "year": 2004,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 100 and reports empirical results on standard benchmarks. We find that technique 100 improves accuracy under controlled conditions.",
+          "doi": "10.1111/jcal.12099",
+          "arxivId": null,
+          "url": "https://doi.org/10.1111/jcal.12099",
+          "pdfUrl": null,
+          "citationCount": 110,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-101",
+      "text": "According to doi:10.1007/s40593-013-0010-8 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1007/s40593-013-0010-8",
+        "paper": {
+          "title": "Gold literature paper 101: foundations of method 101",
+          "authors": ["Author24 Surname"],
+          "year": 2005,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 101 and reports empirical results on standard benchmarks. We find that technique 101 improves accuracy under controlled conditions.",
+          "doi": "10.1007/s40593-013-0010-8",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/s40593-013-0010-8",
+          "pdfUrl": null,
+          "citationCount": 111,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-102",
+      "text": "According to doi:10.1016/j.ipm.2012.12.002 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/j.ipm.2012.12.002",
+        "paper": {
+          "title": "Gold literature paper 102: foundations of method 102",
+          "authors": ["Author25 Surname"],
+          "year": 2006,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 102 and reports empirical results on standard benchmarks. We find that technique 102 improves accuracy under controlled conditions.",
+          "doi": "10.1016/j.ipm.2012.12.002",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/j.ipm.2012.12.002",
+          "pdfUrl": null,
+          "citationCount": 112,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-103",
+      "text": "According to doi:10.2167/la416.0 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.2167/la416.0",
+        "paper": {
+          "title": "Gold literature paper 103: foundations of method 103",
+          "authors": ["Author26 Surname"],
+          "year": 2007,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 103 and reports empirical results on standard benchmarks. We find that technique 103 improves accuracy under controlled conditions.",
+          "doi": "10.2167/la416.0",
+          "arxivId": null,
+          "url": "https://doi.org/10.2167/la416.0",
+          "pdfUrl": null,
+          "citationCount": 113,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-104",
+      "text": "According to doi:10.21225/d5930x the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.21225/d5930x",
+        "paper": {
+          "title": "Gold literature paper 104: foundations of method 104",
+          "authors": ["Author1 Surname"],
+          "year": 2008,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 104 and reports empirical results on standard benchmarks. We find that technique 104 improves accuracy under controlled conditions.",
+          "doi": "10.21225/d5930x",
+          "arxivId": null,
+          "url": "https://doi.org/10.21225/d5930x",
+          "pdfUrl": null,
+          "citationCount": 114,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-105",
+      "text": "According to doi:10.1109/tlt.2014.2330297 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/tlt.2014.2330297",
+        "paper": {
+          "title": "Gold literature paper 105: foundations of method 105",
+          "authors": ["Author2 Surname"],
+          "year": 2009,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 105 and reports empirical results on standard benchmarks. We find that technique 105 improves accuracy under controlled conditions.",
+          "doi": "10.1109/tlt.2014.2330297",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/tlt.2014.2330297",
+          "pdfUrl": null,
+          "citationCount": 115,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-106",
+      "text": "According to doi:10.1108/02640470810879482 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1108/02640470810879482",
+        "paper": {
+          "title": "Gold literature paper 106: foundations of method 106",
+          "authors": ["Author3 Surname"],
+          "year": 2010,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 106 and reports empirical results on standard benchmarks. We find that technique 106 improves accuracy under controlled conditions.",
+          "doi": "10.1108/02640470810879482",
+          "arxivId": null,
+          "url": "https://doi.org/10.1108/02640470810879482",
+          "pdfUrl": null,
+          "citationCount": 116,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-107",
+      "text": "According to doi:10.1016/j.knosys.2009.01.007 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/j.knosys.2009.01.007",
+        "paper": {
+          "title": "Gold literature paper 107: foundations of method 107",
+          "authors": ["Author4 Surname"],
+          "year": 2011,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 107 and reports empirical results on standard benchmarks. We find that technique 107 improves accuracy under controlled conditions.",
+          "doi": "10.1016/j.knosys.2009.01.007",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/j.knosys.2009.01.007",
+          "pdfUrl": null,
+          "citationCount": 117,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-108",
+      "text": "According to doi:10.1109/te.2006.888902 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/te.2006.888902",
+        "paper": {
+          "title": "Gold literature paper 108: foundations of method 108",
+          "authors": ["Author5 Surname"],
+          "year": 2012,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 108 and reports empirical results on standard benchmarks. We find that technique 108 improves accuracy under controlled conditions.",
+          "doi": "10.1109/te.2006.888902",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/te.2006.888902",
+          "pdfUrl": null,
+          "citationCount": 118,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-109",
+      "text": "According to doi:10.11139/cj.28.1.99-134 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.11139/cj.28.1.99-134",
+        "paper": {
+          "title": "Gold literature paper 109: foundations of method 109",
+          "authors": ["Author6 Surname"],
+          "year": 2013,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 109 and reports empirical results on standard benchmarks. We find that technique 109 improves accuracy under controlled conditions.",
+          "doi": "10.11139/cj.28.1.99-134",
+          "arxivId": null,
+          "url": "https://doi.org/10.11139/cj.28.1.99-134",
+          "pdfUrl": null,
+          "citationCount": 119,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-110",
+      "text": "According to doi:10.1111/j.1540-4609.2007.00143.x the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1111/j.1540-4609.2007.00143.x",
+        "paper": {
+          "title": "Gold literature paper 110: foundations of method 110",
+          "authors": ["Author7 Surname"],
+          "year": 2014,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 110 and reports empirical results on standard benchmarks. We find that technique 110 improves accuracy under controlled conditions.",
+          "doi": "10.1111/j.1540-4609.2007.00143.x",
+          "arxivId": null,
+          "url": "https://doi.org/10.1111/j.1540-4609.2007.00143.x",
+          "pdfUrl": null,
+          "citationCount": 120,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-111",
+      "text": "According to doi:10.1016/j.compedu.2011.06.005 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/j.compedu.2011.06.005",
+        "paper": {
+          "title": "Gold literature paper 111: foundations of method 111",
+          "authors": ["Author8 Surname"],
+          "year": 2015,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 111 and reports empirical results on standard benchmarks. We find that technique 111 improves accuracy under controlled conditions.",
+          "doi": "10.1016/j.compedu.2011.06.005",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/j.compedu.2011.06.005",
+          "pdfUrl": null,
+          "citationCount": 121,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-112",
+      "text": "According to doi:10.48550/arxiv.1201.0490 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.48550/arxiv.1201.0490",
+        "paper": {
+          "title": "Gold literature paper 112: foundations of method 112",
+          "authors": ["Author9 Surname"],
+          "year": 2016,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 112 and reports empirical results on standard benchmarks. We find that technique 112 improves accuracy under controlled conditions.",
+          "doi": "10.48550/arxiv.1201.0490",
+          "arxivId": "1201.0490",
+          "url": "https://doi.org/10.48550/arxiv.1201.0490",
+          "pdfUrl": null,
+          "citationCount": 122,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-113",
+      "text": "According to doi:10.1023/a:1008202821328 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1023/a:1008202821328",
+        "paper": {
+          "title": "Gold literature paper 113: foundations of method 113",
+          "authors": ["Author10 Surname"],
+          "year": 2017,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 113 and reports empirical results on standard benchmarks. We find that technique 113 improves accuracy under controlled conditions.",
+          "doi": "10.1023/a:1008202821328",
+          "arxivId": null,
+          "url": "https://doi.org/10.1023/a:1008202821328",
+          "pdfUrl": null,
+          "citationCount": 123,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-114",
+      "text": "According to doi:10.1093/comjnl/7.4.308 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1093/comjnl/7.4.308",
+        "paper": {
+          "title": "Gold literature paper 114: foundations of method 114",
+          "authors": ["Author11 Surname"],
+          "year": 2018,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 114 and reports empirical results on standard benchmarks. We find that technique 114 improves accuracy under controlled conditions.",
+          "doi": "10.1093/comjnl/7.4.308",
+          "arxivId": null,
+          "url": "https://doi.org/10.1093/comjnl/7.4.308",
+          "pdfUrl": null,
+          "citationCount": 124,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-115",
+      "text": "According to doi:10.1086/670067 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1086/670067",
+        "paper": {
+          "title": "Gold literature paper 115: foundations of method 115",
+          "authors": ["Author12 Surname"],
+          "year": 2019,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 115 and reports empirical results on standard benchmarks. We find that technique 115 improves accuracy under controlled conditions.",
+          "doi": "10.1086/670067",
+          "arxivId": null,
+          "url": "https://doi.org/10.1086/670067",
+          "pdfUrl": null,
+          "citationCount": 125,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-116",
+      "text": "According to doi:10.1007/978-1-4612-6333-3 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1007/978-1-4612-6333-3",
+        "paper": {
+          "title": "Gold literature paper 116: foundations of method 116",
+          "authors": ["Author13 Surname"],
+          "year": 2020,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 116 and reports empirical results on standard benchmarks. We find that technique 116 improves accuracy under controlled conditions.",
+          "doi": "10.1007/978-1-4612-6333-3",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/978-1-4612-6333-3",
+          "pdfUrl": null,
+          "citationCount": 126,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-117",
+      "text": "According to doi:10.1109/mcse.2011.37 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/mcse.2011.37",
+        "paper": {
+          "title": "Gold literature paper 117: foundations of method 117",
+          "authors": ["Author14 Surname"],
+          "year": 2021,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 117 and reports empirical results on standard benchmarks. We find that technique 117 improves accuracy under controlled conditions.",
+          "doi": "10.1109/mcse.2011.37",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/mcse.2011.37",
+          "pdfUrl": null,
+          "citationCount": 127,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-118",
+      "text": "According to doi:10.7717/peerj.453 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.7717/peerj.453",
+        "paper": {
+          "title": "Gold literature paper 118: foundations of method 118",
+          "authors": ["Author15 Surname"],
+          "year": 2022,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 118 and reports empirical results on standard benchmarks. We find that technique 118 improves accuracy under controlled conditions.",
+          "doi": "10.7717/peerj.453",
+          "arxivId": null,
+          "url": "https://doi.org/10.7717/peerj.453",
+          "pdfUrl": null,
+          "citationCount": 128,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-119",
+      "text": "According to doi:10.25080/majora-92bf1922-011 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.25080/majora-92bf1922-011",
+        "paper": {
+          "title": "Gold literature paper 119: foundations of method 119",
+          "authors": ["Author16 Surname"],
+          "year": 2023,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 119 and reports empirical results on standard benchmarks. We find that technique 119 improves accuracy under controlled conditions.",
+          "doi": "10.25080/majora-92bf1922-011",
+          "arxivId": null,
+          "url": "https://doi.org/10.25080/majora-92bf1922-011",
+          "pdfUrl": null,
+          "citationCount": 129,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-120",
+      "text": "According to doi:10.1137/0916069 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1137/0916069",
+        "paper": {
+          "title": "Gold literature paper 120: foundations of method 120",
+          "authors": ["Author17 Surname"],
+          "year": 2000,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 120 and reports empirical results on standard benchmarks. We find that technique 120 improves accuracy under controlled conditions.",
+          "doi": "10.1137/0916069",
+          "arxivId": null,
+          "url": "https://doi.org/10.1137/0916069",
+          "pdfUrl": null,
+          "citationCount": 130,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-121",
+      "text": "According to doi:10.1073/pnas.0307752101 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1073/pnas.0307752101",
+        "paper": {
+          "title": "Gold literature paper 121: foundations of method 121",
+          "authors": ["Author18 Surname"],
+          "year": 2001,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 121 and reports empirical results on standard benchmarks. We find that technique 121 improves accuracy under controlled conditions.",
+          "doi": "10.1073/pnas.0307752101",
+          "arxivId": null,
+          "url": "https://doi.org/10.1073/pnas.0307752101",
+          "pdfUrl": null,
+          "citationCount": 131,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-122",
+      "text": "According to doi:10.1145/235815.235821 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1145/235815.235821",
+        "paper": {
+          "title": "Gold literature paper 122: foundations of method 122",
+          "authors": ["Author19 Surname"],
+          "year": 2002,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 122 and reports empirical results on standard benchmarks. We find that technique 122 improves accuracy under controlled conditions.",
+          "doi": "10.1145/235815.235821",
+          "arxivId": null,
+          "url": "https://doi.org/10.1145/235815.235821",
+          "pdfUrl": null,
+          "citationCount": 132,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-123",
+      "text": "According to doi:10.1093/comjnl/7.2.155 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1093/comjnl/7.2.155",
+        "paper": {
+          "title": "Gold literature paper 123: foundations of method 123",
+          "authors": ["Author20 Surname"],
+          "year": 2003,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 123 and reports empirical results on standard benchmarks. We find that technique 123 improves accuracy under controlled conditions.",
+          "doi": "10.1093/comjnl/7.2.155",
+          "arxivId": null,
+          "url": "https://doi.org/10.1093/comjnl/7.2.155",
+          "pdfUrl": null,
+          "citationCount": 133,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-124",
+      "text": "According to doi:10.1145/279232.279236 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1145/279232.279236",
+        "paper": {
+          "title": "Gold literature paper 124: foundations of method 124",
+          "authors": ["Author21 Surname"],
+          "year": 2004,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 124 and reports empirical results on standard benchmarks. We find that technique 124 improves accuracy under controlled conditions.",
+          "doi": "10.1145/279232.279236",
+          "arxivId": null,
+          "url": "https://doi.org/10.1145/279232.279236",
+          "pdfUrl": null,
+          "citationCount": 134,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-125",
+      "text": "According to doi:10.1137/1.9780898719857 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1137/1.9780898719857",
+        "paper": {
+          "title": "Gold literature paper 125: foundations of method 125",
+          "authors": ["Author22 Surname"],
+          "year": 2005,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 125 and reports empirical results on standard benchmarks. We find that technique 125 improves accuracy under controlled conditions.",
+          "doi": "10.1137/1.9780898719857",
+          "arxivId": null,
+          "url": "https://doi.org/10.1137/1.9780898719857",
+          "pdfUrl": null,
+          "citationCount": 135,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-126",
+      "text": "According to doi:10.1137/1.9780898719628 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1137/1.9780898719628",
+        "paper": {
+          "title": "Gold literature paper 126: foundations of method 126",
+          "authors": ["Author23 Surname"],
+          "year": 2006,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 126 and reports empirical results on standard benchmarks. We find that technique 126 improves accuracy under controlled conditions.",
+          "doi": "10.1137/1.9780898719628",
+          "arxivId": null,
+          "url": "https://doi.org/10.1137/1.9780898719628",
+          "pdfUrl": null,
+          "citationCount": 136,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-127",
+      "text": "According to doi:10.7717/peerj-cs.55 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.7717/peerj-cs.55",
+        "paper": {
+          "title": "Gold literature paper 127: foundations of method 127",
+          "authors": ["Author24 Surname"],
+          "year": 2007,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 127 and reports empirical results on standard benchmarks. We find that technique 127 improves accuracy under controlled conditions.",
+          "doi": "10.7717/peerj-cs.55",
+          "arxivId": null,
+          "url": "https://doi.org/10.7717/peerj-cs.55",
+          "pdfUrl": null,
+          "citationCount": 137,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-128",
+      "text": "According to doi:10.1137/0717021 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1137/0717021",
+        "paper": {
+          "title": "Gold literature paper 128: foundations of method 128",
+          "authors": ["Author25 Surname"],
+          "year": 2008,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 128 and reports empirical results on standard benchmarks. We find that technique 128 improves accuracy under controlled conditions.",
+          "doi": "10.1137/0717021",
+          "arxivId": null,
+          "url": "https://doi.org/10.1137/0717021",
+          "pdfUrl": null,
+          "citationCount": 138,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-129",
+      "text": "According to doi:10.1145/321607.321609 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1145/321607.321609",
+        "paper": {
+          "title": "Gold literature paper 129: foundations of method 129",
+          "authors": ["Author26 Surname"],
+          "year": 2009,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 129 and reports empirical results on standard benchmarks. We find that technique 129 improves accuracy under controlled conditions.",
+          "doi": "10.1145/321607.321609",
+          "arxivId": null,
+          "url": "https://doi.org/10.1145/321607.321609",
+          "pdfUrl": null,
+          "citationCount": 139,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-130",
+      "text": "According to doi:10.1145/2833157.2833162 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1145/2833157.2833162",
+        "paper": {
+          "title": "Gold literature paper 130: foundations of method 130",
+          "authors": ["Author1 Surname"],
+          "year": 2010,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 130 and reports empirical results on standard benchmarks. We find that technique 130 improves accuracy under controlled conditions.",
+          "doi": "10.1145/2833157.2833162",
+          "arxivId": null,
+          "url": "https://doi.org/10.1145/2833157.2833162",
+          "pdfUrl": null,
+          "citationCount": 140,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-131",
+      "text": "According to doi:10.1137/0904038 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1137/0904038",
+        "paper": {
+          "title": "Gold literature paper 131: foundations of method 131",
+          "authors": ["Author2 Surname"],
+          "year": 2011,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 131 and reports empirical results on standard benchmarks. We find that technique 131 improves accuracy under controlled conditions.",
+          "doi": "10.1137/0904038",
+          "arxivId": null,
+          "url": "https://doi.org/10.1137/0904038",
+          "pdfUrl": null,
+          "citationCount": 141,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-132",
+      "text": "According to doi:10.1007/978-94-015-8330-5_4 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1007/978-94-015-8330-5_4",
+        "paper": {
+          "title": "Gold literature paper 132: foundations of method 132",
+          "authors": ["Author3 Surname"],
+          "year": 2012,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 132 and reports empirical results on standard benchmarks. We find that technique 132 improves accuracy under controlled conditions.",
+          "doi": "10.1007/978-94-015-8330-5_4",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/978-94-015-8330-5_4",
+          "pdfUrl": null,
+          "citationCount": 142,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-133",
+      "text": "According to doi:10.1109/mcse.2011.36 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/mcse.2011.36",
+        "paper": {
+          "title": "Gold literature paper 133: foundations of method 133",
+          "authors": ["Author4 Surname"],
+          "year": 2013,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 133 and reports empirical results on standard benchmarks. We find that technique 133 improves accuracy under controlled conditions.",
+          "doi": "10.1109/mcse.2011.36",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/mcse.2011.36",
+          "pdfUrl": null,
+          "citationCount": 143,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-134",
+      "text": "According to doi:10.1109/mcse.2010.118 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/mcse.2010.118",
+        "paper": {
+          "title": "Gold literature paper 134: foundations of method 134",
+          "authors": ["Author5 Surname"],
+          "year": 2014,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 134 and reports empirical results on standard benchmarks. We find that technique 134 improves accuracy under controlled conditions.",
+          "doi": "10.1109/mcse.2010.118",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/mcse.2010.118",
+          "pdfUrl": null,
+          "citationCount": 144,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-135",
+      "text": "According to doi:10.1137/0720042 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1137/0720042",
+        "paper": {
+          "title": "Gold literature paper 135: foundations of method 135",
+          "authors": ["Author6 Surname"],
+          "year": 2015,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 135 and reports empirical results on standard benchmarks. We find that technique 135 improves accuracy under controlled conditions.",
+          "doi": "10.1137/0720042",
+          "arxivId": null,
+          "url": "https://doi.org/10.1137/0720042",
+          "pdfUrl": null,
+          "citationCount": 145,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-136",
+      "text": "According to doi:10.1109/38.56302 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/38.56302",
+        "paper": {
+          "title": "Gold literature paper 136: foundations of method 136",
+          "authors": ["Author7 Surname"],
+          "year": 2016,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 136 and reports empirical results on standard benchmarks. We find that technique 136 improves accuracy under controlled conditions.",
+          "doi": "10.1109/38.56302",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/38.56302",
+          "pdfUrl": null,
+          "citationCount": 146,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-137",
+      "text": "According to doi:10.1007/978-1-4757-3216-0_8 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1007/978-1-4757-3216-0_8",
+        "paper": {
+          "title": "Gold literature paper 137: foundations of method 137",
+          "authors": ["Author8 Surname"],
+          "year": 2017,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 137 and reports empirical results on standard benchmarks. We find that technique 137 improves accuracy under controlled conditions.",
+          "doi": "10.1007/978-1-4757-3216-0_8",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/978-1-4757-3216-0_8",
+          "pdfUrl": null,
+          "citationCount": 147,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-138",
+      "text": "According to doi:10.1109/mcse.2011.35 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/mcse.2011.35",
+        "paper": {
+          "title": "Gold literature paper 138: foundations of method 138",
+          "authors": ["Author9 Surname"],
+          "year": 2018,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 138 and reports empirical results on standard benchmarks. We find that technique 138 improves accuracy under controlled conditions.",
+          "doi": "10.1109/mcse.2011.35",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/mcse.2011.35",
+          "pdfUrl": null,
+          "citationCount": 148,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-139",
+      "text": "According to doi:10.2172/6997568 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.2172/6997568",
+        "paper": {
+          "title": "Gold literature paper 139: foundations of method 139",
+          "authors": ["Author10 Surname"],
+          "year": 2019,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 139 and reports empirical results on standard benchmarks. We find that technique 139 improves accuracy under controlled conditions.",
+          "doi": "10.2172/6997568",
+          "arxivId": null,
+          "url": "https://doi.org/10.2172/6997568",
+          "pdfUrl": null,
+          "citationCount": 149,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-140",
+      "text": "According to doi:10.1017/s0962492900002841 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1017/s0962492900002841",
+        "paper": {
+          "title": "Gold literature paper 140: foundations of method 140",
+          "authors": ["Author11 Surname"],
+          "year": 2020,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 140 and reports empirical results on standard benchmarks. We find that technique 140 improves accuracy under controlled conditions.",
+          "doi": "10.1017/s0962492900002841",
+          "arxivId": null,
+          "url": "https://doi.org/10.1017/s0962492900002841",
+          "pdfUrl": null,
+          "citationCount": 150,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-141",
+      "text": "According to doi:10.1145/1089014.1089017 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1145/1089014.1089017",
+        "paper": {
+          "title": "Gold literature paper 141: foundations of method 141",
+          "authors": ["Author12 Surname"],
+          "year": 2021,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 141 and reports empirical results on standard benchmarks. We find that technique 141 improves accuracy under controlled conditions.",
+          "doi": "10.1145/1089014.1089017",
+          "arxivId": null,
+          "url": "https://doi.org/10.1145/1089014.1089017",
+          "pdfUrl": null,
+          "citationCount": 151,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-142",
+      "text": "According to doi:10.1002/wics.1347 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1002/wics.1347",
+        "paper": {
+          "title": "Gold literature paper 142: foundations of method 142",
+          "authors": ["Author13 Surname"],
+          "year": 2022,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 142 and reports empirical results on standard benchmarks. We find that technique 142 improves accuracy under controlled conditions.",
+          "doi": "10.1002/wics.1347",
+          "arxivId": null,
+          "url": "https://doi.org/10.1002/wics.1347",
+          "pdfUrl": null,
+          "citationCount": 152,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-143",
+      "text": "According to doi:10.1145/3488560.3501396 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1145/3488560.3501396",
+        "paper": {
+          "title": "Gold literature paper 143: foundations of method 143",
+          "authors": ["Author14 Surname"],
+          "year": 2023,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 143 and reports empirical results on standard benchmarks. We find that technique 143 improves accuracy under controlled conditions.",
+          "doi": "10.1145/3488560.3501396",
+          "arxivId": null,
+          "url": "https://doi.org/10.1145/3488560.3501396",
+          "pdfUrl": null,
+          "citationCount": 153,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-144",
+      "text": "According to doi:10.1145/3485447.3512162 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1145/3485447.3512162",
+        "paper": {
+          "title": "Gold literature paper 144: foundations of method 144",
+          "authors": ["Author15 Surname"],
+          "year": 2000,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 144 and reports empirical results on standard benchmarks. We find that technique 144 improves accuracy under controlled conditions.",
+          "doi": "10.1145/3485447.3512162",
+          "arxivId": null,
+          "url": "https://doi.org/10.1145/3485447.3512162",
+          "pdfUrl": null,
+          "citationCount": 154,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-145",
+      "text": "According to doi:10.1016/j.aiopen.2021.01.001 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/j.aiopen.2021.01.001",
+        "paper": {
+          "title": "Gold literature paper 145: foundations of method 145",
+          "authors": ["Author16 Surname"],
+          "year": 2001,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 145 and reports empirical results on standard benchmarks. We find that technique 145 improves accuracy under controlled conditions.",
+          "doi": "10.1016/j.aiopen.2021.01.001",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/j.aiopen.2021.01.001",
+          "pdfUrl": null,
+          "citationCount": 155,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-146",
+      "text": "According to doi:10.1109/tnnls.2020.2978386 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1109/tnnls.2020.2978386",
+        "paper": {
+          "title": "Gold literature paper 146: foundations of method 146",
+          "authors": ["Author17 Surname"],
+          "year": 2002,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 146 and reports empirical results on standard benchmarks. We find that technique 146 improves accuracy under controlled conditions.",
+          "doi": "10.1109/tnnls.2020.2978386",
+          "arxivId": null,
+          "url": "https://doi.org/10.1109/tnnls.2020.2978386",
+          "pdfUrl": null,
+          "citationCount": 156,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-147",
+      "text": "According to doi:10.1007/s00138-021-01251-0 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1007/s00138-021-01251-0",
+        "paper": {
+          "title": "Gold literature paper 147: foundations of method 147",
+          "authors": ["Author18 Surname"],
+          "year": 2003,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 147 and reports empirical results on standard benchmarks. We find that technique 147 improves accuracy under controlled conditions.",
+          "doi": "10.1007/s00138-021-01251-0",
+          "arxivId": null,
+          "url": "https://doi.org/10.1007/s00138-021-01251-0",
+          "pdfUrl": null,
+          "citationCount": 157,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-148",
+      "text": "According to doi:10.1016/j.ddtec.2020.11.009 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1016/j.ddtec.2020.11.009",
+        "paper": {
+          "title": "Gold literature paper 148: foundations of method 148",
+          "authors": ["Author19 Surname"],
+          "year": 2004,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 148 and reports empirical results on standard benchmarks. We find that technique 148 improves accuracy under controlled conditions.",
+          "doi": "10.1016/j.ddtec.2020.11.009",
+          "arxivId": null,
+          "url": "https://doi.org/10.1016/j.ddtec.2020.11.009",
+          "pdfUrl": null,
+          "citationCount": 158,
+          "foundBy": ["crossref"]
+        }
+      },
+      "support": "supported"
+    },
+    {
+      "id": "real-gold-149",
+      "text": "According to doi:10.1093/bioinformatics/btac112 the cited prior work is relevant to this question.",
+      "expectedStatus": "verified",
+      "kind": "real",
+      "resolve": {
+        "doi": "10.1093/bioinformatics/btac112",
+        "paper": {
+          "title": "Gold literature paper 149: foundations of method 149",
+          "authors": ["Author20 Surname"],
+          "year": 2005,
+          "venue": "Survey Proceedings",
+          "abstract": "This paper studies method 149 and reports empirical results on standard benchmarks. We find that technique 149 improves accuracy under controlled conditions.",
+          "doi": "10.1093/bioinformatics/btac112",
+          "arxivId": null,
+          "url": "https://doi.org/10.1093/bioinformatics/btac112",
+          "pdfUrl": null,
+          "citationCount": 159,
           "foundBy": ["crossref"]
         }
       },

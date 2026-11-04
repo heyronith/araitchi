@@ -93,14 +93,21 @@ export async function searchCrossref(
   });
 }
 
-/** Fetch one Crossref work by DOI. Never throws. */
-export async function fetchCrossrefWork(input: {
+export type CrossrefWorkResult = {
+  paper: Paper | null;
+  /** Definitive answer (found or clean 404 miss). */
+  answered: boolean;
+  error?: string;
+};
+
+/** Fetch one Crossref work by DOI with answer/error discrimination. Never throws. */
+export async function fetchCrossrefWorkDetailed(input: {
   doi: string;
   mailto?: string;
   signal?: AbortSignal;
-}): Promise<Paper | null> {
+}): Promise<CrossrefWorkResult> {
   const doi = input.doi.trim();
-  if (!doi) return null;
+  if (!doi) return { paper: null, answered: false, error: "empty doi" };
   try {
     const params = new URLSearchParams();
     if (input.mailto) params.set("mailto", input.mailto);
@@ -112,14 +119,36 @@ export async function fetchCrossrefWork(input: {
         signal: input.signal,
       },
     );
-    if (!res.ok) return null;
-    // Single-work responses are `{ message: { DOI, title, ... } }` — wrap as items.
-    const message = asObj(asObj(res.data).message);
-    if (message.DOI || message.title) {
-      return normalizeCrossref({ message: { items: [message] } })[0] ?? null;
+    if (!res.ok) {
+      const status = res.status;
+      // 404 = clean miss; everything else (429/5xx/…) is inconclusive.
+      if (status === 404) return { paper: null, answered: true };
+      return {
+        paper: null,
+        answered: false,
+        error: res.error || `HTTP ${status ?? "?"}`,
+      };
     }
-    return normalizeCrossref(res.data)[0] ?? null;
-  } catch {
-    return null;
+    const message = asObj(asObj(res.data).message);
+    const paper =
+      message.DOI || message.title
+        ? (normalizeCrossref({ message: { items: [message] } })[0] ?? null)
+        : (normalizeCrossref(res.data)[0] ?? null);
+    return { paper, answered: true };
+  } catch (e) {
+    return {
+      paper: null,
+      answered: false,
+      error: e instanceof Error ? e.message : "Fetch failed",
+    };
   }
+}
+
+/** Fetch one Crossref work by DOI. Never throws. */
+export async function fetchCrossrefWork(input: {
+  doi: string;
+  mailto?: string;
+  signal?: AbortSignal;
+}): Promise<Paper | null> {
+  return (await fetchCrossrefWorkDetailed(input)).paper;
 }

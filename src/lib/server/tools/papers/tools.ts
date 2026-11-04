@@ -3,7 +3,12 @@ import "server-only";
 import { z } from "zod";
 
 import type { RegisteredTool, ToolResult, ToolSource } from "../types";
-import { getPaper, paperLinks, searchPapers, SEARCH_PROVIDERS } from "./search";
+import {
+  getPaperDetailed,
+  paperLinks,
+  searchPapers,
+  SEARCH_PROVIDERS,
+} from "./search";
 import type { Paper, PaperProvider } from "./types";
 
 export type PaperToolContext = {
@@ -181,17 +186,23 @@ export function createPaperTools(ctx: PaperToolContext = {}): RegisteredTool[] {
       toolCtx,
     ): Promise<ToolResult> => {
       try {
-        const paper = await getPaper({
+        const { paper, attempts } = await getPaperDetailed({
           doi: args.doi,
           arxivId: args.arxivId,
           contactEmail,
           signal: toolCtx?.signal,
           enabledProviders: ctx.enabledProviders,
         });
-        if (!paper) return { ok: false, error: "Paper not found" };
+        if (!paper) {
+          return {
+            ok: false,
+            error: "Paper not found",
+            data: { paper: null, attempts },
+          };
+        }
         return {
           ok: true,
-          data: { paper },
+          data: { paper, attempts },
           sources: [paperToSource(paper)],
           modelText: formatPaperForModel(paper),
         };
