@@ -257,7 +257,9 @@ const server = createServer(async (req, res) => {
 
   // Crossref get-by-DOI / search (keyless citation resolve in e2e).
   if (req.method === "GET" && path.startsWith("/mock/crossref/works")) {
-    const doiPath = path.slice("/mock/crossref/works".length).replace(/^\//, "");
+    const doiPath = path
+      .slice("/mock/crossref/works".length)
+      .replace(/^\//, "");
     if (doiPath && !doiPath.startsWith("?")) {
       const doi = decodeURIComponent(doiPath);
       if (doi.startsWith("10.9999/") || doi.includes("fake")) {

@@ -79,9 +79,8 @@ export function scoreCitationEval(rows: CitationEvalRow[]): {
     support.length + real.length > 0 && support.length > 0
       ? metric(
           support.filter((r) => r.got === "claim_not_supported").length +
-            real.filter(
-              (r) => r.got === "verified" || r.got === "unchecked",
-            ).length,
+            real.filter((r) => r.got === "verified" || r.got === "unchecked")
+              .length,
           support.length + real.length,
         )
       : null;

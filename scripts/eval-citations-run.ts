@@ -22,7 +22,10 @@ import {
 import { ensureResearchStructure } from "../src/lib/server/project/init";
 import { createBrokerForRequest } from "../src/lib/server/tools/broker";
 import { createPaperTools } from "../src/lib/server/tools/papers/tools";
-import type { Paper, PaperProvider } from "../src/lib/server/tools/papers/types";
+import type {
+  Paper,
+  PaperProvider,
+} from "../src/lib/server/tools/papers/types";
 
 type FixtureCase = {
   id: string;
@@ -110,8 +113,7 @@ async function main() {
     }
     const useNetwork = Boolean(broker);
     const kind = c.kind as FixtureCase["kind"];
-    const runSupport =
-      kind === "support" || (supportLive && kind === "real");
+    const runSupport = kind === "support" || (supportLive && kind === "real");
 
     const summary = await checkCitations(c.text, {
       skipSupport: !runSupport,
@@ -189,16 +191,8 @@ async function main() {
     "",
     `| Metric | Value | Target |`,
     `| --- | --- | --- |`,
-    formatMetric(
-      "not_found detection",
-      scores.notFoundDetection,
-      "100%",
-    ),
-    formatMetric(
-      "mismatch detection",
-      scores.mismatchDetection,
-      "≥95%",
-    ),
+    formatMetric("not_found detection", scores.notFoundDetection, "100%"),
+    formatMetric("mismatch detection", scores.mismatchDetection, "≥95%"),
     formatMetric("FP on real", scores.falsePositiveRate, "≤2%"),
     scores.supportAccuracy
       ? formatMetric(
@@ -219,22 +213,13 @@ async function main() {
   console.log(md);
 
   // Gate: fixture + keyless must meet detection targets on the subsets run.
-  if (
-    scores.notFoundDetection.n > 0 &&
-    scores.notFoundDetection.rate < 1
-  ) {
+  if (scores.notFoundDetection.n > 0 && scores.notFoundDetection.rate < 1) {
     process.exitCode = 1;
   }
-  if (
-    scores.mismatchDetection.n > 0 &&
-    scores.mismatchDetection.rate < 0.95
-  ) {
+  if (scores.mismatchDetection.n > 0 && scores.mismatchDetection.rate < 0.95) {
     process.exitCode = 1;
   }
-  if (
-    scores.falsePositiveRate.n > 0 &&
-    scores.falsePositiveRate.rate > 0.02
-  ) {
+  if (scores.falsePositiveRate.n > 0 && scores.falsePositiveRate.rate > 0.02) {
     process.exitCode = 1;
   }
 }

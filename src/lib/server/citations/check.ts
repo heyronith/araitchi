@@ -3,10 +3,7 @@ import "server-only";
 import { extractCitations } from "./extract";
 import { metadataMatches } from "./match";
 import { resolveCitation, type ResolveOptions } from "./resolve";
-import {
-  checkClaimSupportDetailed,
-  type SupportCheckOptions,
-} from "./support";
+import { checkClaimSupportDetailed, type SupportCheckOptions } from "./support";
 import {
   emptySummary,
   type CitationCheckResult,
