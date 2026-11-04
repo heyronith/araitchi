@@ -11,6 +11,7 @@ import {
   asYear,
   clampLimit,
   cleanText,
+  encodeDoiPath,
   makePaper,
   runProvider,
   userAgent,
@@ -90,4 +91,35 @@ export async function searchCrossref(
     if (!res.ok) return { ok: false, error: res.error };
     return { ok: true, papers: normalizeCrossref(res.data) };
   });
+}
+
+/** Fetch one Crossref work by DOI. Never throws. */
+export async function fetchCrossrefWork(input: {
+  doi: string;
+  mailto?: string;
+  signal?: AbortSignal;
+}): Promise<Paper | null> {
+  const doi = input.doi.trim();
+  if (!doi) return null;
+  try {
+    const params = new URLSearchParams();
+    if (input.mailto) params.set("mailto", input.mailto);
+    const qs = params.toString();
+    const res = await fetchJson<unknown>(
+      `${getProviderBaseUrl("crossref")}/works/${encodeDoiPath(doi)}${qs ? `?${qs}` : ""}`,
+      {
+        headers: { "User-Agent": userAgent(input.mailto) },
+        signal: input.signal,
+      },
+    );
+    if (!res.ok) return null;
+    // Single-work responses are `{ message: { DOI, title, ... } }` — wrap as items.
+    const message = asObj(asObj(res.data).message);
+    if (message.DOI || message.title) {
+      return normalizeCrossref({ message: { items: [message] } })[0] ?? null;
+    }
+    return normalizeCrossref(res.data)[0] ?? null;
+  } catch {
+    return null;
+  }
 }

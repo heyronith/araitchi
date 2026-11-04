@@ -351,6 +351,8 @@ export async function runCouncil(input: {
   allowOverBudget?: boolean;
   broker?: ToolBroker;
   maxSteps?: number;
+  /** Project root for citation-broker cache. */
+  projectPath?: string;
   /** Override synthesizer system prompt (task-specific merge modes). */
   synthesizerSystem?: string;
   /**
@@ -474,14 +476,19 @@ export async function runCouncil(input: {
     ok.map((m) => ({ modelId: m.modelId, content: m.content })),
   );
 
-  // T13: citation-check member answers before synthesis.
+  // T13: citation-check member answers before synthesis (via tool broker).
   let citationBrief = "";
   try {
     const { checkCitations, formatMemberCitationBrief } =
       await import("@/lib/server/citations/check");
     const briefs: string[] = [];
     for (const a of anonymized) {
-      const summary = await checkCitations(a.content, { skipSupport: true });
+      const summary = await checkCitations(a.content, {
+        skipSupport: true,
+        broker: input.broker,
+        projectPath: input.projectPath,
+        apiKey: input.apiKey,
+      });
       briefs.push(formatMemberCitationBrief(a.label, summary));
     }
     if (briefs.length) {

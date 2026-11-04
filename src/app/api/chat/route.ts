@@ -730,6 +730,7 @@ async function handleCouncil(input: {
           allowOverBudget: input.allowOverBudget,
           broker,
           maxSteps,
+          projectPath: input.projectPath,
           synthesizerSystem: input.synthesizerSystem,
           prefilledMembers: input.prefilledMembers,
           hooks: {

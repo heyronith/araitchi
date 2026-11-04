@@ -131,5 +131,31 @@ export function extractCitations(text: string): ExtractedCitation[] {
     });
   }
 
+  // Attach asserted title/year/author from the surrounding claim onto id cites
+  // so "wrong title (doi:…)" becomes a metadata_mismatch, not a bare existence check.
+  for (const c of out) {
+    if (c.kind !== "doi" && c.kind !== "arxiv" && c.kind !== "url") continue;
+    enrichFromClaim(c);
+  }
+
   return out.sort((a, b) => a.index - b.index);
+}
+
+/** Pull quoted title / author / year from the claim sentence onto an id citation. */
+export function enrichFromClaim(c: ExtractedCitation): void {
+  const claim = c.claim;
+  if (!c.year) {
+    const ym = claim.match(/\b((?:19|20)\d{2})\b/);
+    if (ym) c.year = Number(ym[1]);
+  }
+  if (!c.title) {
+    const qm = claim.match(/[“"']([^“"']{12,160})[”"']/);
+    if (qm) c.title = qm[1]!.trim();
+  }
+  if (!c.firstAuthor) {
+    const am = claim.match(
+      /\b([A-Z][\w'’-]+)(?:\s+et\s+al\.?|\s*[,(]\s*(?:19|20)\d{2})/,
+    );
+    if (am) c.firstAuthor = am[1]!;
+  }
 }

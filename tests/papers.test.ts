@@ -528,6 +528,7 @@ describe("mocked-network search", () => {
             ),
           )
         : null;
+    overrides["api.crossref.org"] = () => new Response("", { status: 404 });
     const p = await getPaper({
       doi: `https://doi.org/${CHEMPROP_DOI.toUpperCase()}`,
       contactEmail: "me@example.org",
@@ -548,6 +549,7 @@ describe("mocked-network search", () => {
       new Response("", { status: 404 });
     overrides["api.openalex.org"] = () => new Response("", { status: 404 });
     overrides["export.arxiv.org"] = () => ok("<feed></feed>");
+    overrides["api.crossref.org"] = () => new Response("", { status: 404 });
     expect(await getPaper({ arxivId: "9999.99999" })).toBeNull();
     expect(await getPaper({})).toBeNull();
   });
