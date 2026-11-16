@@ -244,34 +244,59 @@ test.describe("council mode", () => {
   test("mode and council config persist per project after switching", async ({
     page,
   }) => {
-    const folder = mkdtempSync(path.join(tmpdir(), "araitchi-council-sw-"));
-    mkdirSync(folder, { recursive: true });
+    const folderA = mkdtempSync(path.join(tmpdir(), "araitchi-council-a-"));
+    const folderB = mkdtempSync(path.join(tmpdir(), "araitchi-council-b-"));
+    mkdirSync(folderA, { recursive: true });
+    mkdirSync(folderB, { recursive: true });
+    const nameA = path.basename(folderA);
+
+    async function currentName() {
+      const res = await page.request.get("http://127.0.0.1:3000/api/projects");
+      if (!res.ok()) return "";
+      const body = (await res.json()) as {
+        current?: { name?: string } | null;
+      };
+      return body.current?.name ?? "";
+    }
+    async function currentMode() {
+      const res = await page.request.get(
+        "http://127.0.0.1:3000/api/council/config",
+      );
+      if (!res.ok()) return "";
+      const body = (await res.json()) as { mode?: string };
+      return body.mode ?? "";
+    }
+    async function openFolder(folder: string) {
+      await page.getByRole("button", { name: /Open folder/i }).click();
+      await page.getByLabel(/Paste a path/i).fill(folder);
+      await page.getByRole("button", { name: "Use" }).click();
+      await page.getByRole("button", { name: "Confirm" }).click();
+      await expect(page.getByText("Project opened")).toBeVisible({
+        timeout: 15_000,
+      });
+      await expect.poll(currentName).toBe(path.basename(folder));
+    }
 
     await saveOpenRouterKey(page);
+    await openFolder(folderA);
     await switchCouncil(page);
-    // Ensure mode write lands before switching projects
-    await page.waitForTimeout(300);
+    await expect.poll(currentMode).toBe("council");
 
-    await page.getByRole("button", { name: /Open folder/i }).click();
-    await page.getByLabel(/Paste a path/i).fill(folder);
-    await page.getByRole("button", { name: "Use" }).click();
-    await page.getByRole("button", { name: "Confirm" }).click();
-    await expect(page.getByText("Project opened")).toBeVisible({
-      timeout: 15_000,
-    });
-
+    await openFolder(folderB);
     await modeButton(page, "Solo").click();
     await expect(modeButton(page, "Solo")).toHaveAttribute(
       "aria-pressed",
       "true",
     );
-    await page.waitForTimeout(300);
+    await expect.poll(currentMode).toBe("solo");
 
-    await page.getByRole("button", { name: "Scratch" }).click();
+    await page.getByRole("button", { name: nameA, exact: true }).click();
+    await expect.poll(currentName).toBe(nameA);
+    await expect.poll(currentMode).toBe("council");
     await expect(modeButton(page, "Council")).toHaveAttribute(
       "aria-pressed",
       "true",
-      { timeout: 10_000 },
+      { timeout: 15_000 },
     );
   });
 });

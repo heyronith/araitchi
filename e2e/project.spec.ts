@@ -59,20 +59,32 @@ test.describe("project workspace", () => {
       timeout: 15_000,
     });
 
-    // Edit brief in memory panel
+    // Edit brief in memory panel (wait for load so fill isn't wiped by GET).
     await page.getByRole("tab", { name: "Brief" }).click();
     const brief = page.getByLabel("Project brief");
-    await brief.fill(
-      "# Research brief\n\n## Goal\n\nE2E_BRIEF_TOKEN_XYZ\n\n## Constraints\n\n## Key definitions\n\n## Out of scope\n",
-    );
+    await expect(brief).toBeVisible();
+    await expect
+      .poll(async () => (await brief.inputValue()).length)
+      .toBeGreaterThan(10);
+    const briefBody =
+      "# Research brief\n\n## Goal\n\nE2E_BRIEF_TOKEN_XYZ\n\n## Constraints\n\n## Key definitions\n\n## Out of scope\n";
+    await brief.fill(briefBody);
+    await expect(brief).toHaveValue(briefBody);
     await page.getByRole("button", { name: "Save" }).click();
     await expect(page.getByText("Brief saved")).toBeVisible();
 
-    const onDisk = readFileSync(
-      path.join(folder, ".research", "brief.md"),
-      "utf8",
-    );
-    expect(onDisk).toContain("E2E_BRIEF_TOKEN_XYZ");
+    await expect
+      .poll(() => {
+        try {
+          return readFileSync(
+            path.join(folder, ".research", "brief.md"),
+            "utf8",
+          );
+        } catch {
+          return "";
+        }
+      })
+      .toContain("E2E_BRIEF_TOKEN_XYZ");
 
     await saveOpenRouterKey(page);
     await ensureSolo(page);

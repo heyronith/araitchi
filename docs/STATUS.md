@@ -30,7 +30,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | T9b Real benchmark | ✅ | v0.1.1 |
 | T10 Live shakedown | ✅ | v0.1.2 |
 | T11 Quality (lit / gate / scribe / probe) | ✅ | v0.1.3 — frozen LitSearch: qwen R@5 28% / R@20 41% (targets 35/55 missed; pool 94%) |
-| T12 Research environment & continuity | 🔄 | rebasing → v0.1.4 |
+| T12 Research environment & continuity | ✅ | v0.1.4 — STATE.md, project map, recall eval, continuity tools |
 
 ## Known issues / follow-ups
 
