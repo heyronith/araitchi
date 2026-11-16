@@ -144,9 +144,17 @@ export function formatMemberCitationBrief(
       r.citation.raw.slice(0, 60);
     return `  - [${r.status}] ${id}${r.reason ? ` — ${r.reason}` : ""}`;
   });
+  const guidance = [
+    "Do not rely on not_found or metadata_mismatch citations; treat those as weaknesses of this member's answer.",
+  ];
+  if (summary.unchecked > 0) {
+    guidance.push(
+      "Unchecked citations could not be verified — neither trust nor penalise them.",
+    );
+  }
   return [
     `${memberLabel}: ${summary.total} citations (${summary.verified} verified, ${summary.not_found} not found, ${summary.metadata_mismatch} mismatch, ${summary.claim_not_supported} unsupported, ${summary.unchecked} unchecked).`,
-    "Do not rely on not_found, metadata_mismatch, or unchecked citations; treat those as weaknesses of this member's answer.",
+    ...guidance,
     ...lines,
   ].join("\n");
 }

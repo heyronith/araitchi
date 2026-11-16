@@ -164,7 +164,42 @@ describe("checkCitations status assignment", () => {
     const brief = formatMemberCitationBrief("Member A", summary);
     expect(brief).toContain("not_found");
     expect(brief).toContain("Do not rely");
+    expect(brief).not.toContain("neither trust nor penalise");
     expect(citationsBlockMemorySave(summary)).toBe(true);
+  });
+
+  it("treats unchecked in the brief as neither trust nor penalise", () => {
+    const summary = {
+      total: 1,
+      verified: 0,
+      not_found: 0,
+      metadata_mismatch: 0,
+      claim_not_supported: 0,
+      unchecked: 1,
+      results: [
+        {
+          citation: {
+            id: "c1",
+            kind: "doi",
+            raw: "doi:10.1/x",
+            doi: "10.1/x",
+            claim: "",
+            index: 0,
+          },
+          status: "unchecked" as const,
+          reason: "provider timeout",
+          paper: null,
+          titleSimilarity: null,
+          yearOk: null,
+          authorOk: null,
+          support: null,
+        },
+      ],
+    } as Parameters<typeof formatMemberCitationBrief>[1];
+    const brief = formatMemberCitationBrief("Member B", summary);
+    expect(brief).toContain("unchecked");
+    expect(brief).toContain("neither trust nor penalise");
+    expect(brief).not.toMatch(/Do not rely on[^\n]*unchecked/);
   });
 });
 

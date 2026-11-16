@@ -117,7 +117,9 @@ export function MemoryPanel({
   );
 
   const briefDirtyRef = React.useRef(false);
-  briefDirtyRef.current = briefDirty;
+  React.useEffect(() => {
+    briefDirtyRef.current = briefDirty;
+  }, [briefDirty]);
 
   const loadBrief = React.useCallback(async () => {
     const res = await fetch("/api/projects/brief");
@@ -153,12 +155,14 @@ export function MemoryPanel({
 
   React.useEffect(() => {
     if (collapsed) return;
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- panel fetch
-    if (tab === "brief") void loadBrief();
-    else if (tab === "timeline") void loadTimeline();
-    else if (tab === "state") {
-      /* StatePanel loads itself */
-    } else void loadRecords();
+    const t = setTimeout(() => {
+      if (tab === "brief") void loadBrief();
+      else if (tab === "timeline") void loadTimeline();
+      else if (tab === "state") {
+        /* StatePanel loads itself */
+      } else void loadRecords();
+    }, 0);
+    return () => clearTimeout(t);
   }, [collapsed, tab, loadBrief, loadRecords, loadTimeline, refreshKey]);
 
   React.useEffect(() => {

@@ -12,12 +12,10 @@ import {
 import { mergePapers, normalizeArxivId, normalizeDoi, rrfRank } from "./merge";
 import {
   consumeOpenAlexSearchMeta,
-  fetchCrossrefWork,
   fetchCrossrefWorkDetailed,
   fetchOpenAlexLinks,
   fetchOpenAlexWorkDetailed,
   fetchSemanticScholarLinks,
-  fetchSemanticScholarPaper,
   fetchSemanticScholarPaperDetailed,
   getOpenAlexMode,
   lookupUnpaywall,

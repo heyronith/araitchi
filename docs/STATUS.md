@@ -31,7 +31,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | T10 Live shakedown | ✅ | v0.1.2 |
 | T11 Quality (lit / gate / scribe / probe) | ✅ | v0.1.3 — frozen LitSearch: qwen R@5 28% / R@20 41% (targets 35/55 missed; pool 94%) |
 | T12 Research environment & continuity | ✅ | v0.1.4 — STATE.md, project map, recall eval, continuity tools |
-| T13 Trust (citations / traceability / plan) | 🔄 | rebasing → v0.1.5 |
+| T13 Trust (citations / traceability / plan) | ✅ | v0.1.5 — citations, traceability, plan; unchecked = neither trust nor penalise |
 
 ## Known issues / follow-ups
 
