@@ -58,25 +58,69 @@ export function normalizeOpenReview(raw: unknown): Paper[] {
   return papers;
 }
 
+/** OpenReview venues that dominate LitSearch / ML-NLP gold. */
+const ML_VENUE_HINTS = ["ICLR", "NeurIPS", "ICML", "ACL", "EMNLP", "NAACL"];
+
 export async function searchOpenReview(
   query: string,
   opts: ProviderSearchOpts,
 ): Promise<ProviderSearchResult> {
   return runProvider("openreview", opts, async () => {
-    const params = new URLSearchParams({
-      term: query,
+    const want = clampLimit(opts.limit, 100);
+    const base = {
       content: "all",
       source: "forum",
-      limit: String(clampLimit(opts.limit, 100)),
-    });
-    const res = await fetchJson<unknown>(
-      `${getProviderBaseUrl("openreview")}/notes/search?${params}`,
-      {
-        headers: { "User-Agent": userAgent(opts.mailto) },
-        signal: opts.signal,
-      },
-    );
-    if (!res.ok) return { ok: false, error: res.error };
-    return { ok: true, papers: normalizeOpenReview(res.data) };
+      limit: String(want),
+    };
+    // Primary: full-text term search. Secondary: query + venue tokens so
+    // ICLR/NeurIPS/ACL forums surface for LitSearch-style questions.
+    const jobs = [
+      fetchJson<unknown>(
+        `${getProviderBaseUrl("openreview")}/notes/search?${new URLSearchParams(
+          {
+            ...base,
+            term: query,
+          },
+        )}`,
+        {
+          headers: { "User-Agent": userAgent(opts.mailto) },
+          signal: opts.signal,
+        },
+      ),
+      fetchJson<unknown>(
+        `${getProviderBaseUrl("openreview")}/notes/search?${new URLSearchParams(
+          {
+            ...base,
+            term: `${query} ${ML_VENUE_HINTS.slice(0, 3).join(" ")}`,
+          },
+        )}`,
+        {
+          headers: { "User-Agent": userAgent(opts.mailto) },
+          signal: opts.signal,
+        },
+      ),
+    ];
+    const results = await Promise.all(jobs);
+    const papers: Paper[] = [];
+    const seen = new Set<string>();
+    let anyOk = false;
+    let lastErr = "openreview_failed";
+    for (const res of results) {
+      if (!res.ok) {
+        lastErr = res.error;
+        continue;
+      }
+      anyOk = true;
+      for (const p of normalizeOpenReview(res.data)) {
+        const key = p.url ?? p.title.toLowerCase();
+        if (seen.has(key)) continue;
+        seen.add(key);
+        papers.push(p);
+        if (papers.length >= want) break;
+      }
+      if (papers.length >= want) break;
+    }
+    if (!anyOk) return { ok: false, error: lastErr };
+    return { ok: true, papers: papers.slice(0, want) };
   });
 }

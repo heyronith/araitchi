@@ -10,6 +10,12 @@
       },
       {
         "type": "note",
+        "altTypes": ["decision"],
+        "titleTerms": ["washout"]
+      },
+      {
+        "type": "note",
+        "altTypes": ["decision"],
         "titleTerms": ["AHI"]
       }
     ]

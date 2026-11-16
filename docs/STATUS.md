@@ -9,7 +9,8 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 - **Keys:** user's own OpenRouter key (OAuth PKCE or manual)
 - **Project:** folder with `.research/` memory (Task 3)
 - **Always-council task types:** hypothesis generation, experiment design, literature/novelty check, critique, interpreting results
-- **Classifier:** rules → bundled embedding model (Transformers.js) → `gpt-oss-20b` via OpenRouter (no Ollama)
+- **Classifier:** rules → LLM (`~openai/gpt-latest`, 256 tokens) → kNN fallback (LLM error / timeout >4s / offline)
+- **Paper search:** multi-provider RRF + query expansion + local Qwen3 semantic rerank (default `best` stage, ≤~20s; hop/LLM opt-in)
 - **Paper sources:** OpenAlex, CORE, Semantic Scholar, arXiv, DBLP, OpenReview, Crossref, Unpaywall
 
 ## Task table
@@ -27,6 +28,8 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | T8 Validation loop | ✅ | `abf5407` |
 | T9 Eval harness & v0.1 | ✅ | v0.1.0 |
 | T9b Real benchmark | ✅ | v0.1.1 |
+| T10 Live shakedown | ✅ | v0.1.2 |
+| T11 Quality (lit / gate / scribe / probe) | ✅ | v0.1.3 — frozen LitSearch: qwen R@5 28% / R@20 41% (targets 35/55 missed; pool 94%) |
 
 ## Known issues / follow-ups
 

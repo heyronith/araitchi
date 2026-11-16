@@ -1,0 +1,239 @@
+{
+  "models": ["~openai/gpt-latest", "~anthropic/claude-sonnet-latest"],
+  "totalCreates": 70,
+  "ungroundedCount": 0,
+  "inventedOrUngrounded": 11,
+  "cases": [
+    {
+      "model": "~openai/gpt-latest",
+      "fixture": "20.json",
+      "categoryHint": "a_or_b",
+      "create": {
+        "type": "note",
+        "title": "Apnea exclusion threshold",
+        "body": "Exclude if apnea AHI >15.",
+        "evidenceQuote": "exclusion if apnea AHI>15."
+      },
+      "expected": [
+        {
+          "type": "decision",
+          "titleTerms": ["AHI"]
+        }
+      ],
+      "source": "Remember: exclusion if apnea AHI>15.\nNote exclusion AHI>15.",
+      "note": "quote grounded but not matched to gold"
+    },
+    {
+      "model": "~openai/gpt-latest",
+      "fixture": "31.json",
+      "categoryHint": "a_or_b",
+      "create": {
+        "type": "experiment",
+        "title": "HRV, sleep latency, and WASO results",
+        "body": "Reported results for this arm: HRV increased by 5 ms, sleep latency decreased by 9 min, and WASO was unchanged.",
+        "evidenceQuote": "HRV +5ms, sleep latency −9 min; WASO unchanged in this arm.",
+        "status": "done"
+      },
+      "expected": [
+        {
+          "type": "note",
+          "titleTerms": ["HRV"]
+        },
+        {
+          "type": "note",
+          "titleTerms": ["latency"]
+        },
+        {
+          "type": "note",
+          "titleTerms": ["WASO"]
+        }
+      ],
+      "source": "Multi-finding reply: HRV up 5ms, latency down 9min, no effect on WASO.\nHRV +5ms, sleep latency −9 min; WASO unchanged in this arm.",
+      "note": "quote grounded but not matched to gold"
+    },
+    {
+      "model": "~openai/gpt-latest",
+      "fixture": "32.json",
+      "categoryHint": "a_or_b",
+      "create": {
+        "type": "hypothesis",
+        "title": "Quantum tunneling as an explanation for the logit spike",
+        "body": "The assistant proposed quantum tunneling as an explanation for the logit spike. The user flagged this claim as unsupported; no data were cited.",
+        "evidenceQuote": "Quantum tunneling explains the logit spike we saw (no data cited).",
+        "status": "proposed"
+      },
+      "expected": [],
+      "source": "Assistant claimed quantum tunneling explains our logits (unsupported).\nQuantum tunneling explains the logit spike we saw (no data cited).",
+      "note": "quote grounded but not matched to gold"
+    },
+    {
+      "model": "~openai/gpt-latest",
+      "fixture": "34.json",
+      "categoryHint": "a_or_b",
+      "create": {
+        "type": "note",
+        "title": "Shift-worker sleep eligibility",
+        "body": "Shift workers are eligible only if baseline sleep is less than 6 hours.",
+        "evidenceQuote": "shift workers only if <6h sleep baseline."
+      },
+      "expected": [
+        {
+          "type": "decision",
+          "titleTerms": ["shift", "6"]
+        }
+      ],
+      "source": "Note exclusion: shift workers only if <6h sleep baseline.\nEligibility note: shift workers need <6h baseline sleep.",
+      "note": "quote grounded but not matched to gold"
+    },
+    {
+      "model": "~openai/gpt-latest",
+      "fixture": "39.json",
+      "categoryHint": "a_or_b",
+      "create": {
+        "type": "note",
+        "title": "Unsupported HRV significance claim",
+        "body": "The assistant claimed an HRV gain with p<0.001 despite no statistics being provided by the user. This claim is unsupported and should not be treated as an experimental result.",
+        "evidenceQuote": "Reply mentions p<0.001 for HRV but user never provided stats.",
+        "tags": ["HRV", "data-integrity"]
+      },
+      "expected": [],
+      "source": "Reply mentions p<0.001 for HRV but user never provided stats.\nHighly significant HRV gain p<0.001 (fabricated precision).",
+      "note": "quote grounded but not matched to gold"
+    },
+    {
+      "model": "~anthropic/claude-sonnet-latest",
+      "fixture": "09.json",
+      "categoryHint": "a_or_b",
+      "create": {
+        "type": "experiment",
+        "title": "Amber filter test of blue-light hypothesis",
+        "body": "Testing the blue-light hypothesis with amber filters. Setup, measures and results were not specified.",
+        "evidenceQuote": "Status → testing with amber filters.",
+        "status": "running"
+      },
+      "expected": [
+        {
+          "type": "hypothesis",
+          "titleTerms": ["blue"],
+          "status": "testing"
+        }
+      ],
+      "source": "We are now testing the blue-light hypothesis with filters.\nStatus → testing with amber filters.",
+      "note": "quote grounded but not matched to gold"
+    },
+    {
+      "model": "~anthropic/claude-sonnet-latest",
+      "fixture": "26.json",
+      "categoryHint": "a_or_b",
+      "create": {
+        "type": "decision",
+        "title": "Include 1-week washout in crossover design",
+        "body": "A washout week was added between crossover periods. No rationale was given in the conversation.",
+        "evidenceQuote": "add washout week",
+        "tags": ["crossover", "washout"]
+      },
+      "expected": [
+        {
+          "type": "experiment",
+          "titleTerms": ["crossover"],
+          "status": "planned"
+        },
+        {
+          "type": "note",
+          "titleTerms": ["AHI"]
+        }
+      ],
+      "source": "Turn 1: plan crossover study.\nTurn 2: add washout week.\nTurn 3: exclude apnea AHI>15.\nCrossover sleep study with 1-week washout; exclude AHI>15.",
+      "note": "quote grounded but not matched to gold"
+    },
+    {
+      "model": "~anthropic/claude-sonnet-latest",
+      "fixture": "26.json",
+      "categoryHint": "a_or_b",
+      "create": {
+        "type": "decision",
+        "title": "Exclude participants with apnea AHI>15",
+        "body": "Participants with apnea and AHI>15 are excluded from the study. No rationale was given in the conversation.",
+        "evidenceQuote": "exclude apnea AHI>15",
+        "tags": ["exclusion-criteria", "apnea"]
+      },
+      "expected": [
+        {
+          "type": "experiment",
+          "titleTerms": ["crossover"],
+          "status": "planned"
+        },
+        {
+          "type": "note",
+          "titleTerms": ["AHI"]
+        }
+      ],
+      "source": "Turn 1: plan crossover study.\nTurn 2: add washout week.\nTurn 3: exclude apnea AHI>15.\nCrossover sleep study with 1-week washout; exclude AHI>15.",
+      "note": "quote grounded but not matched to gold"
+    },
+    {
+      "model": "~anthropic/claude-sonnet-latest",
+      "fixture": "31.json",
+      "categoryHint": "a_or_b",
+      "create": {
+        "type": "experiment",
+        "title": "Arm results: HRV, sleep latency, WASO",
+        "body": "Reported results for one arm: HRV up 5 ms, sleep latency down 9 min, no effect on WASO. The intervention, the comparison and the sample size were not stated in the chat.",
+        "evidenceQuote": "HRV up 5ms, latency down 9min, no effect on WASO.",
+        "status": "done",
+        "tags": ["HRV", "sleep latency", "WASO"]
+      },
+      "expected": [
+        {
+          "type": "note",
+          "titleTerms": ["HRV"]
+        },
+        {
+          "type": "note",
+          "titleTerms": ["latency"]
+        },
+        {
+          "type": "note",
+          "titleTerms": ["WASO"]
+        }
+      ],
+      "source": "Multi-finding reply: HRV up 5ms, latency down 9min, no effect on WASO.\nHRV +5ms, sleep latency −9 min; WASO unchanged in this arm.",
+      "note": "quote grounded but not matched to gold"
+    },
+    {
+      "model": "~anthropic/claude-sonnet-latest",
+      "fixture": "32.json",
+      "categoryHint": "a_or_b",
+      "create": {
+        "type": "note",
+        "title": "Quantum tunneling claim for logit spike is unsupported",
+        "body": "The assistant asserted that quantum tunneling explains the observed logit spike without citing any data. The user flagged this as unsupported. It should not be treated as a hypothesis or an explanation until there is evidence. The cause of the logit spike remains unexplained.",
+        "evidenceQuote": "Assistant claimed quantum tunneling explains our logits (unsupported).",
+        "tags": ["logits", "unsupported-claim"]
+      },
+      "expected": [],
+      "source": "Assistant claimed quantum tunneling explains our logits (unsupported).\nQuantum tunneling explains the logit spike we saw (no data cited).",
+      "note": "quote grounded but not matched to gold"
+    },
+    {
+      "model": "~anthropic/claude-sonnet-latest",
+      "fixture": "34.json",
+      "categoryHint": "a_or_b",
+      "create": {
+        "type": "note",
+        "title": "Shift worker eligibility: <6h baseline sleep",
+        "body": "Shift workers are included only if their baseline sleep is under 6 hours. Recorded as an eligibility/exclusion criterion.",
+        "evidenceQuote": "Note exclusion: shift workers only if <6h sleep baseline.",
+        "tags": ["eligibility", "exclusion-criteria", "shift-workers", "sleep"]
+      },
+      "expected": [
+        {
+          "type": "decision",
+          "titleTerms": ["shift", "6"]
+        }
+      ],
+      "source": "Note exclusion: shift workers only if <6h sleep baseline.\nEligibility note: shift workers need <6h baseline sleep.",
+      "note": "quote grounded but not matched to gold"
+    }
+  ]
+}

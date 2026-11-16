@@ -1,6 +1,6 @@
 {
   "name": "araitchi",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -24,6 +24,8 @@
     "eval:gate": "node scripts/eval-gate.mjs",
     "eval:probe": "node scripts/eval-probe.mjs",
     "eval:litsearch": "node scripts/eval-litsearch.mjs",
+    "eval:litsearch:freeze": "node scripts/eval-litsearch-freeze.mjs",
+    "eval:litsearch:rank": "node scripts/eval-litsearch-rank.mjs",
     "bench": "node scripts/bench.mjs",
     "bench:build-fixtures": "node scripts/build-bench-fixtures.mjs",
     "bench:validate-fixtures": "node scripts/validate-bench-fixtures.mjs",

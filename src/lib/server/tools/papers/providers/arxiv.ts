@@ -68,14 +68,52 @@ export function normalizeArxivXml(xml: string): Paper[] {
 
 export const normalizeArxiv = normalizeArxivXml;
 
-function arxivQuery(query: string, opts: ProviderSearchOpts): string {
-  let q = `all:${query.replace(/[()"]/g, " ").replace(/\s+/g, " ").trim()}`;
-  if (opts.yearFrom !== undefined || opts.yearTo !== undefined) {
-    const from = `${opts.yearFrom ?? 1991}01010000`;
-    const to = `${opts.yearTo ?? 9999}12312359`;
-    q += ` AND submittedDate:[${from} TO ${to}]`;
-  }
-  return q;
+function arxivEscape(query: string): string {
+  return query.replace(/[()"]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function arxivDateClause(opts: ProviderSearchOpts): string {
+  if (opts.yearFrom === undefined && opts.yearTo === undefined) return "";
+  const from = `${opts.yearFrom ?? 1991}01010000`;
+  const to = `${opts.yearTo ?? 9999}12312359`;
+  return ` AND submittedDate:[${from} TO ${to}]`;
+}
+
+/** General all: field query. */
+function arxivQueryAll(query: string, opts: ProviderSearchOpts): string {
+  return `all:${arxivEscape(query)}${arxivDateClause(opts)}`;
+}
+
+/**
+ * LitSearch / ML-NLP biased query: same terms restricted to cs.CL|LG|AI.
+ * Merged with the general query so non-ML work is not excluded entirely.
+ */
+function arxivQueryMlNlp(query: string, opts: ProviderSearchOpts): string {
+  const q = arxivEscape(query);
+  return `(all:${q}) AND (cat:cs.CL OR cat:cs.LG OR cat:cs.AI OR cat:cs.CV)${arxivDateClause(opts)}`;
+}
+
+async function fetchArxivFeed(
+  searchQuery: string,
+  opts: ProviderSearchOpts,
+  maxResults: number,
+  start = 0,
+): Promise<{ ok: true; papers: Paper[] } | { ok: false; error: string }> {
+  const params = new URLSearchParams({
+    search_query: searchQuery,
+    start: String(start),
+    max_results: String(maxResults),
+    sortBy: "relevance",
+  });
+  const res = await fetchText(
+    `${getProviderBaseUrl("arxiv")}/query?${params}`,
+    {
+      headers: { "User-Agent": userAgent(opts.mailto) },
+      signal: opts.signal,
+    },
+  );
+  if (!res.ok) return { ok: false, error: res.error };
+  return { ok: true, papers: normalizeArxivXml(res.text) };
 }
 
 export async function searchArxiv(
@@ -83,21 +121,31 @@ export async function searchArxiv(
   opts: ProviderSearchOpts,
 ): Promise<ProviderSearchResult> {
   return runProvider("arxiv", opts, async () => {
-    const params = new URLSearchParams({
-      search_query: arxivQuery(query, opts),
-      start: "0",
-      max_results: String(clampLimit(opts.limit, 100)),
-      sortBy: "relevance",
-    });
-    const res = await fetchText(
-      `${getProviderBaseUrl("arxiv")}/query?${params}`,
-      {
-        headers: { "User-Agent": userAgent(opts.mailto) },
-        signal: opts.signal,
-      },
-    );
-    if (!res.ok) return { ok: false, error: res.error };
-    return { ok: true, papers: normalizeArxivXml(res.text) };
+    const want = clampLimit(opts.limit, 100);
+    // Split budget: general + ML/NLP category-scoped (ACL/ICLR-era coverage).
+    const half = Math.max(10, Math.ceil(want / 2));
+    const [general, ml] = await Promise.all([
+      fetchArxivFeed(arxivQueryAll(query, opts), opts, half),
+      fetchArxivFeed(arxivQueryMlNlp(query, opts), opts, half),
+    ]);
+    if (!general.ok && !ml.ok) {
+      return { ok: false, error: general.ok ? ml.error! : general.error };
+    }
+    const merged = [
+      ...(general.ok ? general.papers : []),
+      ...(ml.ok ? ml.papers : []),
+    ];
+    // Dedupe by arxiv id / title
+    const seen = new Set<string>();
+    const out: Paper[] = [];
+    for (const p of merged) {
+      const key = (p.arxivId ?? p.title).toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(p);
+      if (out.length >= want) break;
+    }
+    return { ok: true, papers: out };
   });
 }
 

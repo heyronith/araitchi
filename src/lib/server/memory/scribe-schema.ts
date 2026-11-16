@@ -15,12 +15,16 @@ export const scribeCreateSchema = z.object({
   type: z.enum(RECORD_TYPES),
   title: z.string().min(1).max(300),
   body: z.string().min(1).max(8000),
+  /** Verbatim span copied from the user message or assistant reply. */
+  evidenceQuote: z.string().min(8).max(500),
   status: z.string().max(40).optional().nullable(),
   tags: z.array(z.string().max(40)).max(10).optional(),
 });
 
 export const scribeUpdateSchema = z.object({
   id: z.string().min(1).max(64),
+  /** Verbatim span justifying the update. */
+  evidenceQuote: z.string().min(8).max(500),
   status: z.string().max(40).optional().nullable(),
   appendBody: z.string().max(8000).optional(),
 });
@@ -34,7 +38,7 @@ export type ScribeOutput = z.infer<typeof scribeOutputSchema>;
 export type ScribeCreate = z.infer<typeof scribeCreateSchema>;
 export type ScribeUpdate = z.infer<typeof scribeUpdateSchema>;
 
-export const SCRIBE_REPAIR_PROMPT = `Your previous reply was not valid JSON for the scribe schema. Reply again with ONLY a valid JSON object (no markdown fences) with keys "create" (array, max 5) and "update" (array, max 5).`;
+export const SCRIBE_REPAIR_PROMPT = `Your previous reply was not valid JSON for the scribe schema. Reply again with ONLY a valid JSON object (no markdown fences) with keys "create" (array, max 5) and "update" (array, max 5). Every create/update item must include evidenceQuote (verbatim span from the conversation, ≥8 characters).`;
 
 /** Allowed status transitions from scribe (never deletes). */
 export function sanitizeScribeStatus(

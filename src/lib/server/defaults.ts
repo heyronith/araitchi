@@ -7,6 +7,8 @@ export type AppDefaults = {
   scribeModel: string;
   classifierModel: string;
   strongestSoloModel: string;
+  /** Cheap/fast model for paper query expansion + optional LLM rerank. */
+  paperEnhanceModel: string;
   probeModels: [string, string];
   council: {
     balancedLabs: string[];
@@ -25,9 +27,10 @@ export type AppDefaults = {
 
 const FALLBACK: AppDefaults = {
   version: 1,
-  scribeModel: "~openai/gpt-latest",
-  classifierModel: "openai/gpt-oss-20b",
+  scribeModel: "~google/gemini-flash-latest",
+  classifierModel: "~openai/gpt-latest",
   strongestSoloModel: "~anthropic/claude-sonnet-latest",
+  paperEnhanceModel: "~google/gemini-flash-latest",
   probeModels: [
     "~anthropic/claude-haiku-latest",
     "~google/gemini-flash-latest",

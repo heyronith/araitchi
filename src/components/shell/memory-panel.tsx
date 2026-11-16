@@ -518,6 +518,15 @@ export function MemoryPanel({
                       <li
                         key={r.id}
                         className="hover:bg-muted/50 group rounded-md border p-2"
+                        title={
+                          r.tags
+                            ?.find((t) => t.startsWith("evidence:"))
+                            ?.slice("evidence:".length)
+                            ? `From: ${r.tags
+                                .find((t) => t.startsWith("evidence:"))!
+                                .slice("evidence:".length)}`
+                            : undefined
+                        }
                       >
                         <button
                           type="button"

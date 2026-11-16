@@ -4,8 +4,14 @@ const DEFAULT_RETRIES = 3;
 const BASE_BACKOFF_MS = 500;
 
 export type FetchJsonResult<T = unknown> =
-  | { ok: true; data: T }
-  | { ok: false; error: string; status?: number; contentType?: string };
+  | { ok: true; data: T; fromCache?: boolean }
+  | {
+      ok: false;
+      error: string;
+      status?: number;
+      contentType?: string;
+      fromCache?: boolean;
+    };
 
 function parseRetryAfterMs(header: string | null): number | null {
   if (!header?.trim()) return null;

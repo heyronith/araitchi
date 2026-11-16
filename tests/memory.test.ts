@@ -152,6 +152,7 @@ describe("scribe", () => {
         type: "note",
         title: `T${i}`,
         body: `B${i}`,
+        evidenceQuote: `quote number ${i} grounded`,
       })),
       update: [],
     };
@@ -161,7 +162,14 @@ describe("scribe", () => {
 
     const ok = parseScribeOutput(
       JSON.stringify({
-        create: [{ type: "note", title: "A", body: "B" }],
+        create: [
+          {
+            type: "note",
+            title: "A",
+            body: "B",
+            evidenceQuote: "a grounded quote here",
+          },
+        ],
         update: [],
       }),
     );
@@ -201,6 +209,7 @@ describe("scribe", () => {
             type: "hypothesis",
             title: "Widget friction",
             body: text,
+            evidenceQuote: "widget friction matters",
             status: "proposed",
           },
         ],
@@ -224,7 +233,14 @@ describe("scribe", () => {
       sourceModel: "test/model",
       apiKey: "x",
       mockOutput: {
-        create: [{ type: "note", title: "N", body: "B" }],
+        create: [
+          {
+            type: "note",
+            title: "N",
+            body: "B",
+            evidenceQuote: "unused quote here",
+          },
+        ],
         update: [],
       },
     });
@@ -251,12 +267,19 @@ describe("scribe", () => {
       projectPath: p,
       chatId: "c1",
       messageId: "m1",
-      userText: "fact",
+      userText: "Please remember this durable fact about widgets",
       replyText: "ok",
       sourceModel: "test/model",
       apiKey: "x",
       mockOutput: {
-        create: [{ type: "note", title: "Scribed note", body: "Durable fact" }],
+        create: [
+          {
+            type: "note",
+            title: "Durable fact about widgets",
+            body: "Durable fact about widgets",
+            evidenceQuote: "durable fact about widgets",
+          },
+        ],
         update: [],
       },
     });
@@ -272,12 +295,19 @@ describe("scribe", () => {
       projectPath: p,
       chatId: "c1",
       messageId: "m1",
-      userText: "fact",
+      userText: "Needs review of the pending note carefully",
       replyText: "ok",
       sourceModel: "test/model",
       apiKey: "x",
       mockOutput: {
-        create: [{ type: "note", title: "Pending note", body: "Needs review" }],
+        create: [
+          {
+            type: "note",
+            title: "Pending note",
+            body: "Needs review",
+            evidenceQuote: "Needs review of the pending",
+          },
+        ],
         update: [],
       },
     });

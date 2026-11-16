@@ -11,6 +11,7 @@ export const runtime = "nodejs";
 const patchSchema = z.object({
   knnThreshold: z.number().min(0).max(1).optional(),
   probeAgreementThreshold: z.number().min(0).max(1).optional(),
+  probeEnabled: z.boolean().optional(),
   classifierModel: z.string().min(1).max(200).optional(),
   probeModels: z.tuple([z.string(), z.string()]).optional(),
   alwaysCouncil: z.array(z.enum(TASK_TYPES)).optional(),

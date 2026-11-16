@@ -2,7 +2,7 @@
 
 Araitchi is a local-first, self-hosted AI research workspace. It runs as a Next.js app on your machine; you bring your own OpenRouter API key. A team of models from different labs will help with literature review, hypotheses, and experiment design — each research project is a folder on disk.
 
-**Status:** v0.1.1
+**Status:** v0.1.3
 
 ![Chat — Auto mode](docs/screenshots/chat-auto.png)
 ![Council reply](docs/screenshots/council.png)
@@ -94,6 +94,7 @@ Open **Settings → Tools** to choose what models may use. Toggles are per proje
 | Memory | Search notebook / hypotheses / library (default on) |
 
 - **Optional keys** (Settings → Keys): OpenAlex, CORE, Semantic Scholar, and a GitHub token (read-only). Paper search works without them, with lower rate limits. For scripts and smoke tests, the same keys can live in `.env.local` (`OPENALEX_API_KEY`, `CORE_API_KEY`, `SEMANTIC_SCHOLAR_API_KEY`); the app reads Settings first and falls back to those env vars when a setting is missing.
+- **OpenAlex budget:** OpenAlex bills search/semantic calls against a **$1/day free** allowance (prepaid credit available). Araitchi caches OpenAlex HTTP responses, shows remaining budget under Settings → Keys (`OpenAlex: $0.62 of $1.00 left today`), and when the day is nearly spent falls back to cheaper coverage (fewer pages, no semantic search) with an explicit **reduced coverage** note — it does not fail silently. Heavy users can add prepaid OpenAlex credit at [openalex.org/pricing](https://openalex.org/pricing).
 - **Contact email** (`contact_email` in Settings, or `ARAITCHI_CONTACT_EMAIL` in `.env.local`): sent to Crossref / OpenAlex polite pools and required for Unpaywall. It is not a secret.
 - **Providers:** each paper provider can be switched off individually.
 - **MCP servers:** add a name plus a stdio command or an http URL. **Stdio MCP servers run commands on this computer — only add servers you trust.** MCP tools are approval-gated unless you mark the server read-only.

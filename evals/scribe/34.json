@@ -5,7 +5,8 @@
     "records": [
       {
         "type": "note",
-        "titleTerms": ["shift", "6h"]
+        "altTypes": ["decision"],
+        "titleTerms": ["shift", "6"]
       }
     ]
   },

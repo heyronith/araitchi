@@ -11,9 +11,11 @@ import { ALWAYS_COUNCIL, type TaskType } from "./taxonomy";
 export type GateSettings = {
   /** Min weighted kNN confidence to accept without LLM (0–1). */
   knnThreshold: number;
-  /** Probe agreement cosine threshold (0–1). */
+  /** Probe structured-agreement threshold (0–1). Matching finals score ≥0.7. */
   probeAgreementThreshold: number;
-  /** OpenRouter model id for classifier LLM fallback. */
+  /** When false, probe is skipped and "other"/probe routes go to council. */
+  probeEnabled: boolean;
+  /** OpenRouter model id for classifier LLM (production LLM-first). */
   classifierModel: string;
   /** Two probe model ids from different labs. */
   probeModels: [string, string];
@@ -43,7 +45,10 @@ function gateDefaultsFromConfig(): Pick<
  */
 export const DEFAULT_GATE_SETTINGS: GateSettings = {
   knnThreshold: 0.55,
-  probeAgreementThreshold: 0.48,
+  /** Structured compare: matching finals → ≥0.7; mismatch → 0. */
+  probeAgreementThreshold: 0.7,
+  /** T11 eval: structured probe acc 59% (<85%) → disabled; other → council. */
+  probeEnabled: false,
   ...gateDefaultsFromConfig(),
   alwaysCouncil: [...ALWAYS_COUNCIL] as TaskType[],
   knnK: 7,
@@ -60,6 +65,11 @@ export function getGateSettings(projectPath: string): GateSettings {
     projectPath,
     "gate.probeAgreementThreshold",
     DEFAULT_GATE_SETTINGS.probeAgreementThreshold,
+  );
+  const probeEnabled = getProjectSetting<boolean>(
+    projectPath,
+    "gate.probeEnabled",
+    DEFAULT_GATE_SETTINGS.probeEnabled,
   );
   const classifierModel = getProjectSetting<string>(
     projectPath,
@@ -92,6 +102,7 @@ export function getGateSettings(projectPath: string): GateSettings {
       probeAgreementThreshold,
       DEFAULT_GATE_SETTINGS.probeAgreementThreshold,
     ),
+    probeEnabled: typeof probeEnabled === "boolean" ? probeEnabled : true,
     classifierModel:
       classifierModel?.trim() || DEFAULT_GATE_SETTINGS.classifierModel,
     probeModels:
@@ -129,6 +140,9 @@ export function setGateSettings(
       "gate.probeAgreementThreshold",
       patch.probeAgreementThreshold,
     );
+  }
+  if (typeof patch.probeEnabled === "boolean") {
+    setProjectSetting(projectPath, "gate.probeEnabled", patch.probeEnabled);
   }
   if (typeof patch.classifierModel === "string") {
     setProjectSetting(

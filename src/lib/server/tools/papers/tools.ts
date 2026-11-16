@@ -120,7 +120,7 @@ export function createPaperTools(ctx: PaperToolContext = {}): RegisteredTool[] {
       toolCtx,
     ): Promise<ToolResult> => {
       try {
-        const { papers, providers } = await searchPapers({
+        const { papers, providers, meta } = await searchPapers({
           query: args.query,
           yearFrom: args.yearFrom,
           yearTo: args.yearTo,
@@ -145,12 +145,29 @@ export function createPaperTools(ctx: PaperToolContext = {}): RegisteredTool[] {
           };
         }
         const okCount = providers.filter((p) => p.ok).length;
-        const totalSources = providers.length;
+        // Soft-fail bot challenges (e.g. DBLP Anubis) out of coverage denominator.
+        const countable = providers.filter(
+          (p) =>
+            p.ok ||
+            !(p.error ?? "").toLowerCase().includes("dblp_bot_challenge"),
+        );
+        const totalSources = countable.length;
         const failed = providerSummary
           .filter((p) => !p.ok)
           .map((p) => formatProviderFailure(p.provider, p.error));
+        const coverageNote = meta?.reducedCoverage
+          ? meta.openAlexMode === "offline"
+            ? "OpenAlex daily budget exhausted — reduced coverage (OpenAlex skipped)."
+            : "OpenAlex near daily budget — reduced coverage (fewer pages, no semantic search)."
+          : null;
+        const costNote =
+          meta?.openAlexCostUsd != null
+            ? `OpenAlex cost this search: $${meta.openAlexCostUsd.toFixed(4)}`
+            : null;
         const modelText = [
           `Searched ${okCount} of ${totalSources} sources for "${args.query}"`,
+          coverageNote,
+          costNote,
           failed.length ? `Failures: ${failed.join(", ")}` : null,
           ...papers.map((p, i) => formatPaperForModel(p, i)),
         ]
@@ -158,7 +175,14 @@ export function createPaperTools(ctx: PaperToolContext = {}): RegisteredTool[] {
           .join("\n\n");
         return {
           ok: true,
-          data: { query: args.query, papers, providers: providerSummary },
+          data: {
+            query: args.query,
+            papers,
+            providers: providerSummary,
+            openAlexCostUsd: meta?.openAlexCostUsd ?? 0,
+            reducedCoverage: meta?.reducedCoverage ?? false,
+            openAlexMode: meta?.openAlexMode ?? "full",
+          },
           sources: papers.map(paperToSource),
           modelText,
         };

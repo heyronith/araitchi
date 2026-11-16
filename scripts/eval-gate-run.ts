@@ -349,9 +349,9 @@ async function main() {
       });
     }
 
-    // LLM-only for the first listed model (knn+LLM already covers the rest)
+    // Production path (T11): LLM-first (kNN only as fallback — measured as LLM-only here)
     for (const model of usable.slice(0, 1)) {
-      console.error(`[gate] LLM-only ${model}`);
+      console.error(`[gate] LLM-first ${model}`);
       const preds: TaskType[] = [];
       const lats: number[] = [];
       let costSum = 0;
@@ -371,7 +371,7 @@ async function main() {
           debugPath,
           JSON.stringify({
             model,
-            mode: "llm-only",
+            mode: "llm-first",
             id: ex.id,
             gold: ex.taskType,
             pred: r.taskType,
@@ -382,13 +382,13 @@ async function main() {
         );
         if ((i + 1) % 20 === 0)
           console.error(
-            `[gate] LLM-only ${model} (${i + 1}/${examples.length})`,
+            `[gate] LLM-first ${model} (${i + 1}/${examples.length})`,
           );
       }
       const m = metrics(yTrue, preds);
       lats.sort((a, b) => a - b);
       rows.push({
-        name: `LLM only ${model}`,
+        name: `LLM-first ${model} (production)`,
         ...m,
         latencyMs: lats[Math.floor(lats.length / 2)] ?? 0,
         cost: costN ? costSum / costN : null,

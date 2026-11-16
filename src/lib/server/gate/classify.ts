@@ -2,9 +2,10 @@ import "server-only";
 
 import { createHash } from "node:crypto";
 
-import { getEmbedder } from "@/lib/server/memory/embedder";
 import type { ChatMode } from "@/lib/server/council/types";
+import { getEmbedder } from "@/lib/server/memory/embedder";
 
+import { listProjectCorrections } from "./corrections";
 import { classifyKnn, loadSeedExamples, type SeedExample } from "./knn";
 import { classifyWithLlm } from "./llm-classify";
 import { applyRules } from "./rules";
@@ -16,7 +17,6 @@ import {
   type Stakes,
   type TaskType,
 } from "./taxonomy";
-import { listProjectCorrections } from "./corrections";
 
 export type Classification = {
   taskType: TaskType;
@@ -36,9 +36,38 @@ export function hashInput(text: string): string {
   return createHash("sha256").update(text.trim()).digest("hex").slice(0, 24);
 }
 
+/** Research-critical keyword safety (never down-route to solo/probe). */
+export function researchCriticalHint(text: string): boolean {
+  return /hypothesis|hypotheses|experiment|protocol|literature|survey|novelty|papers?\b|critique|weakness|flaw|results?\b|interpret/i.test(
+    text,
+  );
+}
+
+function withResearchSafety(
+  text: string,
+  taskType: TaskType,
+  action: GateAction,
+  alwaysCouncil: TaskType[],
+): { taskType: TaskType; action: GateAction; reasonSuffix: string } {
+  let next = action;
+  if (alwaysCouncil.includes(taskType)) next = "council";
+  if (
+    researchCriticalHint(text) &&
+    next !== "council" &&
+    next !== "retrieve_evidence"
+  ) {
+    return {
+      taskType,
+      action: "council",
+      reasonSuffix: " (research-critical safety → council)",
+    };
+  }
+  return { taskType, action: next, reasonSuffix: "" };
+}
+
 /**
- * Three-layer classifier: rules → kNN → LLM fallback.
- * When mode is solo/council, rules force that action.
+ * Quality-first classifier: rules → LLM → kNN fallback
+ * (LLM error, timeout > 4s, or no credits/offline).
  */
 export async function classifyRequest(input: {
   projectPath: string;
@@ -55,28 +84,22 @@ export async function classifyRequest(input: {
   const inputHash = hashInput(text);
 
   const rule = applyRules({ text, mode: input.mode });
-  if (rule) {
-    // Forced solo/council still allow slash overrides above; for forced mode
-    // we keep the forced action but may refine taskType via kNN when auto…
-    // Forced modes return immediately.
-    if (rule.layer === "forced" || rule.layer === "rule") {
-      return {
-        taskType: rule.taskType,
-        stakes: rule.stakes,
-        needsEvidence: rule.needsEvidence,
-        action: rule.action,
-        layer: rule.layer,
-        confidence: rule.confidence,
-        reason: rule.reason,
-        inputHash,
-        cleanedText: rule.cleanedText ?? text,
-        costUsd: null,
-        latencyMs: Date.now() - started,
-      };
-    }
+  if (rule && (rule.layer === "forced" || rule.layer === "rule")) {
+    return {
+      taskType: rule.taskType,
+      stakes: rule.stakes,
+      needsEvidence: rule.needsEvidence,
+      action: rule.action,
+      layer: rule.layer,
+      confidence: rule.confidence,
+      reason: rule.reason,
+      inputHash,
+      cleanedText: rule.cleanedText ?? text,
+      costUsd: null,
+      latencyMs: Date.now() - started,
+    };
   }
 
-  // Auto path: kNN then maybe LLM
   const corrections = listProjectCorrections(input.projectPath);
   const seeds =
     input.seeds ??
@@ -90,148 +113,92 @@ export async function classifyRequest(input: {
       })),
     );
 
-  const embedder = await getEmbedder();
-  const knn = await classifyKnn({
-    text,
-    embedder,
-    examples: seeds,
-    k: settings.knnK,
-  });
-
-  // Apply project always-council list override on mapped action
-  let action = actionForTaskType(knn.taskType);
-  if (settings.alwaysCouncil.includes(knn.taskType)) {
-    action = "council";
-  }
-
-  if (knn.confidence >= settings.knnThreshold) {
-    return {
-      taskType: knn.taskType,
-      stakes: knn.stakes,
-      needsEvidence: knn.needsEvidence,
-      action,
-      layer: "knn",
-      confidence: knn.confidence,
-      reason: knn.reason,
-      inputHash,
-      cleanedText: text,
-      costUsd: null,
-      latencyMs: Date.now() - started,
-    };
-  }
-
-  // Safety until the gate target is met: never down-route research-critical
-  // work to solo/probe when confidence is low and the text looks researchy.
-  const researchCriticalHint =
-    /hypothesis|hypotheses|experiment|protocol|literature|survey|novelty|papers?\b|critique|weakness|flaw|results?\b|interpret/i.test(
+  const runKnn = async (reasonPrefix: string): Promise<Classification> => {
+    const embedder = await getEmbedder();
+    const knn = await classifyKnn({
       text,
+      embedder,
+      examples: seeds,
+      k: settings.knnK,
+    });
+    let action = actionForTaskType(knn.taskType);
+    if (settings.alwaysCouncil.includes(knn.taskType)) action = "council";
+    if (!settings.probeEnabled && action === "probe") action = "council";
+    const safe = withResearchSafety(
+      text,
+      knn.taskType,
+      action,
+      settings.alwaysCouncil,
     );
-
-  // LLM fallback
-  if (!input.apiKey) {
-    const safeAction =
-      researchCriticalHint && action !== "council"
-        ? ("council" as GateAction)
-        : action;
     return {
-      taskType:
-        safeAction === "council" &&
-        !settings.alwaysCouncil.includes(knn.taskType)
-          ? ("other" as TaskType)
-          : knn.taskType,
+      taskType: safe.taskType,
       stakes: knn.stakes,
-      needsEvidence: knn.needsEvidence || researchCriticalHint,
-      action: safeAction,
+      needsEvidence: knn.needsEvidence || researchCriticalHint(text),
+      action: safe.action,
       layer: "knn",
       confidence: knn.confidence,
-      reason:
-        safeAction === "council" && action !== "council"
-          ? `${knn.reason} (low-confidence research hint → council; no API key)`
-          : `${knn.reason} (LLM skipped: no API key)`,
+      reason: `${reasonPrefix}${knn.reason}${safe.reasonSuffix}`,
       inputHash,
       cleanedText: text,
       costUsd: null,
       latencyMs: Date.now() - started,
     };
+  };
+
+  if (!input.apiKey) {
+    return runKnn("LLM skipped (no API key); ");
   }
+
+  const timeout = AbortSignal.timeout(4000);
+  const signal = input.signal
+    ? AbortSignal.any([input.signal, timeout])
+    : timeout;
 
   try {
     const llm = await classifyWithLlm({
       apiKey: input.apiKey,
       modelId: settings.classifierModel,
       text,
-      signal: input.signal,
+      signal,
     });
-    let llmAction = actionForTaskType(llm.taskType);
-    if (settings.alwaysCouncil.includes(llm.taskType)) {
-      llmAction = "council";
+    if (llm.reason.startsWith("LLM classify failed")) {
+      return runKnn(`LLM parse failed; kNN fallback. `);
     }
-    // Low-confidence research safety: escalate to council rather than solo/probe
-    if (
-      researchCriticalHint &&
-      llmAction !== "council" &&
-      llmAction !== "retrieve_evidence"
-    ) {
-      llmAction = "council";
+    let action = actionForTaskType(llm.taskType);
+    if (settings.alwaysCouncil.includes(llm.taskType)) action = "council";
+    if (!settings.probeEnabled && action === "probe") {
+      action = "council";
     }
+    const safe = withResearchSafety(
+      text,
+      llm.taskType,
+      action,
+      settings.alwaysCouncil,
+    );
+    const disabledNote =
+      !settings.probeEnabled && actionForTaskType(llm.taskType) === "probe"
+        ? " (probe disabled → council)"
+        : "";
     return {
-      taskType: llm.taskType,
+      taskType: safe.taskType,
       stakes: llm.stakes,
       needsEvidence: llm.needsEvidence,
-      action: llmAction,
+      action: safe.action,
       layer: "llm",
-      confidence: 0.8,
-      reason:
-        llmAction === "council" &&
-        actionForTaskType(llm.taskType) !== "council" &&
-        researchCriticalHint
-          ? `${llm.reason} (research-critical safety → council)`
-          : llm.reason,
+      confidence: 0.9,
+      reason: `${llm.reason}${safe.reasonSuffix}${disabledNote}`,
       inputHash,
       cleanedText: text,
       costUsd: llm.costUsd,
       latencyMs: Date.now() - started,
     };
   } catch (e) {
-    // Prefer council over solo when the request looks research-critical.
-    if (researchCriticalHint) {
-      return {
-        taskType: knn.taskType,
-        stakes: knn.stakes,
-        needsEvidence: true,
-        action: "council",
-        layer: "knn",
-        confidence: knn.confidence,
-        reason: `${knn.reason} (LLM failed; research-critical safety → council)`,
-        inputHash,
-        cleanedText: text,
-        costUsd: null,
-        latencyMs: Date.now() - started,
-      };
-    }
-    const safe =
-      action === "solo"
-        ? {
-            taskType: knn.taskType,
-            stakes: knn.stakes,
-            needsEvidence: knn.needsEvidence,
-            action,
-          }
-        : {
-            taskType: "other" as TaskType,
-            stakes: "medium" as Stakes,
-            needsEvidence: false,
-            action: "solo" as GateAction,
-          };
-    return {
-      ...safe,
-      layer: "knn",
-      confidence: knn.confidence,
-      reason: `${knn.reason} (LLM fallback failed: ${e instanceof Error ? e.message : "error"}; stayed solo)`,
-      inputHash,
-      cleanedText: text,
-      costUsd: null,
-      latencyMs: Date.now() - started,
-    };
+    const msg = e instanceof Error ? e.message : "error";
+    const timedOut = /abort|timeout/i.test(msg);
+    return runKnn(
+      timedOut
+        ? `LLM timed out (>4s); kNN fallback. `
+        : `LLM failed (${msg}); kNN fallback. `,
+    );
   }
 }

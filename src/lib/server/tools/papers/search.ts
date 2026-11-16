@@ -1,19 +1,29 @@
 import "server-only";
 
 import { getBenchContext } from "@/lib/server/bench/context";
+import { requireOpenRouterApiKey } from "@/lib/server/openrouter";
 
+import {
+  enhanceRankedPapers,
+  expandSearchQueries,
+  resolveSearchStage,
+  type SearchStage,
+} from "./enhance";
 import { mergePapers, normalizeArxivId, normalizeDoi, rrfRank } from "./merge";
 import {
+  consumeOpenAlexSearchMeta,
   fetchOpenAlexLinks,
   fetchOpenAlexWork,
   fetchSemanticScholarLinks,
   fetchSemanticScholarPaper,
+  getOpenAlexMode,
   lookupUnpaywall,
   searchArxiv,
   searchCore,
   searchCrossref,
   searchDblp,
   searchOpenAlex,
+  searchOpenAlexSemantic,
   searchOpenReview,
   searchSemanticScholar,
 } from "./providers";
@@ -29,6 +39,21 @@ export const SEARCH_PROVIDERS: PaperProvider[] = [
   "openreview",
 ];
 
+/** Providers that matter most for LitSearch ML/NLP gold + latency. */
+const FAST_PROVIDERS: PaperProvider[] = [
+  "openalex",
+  "semantic_scholar",
+  "arxiv",
+  "openreview",
+];
+
+const LEAN_ALT: PaperProvider[] = [
+  "openalex",
+  "semantic_scholar",
+  "arxiv",
+  "openreview",
+];
+
 export type SearchPapersInput = {
   query: string;
   yearFrom?: number;
@@ -37,6 +62,30 @@ export type SearchPapersInput = {
   contactEmail?: string | null;
   enabledProviders?: PaperProvider[];
   signal?: AbortSignal;
+  /** Retrieval quality stage. Default `best` = latency-tuned full pipeline. */
+  stage?: SearchStage | string;
+  /** OpenRouter key for expand / LLM rerank; falls back to env/settings. */
+  apiKey?: string | null;
+};
+
+export type SearchPapersResult = {
+  papers: Paper[];
+  /** Full ranked candidate pool (before output `limit` slice) — for pool recall. */
+  pool: Paper[];
+  providers: ProviderSearchResult[];
+  meta?: {
+    stage: SearchStage;
+    queries: string[];
+    stagesApplied: string[];
+    costUsd: number;
+    /** OpenAlex usage billed for this search (0 when fully cache-served). */
+    openAlexCostUsd: number;
+    latencyMs: number;
+    poolSize: number;
+    oaSemanticUsed: boolean;
+    openAlexMode: "full" | "reduced" | "offline";
+    reducedCoverage: boolean;
+  };
 };
 
 /** Merge caller yearTo with an optional bench ceiling (never later than bench). */
@@ -72,28 +121,17 @@ function matchMerged(merged: Paper[], p: Paper): Paper {
   );
 }
 
-export async function searchPapers(
-  input: SearchPapersInput,
-): Promise<{ papers: Paper[]; providers: ProviderSearchResult[] }> {
-  const limit = Math.min(Math.max(input.limit ?? 20, 1), 50);
-  const enabled = input.enabledProviders?.length
-    ? input.enabledProviders
-    : SEARCH_PROVIDERS;
-  const mailto = input.contactEmail?.trim() || undefined;
-  const q = input.query.trim();
-  if (!q) return { papers: [], providers: [] };
-
-  // Bench rediscovery: enforce yearTo ceiling even if the model omits it.
-  const yearTo = resolveBenchYearTo(input.yearTo, getBenchContext()?.yearTo);
-
-  const common = {
-    limit,
-    signal: input.signal,
-    yearFrom: input.yearFrom,
-    yearTo,
-    mailto,
-  };
-
+async function searchOneQuery(
+  q: string,
+  common: {
+    limit: number;
+    signal?: AbortSignal;
+    yearFrom?: number;
+    yearTo?: number;
+    mailto?: string;
+  },
+  enabled: PaperProvider[],
+): Promise<ProviderSearchResult[]> {
   const jobs: Promise<ProviderSearchResult>[] = [];
   if (enabled.includes("openalex")) jobs.push(searchOpenAlex(q, common));
   if (enabled.includes("semantic_scholar"))
@@ -103,19 +141,236 @@ export async function searchPapers(
   if (enabled.includes("crossref")) jobs.push(searchCrossref(q, common));
   if (enabled.includes("core")) jobs.push(searchCore(q, common));
   if (enabled.includes("openreview")) jobs.push(searchOpenReview(q, common));
+  return Promise.all(jobs);
+}
 
-  const providers = await Promise.all(jobs);
+function mergeProviderRuns(
+  runs: ProviderSearchResult[][],
+): ProviderSearchResult[] {
+  const byName = new Map<PaperProvider, ProviderSearchResult>();
+  for (const run of runs) {
+    for (const r of run) {
+      const prev = byName.get(r.provider);
+      if (!prev) {
+        byName.set(r.provider, { ...r, papers: [...r.papers] });
+        continue;
+      }
+      byName.set(r.provider, {
+        provider: r.provider,
+        ok: prev.ok || r.ok,
+        error: prev.ok
+          ? prev.error
+          : r.ok
+            ? undefined
+            : (prev.error ?? r.error),
+        papers: mergePapers([prev.papers, r.papers]),
+        latencyMs: Math.max(prev.latencyMs, r.latencyMs),
+      });
+    }
+  }
+  return [...byName.values()];
+}
+
+function stageWantsExpand(stage: SearchStage): boolean {
+  return (
+    stage === "expand" ||
+    stage === "pool" ||
+    stage === "semantic" ||
+    stage === "hop" ||
+    stage === "llm" ||
+    stage === "best"
+  );
+}
+
+function stageWantsOaSemantic(stage: SearchStage): boolean {
+  return (
+    stage === "pool" ||
+    stage === "semantic" ||
+    stage === "hop" ||
+    stage === "llm" ||
+    stage === "best"
+  );
+}
+
+function stageWantsEnhance(stage: SearchStage): boolean {
+  return (
+    stage === "semantic" ||
+    stage === "hop" ||
+    stage === "llm" ||
+    stage === "best"
+  );
+}
+
+export async function searchPapers(
+  input: SearchPapersInput,
+): Promise<SearchPapersResult> {
+  const t0 = Date.now();
+  const limit = Math.min(Math.max(input.limit ?? 20, 1), 50);
+  const enabled = input.enabledProviders?.length
+    ? input.enabledProviders
+    : SEARCH_PROVIDERS;
+  const mailto = input.contactEmail?.trim() || undefined;
+  const q = input.query.trim();
+  if (!q) return { papers: [], pool: [], providers: [] };
+
+  // Unit tests stay on baseline (no LLM expand / citation hop / embedder).
+  const stage = resolveSearchStage(
+    input.stage ?? (process.env.VITEST ? "baseline" : "best"),
+  );
+  const yearTo = resolveBenchYearTo(input.yearTo, getBenchContext()?.yearTo);
+
+  // Eval/quality stages: grow pools to 50–100. Production `best`: leaner for ≤~20s.
+  // Under Vitest, honour the caller's limit so mocked URL assertions stay stable.
+  const fetchLimit = process.env.VITEST
+    ? limit
+    : stage === "best"
+      ? 30
+      : stage === "baseline"
+        ? Math.max(limit, 50)
+        : 100;
+
+  // Production hard budget (~20s). Eval may pass a longer signal.
+  const prodBudget =
+    stage === "best" && !process.env.VITEST
+      ? AbortSignal.timeout(18_000)
+      : null;
+  const signal =
+    input.signal && prodBudget
+      ? AbortSignal.any([input.signal, prodBudget])
+      : (prodBudget ?? input.signal);
+
+  const common = {
+    limit: fetchLimit,
+    signal,
+    yearFrom: input.yearFrom,
+    yearTo,
+    mailto,
+  };
+
+  let apiKey = input.apiKey ?? null;
+  if (!apiKey && stageWantsExpand(stage)) {
+    try {
+      apiKey = await requireOpenRouterApiKey();
+    } catch {
+      apiKey = null;
+    }
+  }
+
+  let queries = [q];
+  let expandCost = 0;
+  if (stageWantsExpand(stage)) {
+    const exp = await expandSearchQueries({
+      query: q,
+      apiKey,
+      signal,
+    });
+    queries = exp.queries.length ? exp.queries : [q];
+    // Production: original + 1 short alt for ≤20s.
+    if (stage === "best" && queries.length > 2) {
+      queries = queries.slice(0, 2);
+    }
+    expandCost = exp.costUsd;
+  }
+
+  const providersForPrimary =
+    stage === "best"
+      ? FAST_PROVIDERS.filter((p) => enabled.includes(p))
+      : enabled;
+  const leanAlt = LEAN_ALT.filter((p) => enabled.includes(p));
+
+  // Reset OA cost accumulator for this search.
+  consumeOpenAlexSearchMeta();
+  const oaModeAtStart = getOpenAlexMode();
+  let oaSemanticUsed = false;
+  // Keyword multi-query + OpenAlex semantic in parallel (semantic is 1 rps / ~$0.001).
+  const keywordPromise = Promise.all(
+    queries.map((qq, i) =>
+      searchOneQuery(
+        qq,
+        common,
+        i === 0 || leanAlt.length === 0 ? providersForPrimary : leanAlt,
+      ),
+    ),
+  );
+  // Semantic: only in full OA budget mode; prod uses one short query.
+  const oaSemanticPromise =
+    stageWantsOaSemantic(stage) &&
+    enabled.includes("openalex") &&
+    oaModeAtStart === "full"
+      ? (async () => {
+          const shorts = queries
+            .filter((qq) => qq !== q && qq.trim().split(/\s+/).length <= 16)
+            .slice(0, 2);
+          const semQueries =
+            stage === "best"
+              ? [shorts[0] ?? q].slice(0, 1)
+              : [q, ...shorts].slice(0, 2);
+          const results: ProviderSearchResult[] = [];
+          for (const sq of semQueries) {
+            if (signal?.aborted) break;
+            const sem = await searchOpenAlexSemantic(sq, {
+              ...common,
+              limit: Math.min(50, fetchLimit),
+            });
+            if (sem.ok) oaSemanticUsed = true;
+            results.push(sem);
+          }
+          return results.map((r) => [r]) as ProviderSearchResult[][];
+        })()
+      : Promise.resolve([] as ProviderSearchResult[][]);
+
+  const [keywordRuns, oaSemanticRuns] = await Promise.all([
+    keywordPromise,
+    oaSemanticPromise,
+  ]);
+
+  const providers = mergeProviderRuns([...keywordRuns, ...oaSemanticRuns]);
   const byProviderLists = providers.filter((p) => p.ok).map((p) => p.papers);
   const mergedAll = mergePapers(byProviderLists);
   const ranked = rrfRank(
     byProviderLists.map((list) => list.map((p) => matchMerged(mergedAll, p))),
   );
-  const filtered = filterYears(
-    ranked.length ? ranked : mergedAll,
-    input.yearFrom,
-    yearTo,
-  );
-  return { papers: filtered.slice(0, limit), providers };
+  let papers = ranked.length ? ranked : mergedAll;
+
+  const stagesApplied: string[] = ["baseline"];
+  if (stageWantsExpand(stage)) stagesApplied.push("expand");
+  if (oaSemanticUsed) stagesApplied.push("oa_semantic");
+
+  let enhanceCost = 0;
+  if (stageWantsEnhance(stage) && !signal?.aborted) {
+    const enh = await enhanceRankedPapers({
+      query: q,
+      ranked: papers,
+      stage,
+      apiKey,
+      signal,
+    });
+    papers = enh.papers;
+    enhanceCost = enh.costUsd;
+    for (const s of enh.stagesApplied) {
+      if (!stagesApplied.includes(s)) stagesApplied.push(s);
+    }
+  }
+
+  const oaMeta = consumeOpenAlexSearchMeta();
+  const filtered = filterYears(papers, input.yearFrom, yearTo);
+  return {
+    papers: filtered.slice(0, limit),
+    pool: filtered,
+    providers,
+    meta: {
+      stage,
+      queries,
+      stagesApplied,
+      costUsd: expandCost + enhanceCost + oaMeta.costUsd,
+      openAlexCostUsd: oaMeta.costUsd,
+      latencyMs: Date.now() - t0,
+      poolSize: filtered.length,
+      oaSemanticUsed,
+      openAlexMode: oaMeta.mode,
+      reducedCoverage: oaMeta.reducedCoverage || oaModeAtStart !== "full",
+    },
+  };
 }
 
 export async function getPaper(input: {

@@ -1,0 +1,9 @@
+{
+  "acc": 0.59,
+  "tpr": 1,
+  "fpr": 1,
+  "abwRate": 0,
+  "pass": false,
+  "probeEnabled": false,
+  "n": 200
+}

@@ -45,8 +45,8 @@ const KEY_FIELDS = [
   {
     name: "openalex_api_key" as const,
     label: "OpenAlex API key",
-    hint: "Optional — free at openalex.org",
-    signup: "https://openalex.org/",
+    hint: "Optional — free $1/day at openalex.org; prepaid credit for heavier use",
+    signup: "https://openalex.org/pricing",
     required: false,
   },
   {
@@ -97,6 +97,12 @@ export function SettingsDialog({
   const [values, setValues] = React.useState<Record<string, string>>({});
   const [busy, setBusy] = React.useState<string | null>(null);
   const [keyInfo, setKeyInfo] = React.useState<KeyInfo | null>(null);
+  const [openAlexBudget, setOpenAlexBudget] = React.useState<{
+    line: string;
+    mode: string;
+    remainingUsd: number;
+    limitUsd: number;
+  } | null>(null);
   const [defaultModelId, setDefaultModelId] = React.useState<string | null>(
     null,
   );
@@ -134,6 +140,25 @@ export function SettingsDialog({
         setDefaultModelId(data.defaultModelId);
       })
       .catch(() => undefined);
+    void fetch("/api/papers/openalex-budget")
+      .then(async (res) => {
+        if (!res.ok) return;
+        const data = (await res.json()) as {
+          ok?: boolean;
+          line?: string;
+          mode?: string;
+          remainingUsd?: number;
+          limitUsd?: number;
+        };
+        if (!data.ok || !data.line) return;
+        setOpenAlexBudget({
+          line: data.line,
+          mode: data.mode ?? "full",
+          remainingUsd: data.remainingUsd ?? 0,
+          limitUsd: data.limitUsd ?? 1,
+        });
+      })
+      .catch(() => setOpenAlexBudget(null));
   };
 
   async function handleSave(name: string) {
@@ -277,6 +302,23 @@ export function SettingsDialog({
                     </Badge>
                   </div>
                   <p className="text-muted-foreground text-xs">{field.hint}</p>
+                  {field.name === "openalex_api_key" && openAlexBudget ? (
+                    <p className="text-sm">
+                      {openAlexBudget.line}
+                      {openAlexBudget.mode === "reduced" ? (
+                        <span className="text-muted-foreground">
+                          {" "}
+                          · reduced coverage
+                        </span>
+                      ) : null}
+                      {openAlexBudget.mode === "offline" ? (
+                        <span className="text-destructive">
+                          {" "}
+                          · budget exhausted (resets midnight UTC)
+                        </span>
+                      ) : null}
+                    </p>
+                  ) : null}
                   {"signup" in field && field.signup ? (
                     <a
                       className="text-primary text-xs underline"

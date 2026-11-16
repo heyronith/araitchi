@@ -11,6 +11,7 @@ import { TASK_TYPES } from "@/lib/gate/taxonomy";
 type GateSettingsDto = {
   knnThreshold: number;
   probeAgreementThreshold: number;
+  probeEnabled: boolean;
   classifierModel: string;
   probeModels: [string, string];
   alwaysCouncil: string[];
@@ -103,9 +104,7 @@ export function RoutingSettings() {
           />
         </div>
         <div className="space-y-1">
-          <Label htmlFor="classifier-model">
-            Classifier model (LLM fallback)
-          </Label>
+          <Label htmlFor="classifier-model">Classifier model (LLM-first)</Label>
           <Input
             id="classifier-model"
             value={settings.classifierModel}
@@ -117,14 +116,32 @@ export function RoutingSettings() {
             }
           />
           <p className="text-muted-foreground text-xs">
-            Default uses an OpenRouter “latest” alias. Change after{" "}
-            <code>pnpm eval:gate</code>.
+            Production: LLM-first with <code>~openai/gpt-latest</code>; kNN only
+            on timeout/error. Change after <code>pnpm eval:gate</code>.
           </p>
         </div>
       </div>
 
       <div className="space-y-3">
         <h3 className="text-sm font-medium">Probe pair</h3>
+        <div className="flex items-center justify-between gap-3">
+          <Label htmlFor="probe-enabled">Probe enabled</Label>
+          <input
+            id="probe-enabled"
+            type="checkbox"
+            data-testid="probe-enabled"
+            checked={settings.probeEnabled}
+            onChange={(e) => {
+              const probeEnabled = e.target.checked;
+              setSettings({ ...settings, probeEnabled });
+              void patch({ probeEnabled });
+            }}
+          />
+        </div>
+        <p className="text-muted-foreground text-xs">
+          When off, <code>other</code> / probe routes go to council. Structured
+          finalAnswer compare (not embeddings).
+        </p>
         <div className="space-y-1">
           <Label htmlFor="probe-a">Model A</Label>
           <Input
@@ -273,16 +290,13 @@ export function RoutingSettings() {
             </tbody>
           </table>
         </div>
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          data-testid="routing-export-corrections"
-          onClick={() => {
-            window.location.href = "/api/gate/corrections/export?optIn=1";
-          }}
-        >
-          Export anonymised corrections for eval
+        <Button type="button" variant="outline" size="sm" asChild>
+          <a
+            href="/api/gate/corrections/export?optIn=1"
+            data-testid="routing-export-corrections"
+          >
+            Export anonymised corrections for eval
+          </a>
         </Button>
         <Button
           type="button"

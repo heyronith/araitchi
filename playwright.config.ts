@@ -65,6 +65,7 @@ export default defineConfig({
               type: "hypothesis",
               title: "X causes Y",
               body: "Because Z — durable research fact from chat.",
+              evidenceQuote: "durable research fact from chat",
               status: "proposed",
             },
           ],

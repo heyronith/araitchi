@@ -3,8 +3,14 @@
  * Manual scribe quality eval. Uses the real OpenRouter key.
  * Usage: pnpm eval:scribe [modelA modelB modelC…]
  *
- * Scores precision, recall, duplicate rate, invented-content rate, and cost.
- * Defaults use OpenRouter "latest" aliases (quality-first).
+ * Applies production filters: evidence quote in source + claim entailed by quote.
+ * Invented creates are split into:
+ *   (a) quote ok but claim overstates (failed entailment — dropped, counted)
+ *   (b) grounded+entailed but missing from gold (labeling gap)
+ *   (c) quote check would not apply (ungrounded — dropped; should be ~0 in score)
+ *
+ * Scores precision/recall on kept creates; target real invented (b after gold fixes,
+ * residual a that slipped entailment) ≤ 2% with recall ≥ 85%.
  */
 import {
   existsSync,
@@ -15,6 +21,56 @@ import {
 } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+
+// Pure JS copies of evidence checks (avoid server-only imports in this script).
+function normalizeEvidence(text) {
+  return String(text ?? "")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const STOP = new Set(
+  "the a an and or but if then with without from into onto over under about above below after before between during for of on to in at by as is are was were be been being this that these those it its they them we you your our their not no yes do does did done have has had can could should would may might will just only also more most such than so very into".split(
+    " ",
+  ),
+);
+
+function lightStem(token) {
+  if (token.length > 4 && token.endsWith("s") && !token.endsWith("ss")) {
+    return token.slice(0, -1);
+  }
+  return token;
+}
+
+function contentTokens(text) {
+  return normalizeEvidence(text)
+    .replace(/[^a-z0-9\s>-]/g, " ")
+    .split(/\s+/)
+    .filter((t) => t.length >= 4 && !STOP.has(t))
+    .map(lightStem);
+}
+
+function evidenceQuoteInSource(quote, sourceText) {
+  const q = normalizeEvidence(quote);
+  if (q.length < 8) return false;
+  return normalizeEvidence(sourceText).includes(q);
+}
+
+function claimEntailedByQuote({ title, body, quote }) {
+  const quoteToks = new Set(contentTokens(quote));
+  if (quoteToks.size === 0) return false;
+  const titleToks = contentTokens(title);
+  if (titleToks.length === 0) return false;
+  const titleHit = titleToks.filter((t) => quoteToks.has(t)).length;
+  if (titleHit / titleToks.length < 0.5) return false;
+  const b = String(body ?? "").trim();
+  if (!b) return true;
+  const bodyToks = contentTokens(b);
+  if (bodyToks.length === 0) return true;
+  const bodyHit = bodyToks.filter((t) => quoteToks.has(t)).length;
+  return bodyHit / bodyToks.length >= 0.4;
+}
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -54,37 +110,76 @@ function extractJson(text) {
   }
 }
 
-function scoreFixture(expected, actual) {
-  const creates = actual?.create ?? [];
+function typeOk(expected, create) {
+  if (expected.type === create.type) return true;
+  return (expected.altTypes ?? []).includes(create.type);
+}
+
+function matchesGold(create, expectedTypes) {
+  return expectedTypes.find(
+    (e) =>
+      typeOk(e, create) &&
+      (e.titleTerms ?? []).every((t) =>
+        String(create.title + " " + create.body)
+          .toLowerCase()
+          .includes(String(t).toLowerCase()),
+      ),
+  );
+}
+
+function scoreFixture(expected, actual, fixture) {
+  const source = `${fixture.user ?? ""}\n${fixture.reply ?? ""}`;
   const expectedTypes = expected.records ?? [];
-  let tp = 0;
-  let invented = 0;
-  for (const c of creates) {
-    const match = expectedTypes.find(
-      (e) =>
-        e.type === c.type &&
-        (e.titleTerms ?? []).every((t) =>
-          String(c.title + " " + c.body)
-            .toLowerCase()
-            .includes(String(t).toLowerCase()),
-        ),
-    );
-    if (match) tp += 1;
-    else invented += 1;
+  const rawCreates = actual?.create ?? [];
+
+  let catA = 0; // overstatement (failed entailment)
+  let catB = 0; // grounded+entailed, not in gold
+  let catC = 0; // ungrounded quote
+  const kept = [];
+
+  for (const c of rawCreates) {
+    if (!evidenceQuoteInSource(c.evidenceQuote ?? "", source)) {
+      catC += 1;
+      continue;
+    }
+    if (
+      !claimEntailedByQuote({
+        title: c.title ?? "",
+        body: c.body ?? "",
+        quote: c.evidenceQuote ?? "",
+      })
+    ) {
+      catA += 1;
+      continue;
+    }
+    kept.push(c);
   }
-  const precision = creates.length ? tp / creates.length : 1;
+
+  let tp = 0;
+  for (const c of kept) {
+    if (matchesGold(c, expectedTypes)) tp += 1;
+    else catB += 1;
+  }
+
+  const precision = kept.length ? tp / kept.length : 1;
   const recall = expectedTypes.length ? tp / expectedTypes.length : 1;
   const duplicateRate =
-    creates.length <= 1
+    kept.length <= 1
       ? 0
-      : 1 -
-        new Set(creates.map((c) => `${c.type}:${c.title}`)).size /
-          creates.length;
+      : 1 - new Set(kept.map((c) => `${c.type}:${c.title}`)).size / kept.length;
+  // Real invented = category (b) among kept (a/c already dropped)
+  const inventedRate = kept.length ? catB / kept.length : 0;
+
   return {
     precision,
     recall,
     duplicateRate,
-    inventedRate: creates.length ? invented / creates.length : 0,
+    inventedRate,
+    catA,
+    catB,
+    catC,
+    kept: kept.length,
+    raw: rawCreates.length,
   };
 }
 
@@ -102,7 +197,6 @@ async function callModel(apiKey, model, system, user) {
         { role: "user", content: user },
       ],
       temperature: 0,
-      // Cap reservation: unbounded max_tokens (65k) 402s when credit headroom is tight
       max_tokens: 2048,
     }),
   });
@@ -143,6 +237,10 @@ async function main() {
     const scores = [];
     let costSum = 0;
     let costN = 0;
+    let sumA = 0,
+      sumB = 0,
+      sumC = 0,
+      sumRaw = 0;
     for (const file of files) {
       const fixture = JSON.parse(
         readFileSync(path.join(fixturesDir, file), "utf8"),
@@ -164,7 +262,12 @@ async function main() {
           costN += 1;
         }
         const actual = extractJson(text) ?? { create: [], update: [] };
-        scores.push(scoreFixture(fixture.expected, actual));
+        const s = scoreFixture(fixture.expected, actual, fixture);
+        scores.push(s);
+        sumA += s.catA;
+        sumB += s.catB;
+        sumC += s.catC;
+        sumRaw += s.raw;
       } catch (e) {
         console.error(`  ${model} / ${file}: ${e.message}`);
         scores.push({
@@ -172,6 +275,11 @@ async function main() {
           recall: 0,
           duplicateRate: 1,
           inventedRate: 1,
+          catA: 0,
+          catB: 0,
+          catC: 0,
+          kept: 0,
+          raw: 0,
         });
       }
     }
@@ -184,6 +292,10 @@ async function main() {
       duplicateRate: avg("duplicateRate"),
       inventedRate: avg("inventedRate"),
       costPerReply: costN ? costSum / costN : null,
+      catA: sumA,
+      catB: sumB,
+      catC: sumC,
+      raw: sumRaw,
     });
   }
 
@@ -192,18 +304,31 @@ async function main() {
     "",
     `Fixtures: ${files.length}. Models: ${MODELS.join(", ")}.`,
     "",
-    "| Model | Precision | Recall | Dup rate | Invented | Cost/reply |",
-    "| --- | ---: | ---: | ---: | ---: | ---: |",
+    "Filters: evidence quote ∈ source + claim entailed by quote (production path).",
+    "",
+    "| Model | Precision | Recall | Dup rate | Invented (b) | Cost/reply | (a) overstate | (b) gold-gap | (c) ungrounded |",
+    "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
   ];
   for (const r of rows) {
     lines.push(
-      `| ${r.model} | ${(r.precision * 100).toFixed(0)}% | ${(r.recall * 100).toFixed(0)}% | ${(r.duplicateRate * 100).toFixed(0)}% | ${(r.inventedRate * 100).toFixed(0)}% | ${r.costPerReply == null ? "—" : "$" + r.costPerReply.toFixed(4)} |`,
+      `| ${r.model} | ${(r.precision * 100).toFixed(0)}% | ${(r.recall * 100).toFixed(0)}% | ${(r.duplicateRate * 100).toFixed(0)}% | ${(r.inventedRate * 100).toFixed(0)}% | ${r.costPerReply == null ? "—" : "$" + r.costPerReply.toFixed(4)} | ${r.catA} | ${r.catB} | ${r.catC} |`,
     );
   }
+  lines.push(
+    "",
+    "Invented categories (counts over all fixtures):",
+    "- **(a)** quote verified but claim failed entailment → dropped before score",
+    "- **(b)** grounded+entailed but not in gold (real invent / labeling gap)",
+    "- **(c)** quote not in source → dropped (eval bug if these were scored as invent)",
+  );
   const outDir = path.join(root, "evals/results");
   mkdirSync(outDir, { recursive: true });
   const outPath = path.join(outDir, "scribe.md");
   writeFileSync(outPath, lines.join("\n") + "\n");
+  writeFileSync(
+    path.join(outDir, "scribe-invent-split.json"),
+    JSON.stringify({ rows }, null, 2),
+  );
   console.log(lines.join("\n"));
   console.log("\nWrote", outPath);
 }

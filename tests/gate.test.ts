@@ -150,32 +150,36 @@ describe("LLM classifier validation", () => {
 });
 
 describe("probe agreement", () => {
-  it("agrees on similar answers and escalates on disagreement", async () => {
-    setEmbedderForTests(new FakeEmbedder());
+  it("agrees on matching finalAnswers and escalates on mismatch", async () => {
     const high = await scoreProbeAgreement(
       {
-        content: "Caffeine half-life is about five hours in adults.",
+        content: "The answer is B. Caffeine half-life is about five hours.",
+        finalAnswer: "B",
         claims: ["Caffeine half-life is about five hours in adults."],
       },
       {
-        content: "In adults the caffeine half-life is roughly five hours.",
+        content: "B — roughly five hours half-life for caffeine in adults.",
+        finalAnswer: "B",
         claims: ["In adults the caffeine half-life is roughly five hours."],
       },
     );
     const low = await scoreProbeAgreement(
       {
-        content: "Definitely a methods question only.",
-        claims: ["Definitely a methods question only."],
+        content: "Answer A",
+        finalAnswer: "A",
+        claims: ["Methods only."],
       },
       {
-        content: "This is purely a theory question with no methods.",
-        claims: ["This is purely a theory question with no methods."],
+        content: "Answer C",
+        finalAnswer: "C",
+        claims: ["Theory only."],
       },
     );
-    expect(high).toBeGreaterThan(low);
+    expect(high).toBeGreaterThan(0.7);
+    expect(low).toBe(0);
 
     const p = tempProject();
-    setGateSettings(p, { probeAgreementThreshold: 0.99 });
+    setGateSettings(p, { probeAgreementThreshold: 0.7 });
     const disagree = await runProbe({
       projectPath: p,
       apiKey: "x",
@@ -185,7 +189,8 @@ describe("probe agreement", () => {
         {
           modelId: "anthropic/claude-3.5-haiku",
           lab: "anthropic",
-          content: "Alpha answer about widgets only.",
+          content: "Answer is A about widgets.",
+          finalAnswer: "A",
           claims: extractKeyClaims("Alpha answer about widgets only."),
           selfConfidence: 0.9,
           costUsd: 0.001,
@@ -194,7 +199,8 @@ describe("probe agreement", () => {
         {
           modelId: "google/gemini-2.0-flash",
           lab: "google",
-          content: "Completely different astronomy claim here.",
+          content: "Answer is D about astronomy.",
+          finalAnswer: "D",
           claims: extractKeyClaims(
             "Completely different astronomy claim here.",
           ),
@@ -207,7 +213,6 @@ describe("probe agreement", () => {
     expect(disagree.escalate).toBe(true);
     expect(disagree.answers).toHaveLength(2);
 
-    setGateSettings(p, { probeAgreementThreshold: 0.1 });
     const agree = await runProbe({
       projectPath: p,
       apiKey: "x",
@@ -217,7 +222,8 @@ describe("probe agreement", () => {
         {
           modelId: "a/x",
           lab: "a",
-          content: "Same claim about caffeine half life adults.",
+          content: "Final answer: B. Same claim about caffeine.",
+          finalAnswer: "B",
           claims: ["Same claim about caffeine half life adults."],
           selfConfidence: 0.8,
           costUsd: null,
@@ -226,7 +232,8 @@ describe("probe agreement", () => {
         {
           modelId: "b/y",
           lab: "b",
-          content: "Same claim about caffeine half life adults!",
+          content: "B — Same claim about caffeine half life adults!",
+          finalAnswer: "B",
           claims: ["Same claim about caffeine half life adults!"],
           selfConfidence: 0.4,
           costUsd: null,

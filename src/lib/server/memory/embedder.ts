@@ -201,9 +201,13 @@ class WorkerEmbedder implements Embedder {
 
   async shutdown(): Promise<void> {
     this.ready = false;
-    this.queue = [];
+    const pending = this.queue.splice(0);
+    for (const job of pending) {
+      job.reject(new Error("embedder shutdown"));
+    }
     const w = this.worker;
     this.worker = null;
+    this.busy = false;
     if (w) {
       await w.terminate();
     }

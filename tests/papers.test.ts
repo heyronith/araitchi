@@ -506,6 +506,7 @@ describe("mocked-network search", () => {
     expect(core.ok).toBe(false);
     expect(await searchPapers({ query: "   " })).toEqual({
       papers: [],
+      pool: [],
       providers: [],
     });
   }, 20_000);

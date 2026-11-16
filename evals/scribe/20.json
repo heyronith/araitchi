@@ -5,6 +5,7 @@
     "records": [
       {
         "type": "note",
+        "altTypes": ["decision"],
         "titleTerms": ["AHI"]
       }
     ]

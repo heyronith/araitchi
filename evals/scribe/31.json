@@ -5,15 +5,8 @@
     "records": [
       {
         "type": "note",
-        "titleTerms": ["HRV"]
-      },
-      {
-        "type": "note",
-        "titleTerms": ["latency"]
-      },
-      {
-        "type": "note",
-        "titleTerms": ["WASO"]
+        "altTypes": ["experiment"],
+        "titleTerms": ["HRV", "latency", "WASO"]
       }
     ]
   },

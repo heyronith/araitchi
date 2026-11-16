@@ -18,6 +18,12 @@ import { scribeBatches, scribeSuggestions } from "@/lib/server/project/schema";
 import type { MemoryRecord, RecordType } from "@/lib/server/project/types";
 import { loadPrompt } from "@/lib/server/prompts/load";
 
+import {
+  claimEntailedByQuote,
+  evidenceQuoteInSource,
+  evidenceTag,
+  stripEvidenceTags,
+} from "./evidence";
 import { findNearDuplicate } from "./search";
 import {
   defaultStatusForCreate,
@@ -219,6 +225,61 @@ export async function runScribe(
 
   setMemorySettings(input.projectPath, { lastScribeCostUsd: costUsd });
 
+  // Live model output must pass quote/entailment. Injected mocks (unit + e2e
+  // ARAITCHI_MOCK_SCRIBE) skip — those fixtures are intentional.
+  const skipEvidenceGate = Boolean(
+    input.mockOutput || process.env.ARAITCHI_MOCK_SCRIBE,
+  );
+  if (!skipEvidenceGate) {
+    const sourceBlob = `${input.userText}\n${input.replyText}`;
+    const keptCreates: ScribeCreate[] = [];
+    for (const c of output.create) {
+      if (!evidenceQuoteInSource(c.evidenceQuote, sourceBlob)) {
+        console.warn(
+          `[scribe] dropped create without grounded evidenceQuote: ${c.title.slice(0, 80)}`,
+        );
+        continue;
+      }
+      if (
+        !claimEntailedByQuote({
+          title: c.title,
+          body: c.body,
+          quote: c.evidenceQuote,
+        })
+      ) {
+        console.warn(
+          `[scribe] dropped create not entailed by evidenceQuote: ${c.title.slice(0, 80)}`,
+        );
+        continue;
+      }
+      keptCreates.push(c);
+    }
+    const keptUpdates: ScribeUpdate[] = [];
+    for (const u of output.update) {
+      if (!evidenceQuoteInSource(u.evidenceQuote, sourceBlob)) {
+        console.warn(
+          `[scribe] dropped update without grounded evidenceQuote: ${u.id}`,
+        );
+        continue;
+      }
+      if (
+        u.appendBody &&
+        !claimEntailedByQuote({
+          title: u.appendBody.slice(0, 120),
+          body: u.appendBody,
+          quote: u.evidenceQuote,
+        })
+      ) {
+        console.warn(
+          `[scribe] dropped update not entailed by evidenceQuote: ${u.id}`,
+        );
+        continue;
+      }
+      keptUpdates.push(u);
+    }
+    output = { create: keptCreates, update: keptUpdates };
+  }
+
   const batchId = nanoid();
   const created: MemoryRecord[] = [];
   const updated: MemoryRecord[] = [];
@@ -263,6 +324,7 @@ export async function runScribe(
       if (!existing) return;
       const updatePayload: ScribeUpdate = {
         id: existing.id,
+        evidenceQuote: item.evidenceQuote,
         status: item.status ?? undefined,
         appendBody: existing.body.includes(item.body) ? undefined : item.body,
       };
@@ -295,12 +357,16 @@ export async function runScribe(
       return;
     }
 
+    const tags = [
+      ...stripEvidenceTags(item.tags ?? []),
+      evidenceTag(item.evidenceQuote),
+    ];
     const rec = createRecord(input.projectPath, {
       type: item.type,
       title: item.title,
       body: item.body,
       status: defaultStatusForCreate(item.type, item.status),
-      tags: item.tags,
+      tags,
       source: input.sourceModel,
       sourceChatId: input.chatId,
       sourceMessageId: input.messageId,
@@ -333,8 +399,13 @@ export async function runScribe(
       item.appendBody && !existing.body.includes(item.appendBody)
         ? `${existing.body}\n\n${item.appendBody}`
         : existing.body;
+    const tags = [
+      ...stripEvidenceTags(existing.tags),
+      evidenceTag(item.evidenceQuote),
+    ];
     const rec = updateRecord(input.projectPath, existing.id, {
       body,
+      tags,
       ...(status !== undefined ? { status } : {}),
     });
     if (rec) updated.push(rec);
@@ -449,12 +520,16 @@ export function acceptSuggestion(
   let rec: MemoryRecord | null = null;
   if (row.action === "create") {
     const item = scribeCreateSchema.parse(JSON.parse(row.payload));
+    const tags = [
+      ...stripEvidenceTags(item.tags ?? []),
+      evidenceTag(item.evidenceQuote),
+    ];
     rec = createRecord(projectPath, {
       type: item.type,
       title: item.title,
       body: item.body,
       status: defaultStatusForCreate(item.type, item.status),
-      tags: item.tags,
+      tags,
       source: sourceModel,
       sourceChatId: batch?.chatId ?? null,
       sourceMessageId: batch?.messageId ?? null,
@@ -473,8 +548,13 @@ export function acceptSuggestion(
         item.appendBody && !existing.body.includes(item.appendBody)
           ? `${existing.body}\n\n${item.appendBody}`
           : existing.body;
+      const tags = [
+        ...stripEvidenceTags(existing.tags),
+        evidenceTag(item.evidenceQuote),
+      ];
       rec = updateRecord(projectPath, existing.id, {
         body,
+        tags,
         ...(status !== undefined ? { status } : {}),
       });
     }
