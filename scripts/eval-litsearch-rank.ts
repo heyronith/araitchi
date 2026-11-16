@@ -16,6 +16,7 @@ import path from "node:path";
 import { closeAppDb } from "../src/lib/server/db/client";
 import { shutdownEmbedder } from "../src/lib/server/memory/embedder";
 import {
+  LLM_RERANK_TOP_N,
   llmRerankPapers,
   semanticRerankPapers,
 } from "../src/lib/server/tools/papers/enhance";
@@ -95,15 +96,24 @@ function upsertRow(stage: string, row: string) {
   mkdirSync(outDir, { recursive: true });
   const mdPath = path.join(outDir, "litsearch.md");
   let md = existsSync(mdPath) ? readFileSync(mdPath, "utf8") : "";
+  const header =
+    "| Stage | N | Pool recall | Recall@5 | Recall@20 | Cost/query | Latency | Avg pool | Timeouts | Fallbacks |";
+  const sep =
+    "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |";
+  if (!md.includes("| Fallbacks |")) {
+    // Migrate older tables that stopped at Timeouts.
+    md = md
+      .replace(
+        /\| Stage \| N \| Pool recall \| Recall@5 \| Recall@20 \| Cost\/query \| Latency \| Avg pool \| Timeouts \|/,
+        header,
+      )
+      .replace(
+        /\| --- \| ---: \| ---: \| ---: \| ---: \| ---: \| ---: \| ---: \| ---: \|/,
+        sep,
+      );
+  }
   if (!md.includes("| Timeouts |")) {
-    md = [
-      "# LitSearch recall eval",
-      "",
-      "| Stage | N | Pool recall | Recall@5 | Recall@20 | Cost/query | Latency | Avg pool | Timeouts |",
-      "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
-      row,
-      "",
-    ].join("\n");
+    md = ["# LitSearch recall eval", "", header, sep, row, ""].join("\n");
   } else {
     const lines = md.split("\n");
     const out: string[] = [];
@@ -198,6 +208,8 @@ async function main() {
     let latSum = 0;
     let poolSizeSum = 0;
     let timeouts = 0;
+    let fallbacks = 0;
+    let firstFallbackError: string | null = null;
     let spendCapHit = false;
 
     for (const frozen of pools) {
@@ -213,6 +225,7 @@ async function main() {
       let ranked = frozen.papers;
       let cost = 0;
       let timedOut = false;
+      let fellBack = false;
       // Abort between embed batches — do NOT terminate the ONNX worker mid-batch
       // (Napi abort) and do NOT Promise.race-abandon work (embed-lock cascade).
       const ac = new AbortController();
@@ -231,10 +244,21 @@ async function main() {
             query: frozen.query,
             papers: ranked,
             apiKey,
+            topN: LLM_RERANK_TOP_N,
+            keepTop: 20,
+            modelId: "~openai/gpt-latest",
             signal: ac.signal,
           });
           ranked = r.papers;
           cost = r.costUsd;
+          if (!r.ok) {
+            fellBack = true;
+            fallbacks += 1;
+            if (!firstFallbackError && r.error) {
+              firstFallbackError = r.error;
+              console.error(`[rank] first LLM fallback: ${r.error}`);
+            }
+          }
         }
       } catch (e) {
         timedOut = true;
@@ -272,13 +296,26 @@ async function main() {
       latSum += latency;
       poolSizeSum += frozen.papers.length;
       console.log(
-        `[${n}/${pools.length}] ${variant} R@5=${hit5 ? 1 : 0} R@20=${hit20 ? 1 : 0} pool=${inPool ? 1 : 0} ${latency}ms poolSize=${frozen.papers.length}${timedOut ? " TIMEOUT" : ""}`,
+        `[${n}/${pools.length}] ${variant} R@5=${hit5 ? 1 : 0} R@20=${hit20 ? 1 : 0} pool=${inPool ? 1 : 0} ${latency}ms poolSize=${frozen.papers.length} cost=$${cost.toFixed(4)}${timedOut ? " TIMEOUT" : ""}${fellBack ? " FALLBACK" : ""}`,
       );
+    }
+
+    const fallbackRate = n ? fallbacks / n : 0;
+    if (variant === "llm" && firstFallbackError) {
+      console.error(
+        `[rank] LLM fallbacks=${fallbacks}/${n} (${(fallbackRate * 100).toFixed(1)}%); first error: ${firstFallbackError}`,
+      );
+    }
+    if (variant === "llm" && fallbackRate > 0.1) {
+      console.error(
+        `[rank] FAIL: LLM fallback rate ${(fallbackRate * 100).toFixed(1)}% > 10%`,
+      );
+      exitCode = 1;
     }
 
     const stage = `frozen-${variant}`;
     const nCell = incomplete || spendCapHit ? `${n}/${limit}` : String(n);
-    const row = `| ${stage} | ${nCell} | ${((n ? poolHits / n : 0) * 100).toFixed(1)}% | ${((n ? r5 / n : 0) * 100).toFixed(1)}% | ${((n ? r20 / n : 0) * 100).toFixed(1)}% | $${(n ? costSum / n : 0).toFixed(4)} | ${Math.round(n ? latSum / n : 0)}ms | ${Math.round(n ? poolSizeSum / n : 0)} | ${timeouts} |`;
+    const row = `| ${stage} | ${nCell} | ${((n ? poolHits / n : 0) * 100).toFixed(1)}% | ${((n ? r5 / n : 0) * 100).toFixed(1)}% | ${((n ? r20 / n : 0) * 100).toFixed(1)}% | $${(n ? costSum / n : 0).toFixed(4)} | ${Math.round(n ? latSum / n : 0)}ms | ${Math.round(n ? poolSizeSum / n : 0)} | ${timeouts} | ${fallbacks} |`;
     const mdPath = upsertRow(stage, row);
     console.log("\n" + readFileSync(mdPath, "utf8"));
     console.log("Wrote", mdPath);

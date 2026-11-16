@@ -2,9 +2,10 @@
  * Long-horizon memory recall eval.
  * Usage (via scripts/eval-recall.mjs):
  *   pnpm eval:recall --scribe gold
- *   pnpm eval:recall --scribe live [--limit N]
+ *   pnpm eval:recall --scribe live [--limit N] [--max-spend 1]
  *
  * Writes evals/results/recall.md with per-kind accuracy split.
+ * Live mode runs the real scribe (no silent gold fallback).
  */
 import { mkdirSync, writeFileSync } from "node:fs";
 import { mkdtempSync, mkdirSync as mkdirSync2 } from "node:fs";
@@ -17,8 +18,11 @@ import {
   shutdownEmbedder,
 } from "../src/lib/server/memory/embedder";
 import { indexRecord } from "../src/lib/server/memory/index";
+import { runScribe } from "../src/lib/server/memory/scribe";
 import { setMemorySettings } from "../src/lib/server/memory/settings";
 import { hybridSearch } from "../src/lib/server/memory/search";
+import { requireOpenRouterApiKey } from "../src/lib/server/openrouter";
+import { sanitizeLlmError } from "../src/lib/server/tools/papers/enhance";
 import {
   closeAllNotebookDbs,
   getNotebookDb,
@@ -33,7 +37,11 @@ import {
   type RecallQuestionKind,
 } from "../src/lib/server/evals/recall-scorer";
 import { ensureResearchStructure } from "../src/lib/server/project/init";
-import { createRecord, updateRecord } from "../src/lib/server/project/records";
+import {
+  createRecord,
+  listRecords,
+  updateRecord,
+} from "../src/lib/server/project/records";
 import { records } from "../src/lib/server/project/schema";
 import { eq } from "drizzle-orm";
 
@@ -111,6 +119,131 @@ async function plantGoldRecords(
   }
 }
 
+/** Facts needed so the selected questions can possibly be answered. */
+function factsForQuestions(
+  fixture: RecallFixture,
+  questions: RecallFixture["questions"],
+): RecallFixture["facts"] {
+  const needStatic = new Set<number>();
+  const needOldest = new Set<number>();
+  let needChanging = false;
+  for (const q of questions) {
+    const sm = q.expected.match(/^STATIC-TOKEN-(\d+)/);
+    if (sm) needStatic.add(Number(sm[1]));
+    const om = q.expected.match(/^OLDEST-TOKEN-(\d+)/);
+    if (om) needOldest.add(Number(om[1]));
+    if (q.kind === "changed_later") needChanging = true;
+    const dm = q.query.match(/Static fact (\d+)/);
+    if (dm) needStatic.add(Number(dm[1]));
+  }
+  return fixture.facts.filter((f) => {
+    if (f.distractor) return true; // keep noise for distractor_resistance
+    if (f.key.startsWith("static-")) {
+      const i = Number(f.key.slice("static-".length));
+      return needStatic.has(i);
+    }
+    if (f.key.startsWith("oldest-")) {
+      const i = Number(f.key.slice("oldest-".length));
+      return needOldest.has(i);
+    }
+    if (
+      [
+        "primary_metric",
+        "sample_size",
+        "lab_temperature",
+        "model_version",
+        "deadline",
+      ].includes(f.key)
+    ) {
+      return needChanging;
+    }
+    return false;
+  });
+}
+
+/**
+ * Feed conversation turns through the real scribe. Never falls back to gold.
+ * Returns total OpenRouter spend.
+ */
+async function plantViaLiveScribe(
+  projectPath: string,
+  facts: RecallFixture["facts"],
+  maxSpendUsd: number,
+): Promise<{ costUsd: number; turns: number }> {
+  const apiKeyRaw = await requireOpenRouterApiKey().catch((e) => {
+    throw new Error(
+      `eval:recall --scribe live requires OpenRouter: ${e instanceof Error ? e.message : String(e)}`,
+    );
+  });
+  const apiKey = apiKeyRaw?.trim();
+  if (!apiKey) {
+    throw new Error(
+      "eval:recall --scribe live requires OpenRouter: empty API key",
+    );
+  }
+
+  setMemorySettings(projectPath, {
+    embeddingModel: "fake",
+    scribeEnabled: true,
+    memoryTokens: 8000,
+  });
+  setEmbedderForTests(new FakeEmbedder());
+
+  const sorted = [...facts].sort(
+    (a, b) => a.session - b.session || a.title.localeCompare(b.title),
+  );
+
+  let costUsd = 0;
+  let turns = 0;
+  for (const fact of sorted) {
+    if (costUsd >= maxSpendUsd) {
+      console.error(
+        `[recall] live spend cap $${maxSpendUsd.toFixed(2)} reached after ${turns} turns`,
+      );
+      break;
+    }
+    const chat = createChat(projectPath, `Session ${fact.session}`);
+    const userText = `Please remember this research note for the project notebook.\nTitle: ${fact.title}\nBody: ${fact.body}`;
+    const replyText = `Understood. I have recorded: ${fact.body}`;
+    const summary = await runScribe({
+      projectPath,
+      chatId: chat.id,
+      messageId: `m-${fact.key}-${fact.session}-${turns}`,
+      userText,
+      replyText,
+      sourceModel: "eval-live",
+      apiKey,
+    });
+    turns += 1;
+    if (!summary) {
+      throw new Error(
+        `eval:recall --scribe live: scribe returned null for fact ${fact.key} (session ${fact.session}). OpenRouter/scribe failed — refusing silent gold fallback.`,
+      );
+    }
+    if (summary.costUsd != null) costUsd += summary.costUsd;
+    console.error(
+      `[recall] scribe turn ${turns}: created=${summary.created.length} updated=${summary.updated.length} cost=$${(summary.costUsd ?? 0).toFixed(4)}`,
+    );
+  }
+
+  if (turns === 0) {
+    throw new Error(
+      "eval:recall --scribe live ran zero scribe turns — refusing silent fallback",
+    );
+  }
+  return { costUsd, turns };
+}
+
+function storedBlob(projectPath: string): string {
+  return listRecords(projectPath)
+    .map((r) => `${r.title}\n${r.body}`)
+    .join("\n");
+}
+
+function factCaptured(blob: string, expected: string): boolean {
+  return blob.toLowerCase().includes(expected.toLowerCase());
+}
+
 async function answerFromRetrieval(
   projectPath: string,
   query: string,
@@ -125,8 +258,6 @@ async function answerFromRetrieval(
     limit: 16,
     excludeChatId: chatId,
   });
-  // Prefer newest record hits when scores are close (supersede old values).
-  // Down-rank obvious distractor noise titles for retrieval scoring.
   const enriched = hits.map((h) => {
     const updatedAt =
       typeof h.meta?.updatedAt === "number" ? h.meta.updatedAt : 0;
@@ -152,7 +283,6 @@ function scoreQuestion(
   const ok = scoreRecallAnswer(retrieved, q.expected, q.match ?? "semantic");
   if (!ok) return false;
   if (q.kind === "changed_later" && q.superseded?.length) {
-    // Fail if an older superseded value appears without the latest token.
     const latestTok = q.expected.match(/LATEST-[\w-]+-R\d+/)?.[0];
     if (latestTok && !normalizeIncludes(retrieved, latestTok)) {
       return false;
@@ -170,7 +300,6 @@ function scoreQuestion(
     }
   }
   if (q.kind === "distractor_resistance") {
-    // Must find the static token; distractor-only is a fail (already covered by ok)
     if (
       /zebra-\d+/i.test(retrieved) &&
       !normalizeIncludes(retrieved, q.expected)
@@ -189,6 +318,11 @@ async function runEval(): Promise<void> {
   const scribe = argValue("--scribe") ?? "gold";
   const limitRaw = argValue("--limit");
   const limit = limitRaw ? Number(limitRaw) : undefined;
+  const maxSpend = Number(argValue("--max-spend") ?? "1") || 1;
+
+  if (scribe !== "gold" && scribe !== "live") {
+    throw new Error(`Unknown --scribe ${scribe}`);
+  }
 
   const fixture = loadFixture();
   const projectPath = mkdtempSync(path.join(tmpdir(), "araitchi-recall-"));
@@ -196,38 +330,54 @@ async function runEval(): Promise<void> {
   ensureResearchStructure(projectPath, { name: "recall-eval" });
   writeFileSync(path.join(projectPath, "README.md"), "recall eval\n");
 
-  if (scribe === "gold" || scribe === "live") {
-    if (scribe === "live") {
-      console.warn(
-        "Live scribe mode falls back to gold planting for retrieval-only split report.",
-      );
-    }
-    await plantGoldRecords(projectPath, fixture);
-  } else {
-    throw new Error(`Unknown --scribe ${scribe}`);
-  }
-
   const questions = limit
     ? fixture.questions.slice(0, limit)
     : fixture.questions;
 
-  let correct = 0;
+  let liveCost = 0;
+  let liveTurns = 0;
+  if (scribe === "gold") {
+    await plantGoldRecords(projectPath, fixture);
+  } else {
+    const needed = factsForQuestions(fixture, questions);
+    console.error(
+      `[recall] live scribe: ${needed.length} facts for ${questions.length} questions (cap $${maxSpend.toFixed(2)})`,
+    );
+    const r = await plantViaLiveScribe(projectPath, needed, maxSpend);
+    liveCost = r.costUsd;
+    liveTurns = r.turns;
+  }
+
+  const blob = storedBlob(projectPath);
+  let captureOk = 0;
+  let retrievalOk = 0;
+  let retrievalGivenCapture = 0;
+  let capturedN = 0;
   const rows: string[] = [];
   const byKind: { kind: RecallQuestionKind; ok: boolean }[] = [];
 
   for (const q of questions) {
+    const captured = factCaptured(blob, q.expected);
+    if (captured) {
+      captureOk += 1;
+      capturedN += 1;
+    }
     const chat = createChat(projectPath, `Q ${q.id}`);
     const retrieved = await answerFromRetrieval(projectPath, q.query, chat.id);
     const ok = scoreQuestion(retrieved, q);
-    if (ok) correct++;
+    if (ok) retrievalOk += 1;
+    if (captured && ok) retrievalGivenCapture += 1;
     byKind.push({ kind: q.kind, ok });
     rows.push(
-      `| ${q.id} | ${q.kind} | ${ok ? "pass" : "fail"} | ${q.query.slice(0, 48)} |`,
+      `| ${q.id} | ${q.kind} | ${captured ? "yes" : "no"} | ${ok ? "pass" : "fail"} | ${q.query.slice(0, 48)} |`,
     );
   }
 
-  const pct = questions.length
-    ? Math.round((correct / questions.length) * 1000) / 10
+  const n = questions.length;
+  const capturePct = n ? Math.round((captureOk / n) * 1000) / 10 : 0;
+  const retrievalPct = n ? Math.round((retrievalOk / n) * 1000) / 10 : 0;
+  const retrievalGivenPct = capturedN
+    ? Math.round((retrievalGivenCapture / capturedN) * 1000) / 10
     : 0;
   const split = summarizeRecallByKind(byKind);
 
@@ -236,11 +386,18 @@ async function runEval(): Promise<void> {
     "# Recall eval",
     "",
     `Mode: **${scribe}**`,
-    `Questions: ${questions.length}`,
-    `Correct: ${correct}`,
-    `Accuracy: **${pct}%** (target ≥ 90% gold)`,
+    `Questions: ${n}`,
+    scribe === "live"
+      ? `Live scribe turns: ${liveTurns}; cost: $${liveCost.toFixed(4)}`
+      : "",
+    `Capture (fact stored): **${captureOk}/${n} (${capturePct}%)**`,
+    `Retrieval (overall): **${retrievalOk}/${n} (${retrievalPct}%)**`,
+    `Retrieval | captured: **${retrievalGivenCapture}/${capturedN} (${retrievalGivenPct}%)**`,
+    scribe === "gold"
+      ? `Accuracy: **${retrievalPct}%** (target ≥ 90% gold)`
+      : "",
     "",
-    "## Accuracy by question type",
+    "## Accuracy by question type (retrieval)",
     "",
     "| Kind | N | Correct | Accuracy |",
     "| --- | ---: | ---: | ---: |",
@@ -249,17 +406,38 @@ async function runEval(): Promise<void> {
     `| oldest | ${split.oldest.n} | ${split.oldest.correct} | ${split.oldest.pct}% |`,
     `| distractor_resistance | ${split.distractor_resistance.n} | ${split.distractor_resistance.correct} | ${split.distractor_resistance.pct}% |`,
     "",
-    "| id | kind | result | query |",
-    "| --- | --- | --- | --- |",
+    "| id | kind | captured | retrieval | query |",
+    "| --- | --- | --- | --- | --- |",
     ...rows,
     "",
-  ].join("\n");
-  writeFileSync(outMd, md);
+  ]
+    .filter((line) => line !== "")
+    .join("\n");
+  writeFileSync(outMd, md + "\n");
   writeFileSync(
     path.join(outDir, "recall-split.json"),
-    JSON.stringify({ pct, split, correct, n: questions.length }, null, 2),
+    JSON.stringify(
+      {
+        scribe,
+        capturePct,
+        retrievalPct,
+        retrievalGivenPct,
+        captureOk,
+        retrievalOk,
+        retrievalGivenCapture,
+        capturedN,
+        liveCost,
+        liveTurns,
+        split,
+        n,
+      },
+      null,
+      2,
+    ),
   );
-  console.log(`Recall ${scribe}: ${correct}/${questions.length} (${pct}%)`);
+  console.log(
+    `Recall ${scribe}: capture ${captureOk}/${n} (${capturePct}%); retrieval ${retrievalOk}/${n} (${retrievalPct}%); retrieval|captured ${retrievalGivenCapture}/${capturedN} (${retrievalGivenPct}%)${scribe === "live" ? `; cost $${liveCost.toFixed(4)}` : ""}`,
+  );
   console.log(
     `changed_later=${split.changed_later.pct}% static=${split.static.pct}% oldest=${split.oldest.pct}% distractor=${split.distractor_resistance.pct}%`,
   );
@@ -269,12 +447,15 @@ async function runEval(): Promise<void> {
   setEmbedderForTests(null);
   await shutdownEmbedder().catch(() => undefined);
 
-  if (scribe === "gold" && (pct < 90 || split.changed_later.pct < 90)) {
+  if (
+    scribe === "gold" &&
+    (retrievalPct < 90 || split.changed_later.pct < 90)
+  ) {
     process.exitCode = 1;
   }
 }
 
 runEval().catch((err) => {
-  console.error(err);
+  console.error(`[recall] FAIL: ${sanitizeLlmError(err)}`);
   process.exit(1);
 });

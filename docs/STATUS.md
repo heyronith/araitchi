@@ -10,7 +10,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 - **Project:** folder with `.research/` memory (Task 3)
 - **Always-council task types:** hypothesis generation, experiment design, literature/novelty check, critique, interpreting results
 - **Classifier:** rules → LLM (`~openai/gpt-latest`, 256 tokens) → kNN fallback (LLM error / timeout >4s / offline)
-- **Paper search:** multi-provider RRF + query expansion + local Qwen3 semantic rerank (default `best` stage, ≤~20s; hop/LLM opt-in)
+- **Paper search:** multi-provider RRF + query expansion + local Qwen3 semantic rerank (default `best` stage, p50≈18.7s / p95≈19.8s on 20 LitSearch queries after warm embedder + paper-ID embed cache; hop/LLM opt-in)
 - **Paper sources:** OpenAlex, CORE, Semantic Scholar, arXiv, DBLP, OpenReview, Crossref, Unpaywall
 
 ## Task table
@@ -32,6 +32,7 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 | T11 Quality (lit / gate / scribe / probe) | ✅ | v0.1.3 — frozen LitSearch: qwen R@5 28% / R@20 41% (targets 35/55 missed; pool 94%) |
 | T12 Research environment & continuity | ✅ | v0.1.4 — STATE.md, project map, recall eval, continuity tools |
 | T13 Trust (citations / traceability / plan) | ✅ | v0.1.5 — citations, traceability, plan; unchecked = neither trust nor penalise |
+| T11d Honest eval numbers | ✅ | v0.1.6 — LLM rerank failures visible (OpenRouter key $10 hard limit blocked live llm/recall); `best` p95≤20s; live scribe mode no silent gold fallback |
 
 ## Known issues / follow-ups
 
@@ -54,9 +55,15 @@ Araitchi is a local-first, self-hosted AI research workspace. You bring your own
 - Council presets depend on a fresh model catalog; empty/offline cache falls back poorly until refresh.
 - Screenshot placeholders in README (`docs/screenshots/*.png`) are not real assets yet.
 
+## T11d numbers (v0.1.6)
+
+- **LitSearch frozen rank (qwen, N=100):** R@5 **28%**, R@20 **41%**, pool recall **94%**. Targets R@5≥35% / R@20≥55% **missed**.
+- **LLM rerank:** prior `$0` / qwen-identical row was a soft-fail. Root cause: OpenRouter **key hard limit** ($10.01 of $10.00). Failures now counted, first error printed, run fails if fallbacks >10%. Live `rank --variant llm --limit 100` **blocked** until key limit raised (probe: 5/5 fallbacks, rate 100%).
+- **Default `best` search latency (N=20, warm embedder):** before disk paper-ID cache p50 **19.0s** / p95 **20.1s**; after warm+batch16+disk cache p50 **18.7s** / p95 **19.8s**.
+- **Recall `--scribe live`:** implemented (capture % vs retrieval|captured); **blocked** by same OpenRouter key limit (fails loudly, no gold fallback).
+
 ## Next steps
 
-- Finish T11 (`v0.1.3`), then rebase/merge `t12-environment` and tag `v0.1.4`.
-- Then rebase/merge `t13-trust` and tag `v0.1.5`.
+- Raise OpenRouter key limit (or new key); rerun `pnpm eval:litsearch:rank --variant llm --limit 100 --max-spend 2` and `pnpm eval:recall --scribe live --limit 30 --max-spend 1`.
 - Owner: open a real project → indexing → ask “where are we?”; edit `.research/AGENTS.md`; confirm Read fully + model handoff + chat search.
 - Capture README screenshots; tune `config/defaults.json` from eval tables.

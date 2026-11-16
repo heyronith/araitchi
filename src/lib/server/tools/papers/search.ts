@@ -1,6 +1,7 @@
 import "server-only";
 
 import { getBenchContext } from "@/lib/server/bench/context";
+import { getEmbedder } from "@/lib/server/memory/embedder";
 import { requireOpenRouterApiKey } from "@/lib/server/openrouter";
 
 import {
@@ -268,6 +269,14 @@ export async function searchPapers(
     }
   }
 
+  // Keep the local embedder warm while providers fetch (best / semantic stages).
+  const embedWarm =
+    stageWantsEnhance(stage) && !process.env.VITEST
+      ? getEmbedder()
+          .then((e) => e.embed(["warmup"], { isQuery: true }))
+          .catch(() => undefined)
+      : Promise.resolve(undefined);
+
   let queries = [q];
   let expandCost = 0;
   if (stageWantsExpand(stage)) {
@@ -350,6 +359,7 @@ export async function searchPapers(
 
   let enhanceCost = 0;
   if (stageWantsEnhance(stage) && !signal?.aborted) {
+    await embedWarm;
     const enh = await enhanceRankedPapers({
       query: q,
       ranked: papers,
