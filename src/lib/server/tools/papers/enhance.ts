@@ -147,6 +147,30 @@ function paperExpandModel(): string {
   );
 }
 
+/** LLM paper rerank — prefer a strong non-reasoning JSON model. */
+function paperRerankModel(): string {
+  return "~openai/gpt-latest";
+}
+
+/** Strip secrets / key URLs from provider errors before logging. */
+export function sanitizeLlmError(err: unknown): string {
+  let msg = err instanceof Error ? err.message : String(err);
+  msg = msg.replace(
+    /https?:\/\/openrouter\.ai\/workspaces\/[^\s]+/gi,
+    "[openrouter-key-url]",
+  );
+  msg = msg.replace(/sk-or-v1-[a-zA-Z0-9]+/g, "[redacted-key]");
+  return msg.slice(0, 400);
+}
+
+export type LlmRerankResult = {
+  papers: Paper[];
+  costUsd: number;
+  /** False when the model call failed or returned no scores (fell back). */
+  ok: boolean;
+  error?: string;
+};
+
 export async function expandSearchQueries(input: {
   query: string;
   apiKey?: string | null;
@@ -296,9 +320,43 @@ function paperEmbedCacheKey(p: Paper): string {
     .slice(0, 32);
 }
 
-/** Process-lifetime cache of candidate embeddings (shared across queries/stages). */
+/** Process-lifetime cache of candidate embeddings keyed by paper ID (+ text hash). */
 const docEmbedCache = new Map<string, Float32Array>();
-const EMBED_BATCH = 32;
+/** ONNX throughput peaks on small batches; larger batches are slower on CPU. */
+const EMBED_BATCH = 16;
+
+function paperIdKey(p: Paper): string | null {
+  if (p.doi) return `doi:${p.doi.toLowerCase()}`;
+  if (p.arxivId) return `arxiv:${p.arxivId.toLowerCase()}`;
+  return null;
+}
+
+function docEmbedDiskDir(): string {
+  const dir = path.join(getAppDataDir(), "cache", "paper-embeds");
+  mkdirSync(dir, { recursive: true });
+  return dir;
+}
+
+function loadDiskEmbed(cacheKey: string): Float32Array | null {
+  try {
+    const fp = path.join(docEmbedDiskDir(), `${cacheKey}.bin`);
+    if (!existsSync(fp)) return null;
+    const buf = readFileSync(fp);
+    if (buf.byteLength < 8 || buf.byteLength % 4 !== 0) return null;
+    return new Float32Array(buf.buffer, buf.byteOffset, buf.byteLength / 4);
+  } catch {
+    return null;
+  }
+}
+
+function saveDiskEmbed(cacheKey: string, vec: Float32Array): void {
+  try {
+    const fp = path.join(docEmbedDiskDir(), `${cacheKey}.bin`);
+    writeFileSync(fp, Buffer.from(vec.buffer, vec.byteOffset, vec.byteLength));
+  } catch {
+    // best-effort disk cache
+  }
+}
 
 /** Serialize ONNX embed calls — concurrent worker access can abort the process. */
 let embedChain: Promise<unknown> = Promise.resolve();
@@ -320,10 +378,25 @@ async function embedDocsCached(
   const missingTexts: string[] = [];
   for (let i = 0; i < papers.length; i++) {
     if (signal?.aborted) throw new DOMException("Aborted", "AbortError");
-    if (!docEmbedCache.has(keys[i]!)) {
-      missingIdx.push(i);
-      missingTexts.push(paperEmbedText(papers[i]!));
+    const key = keys[i]!;
+    if (docEmbedCache.has(key)) continue;
+    const fromDisk = loadDiskEmbed(key);
+    if (fromDisk) {
+      docEmbedCache.set(key, fromDisk);
+      continue;
     }
+    // Also try stable paper-ID file when text hash differs slightly.
+    const id = paperIdKey(papers[i]!);
+    if (id) {
+      const idHash = createHash("sha256").update(id).digest("hex").slice(0, 32);
+      const byId = loadDiskEmbed(`id-${idHash}`);
+      if (byId) {
+        docEmbedCache.set(key, byId);
+        continue;
+      }
+    }
+    missingIdx.push(i);
+    missingTexts.push(paperEmbedText(papers[i]!));
   }
   if (missingTexts.length) {
     const embedder = await getEmbedder();
@@ -334,7 +407,18 @@ async function embedDocsCached(
       for (let j = 0; j < batch.length; j++) {
         const vec = vecs[j];
         const pi = missingIdx[off + j]!;
-        if (vec) docEmbedCache.set(keys[pi]!, vec);
+        if (!vec) continue;
+        const key = keys[pi]!;
+        docEmbedCache.set(key, vec);
+        saveDiskEmbed(key, vec);
+        const id = paperIdKey(papers[pi]!);
+        if (id) {
+          const idHash = createHash("sha256")
+            .update(id)
+            .digest("hex")
+            .slice(0, 32);
+          saveDiskEmbed(`id-${idHash}`, vec);
+        }
       }
     }
   }
@@ -424,12 +508,24 @@ export async function llmRerankPapers(input: {
   papers: Paper[];
   apiKey?: string | null;
   topN?: number;
+  /** Keep this many after scoring (default 20). Rest keep prior order. */
+  keepTop?: number;
+  modelId?: string;
   signal?: AbortSignal;
-}): Promise<{ papers: Paper[]; costUsd: number }> {
+}): Promise<LlmRerankResult> {
   const topN = input.topN ?? LLM_RERANK_TOP_N;
+  const keepTop = input.keepTop ?? 20;
   const slice = input.papers.slice(0, topN);
-  if (slice.length <= 1 || !input.apiKey) {
-    return { papers: input.papers, costUsd: 0 };
+  if (slice.length <= 1) {
+    return { papers: input.papers, costUsd: 0, ok: true };
+  }
+  if (!input.apiKey) {
+    return {
+      papers: input.papers,
+      costUsd: 0,
+      ok: false,
+      error: "missing OpenRouter API key",
+    };
   }
 
   const catalog = slice.map((p, i) => ({
@@ -440,12 +536,12 @@ export async function llmRerankPapers(input: {
   }));
 
   try {
-    // Use non-reasoning expand model (gpt) — gemini-flash burns tokens on reasoning.
     const openrouter = createOpenRouterClient(input.apiKey);
-    const model = openrouter(paperExpandModel(), { usage: { include: true } });
+    const modelId = input.modelId?.trim() || paperRerankModel();
+    const model = openrouter(modelId, { usage: { include: true } });
     const result = await generateText({
       model,
-      maxOutputTokens: 2048,
+      maxOutputTokens: 4096,
       temperature: 0,
       output: Output.object({ schema: llmScoresSchema }),
       system: `Score each paper 0–10 for relevance to the user question.
@@ -453,16 +549,19 @@ Return scores for EVERY paper index. Prefer the exact landmark paper when the qu
       prompt: `Question:\n${input.query.slice(0, 1500)}\n\nPapers:\n${JSON.stringify(catalog)}`,
       abortSignal: input.signal,
     });
-    const cost =
-      (
-        (await result.providerMetadata)?.openrouter as
-          { usage?: { cost?: number } } | undefined
-      )?.usage?.cost ?? 0;
+    const costRaw = (
+      (await result.providerMetadata)?.openrouter as
+        { usage?: { cost?: number } } | undefined
+    )?.usage?.cost;
+    const costUsd =
+      typeof costRaw === "number" && Number.isFinite(costRaw) ? costRaw : 0;
     const scores = result.output?.scores ?? [];
     if (!scores.length) {
       return {
         papers: input.papers,
-        costUsd: typeof cost === "number" ? cost : 0,
+        costUsd,
+        ok: false,
+        error: "LLM rerank returned empty scores",
       };
     }
     const byIdx = new Map(scores.map((s) => [s.i, s.s]));
@@ -471,7 +570,7 @@ Return scores for EVERY paper index. Prefer the exact landmark paper when the qu
       s: byIdx.get(i) ?? 0,
     }));
     withScore.sort((a, b) => b.s - a.s);
-    const head = withScore.map((x) => x.p);
+    const head = withScore.map((x) => x.p).slice(0, keepTop);
     const headKeys = new Set(
       head.map(
         (p) => (p.doi ?? "") || (p.arxivId ?? "") || p.title.toLowerCase(),
@@ -483,10 +582,16 @@ Return scores for EVERY paper index. Prefer the exact landmark paper when the qu
     });
     return {
       papers: [...head, ...rest],
-      costUsd: typeof cost === "number" ? cost : 0,
+      costUsd,
+      ok: true,
     };
-  } catch {
-    return { papers: input.papers, costUsd: 0 };
+  } catch (e) {
+    return {
+      papers: input.papers,
+      costUsd: 0,
+      ok: false,
+      error: sanitizeLlmError(e),
+    };
   }
 }
 

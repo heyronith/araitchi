@@ -1,12 +1,14 @@
 # LitSearch recall eval
 
-| Stage | N | Pool recall | Recall@5 | Recall@20 | Cost/query | Latency | Avg pool | Timeouts |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| frozen-llm | 100 | 94.0% | 28.0% | 41.0% | $0.0000 | 27112ms | 892 | 2 |
-| frozen-qwen | 2 | 100.0% | 100.0% | 100.0% | $0.0000 | 0ms | 2 | 0 |
-| frozen-rrf | 100 | 94.0% | 18.0% | 35.0% | $0.0000 | 0ms | 892 | 0 |
-| baseline | 100 | 48.0% | 13.0% | 24.0% | $0.0000 | 50823ms | 158 | — |
-| pool (OA funded, live) | 96 | 97.9% | 22.9% | 37.5% | $0.0029 | 62642ms | 1026 | — |
+| Stage | N | Pool recall | Recall@5 | Recall@20 | Cost/query | Latency | Avg pool | Timeouts | Fallbacks |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| frozen-llm | 5* | 100.0% | 20.0% | 40.0% | $0.0000 | 20351ms | 956 | 0 | 5 |
+| frozen-qwen | 2 | 100.0% | 100.0% | 100.0% | $0.0000 | 0ms | 2 | 0 | 0 |
+| frozen-rrf | 100 | 94.0% | 18.0% | 35.0% | $0.0000 | 0ms | 892 | 0 | — |
+| baseline | 100 | 48.0% | 13.0% | 24.0% | $0.0000 | 50823ms | 158 | — | — |
+| pool (OA funded, live) | 96 | 97.9% | 22.9% | 37.5% | $0.0029 | 62642ms | 1026 | — | — |
+
+\* `frozen-llm` N=5 probe only — OpenRouter key hard limit; 100% fallback (not a real LLM rank). Full N=100 blocked.
 
 Ground truth: LitSearch query split; matching via normalised title overlap.
 
