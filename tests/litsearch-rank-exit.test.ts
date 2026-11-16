@@ -67,6 +67,8 @@ describe("litsearch rank exit", () => {
         ],
         {
           cwd: root,
+          // Windows CI: pnpm is a .cmd shim — spawn needs shell.
+          shell: process.platform === "win32",
           env: {
             ...process.env,
             ARAITCHI_FAKE_EMBEDDINGS: "1",

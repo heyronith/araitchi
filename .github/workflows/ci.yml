@@ -4,6 +4,11 @@ on:
   push:
   pull_request:
 
+# Skip optional CUDA EP download — CPU ORT ships in the npm tarball; the GPU
+# postinstall races/flakes on Linux CI (chmod ENOENT under /tmp).
+env:
+  ONNXRUNTIME_NODE_INSTALL: skip
+
 jobs:
   build:
     strategy:
